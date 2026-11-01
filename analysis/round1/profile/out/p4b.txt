@@ -1,0 +1,31 @@
+# implementation/product names that denote an NF (entity linking needed)
+gNB                              records=   82 distinct_forms=  4 records_without_canonical_token=   8 top=[('nr-softmodem', 44), ('OAI gNB', 42), ('srsGNB', 21), ('srsgnb', 17)]
+UE                               records=  522 distinct_forms=  7 records_without_canonical_token= 202 top=[('srsUE', 546), ('UERANSIM', 246), ('단말', 219), ('srsue', 151), ('nr-uesoftmodem', 30), ('lte-uesoftmodem', 17)]
+eNB                              records=  331 distinct_forms=  4 records_without_canonical_token= 141 top=[('srsENB', 363), ('srsenb', 320), ('lte-softmodem', 92), ('기지국', 24)]
+MME                              records=   29 distinct_forms=  4 records_without_canonical_token=   4 top=[('open5gs-mmed', 19), ('nextepc-mmed', 13), ('mmed', 6), ('magma_mme', 2)]
+AMF                              records=   17 distinct_forms=  2 records_without_canonical_token=   3 top=[('open5gs-amfd', 19), ('amfd', 3)]
+SMF                              records=   20 distinct_forms=  1 records_without_canonical_token=   1 top=[('open5gs-smfd', 29)]
+UPF                              records=   55 distinct_forms=  3 records_without_canonical_token=   8 top=[('gtp5g', 101), ('upfd', 21), ('open5gs-upfd', 14)]
+SPGW/SGW/PGW                     records=   95 distinct_forms=  5 records_without_canonical_token=   0 top=[('srsEPC', 105), ('srsepc', 76), ('pgwd', 8), ('open5gs-sgwcd', 7), ('open5gs-sgwud', 1)]
+HSS                              records=   60 distinct_forms=  3 records_without_canonical_token=  50 top=[('subscriberdb', 144), ('hssd', 6), ('open5gs-hssd', 6)]
+magma AGW (MME+SPGW 기능 분산)       records=  926 distinct_forms=  9 records_without_canonical_token=   0 top=[('AGW', 1568), ('orc8r', 382), ('pipelined', 336), ('sessiond', 181), ('FeG', 158), ('mobilityd', 98)]
+core 일반어                         records=  264 distinct_forms=  4 records_without_canonical_token=   0 top=[('EPC', 348), ('5GC', 82), ('core network', 28), ('코어', 3)]
+records that gain an NF only through impl-name aliases (single-NF targets): 417
+
+# record-level NF coverage: strict case-sensitive vs liberal (case-insensitive + impl names), canonical and records
+canonical: liberal NF coverage=49.1% by origin={'adjacent-network': 2, 'ran-core': 4908}
+records: liberal NF coverage=49.0% by origin={'adjacent-network': 2, 'ran-core': 4902}
+
+# known persona typos in English identifiers (docs/personas.md: handvoer, recieve) and Korean colloquial NF terms
+handvoer: canonical=0 records=6
+recieve: canonical=0 records=27
+recieved: canonical=0 records=0
+seesion: canonical=0 records=0
+sesion: canonical=0 records=0
+regsitration: canonical=0 records=0
+attatch: canonical=0 records=0
+죽음: canonical=2 records=501
+튐: canonical=1 records=51
+먹통: canonical=0 records=83
+기지국: canonical=24 records=17
+단말: canonical=219 records=179

@@ -1,0 +1,986 @@
+## A. weak-cause record -> 1 hop -> 명시 record, different cause_class or different title domain
+[err_specific] DF-CORE-2018-00020 [추론/결함 아님] [PCRF] CentOS 7에서 `./test/testepc` 실행 시 Diameter bind `Address already in use`로 PCRF 초기화 a
+      -> DF-CORE-2018-00063 [명시/설정] [PCRF·PGW·HSS·MME] freeDiameter 인증서 만료로 nextepc 초기화 실패
+[err_specific] DF-CORE-2018-00022 [추론/결함 아님] [HSS] Amarisoft eNodeB로 UE attach 시 매번 Re-synch MAC failed
+      -> DF-CORE-2018-00023 [명시/결함 아님] [HSS] 가입자 미등록으로 `Cannot find IMSI in DB`와 Diameter Result Code 5001
+[err_specific] DF-CORE-2018-00042 [추론/결함 아님] [MME] 단말 attach 시 인증이 Diameter Result Code 5001로 반복 실패
+      -> DF-CORE-2018-00023 [명시/결함 아님] [HSS] 가입자 미등록으로 `Cannot find IMSI in DB`와 Diameter Result Code 5001
+[err_specific] DF-CORE-2018-00053 [미상/-] [MME] S1AP-PDU 복호 실패가 반복되며 pkbuf clbuf 고갈 assert
+      -> DF-CORE-2019-00187 [명시/프로토콜 처리] [MME S1AP] Ixia eNB가 보낸 EUTRAN-CGI iE-Extensions를 decode하지 못해 S1AP-PDU decode 실패
+[err_specific] DF-CORE-2019-00099 [추론/자원 관리] [MME] clbuf pool 고갈로 S1AP-PDU decode 실패와 MME 재시작
+      -> DF-CORE-2019-00187 [명시/프로토콜 처리] [MME S1AP] Ixia eNB가 보낸 EUTRAN-CGI iE-Extensions를 decode하지 못해 S1AP-PDU decode 실패
+[err_specific] DF-CORE-2019-00123 [미상/-] [MME] UE attach 중 ULR/ULA 절차 실패에 `mme_app_handle_s6a_update_location_ans()` assert 실패로 비정상
+      -> DF-RAN-CU-2023-00142 [명시/프로토콜 처리] [CU F1AP] GNB-DU CONFIGURATION UPDATE 수신 시 Unknown procedure ID로 assert 실패
+[err_specific] DF-CORE-2019-00125 [추론/자원 관리] [SGW] S1-U path 비활성 중 하향 packet buffering으로 `cluster_alloc: Assertion `buffer' failed` 비정상
+      -> DF-CORE-2020-00260 [명시/자원 관리] [PGW] session 256개에서 packet buffer pool이 고갈되어 cluster_alloc assert 실패로 비정상 종료(crash)
+[xref] DF-CORE-2019-00126 [미상/-] [MME] 일정 시간 운용 뒤 attach 중 UE가 Security Mode Reject 송신
+      -> DF-CORE-2019-00145 [명시/구현 오류] [MME] Attach Request의 last visited registered TAI PLMN을 S6a Visited-PLMN-Id로 보내 KASME 불일치와
+[err_specific] DF-CORE-2019-00129 [추론/상태 관리] [PGW] TEID로 bearer를 찾지 못한 user plane packet 수신 시 assert 실패로 coredump
+      -> DF-CORE-2025-02441 [명시/상태 관리] [SGW-C] Delete Session으로 지워진 bearer를 가리키는 S11 Update Bearer Response에 ogs_assert(bearer) 실
+[err_specific] DF-CORE-2019-00130 [추론/상태 관리] [PGW] MME/SGW가 Delete Session Request를 재전송하면 Gx CCA callback에서 assert 실패로 coredump
+      -> DF-CORE-2022-01633 [명시/결함 아님] [PCRF] Rx만 쓰는 IMS로 VoNR 통화 시 `pcrf_rx_str_cb` assert로 비정상 종료(crash)
+[err_specific] DF-CORE-2019-00131 [추론/동시성] [MME] detach 처리 중 `lock_ue_contexts`에서 heap-use-after-free로 비정상 종료(crash)
+      -> DF-CORE-2022-01480 [명시/테스트] [SPGW unit test] ASAN에서 `SPGWAppProcedureTest.TestCreateSessionIPAllocFailure` heap-use-af
+[err_specific] DF-CORE-2019-00132 [추론/동시성] [MME] Tracking area update 중 `mme_s11_handle_delete_session_response: Assertion `enb_ue' f
+      -> DF-CORE-2019-00120 [명시/상태 관리] [MME] Authentication Response 뒤 Attach Request가 오면 `enb_ue` assert 실패로 비정상 종료
+[xref] DF-CORE-2019-00150 [미상/-] [MME S1AP] criticality=ignore인 pagingDRX IE가 든 S1 Setup Request에 무응답
+      -> DF-CORE-2019-00149 [명시/프로토콜 처리] [MME S1AP] decode할 수 없는 IE가 든 S1 Setup Request에 S1 Setup Failure 없이 무응답
+[err_specific] DF-CORE-2019-00163 [추론/입력 검증] [PGW] 두 번째 APN(ims) 연결 시 PCO 항목이 많아 `pco_parse` assert 실패로 비정상 종료(crash)
+      -> DF-CORE-2024-02147 [명시/입력 검증] [SMF] 단말이 PCO를 17개 보내면 `ogs_pco_parse()` assert 실패로 SMF 비정상 종료
+[err_specific] DF-CORE-2019-00166 [미상/-] [MME] Lenovo A5000 연결 중 `mme_state_operational` assert 실패로 비정상 종료(crash)
+      -> DF-CORE-2019-00186 [명시/결함 아님] [MME] SGW Create Session Response 수신 시 `mme_ue` assert 실패로 비정상 종료 — SGW·PGW 주소 설정 오류
+[func] DF-CORE-2019-00178 [미상/-] [MME] Create Session Request 생성 중 예상 밖 PDN type으로 `ogs_assert_if_reached()`에 걸려 비정상 종료(cra
+      -> DF-CORE-2025-02317 [명시/입력 검증] [MME] PDN type이 0인 PDN Connectivity Request로 mme_s11_build_create_session_request assert 실
+[func] DF-CORE-2019-00182 [추론/프로토콜 처리] [MME S6a] 외부 상용 HSS의 ULA 처리 중 mme_s6a_ula_cb assert 실패로 비정상 종료(crash)
+      -> DF-CORE-2024-02060 [명시/입력 검증] [MME] S6a ULA·IDR의 MSISDN AVP 길이로 BCD 변환해 heap overflow 발생
+[err_specific] DF-CORE-2019-00184 [미상/-] [MME] IMS APN attach 중 E-RAB Setup Response 처리에서 `E_RABSetupListBearerSURes` assert 실패로 비정
+      -> DF-CORE-2019-00170 [명시/프로토콜 처리] [MME S1AP] Huawei BBU3900의 E-RAB Setup Response에 E_RABSetupListBearerSURes가 없어 assert 실패로 
+[xref] DF-CORE-2019-00192 [추론/프로토콜 처리] [SGW] 성공한 Create Session Response의 Bearer Context에 Cause IE가 없음
+      -> DF-CORE-2019-00146 [명시/규격 미준수] [SGW] Create Session Response의 Bearer Context Created에 필수 IE인 Cause 누락
+[err_specific] DF-CORE-2019-00203 [추론/상태 관리] [MME] Initial Context Setup Failure 처리 중 UE context를 찾지 못해 `(mme_ue)` assert 실패
+      -> DF-CORE-2019-00186 [명시/결함 아님] [MME] SGW Create Session Response 수신 시 `mme_ue` assert 실패로 비정상 종료 — SGW·PGW 주소 설정 오류
+[xref] DF-CORE-2019-00212 [미상/-] [MME·PGW] IMS용 dedicated EPS bearer 활성화를 UE가 'semantic errors in packet filter'로 거절
+      -> DF-CORE-2020-00408 [명시/결함 아님] [PCRF/MME] Kamailio IMS VoLTE 통화의 Activate dedicated EPS bearer context reject(Semantic er
+[func] DF-CORE-2020-00235 [추론/결함 아님] [UPF] testgtpv1 실행 시 GTP device 생성 실패
+      -> DF-CORE-2020-00262 [명시/결함 아님] [UPF] kernel 4.15.0-88-generic에서 GTP device upfgtp0 생성 실패로 UPF 기동 실패
+[xref] DF-CORE-2020-00236 [미상/-] [EPC 테스트] release 1.2.2 meson test에서 system 테스트 simple·mnc3·volte·csfb 실패
+      -> DF-CORE-2020-00357 [명시/테스트] [test] freeDiameter client·server 동시 기동 시 CCR/CCA routing 경로가 없어 `meson test` 실패
+[xref] DF-CORE-2020-00272 [미상/-] [test] `./test.sh TestRegistration`이 invalid memory address 오류로 실패
+      -> DF-CORE-2020-00298 [명시/설정] [AMF NGAP 시험] TestServiceRequest가 SCTP 연결 nil 상태에서 SCTPWrite 호출로 Segmentation fault
+[err_specific] DF-CORE-2020-00281 [추론/입력 검증] [NSSF] nsiList에 없는 S-NSSAI로 NSSelection 요청 시 `panic: invalid argument to Intn`으로 비정상 종료(cr
+      -> DF-CORE-2022-01586 [명시/입력 검증] [SMF] dnn에 맞는 anchor UPF가 없으면 `invalid argument to Intn` panic
+
+## B. 2-hop chains a -(xref)- b -(mr/commit/err/func)- c, all distinct repos-same, c 명시, a weak
+DF-CORE-2019-00150 [미상/-] [MME S1AP] criticality=ignore인 pagingDRX IE가 든 S1 Setup Request에 무응답
+   -[xref]-> DF-CORE-2019-00149 [명시/프로토콜 처리] [MME S1AP] decode할 수 없는 IE가 든 S1 Setup Request에 S1 Setup Failure 없이 무응답
+   -[ref_mr_pr]-> DF-PLATFORM-2019-02858 [명시/설정] [WebUI 설치] 안내된 install URL이 script 대신 HTML을 돌려줘 설치 실패
+DF-CORE-2020-00236 [미상/-] [EPC 테스트] release 1.2.2 meson test에서 system 테스트 simple·mnc3·volte·csfb 실패
+   -[xref]-> DF-CORE-2020-00347 [미상/-] [test] VirtualBox VM에서 `ninja -C build test`의 EPC·5GC test가 FAIL·TIMEOUT
+   -[func]-> DF-CORE-2022-01391 [명시/결함 아님] [MME] v2.4.4 업데이트 뒤 freeDiameter SCTP bind 실패로 시작 시 assert
+DF-CORE-2020-00495 [미상/-] [MME] OAI eNB·UE의 4G attach가 EMM Cause 111로 실패, MME가 HSS로 Update-Location Request를 보내지 않음
+   -[xref]-> DF-CORE-2020-00517 [명시/연동] [MME] Attach Accept의 EPS network feature support IE(length 2)를 Rel-9 단말 E3372가 처리하지 못해 cau
+   -[func]-> DF-CORE-2023-01971 [명시/입력 검증] [MME] 초당 5건 attach 부하에서 잘못 인코딩된 TAI 처리 중 assert 실패로 비정상 종료(crash)
+DF-CORE-2021-00698 [추론/구현 오류] [MME] UE timezone 보고에서 구한 uetimezone 값을 쓰지 않고, 그 값도 MME timezone임
+   -[xref]-> DF-CORE-2021-00693 [해당 없음/-] [MME] clang-tidy DeadStores finding 정리 (저장 후 읽지 않는 변수)
+   -[ref_commit]-> DF-CORE-2021-00689 [명시/구현 오류] [MME hashtable] calloc의 sizeof 대상 타입이 틀려 hashtable key 배열이 작게 할당될 수 있음 (clang-tidy MallocS
+DF-CORE-2021-00714 [추론/설정] [HSS] v2.2.0 DB schema 변경 뒤 옛 schema 가입자 정보로 UE 등록 실패
+   -[xref]-> DF-CORE-2021-00740 [명시/설정] [HSS] Update-Location-Request 처리 중 `ogs_slice_find_by_s_nssai` assert 실패로 비정상 종료(crash)
+   -[err_specific]-> DF-CORE-2021-00747 [명시/연동] [VoLTE] 단말 한 대에서 VoLTE 통화가 CANCEL로 실패
+DF-CORE-2021-00890 [미상/-] [AGW mobilityd] DHCP server가 없는 경우 처리
+   -[xref]-> DF-CORE-2021-00572 [명시/구현 오류] [AGW mobilityd] static IP가 없는 UE가 DHCP 할당을 시도하면 mobilityd·pipelined가 hang
+   -[ref_commit]-> DF-CORE-2021-00622 [명시/프로토콜 처리] [MME] iPhone 12의 Attach Request를 Cause #99로 reject
+DF-CORE-2021-00951 [미상/-] [SMF] gNB의 RRC Connection Release with redirection을 켜면 SMF가 비정상 종료 후 재시작
+   -[xref]-> DF-CORE-2021-00925 [미상/-] [SMF] v2.2.9에서 context release 뒤 재접속 시 Invalid Downlink Data Service Information으로 assert 
+   -[err_specific]-> DF-CORE-2021-00787 [명시/결함 아님] [SMF/UPF] 같은 machine의 SMF·UPF PFCP 주소를 같은 공인 IP로 바꾸자 PFCP transaction 오류로 PDU session 수립 실
+DF-CORE-2021-01039 [추론/구현 오류] [FeG] HSS의 Cancel Location Request에 3002 DIAMETER_UNABLE_TO_DELIVER로 응답
+   -[xref]-> DF-CORE-2021-01131 [명시/결함 아님] [MME S6a] HSS의 CLR(Subscription_withdrawal)에 CLA를 보내지 않음
+   -[ref_commit]-> DF-CORE-2021-01128 [명시/결함 아님] [FeG Gy] 1.6에서 Gx dynamic rule의 Service Identifier가 Gy MSCC request에 빠짐
+DF-CORE-2022-01461 [미상/-] [MME] ASAN·LSAN을 켠 S1AP integ test suite 실패 묶음 추적
+   -[xref]-> DF-CORE-2022-01465 [추론/자원 관리] [MME] IPv6 paging·dedicated bearer s1ap test 중 `mme_app_remove_ue_ipv6_addr`에서 heap-use-af
+   -[err_specific]-> DF-CORE-2022-01480 [명시/테스트] [SPGW unit test] ASAN에서 `SPGWAppProcedureTest.TestCreateSessionIPAllocFailure` heap-use-af
+DF-CORE-2022-01513 [미상/-] [free5GC test] test 실행 시 ngsetup_test.go의 LogLevel·ReportCaller 설정이 적용되지 않음
+   -[xref]-> DF-CORE-2020-00235 [추론/결함 아님] [UPF] testgtpv1 실행 시 GTP device 생성 실패
+   -[func]-> DF-CORE-2020-00273 [명시/플랫폼] [UPF test] test.sh가 간헐적으로 `upfgtp0` GTP device 생성 실패로 실패
+DF-CORE-2022-01541 [미상/-] [UPF] UE가 다른 gNB로 다시 접속하거나 handover해도 downlink GTP-U를 처음 접속한 gNB로 계속 전송
+   -[xref]-> DF-CORE-2022-01572 [추론/구현 오류] [UPF] Path Switch Request 뒤 FAR가 새 gNB 주소로 바뀌어도 user traffic을 이전 gNB로 계속 보냄
+   -[func]-> DF-CORE-2026-02920 [명시/상태 관리] [UPF] GTP-U peer 설정이 실패한 session을 Session Deletion이 처리하다 `Unknown family(0)`로 비정상 종료(crash
+DF-CORE-2022-01572 [추론/구현 오류] [UPF] Path Switch Request 뒤 FAR가 새 gNB 주소로 바뀌어도 user traffic을 이전 gNB로 계속 보냄
+   -[xref]-> DF-CORE-2022-01418 [해당 없음/-] [SMF/UPF] Modify Bearer Request·Update PDP Context Request로 받은 원격 GTPC/GTPU 주소와 TEID 갱신 요청
+   -[func]-> DF-CORE-2026-02877 [명시/상태 관리] [SMF] Handover Indication이 있는 Modify Bearer Request에서 맞는 Non-3GPP session이 없으면 assert 실패로 
+DF-CORE-2022-01682 [미상/-] [LTE integ test] `test_3485_timer_for_default_bearer_with_mme_restart.py`에서 S1AP Tester 응답
+   -[xref]-> DF-CORE-2022-01681 [명시/테스트] [LTE integ test] `test_3485_timer_for_default_bearer_with_mme_restart`가 MME 재시작 대기 부족으로 간헐
+   -[err_specific]-> DF-PLATFORM-2022-03802 [명시/설정] [CI] LTE integ test 실패 유형 분류와 v1.8 branch에서 bazel workflow 실패
+DF-CORE-2023-01759 [미상/-] [MME] 한동안 운용하면 특정 UE가 attach를 거절당해 cell에 camp하지 못함
+   -[xref]-> DF-CORE-2023-01776 [미상/-] [SMF] PFCP Session Modification Response가 없을 때 timeout 처리에서 `stream` assert 비정상 종료
+   -[err_specific]-> DF-CORE-2026-02794 [명시/자원 관리] [SBI] HTTP/2 stream pool 고갈 시 on_begin_headers() assert 실패로 모든 SBI NF 비정상 종료
+DF-CORE-2023-01774 [미상/-] [AMF] Service Request 중 PDU Session Resource Release Command 생성 실패로 `r != OGS_ERROR` asser
+   -[xref]-> DF-CORE-2023-01776 [미상/-] [SMF] PFCP Session Modification Response가 없을 때 timeout 처리에서 `stream` assert 비정상 종료
+   -[err_specific]-> DF-CORE-2026-02794 [명시/자원 관리] [SBI] HTTP/2 stream pool 고갈 시 on_begin_headers() assert 실패로 모든 SBI NF 비정상 종료
+
+## C. shared specific error signature across different SW versions/cause_class
+launchpad:neutron log:Request Failed: internal server error while processing your request. n=11 classes={'연동', '구현 오류', '설정', '입력 검증'}
+     DF-PLATFORM-2013-00448 [명시/설정] [neutron-server] quantum 이름 변경 뒤 notification_driver가 옛 module 경로로 남아 net-create가 500 오류 ver=[]
+     DF-PLATFORM-2013-00484 [추론/입력 검증] [LBaaS] 같은 pool에 health monitor를 중복 연결하면 500 internal server error ver=[]
+     DF-PLATFORM-2014-00721 [추론/연동] [NSX L2 gateway] vlan 연결이 있는 gateway에 flat으로 net-gateway-connect 하면 409 대신 500 ver=['stable/havana']
+     DF-PLATFORM-2015-01313 [추론/입력 검증] [LBaaS] 없는 health monitor id로 pool에 연결하면 500 Internal Server Error ver=[]
+     DF-PLATFORM-2015-01530 [명시/구현 오류] [IPAM prefix delegation] PD subnet의 subnet_id만 fixed_ips에 넣어 port를 만들면 DBDuplicateEntry ver=[]
+     DF-PLATFORM-2015-01558 [명시/입력 검증] [FWaaS API] 255자 넘는 name이나 1024자 넘는 description으로 생성하면 500 INTERNAL SERVER error ver=[]
+     DF-PLATFORM-2015-01702 [명시/입력 검증] [RBAC] target-tenant 없이 RBAC policy를 만들면 DB IntegrityError로 internal server error ver=['Mitaka']
+     DF-PLATFORM-2016-01770 [미상/-] [router gateway] leading 0이 붙은 IP로 router gateway를 설정하면 internal server error ver=[]
+     DF-PLATFORM-2016-01818 [명시/구현 오류] [network API] dns_domain으로 network update 시 internal server error ver=[]
+     DF-PLATFORM-2016-02104 [명시/입력 검증] [QoS API] 255자를 넘는 name·description으로 qos policy를 만들면 500 응답 ver=['9.3.0', 'stable/newton']
+     DF-PLATFORM-2017-02387 [명시/구현 오류] [neutron DB] OVO가 떼어 낸 DB object의 relationship을 commit 때 로드하다 `InvalidRequestError: Can't  ver=['Pike']
+open5gs/open5gs assert:bearer n=10 classes={'상태 관리', '자원 관리', '입력 검증'}
+     DF-CORE-2019-00129 [추론/상태 관리] [PGW] TEID로 bearer를 찾지 못한 user plane packet 수신 시 assert 실패로 coredump ver=[]
+     DF-CORE-2023-01833 [추론/상태 관리] [MME] 재 attach 중 ESM 메시지 처리에서 `mme_bearer_find_or_add_by_message: Assertion `bearer' faile ver=['2.6.3', 'v2.6.4']
+     DF-CORE-2025-02441 [명시/상태 관리] [SGW-C] Delete Session으로 지워진 bearer를 가리키는 S11 Update Bearer Response에 ogs_assert(bearer) 실 ver=['v2.7.6']
+     DF-CORE-2025-02442 [명시/상태 관리] [SGW-C] Delete Session으로 지워진 bearer를 가리키는 S11 Delete Bearer Response에 ogs_assert(bearer) 실 ver=['v2.7.6']
+     DF-CORE-2026-02455 [명시/상태 관리] [SGW-C] session 해제 뒤 늦게 온 S11 Downlink Data Notification Ack에 ogs_assert(bearer) 실패로 비정상 종 ver=['v2.7.6']
+     DF-CORE-2026-02456 [명시/입력 검증] [SGW-C] 없는 EBI를 담은 S11 Create Indirect Data Forwarding Tunnel Request에 ogs_assert(bearer)  ver=['v2.7.6']
+     DF-CORE-2026-02458 [명시/자원 관리] [SGW-C] bearer pool 고갈 시 sgwc_bearer_add()의 ogs_assert(bearer) 실패로 비정상 종료(crash) ver=['v2.7.6']
+     DF-CORE-2026-02884 [명시/자원 관리] [SGW-C] S11 transaction이 만료되면 indirect forwarding tunnel·PDR·FAR를 지우지 않아 PDR ID pool이 고갈될  ver=['v2.8.0']
+     DF-CORE-2026-02926 [명시/자원 관리] [SGW-C] Delete Indirect Data Forwarding Tunnel 없이 handover가 반복되면 PDR pool이 고갈돼 `bearer` as ver=['v2.8.0']
+     DF-CORE-2026-02968 [명시/상태 관리] [SMF] 같은 bearer의 GTP-U Error Indication이 반복되면 EPC bearer 비활성화가 겹쳐 `ogs_assert(bearer)` 실패 ver=['v2.8.0']
+open5gs/open5gs assert:r != OGS_ERROR n=10 classes={'상태 관리', '자원 관리'}
+     DF-CORE-2023-01774 [미상/-] [AMF] Service Request 중 PDU Session Resource Release Command 생성 실패로 `r != OGS_ERROR` asser ver=['v2.6.0']
+     DF-CORE-2025-02401 [명시/상태 관리] [MME] TAU 중 Security Mode Command 실패 뒤 Attach하면 ESM Information Response 처리에서 "There shoul ver=['v2.7.6']
+     DF-CORE-2026-02621 [미상/-] [AMF] NGSetup 뒤 crafted UEContextReleaseRequest 처리 중 assert 실패로 비정상 종료(crash) ver=['v2.7.6']
+     DF-CORE-2026-02642 [미상/-] [AMF] crafted UplinkNASTransport 처리 중 Error Indication 생성 실패 뒤 assert 실패로 비정상 종료(crash) ver=['v2.7.7']
+     DF-CORE-2026-02643 [미상/-] [AMF] crafted HandoverNotify 처리 중 Error Indication 생성 실패 뒤 assert 실패로 비정상 종료(crash) ver=['v2.7.7']
+     DF-CORE-2026-02644 [미상/-] [AMF] crafted PDUSessionResourceSetupResponse 처리 중 Error Indication 생성 실패 뒤 assert 실패로 비정상 ver=['v2.7.7']
+     DF-CORE-2026-02645 [미상/-] [AMF] crafted HandoverCancel 처리 중 Error Indication 생성 실패 뒤 assert 실패로 비정상 종료(crash) ver=['v2.7.7']
+     DF-CORE-2026-02646 [미상/-] [AMF] crafted HandoverRequired 처리 중 Error Indication 생성 실패 뒤 assert 실패로 비정상 종료(crash) ver=['v2.7.7']
+     DF-CORE-2026-02792 [명시/자원 관리] [AUSF] 5g-aka-confirmation 요청 반복 중 timer pool 고갈로 assert 실패 비정상 종료 ver=['v2.7.7']
+     DF-CORE-2026-02793 [명시/자원 관리] [AUSF] ue-authentications 요청 반복 중 timer pool 고갈로 assert 실패 비정상 종료 ver=['v2.7.7']
+open5gs/open5gs assert:stream n=8 classes={'상태 관리', '동시성', '자원 관리'}
+     DF-CORE-2023-01776 [미상/-] [SMF] PFCP Session Modification Response가 없을 때 timeout 처리에서 `stream` assert 비정상 종료 ver=['v2.6.0']
+     DF-CORE-2025-02315 [추론/상태 관리] [SMF] 메모리 제약 환경의 UE deregistration 중 이미 닫힌 HTTP/2 stream을 처리하다 assert(stream) 실패 ver=['v2.7.5']
+     DF-CORE-2025-02351 [미상/-] [SMF] 다른 벤더 SCP를 거친 UDM PUT 응답 처리 중 `stream` assert 실패로 비정상 종료 ver=['v2.7.6']
+     DF-CORE-2026-02748 [명시/동시성] [NSSF] 원 요청자가 끊긴 뒤 늦게 온 Home-NSSF 응답 처리 중 `ogs_assert(stream)` 실패로 비정상 종료(crash) ver=['v2.7', 'v2.7.7']
+     DF-CORE-2026-02755 [명시/동시성] [PCF] 원 요청자가 끊긴 뒤 늦게 온 BSF discovery 응답 처리 중 `ogs_assert(stream)` 실패로 비정상 종료(crash) ver=['v2.7', 'v2.7.7']
+     DF-CORE-2026-02794 [명시/자원 관리] [SBI] HTTP/2 stream pool 고갈 시 on_begin_headers() assert 실패로 모든 SBI NF 비정상 종료 ver=['v2.7.7']
+     DF-CORE-2026-02830 [명시/자원 관리] [AUSF] 검증 전에 context를 할당하는 처리로 pool이 고갈되어 nghttp2-server.c:1599 assert 실패 ver=['v2.7.6']
+     DF-CORE-2026-03004 [명시/상태 관리] [SMF] SBI stream이 이미 해제된 뒤 PFCP Session Deletion이 timeout되면 sess_5gc_timeout assert 실패로 비정 ver=[]
+srsran/srsRAN_Project log:srsGNB ERROR: Unable to create radio session. n=8 classes={'설정', '결함 아님', '구현 오류'}
+     DF-OAM-2023-00440 [명시/결함 아님] [gNB log] 실행 중 stdout과 log file이 비어 있다가 종료할 때만 기록됨 ver=['20.04.5']
+     DF-RAN-DU-2023-00375 [명시/설정] [UHD RF] X300 설정의 tx_gain·rx_gain이 장치 범위를 벗어나 radio session 생성 실패 ver=[]
+     DF-RAN-DU-2023-00380 [추론/결함 아님] [gNB radio / X300] `clock`·`sync`를 gpsdo로 설정하면 원인 표시 없이 `Unable to create radio session` ver=[]
+     DF-RAN-DU-2023-00386 [추론/구현 오류] [gNB RF] B200mini에서 외부 clock·sync 설정 시 radio session 생성 실패 ver=[]
+     DF-RAN-DU-2023-00407 [명시/설정] [gNB radio UHD] USRP X410의 기본 master_clock_rate 491.52e6이 X4_200 FPGA와 맞지 않아 radio session ver=[]
+     DF-RAN-DU-2023-00456 [미상/-] [gNB RF X310] 시작 시 간헐적으로 RFNoC graph 초기화 timeout으로 radio session 생성 실패 ver=['23.10.1', '4.4.0']
+     DF-RAN-DU-2024-00463 [미상/-] [gNB radio] Open5GS 구성에서 USRP N310에 연결하면 sensor 읽기 실패 뒤 radio session 생성 실패 ver=[]
+     DF-RAN-DU-2024-00482 [추론/결함 아님] [gNB ZMQ] dockerized Open5GS와 ZMQ 구성에서 libsrsran_radio_zmq.so를 찾지 못해 radio session 생성 실패 ver=[]
+open5gs/open5gs assert:rv == OGS_OK n=7 classes={'설정', '상태 관리', '프로토콜 처리', '플랫폼', '구현 오류'}
+     DF-CORE-2019-00173 [명시/프로토콜 처리] [MME S1AP] eNBConfigurationTransfer 중계 시 s1ap_copy_ie() 버퍼 길이 계산 오류로 assert 실패 ver=[]
+     DF-CORE-2020-00530 [추론/플랫폼] [MME] k8s·docker 환경에서 SCTP_PEER_ADDR_PARAMS setsockopt가 Invalid argument로 실패해 시작 중 assert  ver=['19.03.6', '4.14.203', '4.9.125']
+     DF-CORE-2023-01753 [추론/프로토콜 처리] [AMF NGAP] IE-Extension만 담긴 SONInformation의 UL RAN Configuration Transfer 전달 중 assert 비정상  ver=['2.5.6']
+     DF-CORE-2024-02093 [미상/-] [SBI TLS] TLS 설정 후 모든 NF가 `ogs_sbi_context_parse_server_config` assert 실패로 비정상 종료(crash) ver=[]
+     DF-CORE-2025-02329 [추론/설정] [SMF] `p-cscf`에 hostname을 쓰면 `looks_like_ip` 실패와 assert로 시작하지 못함 ver=['v2.7.6']
+     DF-CORE-2025-02378 [명시/상태 관리] [MME] 비활성 bearer가 있는 UE의 handover 중 s1ap_build_handover_request() assert 실패로 비정상 종료(crash) ver=['v2.7.6']
+     DF-CORE-2026-02497 [명시/구현 오류] [SGW-C] OI flag를 설정한 S11 Create Session Request에 PGW S5U 주소가 초기화되지 않아 sgwc_s11_build_creat ver=['v2.7.6']
+open5gs/open5gs assert:ran_ue n=7 classes={'상태 관리', '동시성', '입력 검증'}
+     DF-CORE-2021-00814 [명시/입력 검증] [AMF] malformed NGAP message로 assert 실패와 segfault 발생 ver=[]
+     DF-CORE-2021-00961 [추론/상태 관리] [AMF] v2.3.0에서 Registration Accept 송신 중 `ran_ue` assert 실패로 비정상 종료(crash) ver=['v2.3', 'v2.3.0']
+     DF-CORE-2021-00976 [미상/-] [AMF] ATTACH·Service Request 반복 중 `nas_5gs_send_registration_accept`의 `ran_ue` assert 실패 ver=['v2.3.0', 'v2.3.1']
+     DF-CORE-2025-02278 [추론/상태 관리] [AMF] 불완전한 Handover Required 뒤 같은 IMSI가 다른 gNB로 registration을 반복하면 `common_register_state` ver=['v2.7.3']
+     DF-CORE-2025-02356 [미상/-] [AMF] UE Context Release 직후 온 PDUSessionResourceSetupResponse(Unsuccessful) 처리 중 `ran_ue`  ver=['v2.7.5']
+     DF-CORE-2026-02826 [명시/동시성] [AMF] NRF Discovery 응답이 늦게 오는 동안 RAN-UE context가 지워지면 ogs_assert(ran_ue)로 비정상 종료 ver=['v2.7.7']
+     DF-CORE-2026-02873 [명시/동시성] [AMF] Handover Cancel 뒤 source RAN-UE가 먼저 해제되면 UpdateSMContext 응답 처리에서 `ogs_assert(ran_ue) ver=['v2.8.0']
+open5gs/open5gs log:[gmm] ERROR: Cannot find Requested NSSAI [<N>] (../src/amf/gmm-handler.c:<N>) n=6 classes={'결함 아님', '규격 미준수', '입력 검증'}
+     DF-CORE-2021-00759 [명시/결함 아님] [AMF] v2.2.3에서 SD 없는 Requested NSSAI의 registration이 'Cannot find Requested NSSAI'로 거절됨 ver=['v2.2', 'v2.2.3']
+     DF-CORE-2022-01429 [추론/결함 아님] [AMF] UE registration 중 `Cannot find Requested NSSAI`로 Registration reject ver=['v2.3.6']
+     DF-CORE-2022-01607 [추론/규격 미준수] [AMF] slice를 설정하지 않은 core에서 Registration Reject cause를 0x3e 대신 0x17로 보냄 ver=['v2.4.8']
+     DF-CORE-2022-01714 [명시/결함 아님] [AMF] Huawei BTS5900 gNB 연동 시 S-NSSAI SD 0xffffff 요청으로 Registration reject [62] ver=[]
+     DF-CORE-2025-02311 [추론/입력 검증] [AMF] registration 중 비정상 S-NSSAI 처리 시 slice 관리 모듈 assert 실패 ver=['v2.7.5']
+     DF-CORE-2025-02366 [미상/-] [AMF] slice 설정 없이 srsRAN 5G와 붙이면 "Cannot find Requested NSSAI"로 Registration Reject [62] ver=['v2.7', 'v2.7.0']
+open5gs/open5gs assert:client n=6 classes={'구현 오류', '자원 관리', '입력 검증'}
+     DF-CORE-2023-01952 [명시/자원 관리] [SBI] NF deregistration 때 `ogs_sbi_client_t` 참조를 내리지 않아 client pool 고갈 뒤 AMF 비정상 종료(crash) ver=[]
+     DF-CORE-2026-02483 [추론/입력 검증] [NRF] 처리하지 않는 NF type(UDR) 등록 요청에 ogs_sbi_client_associate assert 실패로 비정상 종료 ver=['v2.7.5']
+     DF-CORE-2026-02488 [명시/구현 오류] [NRF] handle_scp_info()의 초기화하지 않은 scp_info.num_of_domain으로 stack 손상과 비정상 종료 ver=['v2.7.5']
+     DF-CORE-2026-02491 [명시/입력 검증] [NRF] network location 정보가 없는 NFProfile 등록에 ogs_sbi_client_associate assert 실패로 비정상 종료 ver=['v2.7.5']
+     DF-CORE-2026-02492 [명시/입력 검증] [AMF] NRF 알림의 guamiList가 OGS_MAX_NUM_OF_SERVED_GUAMI를 넘으면 handle_amf_info assert 실패로 비정상 종 ver=['v2.7.5']
+     DF-CORE-2026-02781 [명시/자원 관리] [NRF] notification host가 다른 subscriptions 요청을 반복해 SBI client pool을 고갈시키면 assert 실패로 비정상 종료 ver=['v2.7', 'v2.7.7']
+free5gc/free5gc log:[ERRO][AMF][GIN] panic: runtime error: invalid memory address or nil pointer dereferen n=6 classes={'구현 오류', '입력 검증'}
+     DF-CORE-2024-02095 [명시/입력 검증] [AMF] eventList 없는 Event Exposure subscription POST에 nil pointer dereference로 500 Internal ver=['v3.4.1']
+     DF-CORE-2024-02106 [명시/입력 검증] [AMF] subscription 없는 Event Exposure POST에 nil pointer dereference로 500 Internal Server Er ver=['v3.4', 'v3.4.1']
+     DF-CORE-2026-02469 [명시/입력 검증] [AMF] N1MessageNotify callback에 JSON part 없는 multipart 요청을 보내면 nil pointer dereference pan ver=['v4.0.1', 'v4.1']
+     DF-CORE-2026-02584 [명시/입력 검증] [AMF] namf-callback smContextStatus에 statusInfo가 없으면 nil pointer panic ver=['v4.2.1']
+     DF-CORE-2026-02586 [명시/입력 검증] [AMF] namf-comm n1-n2-messages에서 SmInfo.SNssai가 없으면 nil pointer panic ver=['v4.2.1']
+     DF-CORE-2026-02588 [명시/구현 오류] [AMF] namf-evts subscription 생성에서 PERIODIC과 immediateFlag를 함께 쓰면 nil RemainReports panic ver=['v4.2.1']
+open5gs/open5gs log:[amf] ERROR: [imsi-<HEX>] HTTP response error [<N>] (../src/amf/nnssf-handler.c:<N>) n=5 classes={'설정', '프로토콜 처리'}
+     DF-CORE-2021-00728 [추론/설정] [AMF·NSSF] UE registration 뒤 PDU session 수립 중 NSSF가 403 응답 ver=[]
+     DF-CORE-2023-01895 [미상/-] [AMF] Service request 처리 중 NSSF HTTP 403 응답 뒤 UE Context Release 반복 ver=['v2.6.4']
+     DF-CORE-2024-02178 [추론/프로토콜 처리] [AMF] PDU session용 NSSF network-slice-information 요청에 TAI를 넣지 않아 400 MANDATORY_QUERY_PARAM ver=['v2.7.2']
+     DF-CORE-2025-02244 [미상/-] [AMF] srsRAN gNB 구성에서 NSSF 403 응답 뒤 UE가 계속 붙었다 끊김 ver=['v2.4.9']
+     DF-CORE-2025-02377 [미상/-] [NSSF] 설정한 S-NSSAI(SST:1 SD:0x13)의 NSI를 찾지 못해 AMF에 HTTP 403 응답 ver=['v2.7.0']
+open5gs/open5gs assert:data n=5 classes={'프로토콜 처리', '입력 검증'}
+     DF-CORE-2022-01386 [추론/입력 검증] [NRF] versions 없는 nfServices로 NF를 등록하면 listEntry_create assert 실패로 비정상 종료(crash) ver=[]
+     DF-CORE-2023-01781 [추론/프로토콜 처리] [NRF] 타사 SCP의 NFRegister 요청에 든 scpInfo 파싱 중 `listEntry_create` assert 실패로 비정상 종료(crash) ver=['v2.5', 'v2.5.7', 'v2.5.8']
+     DF-CORE-2023-01931 [명시/입력 검증] [NRF] `reqNotifEvents`에 알 수 없는 event가 든 subscription 요청에서 `listEntry_create` assert 실패로 비정 ver=['v2.6.4']
+     DF-CORE-2023-01970 [미상/-] [NRF] 잘못된 JSON patch 본문의 PATCH 요청에 listEntry_create assert 실패로 비정상 종료(crash) ver=[]
+     DF-CORE-2026-02883 [명시/프로토콜 처리] [SBI] 비어 있지 않은 nfSetRecoveryTimeList를 담은 NFProfile parsing 중 `listEntry_create` assert 실패로 ver=['7.20.0', 'v2.8.0']
+open5gs/open5gs assert:klen n=5 classes={'상태 관리', '입력 검증'}
+     DF-CORE-2023-01932 [추론/입력 검증] [SBI] key가 빈 query parameter가 든 요청에서 `ogs_hash_set_debug` assert 실패로 비정상 종료(crash) ver=['v2.6.4']
+     DF-CORE-2026-02835 [명시/입력 검증] [SMF] SUPI가 빈 문자열이거나 null byte로 시작하는 SM context 생성 요청에 ogs_hash assert 실패로 비정상 종료 ver=['v2.7.7']
+     DF-CORE-2026-02861 [추론/상태 관리] [SMF] 잘못된 PLMN의 CreateSMContext 뒤 두 번째 SBI 요청에서 `ogs_hash_get_debug` klen assert 실패로 비정상 종 ver=['v2.7.7']
+     DF-CORE-2026-02906 [명시/입력 검증] [HSS] Cx MAR·SAR의 빈 User-Name으로 `ogs_hash_get_debug()` assert 실패, HSS 비정상 종료(crash) ver=['v2.8.0']
+     DF-CORE-2026-02907 [명시/입력 검증] [HSS] Cx UAR·SAR·LIR의 빈 Public-Identity로 `ogs_hash_get_debug()` assert 실패, HSS 비정상 종료(cras ver=['v2.8.0']
+open5gs/open5gs log:[gmm] ERROR: [suci-<N>-<N>-<N>-<N>-<N>-<N>-<HEX>] HTTP response error [<N>] (../src/am n=5 classes={'설정', '결함 아님'}
+     DF-CORE-2023-01982 [미상/-] [NRF] serving PLMN을 설정하면 SEPP 구성에서 AUSF NF-Discover 실패로 registration reject ver=['v2.7.0']
+     DF-CORE-2024-02017 [미상/-] [AMF] 가입자 정보를 등록했는데도 COTS UE registration이 HTTP 500 뒤 Registration reject [9] ver=['23.10.1', 'v2.7.0']
+     DF-CORE-2026-02565 [미상/-] [AMF] Qualcomm x62 CPE의 Registration Request를 HTTP 400 응답 뒤 cause 95로 거부 ver=['v2.7.6']
+     DF-OAM-2024-00469 [추론/결함 아님] [WebUI] Quickstart대로 설치한 WebUI가 3000 대신 9999 port에서 뜨고 UE registration이 HTTP 500으로 거부됨 ver=[]
+     DF-PLATFORM-2024-04129 [명시/설정] [문서] Quickstart에 nrf.yaml plmn_id 변경이 빠져 UE registration이 HTTP 500으로 거부됨 ver=['v2.7.0']
+open5gs/open5gs assert:subscription_data n=5 classes={'자원 관리', '구현 오류'}
+     DF-CORE-2025-02425 [명시/자원 관리] [AMF] heartbeat 손실 뒤 재등록이 반복되면 NRF subscription data pool이 고갈되어 ogs_sbi_subscription_data_ ver=['v2.7.5', 'v2.7.6']
+     DF-CORE-2026-02552 [명시/구현 오류] [PCF] subscrCond에 serviceName을 쓴 NFStatusSubscription 중 `subscription_data` assert 실패로 비정상 ver=['v2.7.6']
+     DF-CORE-2026-02553 [명시/구현 오류] [NRF] subscrCond에 serviceName이 있는 NFStatusSubscription 요청 처리 중 `subscription_data` assert  ver=['v2.7.6']
+     DF-CORE-2026-02554 [명시/구현 오류] [AUSF] subscrCond에 serviceName을 쓴 NFStatusSubscription 중 `subscription_data` assert 실패로 비정 ver=['v2.7.6']
+     DF-CORE-2026-02782 [명시/자원 관리] [NRF] subscriptions 요청을 반복해 subscription pool을 고갈시키면 assert 실패로 비정상 종료(crash) ver=['v2.7', 'v2.7.7']
+launchpad:neutron assert:Models and migration scripts aren't in sync: n=4 classes={'빌드·의존성', '구현 오류'}
+     DF-PLATFORM-2015-01546 [명시/구현 오류] [DB migration] 새 alembic에서 db model과 migration script의 FK constraint 불일치로 test_models_sync ver=[]
+     DF-PLATFORM-2016-01865 [명시/구현 오류] [neutron-lbaas] model과 migration script 불일치로 gate-networking-midonet-python27 test_models_ ver=[]
+     DF-PLATFORM-2016-02131 [명시/구현 오류] [FWaaS v2] DB model과 migration script가 맞지 않아 test_migrations 실패 ver=['3.0.0']
+     DF-PLATFORM-2026-04385 [명시/빌드·의존성] [FT] `neutron-functional-with-sqlalchemy-master` job에서 `test_models_sync`가 boolean 기본값 차이로 ver=[]
+open5gs/open5gs log:WARN: NAS MAC verification failed(<HEX> != <HEX>) (nas_security.c:<N>) n=4 classes={'테스트', '구현 오류'}
+     DF-CORE-2018-00050 [추론/구현 오류] [MME] integrity_order에서 EIA2를 우선하면 NAS MAC 검증 실패 뒤 PDN_CONNECTIVITY_REQUEST의 security cont ver=[]
+     DF-CORE-2018-00056 [미상/-] [MME testepc] CentOS 7.5에서 attach_test가 `No Security Context in PDN_CPNNECTIVITY_REQUEST`  ver=[]
+     DF-CORE-2018-00068 [추론/테스트] [MME 테스트] testepc attach_test에서 NAS MAC 검증 실패 후 ESM assert로 멈춤 ver=[]
+     DF-CORE-2019-00101 [미상/-] [MME] 재부팅 뒤 attach 한두 번 이후 NAS MAC 검증 실패로 PDN Connectivity Request에 응답 없음 ver=[]
+srsran/srsRAN_4G log:Scheduling request failed: releasing RRC connection... n=4 classes={'설정', '성능·타이밍'}
+     DF-UE-2019-00107 [미상/-] [srsUE] USRP X300 구성에서 cell 탐색 중 UHD 수신 timeout으로 srslte_ue_sync_work() 오류 반복 ver=['3.13.0']
+     DF-UE-2019-00122 [미상/-] [srsUE] LimeSDR UE가 RRC 연결 뒤 Radio-Link Failure와 reestablishment를 반복하고 attach 실패 ver=[]
+     DF-UE-2020-00147 [추론/성능·타이밍] [srsUE] LimeSDR-Mini로 상용망 접속 중 `Scheduling request failed`로 RRC connection 해제 반복 ver=['20.04.01']
+     DF-UE-2022-00208 [추론/설정] [srsUE 5G SA] Amarisoft callbox 접속 시 RRC Connected 직후 Scheduling request failed로 RRC 연결 해제 ver=[]
+magma/magma log:==<N>==ERROR: AddressSanitizer: heap-use-after-free on address <HEX> at pc <HEX> bp <H n=4 classes={'테스트', '동시성', '자원 관리'}
+     DF-CORE-2019-00131 [추론/동시성] [MME] detach 처리 중 `lock_ue_contexts`에서 heap-use-after-free로 비정상 종료(crash) ver=['0.3.72']
+     DF-CORE-2020-00362 [추론/자원 관리] [MME] Authentication Failure(MAC failure) 처리 중 해제된 EMM common procedure를 읽어 heap-use-after ver=[]
+     DF-CORE-2022-01465 [추론/자원 관리] [MME] IPv6 paging·dedicated bearer s1ap test 중 `mme_app_remove_ue_ipv6_addr`에서 heap-use-af ver=[]
+     DF-CORE-2022-01480 [명시/테스트] [SPGW unit test] ASAN에서 `SPGWAppProcedureTest.TestCreateSessionIPAllocFailure` heap-use-af ver=[]
+srsran/srsRAN_4G log:[ERROR] TuneVCO(CGEN) - failed to lock (cmphl!=<N>) n=4 classes={'빌드·의존성', '플랫폼'}
+     DF-PLATFORM-2022-03668 [추론/플랫폼] [RF LimeSDR] CGEN VCO lock 실패로 Tx·Rx calibration에서 MCU error 2 발생 ver=['v0.8.0', 'v0.8.1']
+     DF-RAN-DU-2020-00264 [추론/플랫폼] [srsENB RF] LimeSDR USB에서 CGEN VCO lock 실패 뒤 `setSampleRate(Rx, 0, 11.52 MHz) Failed`로 eNB ver=['0.7.2', '20.04.1', 'v20.07.2']
+     DF-RAN-DU-2020-00266 [추론/빌드·의존성] [srsENB RF] srsLTE 20.04와 LimeSDR USB에서 `SetFrequencyCGEN(368.64 MHz) failed`, sample rate ver=['20.04.0', 'v0.7', 'v0.7.1']
+     DF-UE-2020-00140 [추론/플랫폼] [srsUE LimeSDR Mini] 19.12에서 20.04로 올린 뒤 `SoapyLMS7::setSampleRate()` 실패로 attach하지 못함 ver=['20.01.0']
+open5gs/open5gs log:[gmm] ERROR: [suci-<N>-<N>-<N>-<N>-<N>-<N>-<HEX>] MAC failure (../src/amf/gmm-handler. n=4 classes={'상태 관리', '테스트', '결함 아님'}
+     DF-CORE-2020-00480 [명시/결함 아님] [AMF] UERANSIM UE registration이 MAC failure로 Authentication reject, subscriber key 오설정으로 판 ver=[]
+     DF-CORE-2021-00741 [명시/테스트] [AMF 시험] CentOS 8.3에서 registration 시험 프로그램이 `No [AUSF]`, MAC failure로 실패 ver=['v2.2.2']
+     DF-CORE-2025-02274 [추론/상태 관리] [AMF] UE가 빠르게 연결·해제를 반복하면 `amf_ue` assert 실패로 비정상 종료 ver=['v2.7.5']
+     DF-CORE-2025-02275 [미상/-] [AMF] UE가 빠르게 연결·해제를 반복하면 `amf_ue` assert 실패로 비정상 종료 ver=['v2.7.5']
+open5gs/open5gs log:[mme] WARNING: GTP Failed [CAUSE:<N>] (../src/mme/mme-s<N>-handler.c:<N>) n=4 classes={'상태 관리', '결함 아님', '규격 미준수'}
+     DF-CORE-2021-00566 [명시/결함 아님] [MME] ims APN으로 attach하면 PDN connectivity reject(Missing or unknown APN) ver=[]
+     DF-CORE-2021-00942 [추론/규격 미준수] [MME] 상용 SPGW 연동 시 Create Session Response cause 19를 GTP 실패로 처리 ver=[]
+     DF-CORE-2021-00977 [미상/-] [MME] 외부 Nokia SPGW 연동 중 오래 머문 UE 재접속 시 S11 응답에 PDN Address·TEID가 없어 GTP cause 92로 실패 ver=[]
+     DF-CORE-2021-01172 [추론/상태 관리] [MME] SGW-C 재시작 뒤 Modify Bearer 처리 중 MME 비정상 종료(crash) ver=['v2.3', 'v2.3.3', 'v2.3.6']
+open5gs/open5gs log:[amf] ERROR: Not implemented(choice:<N>, proc:<N>) (../src/amf/ngap-sm.c:<N>) n=4 classes={'결함 아님', '규격 미준수'}
+     DF-CORE-2021-00670 [미상/-] [AMF] Nokia AirScale gNB(SA)와 NG Setup 뒤 gNB가 'Slice(s) not supported'를 내고 NGSetupResponse ver=[]
+     DF-CORE-2021-00795 [명시/규격 미준수] [AMF] RAN CONFIGURATION UPDATE를 처리하지 않아 cell lock/unlock 뒤 Nokia gNB가 올라오지 않음 ver=[]
+     DF-CORE-2021-01004 [명시/결함 아님] [AMF] 등록 중 NGAP NASNonDeliveryIndication을 처리하지 않아 "Not implemented(choice:1, proc:19)" 오류 ver=[]
+     DF-CORE-2023-01843 [미상/-] [AMF] NGAP fuzzing 중 gNB·UE 재접속 반복 뒤 `amf_nnssf_nsselection_handle_get` assert 실패로 비정상 종료 ver=['v2.6.3']
+magma/magma log:SIGSEGV /SEGV_MAPERR: Fatal Error: SIGSEGV /SEGV_MAPERR n=4 classes={'설정', '상태 관리'}
+     DF-CORE-2021-00875 [미상/-] [MME] IPv4 주소 할당 응답 처리 중 `send_msg_to_task`에서 SIGSEGV로 비정상 종료(crash) ver=[]
+     DF-CORE-2021-00947 [추론/상태 관리] [MME] NAS timer 만료 처리 `mme_app_nas_timer_handle_signal_expiry`에서 SIGSEGV로 비정상 종료(crash) ver=[]
+     DF-CORE-2021-01200 [미상/-] [AMF] authentication T3560 timer 처리 중 `get_nas5g_common_procedure`에서 SIGSEGV로 비정상 종료(crash ver=[]
+     DF-CORE-2021-01323 [추론/설정] [MME] inbound roaming 시험 중 `emm_attach_update`에서 SIGSEGV로 비정상 종료(crash) ver=['1.7.0']
+magma/magma log:==<N>==ERROR: LeakSanitizer: detected memory leaks n=4 classes={'빌드·의존성', '자원 관리'}
+     DF-CORE-2021-00893 [명시/자원 관리] [MME] randomized property test가 찾은 `MmeNasStateConverter` 변환 실패와 exception 시 메모리 누수 ver=[]
+     DF-CORE-2021-01117 [추론/빌드·의존성] [AGW MME] dogfooding에서 MME 종료 때 LeakSanitizer 메모리 누수 보고 뒤 가입자 인증 실패 ver=['1.7.0']
+     DF-CORE-2021-01142 [명시/자원 관리] [MME] config parsing 중 할당한 메모리를 해제하지 않아 LeakSanitizer가 메모리 누수 보고 ver=[]
+     DF-CORE-2022-01459 [추론/자원 관리] [MME] 종료 시 async gRPC service의 `init_call_data()`가 할당한 객체 메모리 누수 ver=[]
+open5gs/open5gs log:[sbi] FATAL: ogs_sbi_client_associate: Assertion n=4 classes={'구현 오류', '입력 검증'}
+     DF-CORE-2026-02483 [추론/입력 검증] [NRF] 처리하지 않는 NF type(UDR) 등록 요청에 ogs_sbi_client_associate assert 실패로 비정상 종료 ver=['v2.7.5']
+     DF-CORE-2026-02488 [명시/구현 오류] [NRF] handle_scp_info()의 초기화하지 않은 scp_info.num_of_domain으로 stack 손상과 비정상 종료 ver=['v2.7.5']
+     DF-CORE-2026-02491 [명시/입력 검증] [NRF] network location 정보가 없는 NFProfile 등록에 ogs_sbi_client_associate assert 실패로 비정상 종료 ver=['v2.7.5']
+     DF-CORE-2026-02492 [명시/입력 검증] [AMF] NRF 알림의 guamiList가 OGS_MAX_NUM_OF_SERVED_GUAMI를 넘으면 handle_amf_info assert 실패로 비정상 종 ver=['v2.7.5']
+launchpad:neutron log:create failed n=3 classes={'구현 오류', '입력 검증'}
+     DF-PLATFORM-2013-00251 [추론/구현 오류] [quota] per-tenant quota를 켜면 _get_quotas()의 TypeError로 resource 생성 실패 ver=[]
+     DF-PLATFORM-2014-01059 [명시/입력 검증] [IPv6 SLAAC] 생성한 SLAAC 주소의 중복을 검사하지 않아 DB 예외와 HTTP 500 ver=[]
+     DF-PLATFORM-2015-01313 [추론/입력 검증] [LBaaS] 없는 health monitor id로 pool에 연결하면 500 Internal Server Error ver=[]
+launchpad:neutron log:ERROR neutron.service [-] Unrecoverable error: please check log for details. n=3 classes={'동시성', '빌드·의존성'}
+     DF-PLATFORM-2014-00875 [명시/동시성] [ML2 VXLAN] 여러 neutron-server 동시 재시작 시 VxlanAllocation duplicate entry 예외로 기동 실패 ver=[]
+     DF-PLATFORM-2015-01254 [명시/동시성] [ML2 GRE] neutron-server 여러 대를 동시에 시작하면 ml2_gre_allocations 중복 생성으로 비정상 종료(crash) ver=['stable/juno']
+     DF-PLATFORM-2016-02233 [명시/빌드·의존성] [neutron-server] neutron core에서 deprecated converter가 제거된 뒤 plugin이 `convert_to_boolean`을  ver=['stable/newton']
+launchpad:neutron log:ERROR neutron.api.v<N>.resource [...] create failed: No details. n=3 classes={'동시성', '구현 오류'}
+     DF-PLATFORM-2016-02079 [명시/구현 오류] [security group API] security group bulk 생성 요청에 500 Internal Server Error 응답 ver=['stable/newton', 'v2.0']
+     DF-PLATFORM-2016-02110 [명시/동시성] [revision plugin] 다른 session이 동시에 지운 expired object를 참조해 ObjectDeletedError ver=[]
+     DF-PLATFORM-2017-02303 [명시/구현 오류] [FWaaS] 이미 다른 policy에 쓰인 fw_rule로 새 fw_policy를 만들면 internal error ver=[]
+open5gs/open5gs log:ERRR: Failed to decode S<N>AP-PDU[<N>] (s<N>ap_decoder.c:<N>) n=3 classes={'자원 관리', '프로토콜 처리'}
+     DF-CORE-2018-00053 [미상/-] [MME] S1AP-PDU 복호 실패가 반복되며 pkbuf clbuf 고갈 assert ver=[]
+     DF-CORE-2019-00099 [추론/자원 관리] [MME] clbuf pool 고갈로 S1AP-PDU decode 실패와 MME 재시작 ver=[]
+     DF-CORE-2019-00187 [명시/프로토콜 처리] [MME S1AP] Ixia eNB가 보낸 EUTRAN-CGI iE-Extensions를 decode하지 못해 S1AP-PDU decode 실패 ver=['15.7.0']
+open5gs/open5gs assert:enb_ue n=3 classes={'상태 관리', '동시성'}
+     DF-CORE-2019-00120 [명시/상태 관리] [MME] Authentication Response 뒤 Attach Request가 오면 `enb_ue` assert 실패로 비정상 종료 ver=[]
+     DF-CORE-2019-00132 [추론/동시성] [MME] Tracking area update 중 `mme_s11_handle_delete_session_response: Assertion `enb_ue' f ver=[]
+     DF-CORE-2026-02461 [명시/상태 관리] [MME] eNB-UE context 해제 뒤 늦게 온 ESM NAS 메시지에 esm_state_active의 ogs_assert(enb_ue) 실패로 비정상 종 ver=['v2.7.6']
+open5gs/open5gs assert:mme_ue n=3 classes={'상태 관리', '결함 아님'}
+     DF-CORE-2019-00166 [미상/-] [MME] Lenovo A5000 연결 중 `mme_state_operational` assert 실패로 비정상 종료(crash) ver=[]
+     DF-CORE-2019-00186 [명시/결함 아님] [MME] SGW Create Session Response 수신 시 `mme_ue` assert 실패로 비정상 종료 — SGW·PGW 주소 설정 오류 ver=[]
+     DF-CORE-2019-00203 [추론/상태 관리] [MME] Initial Context Setup Failure 처리 중 UE context를 찾지 못해 `(mme_ue)` assert 실패 ver=['v1.1']
+open5gs/open5gs assert:E_RABSetupListBearerSURes n=3 classes={'자원 관리', '프로토콜 처리'}
+     DF-CORE-2019-00170 [명시/프로토콜 처리] [MME S1AP] Huawei BBU3900의 E-RAB Setup Response에 E_RABSetupListBearerSURes가 없어 assert 실패로  ver=[]
+     DF-CORE-2019-00184 [미상/-] [MME] IMS APN attach 중 E-RAB Setup Response 처리에서 `E_RABSetupListBearerSURes` assert 실패로 비정 ver=['v0.5.2.36']
+     DF-CORE-2020-00382 [명시/자원 관리] [MME] v1.3.0 airplane mode 해제 뒤 E-RAB Setup Response 처리 중 assert 실패로 비정상 종료(crash) ver=['v1.3', 'v1.3.0']
+srsran/srsRAN_4G log:setSampleRate Rx fail: SoapyLMS<N>::setSampleRate() failed n=3 classes={'빌드·의존성', '플랫폼'}
+     DF-RAN-DU-2020-00262 [추론/플랫폼] [srsENB RF] Ubuntu 20.04에서 LimeSDR Mini의 CGEN 주파수·sample rate 설정 실패 ver=[]
+     DF-RAN-DU-2020-00266 [추론/빌드·의존성] [srsENB RF] srsLTE 20.04와 LimeSDR USB에서 `SetFrequencyCGEN(368.64 MHz) failed`, sample rate ver=['20.04.0', 'v0.7', 'v0.7.1']
+     DF-UE-2020-00140 [추론/플랫폼] [srsUE LimeSDR Mini] 19.12에서 20.04로 올린 뒤 `SoapyLMS7::setSampleRate()` 실패로 attach하지 못함 ver=['20.01.0']
+open5gs/open5gs assert:ogs_pkbuf_pull(pkbuf, size n=3 classes={'프로토콜 처리', '입력 검증'}
+     DF-CORE-2020-00321 [명시/프로토콜 처리] [AMF] CONFIGURATION UPDATE COMPLETE 디코딩 중 ogs_nas_5gs_decode_control_plane_service_type as ver=[]
+     DF-CORE-2021-00813 [명시/입력 검증] [AMF] malformed 5G NAS Registration Request IE로 decoder assert 실패와 memory corruption 발생 ver=[]
+     DF-CORE-2023-01790 [미상/-] [UPF PFCP] 1 byte짜리 PFCP 메시지 수신 시 `ogs_pfcp_parse_msg`의 `ogs_pkbuf_pull` assert 실패로 비정상 종료 ver=[]
+open5gs/open5gs assert:sock n=3 classes={'결함 아님', '입력 검증'}
+     DF-CORE-2020-00497 [추론/결함 아님] [MME] S1AP 주소 10.10.0.2 bind 실패로 `s1ap_server: Assertion `sock' failed` 비정상 종료 ver=['v2.0.21']
+     DF-CORE-2021-00729 [명시/결함 아님] [AMF] 5G SA에서 CPE가 IP를 받지 못하고 NSSF discovery 실패로 5GSM reject ver=[]
+     DF-CORE-2021-00794 [명시/입력 검증] [AMF] ngap 주소에 bind하지 못하면 `ngap_server` assert 실패로 비정상 종료(crash) ver=['v2.2.6']
+srsran/srsRAN_4G log:Attach failed (attempt <N>/<N>) n=3 classes={'설정', '결함 아님'}
+     DF-CORE-2021-01184 [추론/설정] [srsUE/srsENB + Open5GS] ZMQ 구성에서 RRC Connected 직후 RRC Connection Release로 attach 실패 ver=[]
+     DF-RAN-CU-2021-00085 [추론/설정] [srsUE/srsENB] ZMQ 구성에서 RRC Connected 뒤 attach가 반복 실패 ver=[]
+     DF-UE-2026-00383 [명시/결함 아님] [srsUE attach] 외부 EPC로 attach가 RRC Connection Release로 실패, EPC의 charging NF 오동작으로 판명 ver=[]
+open5gs/open5gs assert:esm_message_container->length n=3 classes={'결함 아님', '입력 검증'}
+     DF-CORE-2021-01177 [추론/결함 아님] [MME] 3rd party HSS에 붙인 standalone MME에서 PDN Connectivity Request가 No APN으로 attach reject  ver=[]
+     DF-CORE-2022-01592 [명시/입력 검증] [MME] 외부 HSS의 Update Location Answer APN 수가 OGS_MAX_NUM_OF_SESS를 넘으면 비정상 종료(crash) ver=[]
+     DF-CORE-2023-01803 [추론/입력 검증] [MME EMM] 내용이 0인 Attach Request 처리 중 `esm_message_container->length` assert 실패로 비정상 종료(cra ver=['2.6.1']
+oai/openairinterface5g assert:ret == HASH_TABLE_OK && data != ((void * n=3 classes={'상태 관리', '입력 검증'}
+     DF-RAN-CU-2024-00178 [명시/입력 검증] [CU-CP F1AP] CU가 모르는 UE의 F1 UE RRC message transfer를 받아 `cu_get_f1_ue_data()` assert 실패 ver=[]
+     DF-RAN-DU-2023-00423 [명시/상태 관리] [gNB DU] flight mode 없이 PDU session을 release하면 F1 UE data가 먼저 지워져 du_get_f1_ue_data() asse ver=[]
+     DF-RAN-DU-2023-00435 [명시/상태 관리] [DU F1AP] UE 해제 중 DN에서 온 DL traffic을 처리하다 `du_get_f1_ue_data()` assert로 gNB 종료 ver=[]
+oai/openairinterface5g log:Assertion (ret == HASH_TABLE_OK && data != ((void *)<N>)) failed! n=3 classes={'상태 관리', '입력 검증'}
+     DF-RAN-CU-2024-00178 [명시/입력 검증] [CU-CP F1AP] CU가 모르는 UE의 F1 UE RRC message transfer를 받아 `cu_get_f1_ue_data()` assert 실패 ver=[]
+     DF-RAN-DU-2023-00423 [명시/상태 관리] [gNB DU] flight mode 없이 PDU session을 release하면 F1 UE data가 먼저 지워져 du_get_f1_ue_data() asse ver=[]
+     DF-RAN-DU-2023-00435 [명시/상태 관리] [DU F1AP] UE 해제 중 DN에서 온 DL traffic을 처리하다 `du_get_f1_ue_data()` assert로 gNB 종료 ver=[]
+srsran/srsRAN_Project assert:rval.code == RC_OK && n=3 classes={'연동', '성능·타이밍'}
+     DF-OAM-2024-00475 [명시/성능·타이밍] [E2 agent] ZMQ multi-UE 구성에서 traffic을 늘리면 FlexRIC가 KPM Indication decode assert로 종료 ver=[]
+     DF-OAM-2024-00479 [추론/연동] [E2SM-KPM] srsRAN 24.04와 FlexRIC monitoring xApp 연동 시 nearRT-RIC가 `kpm_dec_ind_msg_asn` as ver=[]
+     DF-OAM-2024-00480 [미상/-] [E2SM-KPM] FlexRIC monitoring xApp 실행 중 nearRT-RIC가 `kpm_dec_ind_msg_asn` assert 실패로 중단 ver=[]
+open5gs/open5gs assert:OGS_FSM_STATE(&nf_instance->sm n=3 classes={'상태 관리', '결함 아님', '입력 검증'}
+     DF-CORE-2025-02265 [추론/입력 검증] [NRF] SBI로 NRF 자신의 instance를 삭제하면 `OGS_FSM_STATE(&nf_instance->sm)` assert 실패 ver=[]
+     DF-CORE-2025-02296 [추론/상태 관리] [AMF] NRF 등록·구독이 끝나기 전 SIGTERM을 받으면 amf_state_operational의 nf_instance FSM assert 실패로 비정상  ver=['v2.7.5']
+     DF-CORE-2026-02840 [추론/결함 아님] [AF] CVE-2025-6952와 같은 reachable assertion이 af-sm.c에 남아 있다는 보고 ver=['v2.7.7']
+free5gc/free5gc log:[ERRO][SMF][GIN] panic: runtime error: index out of range [<N>] with length <N> n=3 classes={'구현 오류', '입력 검증'}
+     DF-CORE-2025-02347 [추론/구현 오류] [SMF ULCL] multi-UPF 구성에서 두 번째 UE path 수립 중 `EstablishULCL` index out of range panic ver=['v3.2', 'v4.0.1']
+     DF-CORE-2026-02589 [명시/입력 검증] [SMF] nsmf-callback에 인증이 없고 짧은 notifyUri로 HTTPChargingNotification이 index out of range pan ver=['v4.2.1']
+     DF-CORE-2026-02821 [명시/입력 검증] [SMF] NRF discovery 결과가 비면 PDU session 수립 중 PCFSelection index out of range panic ver=['v4.2', 'v4.2.2']
+open5gs/open5gs log:[sbi] FATAL: ogs_sbi_subscription_data_add: Assertion n=3 classes={'자원 관리', '구현 오류'}
+     DF-CORE-2025-02425 [명시/자원 관리] [AMF] heartbeat 손실 뒤 재등록이 반복되면 NRF subscription data pool이 고갈되어 ogs_sbi_subscription_data_ ver=['v2.7.5', 'v2.7.6']
+     DF-CORE-2026-02552 [명시/구현 오류] [PCF] subscrCond에 serviceName을 쓴 NFStatusSubscription 중 `subscription_data` assert 실패로 비정상 ver=['v2.7.6']
+     DF-CORE-2026-02554 [명시/구현 오류] [AUSF] subscrCond에 serviceName을 쓴 NFStatusSubscription 중 `subscription_data` assert 실패로 비정 ver=['v2.7.6']
+open5gs/open5gs assert:s<N>c_xact n=3 classes={'상태 관리', '결함 아님'}
+     DF-CORE-2025-02440 [추론/결함 아님] [SGW-C] S5-C transaction 연결이 없는 S11 Create Bearer Response 하나로 ogs_assert(s5c_xact) 실패가 난다 ver=['v2.7.6']
+     DF-CORE-2026-02665 [미상/-] [SGW-C] CVE-2025-15539 수정이 Update·Delete Bearer Response handler에 빠졌다는 보고 ver=['v2.7.7']
+     DF-CORE-2026-02902 [명시/상태 관리] [SGW-C] S5-C transaction이 지워진 뒤 늦게 온 Delete Bearer Response에 `ogs_assert(s5c_xact)` 실패로 비정 ver=['v2.8.0']
+free5gc/free5gc log:[ERRO][PCF][GIN] panic: runtime error: invalid memory address or nil pointer dereferen n=3 classes={'구현 오류', '입력 검증'}
+     DF-CORE-2026-02520 [명시/구현 오류] [PCF] 하위 OpenAPI 호출이 404를 받으면 CreateSmPolicy 처리에서 nil pointer dereference 비정상 종료(crash) ver=['v4.1.0']
+     DF-CORE-2026-02567 [명시/입력 검증] [PCF] npcf-policyauthorization app-session 생성에서 suppFeat=1이고 AfRoutReq가 없으면 nil pointer pa ver=[]
+     DF-CORE-2026-02913 [추론/입력 검증] [PCF] accessType 없는 SM policy 생성 요청에 nil pointer panic, HTTP 500 응답 ver=['v4.2.1']
+open5gs/open5gs assert:reconfigure_packet_filter(pf, &qos_rule[i], i n=3 classes={'구현 오류', '입력 검증'}
+     DF-CORE-2026-02746 [명시/구현 오류] [SMF] 같은 QoS Rule Identifier를 두 번 담은 PDU Session Modification Request로 assert 실패해 비정상 종료(c ver=['v2.7', 'v2.7.7']
+     DF-CORE-2026-02768 [명시/입력 검증] [SMF] sm-contexts modify의 `n1SmMsg` QoS rule에 내용 없는 packet filter가 있으면 assert 실패해 비정상 종료(c ver=['v2.7', 'v2.7.7']
+     DF-CORE-2026-02824 [명시/구현 오류] [SMF] Modification Request의 QoS rule 두 개가 같은 Rule ID를 쓰면 packet filter index 오류로 assert 실패 ver=['v2.7.7']
+ocudu/ocudu log:==<N>==ERROR: AddressSanitizer: heap-use-after-free on address <HEX> n=3 classes={'테스트', '자원 관리'}
+     DF-RAN-CU-2026-00319 [추론/자원 관리] [CU-CP F1AP] CU-CP 종료 중 `f1ap_ue_transaction_manager::cancel_all()`에서 heap-use-after-free ver=[]
+     DF-RAN-CU-2026-00322 [추론/테스트] [ASAN] cu_cp_nrppa_test AoA 측정 응답 시험에서 heap-use-after-free ver=[]
+     DF-RAN-CU-2026-00376 [명시/자원 관리] [CU-CP F1AP] location measurement 중 handover에서 `f1ap_ue_transaction_manager::cancel_all()` ver=[]
+
+## D. one MR/PR closing several issues with different symptoms
+free5gc/free5gc PR/MR 23 n=8 equipment={'CORE'}
+     DF-CORE-2021-00584 [명시/자원 관리] [AMF] RanUe Remove()에서 IDGenerator를 정리하지 않아 메모리 누수
+     DF-CORE-2026-02559 [명시/구현 오류] [NEF] 3gpp-pfd-management에 inbound 인증이 없어 위조 token으로 PFD transaction 생성·조회·삭제
+     DF-CORE-2026-02560 [명시/구현 오류] [NEF] 3gpp-traffic-influence에 inbound 인증이 없어 token 없이 subscription 생성·조회·수정·삭제
+     DF-CORE-2026-02561 [명시/구현 오류] [NEF] nnef-callback에 inbound 인증이 없어 위조 callback 요청이 처리 경로에 들어감
+     DF-CORE-2026-02562 [명시/구현 오류] [NEF] nnef-oam에 inbound 인증이 없어 token 없는 요청에 200 응답
+     DF-CORE-2026-02563 [명시/구현 오류] [NEF] nnef-pfdmanagement에 inbound 인증이 없어 위조 token으로 PFD 조회와 subscription 생성·삭제
+     DF-CORE-2026-02628 [명시/입력 검증] [TNGF] 짧은 transform attribute가 든 IKE SecurityAssociation 파싱에서 panic
+     DF-CORE-2026-02629 [명시/입력 검증] [TNGF] UDP/4500 NAT-T 짧은 패킷으로 IKE dispatcher가 fatal 종료
+free5gc/free5gc PR/MR 87 n=8 equipment={'CORE'}
+     DF-CORE-2026-02508 [명시/자원 관리] [UPF] PDR·FAR 생성이 실패한 PFCP Session Establishment Request에도 URR timer가 남아 자원 누수
+     DF-CORE-2026-02509 [명시/상태 관리] [UPF] SDF Filter 파싱이 실패한 PFCP Session Establishment에 성공으로 응답해 ghost session과 URR timer 누수
+     DF-CORE-2026-02514 [추론/프로토콜 처리] [UPF] 세션에 없는 BAR ID를 갱신하는 PFCP Session Modification Request에 실패 cause 대신 성공으로 응답
+     DF-CORE-2026-02515 [추론/프로토콜 처리] [UPF] 세션에 없는 QER ID를 갱신하는 PFCP Session Modification Request 처리 오류
+     DF-CORE-2026-02516 [추론/프로토콜 처리] [UPF] URR query를 일으키는 PFCP Session Modification Request에서 "no such file or directory" 오류
+     DF-CORE-2026-02517 [추론/프로토콜 처리] [UPF] 세션에 없는 PDR ID를 갱신하는 PFCP Session Modification Request 처리 오류
+     DF-CORE-2026-02518 [미상/-] [UPF] PFCP Session Modification의 PDR 생성 중 SDF Filter 파싱 실패로 fatal error
+     DF-CORE-2026-02616 [추론/입력 검증] [UPF] 잘못된 SDF Filter가 든 PFCP Session Modification Request에서 PDR 생성 실패와 오류 로그 반복
+free5gc/free5gc PR/MR 5 n=7 equipment={'CORE'}
+     DF-CORE-2020-00247 [명시/빌드·의존성] [UPF 빌드] free5gc-stage-3에서 고친 testgtpv1 생성 누락과 README clone 경로가 free5gc 저장소에 반영되지 않음
+     DF-CORE-2020-00302 [추론/프로토콜 처리] [AMF NAS] Registration Accept 내부 5GS 메시지의 보안 헤더를 잘못 채워 UE가 Registration Complete를 보내지 않음
+     DF-CORE-2020-00456 [명시/프로토콜 처리] [NAS] 5GS mobile identity 5G-GUTI의 octet 4 상위 4bit를 1로 인코딩·디코딩하지 않음
+     DF-CORE-2021-00966 [명시/규격 미준수] [AMF·N3IWF] non-3GPP access NAS key를 NAS connection identifier 0x01로 도출하고 AN-parameter S-N
+     DF-CORE-2022-01377 [추론/동시성] [free5GC test] TestPaging을 -race로 실행하면 data race 다수 검출
+     DF-CORE-2022-01695 [명시/입력 검증] [AMF NGAP] 조작된 malformed NGAP 메시지로 aper `GetBitString` index out of range panic
+     DF-CORE-2023-01941 [명시/구현 오류] [CHF] webconsole을 먼저 띄우지 않으면 CHF가 CGF FTP 시작에서 멈춰 gNB SCTP 연결 실패
+free5gc/free5gc PR/MR 22 n=7 equipment={'CORE'}
+     DF-CORE-2020-00319 [추론/규격 미준수] [NRF] NF_PROFILE_CHANGED 알림에 nfProfile·profileChanges가 모두 null, 등록 알림도 NF_PROFILE_CHANGED로
+     DF-CORE-2026-02610 [명시/구현 오류] [NEF] UDR 조회 실패 시 PFD application PATCH가 nil ProblemDetails를 역참조해 panic
+     DF-CORE-2026-02630 [명시/입력 검증] [TNGF] EAP5GNAS 단계의 짧은 EAP Response로 RADIUS dispatcher가 fatal 종료
+     DF-CORE-2026-02631 [명시/입력 검증] [TNGF] 길이 1인 UE Identity AN-parameter로 RADIUS EAP-5G 파서 panic
+     DF-CORE-2026-02632 [명시/입력 검증] [TNGF] InitialContextSetup 상태에서 짧은 EAP 메시지로 RADIUS handler panic
+     DF-CORE-2026-02696 [명시/입력 검증] [N3IWF] AES-CBC 복호화가 잘못된 padding 값에 slice 범위 초과로 pre-auth 원격 프로세스 종료
+     DF-CORE-2026-02697 [명시/입력 검증] [TNGF] AES-CBC 복호화가 잘못된 padding 값에 slice 범위 초과로 pre-auth 원격 프로세스 종료
+free5gc/free5gc PR/MR 8 n=7 equipment={'CORE', 'OAM'}
+     DF-CORE-2020-00418 [미상/-] [SMF] Send PFCP Association Request 로그의 UPF 주소가 깨진 문자로 표시
+     DF-CORE-2020-00465 [명시/입력 검증] [AMF] null인 ue.AccessAndMobilitySubscriptionData 접근으로 비정상 종료(crash)
+     DF-CORE-2021-01087 [미상/-] [SMF] 가입 정보의 DNN이 SMF·UPF·UE 설정과 다르면 PDU Session Establishment 중 panic
+     DF-CORE-2022-01618 [명시/동시성] [PFCP] PFCP transaction 관리가 thread-safe하지 않아 동시 요청 때 transaction이 사라짐
+     DF-CORE-2023-01828 [추론/프로토콜 처리] [AMF NGAP] 이해하지 못하는 IE가 든 NGAP 메시지를 APER decoder가 거부
+     DF-CORE-2026-02805 [명시/동시성] [BSF] cleanup goroutine이 lock 없이 PcfBindings map을 읽어 BSF 프로세스 종료
+     DF-OAM-2020-00102 [해당 없음/-] [WebConsole] NSSAI 설정 기능 완성
+free5gc/free5gc PR/MR 46 n=7 equipment={'CORE', 'PLATFORM'}
+     DF-CORE-2021-01287 [해당 없음/-] [UPF] PFCP Session Report Request 송신 빈도 억제 요청
+     DF-CORE-2023-01800 [추론/설정] [NF 설정/webconsole] S-NSSAI SD 대소문자가 설정 파일과 webconsole 가입자 정보에서 달라 PDU session 생성 실패
+     DF-CORE-2026-02597 [명시/입력 검증] [NSSF] network-slice-information GET에서 home-plmn-id만 있고 slice-info-request-for-pdu-session
+     DF-CORE-2026-02598 [명시/입력 검증] [NSSF] tai만 주고 slice-info-request-for-pdu-session을 빼면 network-slice-information 조회에서 nil p
+     DF-CORE-2026-02599 [명시/입력 검증] [NSSF] slice-info-request-for-pdu-session.sNssai가 null이면 지원 TAI·HPLMN 경로의 network-slice-in
+     DF-CORE-2026-02640 [명시/입력 검증] [NSSF] 지원하는 home-plmn-id에 slice-info-request-for-pdu-session을 빼면 network-slice-information
+     DF-PLATFORM-2023-04093 [해당 없음/-] [문서] Basic Configuration 페이지의 SMF 상세 설정 URL이 깨짐
+free5gc/free5gc PR/MR 60 n=7 equipment={'CORE'}
+     DF-CORE-2022-01616 [해당 없음/-] [SMF] UPF가 늦게 시작해도 PFCP Association Setup을 재시도하도록 요청
+     DF-CORE-2026-02448 [명시/입력 검증] [CHF] pduSessionInformation이 없는 charging data 요청에 OpenCDR nil pointer panic
+     DF-CORE-2026-02604 [명시/구현 오류] [UDR] EE subscription이 있는 UE에 없는 subsId로 amf-subscriptions DELETE 시 nil pointer panic
+     DF-CORE-2026-02605 [명시/구현 오류] [UDR] 없는 ueId로 amf-subscriptions DELETE 요청 시 nil interface type assertion panic
+     DF-CORE-2026-02607 [명시/구현 오류] [UDR] SM data가 있는 가입자의 provisioned-data GET에서 nil pointer panic
+     DF-CORE-2026-02608 [명시/구현 오류] [UDR] subs-to-notify 생성 뒤 authentication-subscription PATCH 시 on-data-change callback에서 fa
+     DF-CORE-2026-02635 [명시/입력 검증] [AUSF] EAP-AKA' 경로에서 UDM이 돌려준 짧은 SUPI를 자르다 panic
+free5gc/free5gc PR/MR 77 n=7 equipment={'CORE', 'PLATFORM'}
+     DF-CORE-2022-01623 [명시/규격 미준수] [AMF] XnHandover를 반복하면 NCC가 3 bit를 넘어 overflow
+     DF-CORE-2026-02446 [명시/입력 검증] [NRF Discovery] 7자보다 짧은 gpsi 파라미터에 slice bounds out of range panic
+     DF-CORE-2026-02447 [명시/입력 검증] [NRF Discovery] 빈 snssais 파라미터에 slice bounds out of range panic
+     DF-CORE-2026-02527 [추론/구현 오류] [AUSF] UDM GenerateAuthData 응답이 timeout·연결 끊김으로 실패하면 UE 인증 처리에서 panic 가능
+     DF-CORE-2026-02528 [추론/구현 오류] [UDM] UDR 응답 지연·실패 시 GenerateAuthData의 UDR 조회 중 `SendSearchNFInstances` nil pointer derefe
+     DF-CORE-2026-02914 [추론/동시성] [PCF] 동시에 도착한 UDR influence-data notification 처리 중 concurrent map writes로 프로세스 종료
+     DF-PLATFORM-2023-04117 [해당 없음/-] [문서] Ubuntu Server 22.04의 MongoDB 설치 방법을 appendix에 추가
+free5gc/free5gc PR/MR 63 n=7 equipment={'CORE'}
+     DF-CORE-2022-01730 [해당 없음/-] [SMF] PFCP Heartbeat 절차로 UPF 장애·재시작을 감지하도록 요청
+     DF-CORE-2025-02339 [명시/입력 검증] [UDM] supported-features 없는 Nudm_SDM GetSharedData 요청에 index out of range panic, 500 응답
+     DF-CORE-2025-02384 [명시/구현 오류] [NRF] targetNfType=NRF 요청에서 scope 검증을 건너뛰어 규격에 없는 scope로 access token 발급
+     DF-CORE-2026-02451 [명시/입력 검증] [UDM SDM] supported-features 파라미터가 없는 shared-data 조회에 index out of range panic
+     DF-CORE-2026-02549 [명시/구현 오류] [PCF] Npcf_SMPolicyControl route에 인증 middleware가 없어 token 없는 요청이 handler에 도달
+     DF-CORE-2026-02684 [명시/입력 검증] [N3IWF] GRE Unmarshal이 입력 buffer를 전혀 bounds 검사하지 않아 짧은 패킷에 프로세스 종료
+     DF-CORE-2026-02869 [명시/구현 오류] [AUSF] 5G-AKA 처리 중 XRES*를 INFO 로그에 남기고 인증 값을 non-constant-time으로 비교
+free5gc/free5gc PR/MR 73 n=7 equipment={'CORE', 'PLATFORM'}
+     DF-CORE-2025-02383 [미상/-] [NRF] 3GPP 규격에 없는 scope로 access token을 발급
+     DF-CORE-2025-02384 [명시/구현 오류] [NRF] targetNfType=NRF 요청에서 scope 검증을 건너뛰어 규격에 없는 scope로 access token 발급
+     DF-CORE-2025-02397 [명시/구현 오류] [NRF] targetNfType=NRF로 access token을 요청하면 scope 검증을 건너뛰어 권한 밖 scope token 발급
+     DF-CORE-2025-02409 [명시/규격 미준수] [UDM] SQN이 큰 가입자의 resynchronization에서 Re-Sync MAC failed로 UE 인증 실패
+     DF-CORE-2026-02744 [명시/입력 검증] [CHF] nfConsumerIdentification 없는 ChargingDataRequest에서 panic, CULock이 풀리지 않아 같은 SUPI 요청이 
+     DF-CORE-2026-02997 [명시/동시성] [UDR] 같은 ueId에 대한 동시 SDM subscription 요청에 "fatal error: concurrent map writes"로 종료
+     DF-PLATFORM-2023-04112 [해당 없음/-] [문서] gtp5g 버전 갱신과 iptables 규칙 초기화 troubleshooting 추가
+free5gc/free5gc PR/MR 79 n=7 equipment={'CORE', 'PLATFORM'}
+     DF-CORE-2026-02466 [명시/입력 검증] [NRF] oauth2/token 요청에 알 수 없는 form key가 있으면 reflect panic
+     DF-CORE-2026-02474 [명시/입력 검증] [UDM] Nudm_SDM id-translation-result에 빈 ueID로 요청하면 UDR의 400을 500 SYSTEM_FAILURE로 바꿔 응답
+     DF-CORE-2026-02475 [명시/입력 검증] [UDM] Nudm_SDM supi path parameter의 null byte로 UDR URL 생성이 실패해 500 응답
+     DF-CORE-2026-02478 [명시/입력 검증] [UDM] 빈 supi로 sdm-subscriptions DELETE를 보내면 UDR의 400을 500 SYSTEM_FAILURE로 바꿔 응답
+     DF-CORE-2026-02479 [명시/입력 검증] [UDM] 빈 supi로 sdm-subscriptions PATCH를 보내면 UDR에 PUT으로 넘기고 UDR의 400을 500으로 바꿔 응답
+     DF-CORE-2026-02858 [명시/자원 관리] [SMF] idle-register 반복 시 OAuth AccessToken client cache가 계속 늘어나 메모리 누수
+     DF-PLATFORM-2023-04118 [해당 없음/-] [문서] 시험 환경 정보 갱신과 설치 페이지의 깨진 URL 수정
+free5gc/free5gc PR/MR 80 n=7 equipment={'CORE', 'PLATFORM'}
+     DF-CORE-2025-02381 [명시/입력 검증] [UPF PFCP] SEID 0xFFFFFFFFFFFFFFFF인 Session Modification Request로 index out of range panic
+     DF-CORE-2025-02382 [명시/입력 검증] [UPF PFCP] SEID 0xFFFFFFFFFFFFFFFF인 Session Deletion Request로 DeleteSess() index out of ra
+     DF-CORE-2026-02467 [명시/입력 검증] [NRF Discovery] complexQuery의 tai 값에 쉼표가 없으면 index out of range panic
+     DF-CORE-2026-02468 [명시/구현 오류] [NRF] NF Discovery에서 `buildFilter`가 `$and`에 nil을 넣어 MongoDB 조회 실패, 500 응답에 DB 오류 원문 노출
+     DF-CORE-2026-02472 [명시/입력 검증] [NRF] NF Discovery의 잘못된 `group-id-list` 값으로 `EncodeGroupId`에서 index out of range panic
+     DF-CORE-2026-02934 [명시/자원 관리] [PCF OAM] 요청마다 CORS middleware를 router에 등록해 메모리 누수(CVE-2026-41135)
+     DF-PLATFORM-2023-04118 [해당 없음/-] [문서] 시험 환경 정보 갱신과 설치 페이지의 깨진 URL 수정
+free5gc/free5gc PR/MR 90 n=6 equipment={'CORE'}
+     DF-CORE-2020-00355 [명시/테스트] [test_ulcl.sh] -om 3 TestRegistration 실행 후 tcpdump process를 종료하지 못함
+     DF-CORE-2026-02846 [명시/입력 검증] [NRF] NF registration 요청의 NF Profile 필드를 검증하지 않아 임의 endpoint를 가진 가짜 NF가 discovery에 노출
+     DF-CORE-2026-02944 [명시/구현 오류] [UDM] SDM `:supi` 경로를 strings.Contains()로 매칭해 짧은 값이 다른 handler로 잘못 전달됨
+     DF-CORE-2026-02945 [명시/구현 오류] [UDM] HandleGetTraceData가 plmn-id 파라미터를 무시해 형식이 틀린 값도 같은 응답
+     DF-CORE-2026-02946 [명시/구현 오류] [UDM] SDM subscription 요청 역직렬화 실패 응답에 내부 Go struct 이름 노출
+     DF-CORE-2026-02947 [명시/입력 검증] [UDM] 길이 제한 없는 plmn-id가 UDR 내부 요청 URL로 전달되어 timeout과 내부 주소 노출(GHSA-42jf-j68x-57gx)
+free5gc/free5gc PR/MR 72 n=6 equipment={'CORE', 'PLATFORM'}
+     DF-CORE-2022-01583 [명시/입력 검증] [AMF NGAP] Initial Context Setup Response에 AMF가 모르는 PSI가 오면 nil SmContext 참조로 panic
+     DF-CORE-2026-02744 [명시/입력 검증] [CHF] nfConsumerIdentification 없는 ChargingDataRequest에서 panic, CULock이 풀리지 않아 같은 SUPI 요청이 
+     DF-CORE-2026-02807 [명시/구현 오류] [PCF] 알 수 없는 bdtRefId의 app-session 생성에서 handleBDTPolicyInd nil pointer panic
+     DF-CORE-2026-02808 [명시/구현 오류] [PCF] bdtRefId로만 만든 AppSession 삭제 시 nil SmPolicyData 참조로 panic
+     DF-CORE-2026-02809 [명시/구현 오류] [PCF] aggregate GBR 없는 가입자의 GBR PCC rule 생성·변경 시 RemainGbr nil pointer panic
+     DF-PLATFORM-2023-04112 [해당 없음/-] [문서] gtp5g 버전 갱신과 iptables 규칙 초기화 troubleshooting 추가
+free5gc/free5gc PR/MR 69 n=6 equipment={'CORE'}
+     DF-CORE-2022-01614 [명시/규격 미준수] [SMF] PSI가 중복된 기존 PDU session 해제에 실패하면 UE에 PDU Session Establishment Reject를 보냄
+     DF-CORE-2025-02363 [명시/구현 오류] [UDM] newRouter가 routerAuthorizationCheck 변수를 덮어써 서비스별 scope 검증이 어긋남
+     DF-CORE-2026-02612 [명시/입력 검증] [CHF] nFConsumerIdentification이 없는 POST /chargingdata에서 nil pointer panic
+     DF-CORE-2026-02651 [명시/상태 관리] [PCF] 지워진 PCC rule을 가리키는 RelatedPccRuleIds로 QOS_NOTIF app-session 갱신에서 nil pointer panic
+     DF-CORE-2026-02786 [명시/입력 검증] [SMF/openapi] 잘못된 multipart/related 본문의 sm-contexts POST에서 MultipartDeserialize nil pointe
+     DF-CORE-2026-02816 [명시/입력 검증] [openapi] MultipartDeserialize가 NextPart의 EOF 아닌 오류를 처리하지 않아 nil pointer panic
+free5gc/free5gc PR/MR 44 n=6 equipment={'CORE', 'OAM', 'PLATFORM'}
+     DF-CORE-2025-02413 [미상/-] [AMF NGAP] 지원하지 않는 S-NSSAI를 광고한 gNB의 NG Setup을 거부하지 않음
+     DF-CORE-2025-02414 [추론/구현 오류] [AMF NGAP] 지원하지 않는 S-NSSAI를 광고한 gNB의 NG Setup을 검증 없이 수락
+     DF-CORE-2026-02453 [추론/동시성] [NSSF] NssaiAvailabilitySubscriptionCreate에서 공유 전역 설정 접근 중 nil pointer panic
+     DF-CORE-2026-02695 [명시/입력 검증] [TNGF] RADIUS handler가 Message-Authenticator를 강제하지 않아 shared secret 없이 NAS PDU 주입 가능
+     DF-OAM-2022-00428 [명시/구현 오류] [webconsole] 인증 없이 `Token: admin` header만으로 가입자·등록 UE·tenant·user 정보 조회 가능
+     DF-PLATFORM-2023-04090 [해당 없음/-] [문서] install ueransim 페이지의 UE 추가 절차에 WebConsole 버튼 안내 보강
+free5gc/free5gc PR/MR 30 n=6 equipment={'CORE'}
+     DF-CORE-2024-02192 [명시/입력 검증] [AMF NAS] UE가 보낸 IMEI·IMEISV를 검증하지 않고 DB에 저장
+     DF-CORE-2026-02559 [명시/구현 오류] [NEF] 3gpp-pfd-management에 inbound 인증이 없어 위조 token으로 PFD transaction 생성·조회·삭제
+     DF-CORE-2026-02560 [명시/구현 오류] [NEF] 3gpp-traffic-influence에 inbound 인증이 없어 token 없이 subscription 생성·조회·수정·삭제
+     DF-CORE-2026-02562 [명시/구현 오류] [NEF] nnef-oam에 inbound 인증이 없어 token 없는 요청에 200 응답
+     DF-CORE-2026-02563 [명시/구현 오류] [NEF] nnef-pfdmanagement에 inbound 인증이 없어 위조 token으로 PFD 조회와 subscription 생성·삭제
+     DF-CORE-2026-02670 [명시/규격 미준수] [N3IWF·TNGF] ENCR_NULL에 integrity 알고리즘이 없는 ESP Child SA proposal을 받아들여 보호 없는 IPsec tunnel 
+free5gc/free5gc PR/MR 70 n=6 equipment={'CORE'}
+     DF-CORE-2025-02363 [명시/구현 오류] [UDM] newRouter가 routerAuthorizationCheck 변수를 덮어써 서비스별 scope 검증이 어긋남
+     DF-CORE-2026-02636 [명시/입력 검증] [CHF] 긴 subscriberIdentifier로 update·release의 CDR 파일 쓰기가 실패해 panic
+     DF-CORE-2026-02652 [명시/입력 검증] [PCF] servingPlmn 없이 만든 AM policy가 있으면 POST /sm-policies에서 nil pointer panic
+     DF-CORE-2026-02786 [명시/입력 검증] [SMF/openapi] 잘못된 multipart/related 본문의 sm-contexts POST에서 MultipartDeserialize nil pointe
+     DF-CORE-2026-02967 [명시/프로토콜 처리] [N3IWF] UP integrity가 not-needed인 PDU session에서 ESP proposal에 integrity transform이 빠져 chil
+     DF-CORE-2026-02978 [명시/규격 미준수] [UDM/UDR] 없는 자원 URI에 ProblemDetails 대신 text/plain "404 page not found" 응답
+free5gc/free5gc PR/MR 76 n=6 equipment={'CORE'}
+     DF-CORE-2025-02429 [명시/입력 검증] [UDM UECM] 숫자가 아니거나 범위를 넘는 pduSessionId DELETE 요청에 500 응답
+     DF-CORE-2025-02430 [명시/입력 검증] [UDM UECM] 제어 문자(%00)를 담은 ueId GET 요청에 net/url 오류로 500 응답
+     DF-CORE-2025-02431 [명시/입력 검증] [UDM UECM] RegistrationAmf3gppAccess PUT에서 Guami가 없으면 nil pointer panic
+     DF-CORE-2026-02450 [명시/입력 검증] [UDM UECM] 필수 필드가 빠진 Amf3GppAccessRegistration PUT 요청에 nil pointer panic
+     DF-CORE-2026-02814 [명시/구현 오류] [openapi] getContentID ref loop에서 zero reflect.Value의 Type() 호출로 panic
+     DF-CORE-2026-02815 [명시/구현 오류] [openapi] getContentID ref 경로가 slice를 지나면 non-struct에 FieldByName 호출로 panic
+open5gs/open5gs PR/MR 4527 n=6 equipment={'CORE'}
+     DF-CORE-2026-02489 [명시/입력 검증] [NRF] sNssaiSmfInfoList가 OGS_MAX_NUM_OF_SLICE를 넘는 SMF profile 등록에 handle_smf_info assert 실
+     DF-CORE-2026-02490 [명시/입력 검증] [NRF] taiRangeList가 OGS_MAX_NUM_OF_TAI를 넘는 AMF profile 등록에 handle_amf_info assert 실패로 비정상 
+     DF-CORE-2026-02492 [명시/입력 검증] [AMF] NRF 알림의 guamiList가 OGS_MAX_NUM_OF_SERVED_GUAMI를 넘으면 handle_amf_info assert 실패로 비정상 종
+     DF-CORE-2026-02787 [명시/입력 검증] [NRF/SBI] amfInfo.taiRangeList[*].tacRangeList가 16개를 넘는 NFProfile 처리 중 assert 실패로 비정상 종료(c
+     DF-CORE-2026-02789 [명시/입력 검증] [SBI NF-profile parser] dnnSmfInfoList가 한도를 넘으면 handle_smf_info() assert 실패로 비정상 종료
+     DF-CORE-2026-02790 [명시/입력 검증] [NRF/SBI] smfInfo의 S-NSSAI 하나에 dnnSmfInfoList가 16개를 넘으면 assert 실패로 NRF 비정상 종료
+free5gc/free5gc PR/MR 2 n=5 equipment={'CORE', 'UE', 'PLATFORM'}
+     DF-CORE-2020-00467 [미상/-] [UDM] sNssaiList가 비어 있으면 비정상 종료(crash)
+     DF-CORE-2021-01087 [미상/-] [SMF] 가입 정보의 DNN이 SMF·UPF·UE 설정과 다르면 PDU Session Establishment 중 panic
+     DF-CORE-2026-02630 [명시/입력 검증] [TNGF] EAP5GNAS 단계의 짧은 EAP Response로 RADIUS dispatcher가 fatal 종료
+     DF-PLATFORM-2020-03059 [해당 없음/-] [배포] docker-free5gc를 free5gc organization 프로젝트로 받아 달라는 요청
+     DF-UE-2024-00310 [해당 없음/-] [TNGFUE] 설치·실행 스크립트로 TNGFUE 실행 흐름 개선 요청
+free5gc/free5gc PR/MR 17 n=5 equipment={'CORE'}
+     DF-CORE-2020-00370 [해당 없음/-] [UPF] GTP-U extension header의 QFI로 UL user traffic 검증 지원 요청
+     DF-CORE-2021-00578 [추론/동시성] [AMF] Registration Accept 재전송 중 SCTP 연결이 끊기면 panic
+     DF-CORE-2021-00643 [해당 없음/-] [UPF] libgtp5gnl v0.3.0 동기화와 QER 지원
+     DF-CORE-2022-01734 [명시/구현 오류] [UDM] OPc만 있고 OP가 빈 가입자의 인증 데이터 생성에서 "opStr length is 0" 오류
+     DF-CORE-2026-02625 [명시/입력 검증] [N3IWF] IKE_AUTH 중 길이 4인 짧은 EAP Response로 IKE dispatcher가 fatal 종료
+free5gc/free5gc PR/MR 6 n=5 equipment={'CORE', 'PLATFORM'}
+     DF-CORE-2020-00401 [해당 없음/-] [SMF] 설정의 UPF node_id에 hostname(FQDN) 사용 지원
+     DF-CORE-2020-00490 [추론/프로토콜 처리] [NAS] LastVisitedRegisteredTAI IE 길이가 7이 아님
+     DF-CORE-2022-01577 [명시/프로토콜 처리] [UDM] supported-features 값이 없을 때 UDR 요청 URI에 빈 `supported-features=` query parameter를 넣음
+     DF-CORE-2023-01828 [추론/프로토콜 처리] [AMF NGAP] 이해하지 못하는 IE가 든 NGAP 메시지를 APER decoder가 거부
+     DF-PLATFORM-2023-04045 [해당 없음/-] [문서 사이트] tested hardware 페이지 서식을 다른 페이지와 맞추도록 수정 요청
+free5gc/free5gc PR/MR 4 n=5 equipment={'CORE', 'PLATFORM'}
+     DF-CORE-2021-00577 [추론/동시성] [SMF] 여러 UE의 연결·해제 반복 시 PFCP transaction map 동시 접근으로 비정상 종료(crash)
+     DF-CORE-2021-00582 [명시/자원 관리] [AMF/UDM] SDM Unsubscribe 처리가 없어 등록·해제 반복 시 UDR 자원 미해제
+     DF-CORE-2021-01115 [추론/구현 오류] [PCF] BDT policy 생성 요청에 type assertion panic으로 500 Internal Server Error 응답
+     DF-CORE-2021-01185 [명시/구현 오류] [UDR/webconsole] DNN에 마침표(.)가 있으면 MongoDB 조회 실패로 PDU session 수립 불가
+     DF-PLATFORM-2023-04033 [추론/설정] [문서 사이트] free5gc.org 문서의 edit link가 GitHub markdown 파일로 이어지지 않음
+free5gc/free5gc PR/MR 16 n=5 equipment={'CORE'}
+     DF-CORE-2021-00578 [추론/동시성] [AMF] Registration Accept 재전송 중 SCTP 연결이 끊기면 panic
+     DF-CORE-2021-00644 [추론/동시성] [SMF] UE 연결·해제 반복 시 PFCP Session Deletion 응답과 상태 전이 경합으로 Deregistration Request 무응답
+     DF-CORE-2022-01661 [명시/규격 미준수] [NAS·PFCP] DNN 길이를 TS 23.003이 아닌 RFC 1035 기준으로 검사함
+     DF-CORE-2023-01795 [미상/-] [NRF] `/oauth2/token`에 알 수 없는 targetNfType을 보내면 nil pointer panic, 500 응답
+     DF-CORE-2023-01960 [명시/동시성] [SMF PFCP] UPF 2대 구성에서 UPF 장애 뒤 Association Setup Response를 받지 못해 재association이 끝없이 실패
+free5gc/free5gc PR/MR 24 n=5 equipment={'CORE', 'OAM'}
+     DF-CORE-2021-00582 [명시/자원 관리] [AMF/UDM] SDM Unsubscribe 처리가 없어 등록·해제 반복 시 UDR 자원 미해제
+     DF-CORE-2021-00809 [추론/입력 검증] [AMF] malformed NAS message의 TLV IE 길이 오류로 panic 비정상 종료(crash)
+     DF-CORE-2026-02561 [명시/구현 오류] [NEF] nnef-callback에 inbound 인증이 없어 위조 callback 요청이 처리 경로에 들어감
+     DF-CORE-2026-02628 [명시/입력 검증] [TNGF] 짧은 transform attribute가 든 IKE SecurityAssociation 파싱에서 panic
+     DF-OAM-2022-00381 [명시/구현 오류] [WebConsole] 앞자리가 0인 IMSI의 ueId가 0이 빠진 값으로 등록됨
+free5gc/free5gc PR/MR 27 n=5 equipment={'CORE'}
+     DF-CORE-2021-00641 [명시/규격 미준수] [AMF] SynchFailure 수신 후 재인증 요청에 context RAND를 넣지 않아 복구 실패
+     DF-CORE-2024-02067 [명시/빌드·의존성] [CHF] LGPL 라이선스 module github.com/juju/fslock 사용
+     DF-CORE-2026-02631 [명시/입력 검증] [TNGF] 길이 1인 UE Identity AN-parameter로 RADIUS EAP-5G 파서 panic
+     DF-CORE-2026-02638 [명시/프로토콜 처리] [NEF] UDR가 multipart/related로 응답하면 PFD transaction GET에서 reflect panic
+     DF-CORE-2026-02639 [명시/프로토콜 처리] [NEF] UDR가 multipart/related로 응답하면 GET /nnef-pfdmanagement/v1/applications에서 reflect panic
+free5gc/free5gc PR/MR 45 n=5 equipment={'CORE'}
+     DF-CORE-2021-00806 [명시/규격 미준수] [AMF] Security Mode Complete에 IMEI가 없으면 Identity Request를 암호화하지 않고 보내 IMEI를 평문 요청
+     DF-CORE-2021-01284 [명시/자원 관리] [UPF] PFCP Session Report Response를 처리하지 못하면 PfcpXact 누수로 pfcpXactPool 고갈
+     DF-CORE-2023-01800 [추론/설정] [NF 설정/webconsole] S-NSSAI SD 대소문자가 설정 파일과 webconsole 가입자 정보에서 달라 PDU session 생성 실패
+     DF-CORE-2025-02214 [명시/입력 검증] [UDM] Home network public key identifier가 0인 SUCI를 SUPI로 바꾸다 index out of range panic
+     DF-CORE-2026-02596 [명시/입력 검증] [NSSF] nssai-availability PUT에서 supportedNssaiAvailabilityData 항목에 tai가 없으면 nil pointer pa
+free5gc/free5gc PR/MR 37 n=5 equipment={'CORE'}
+     DF-CORE-2021-01078 [미상/-] [UPF] paging 뒤 buffer한 downlink packet 여러 개를 GTP-U packet 하나로 묶어 송신
+     DF-CORE-2023-01964 [추론/빌드·의존성] [UPF 빌드] go 1.21에서 go.mod 갱신 요구로 UPF 빌드 실패
+     DF-CORE-2024-02199 [명시/규격 미준수] [SMF·PCF] PDU session establishment accept의 QoS rule·QoS flow description·QosFlowSetupRequ
+     DF-CORE-2026-02697 [명시/입력 검증] [TNGF] AES-CBC 복호화가 잘못된 padding 값에 slice 범위 초과로 pre-auth 원격 프로세스 종료
+     DF-CORE-2026-02698 [명시/입력 검증] [TNGF] ENCR_NULL 복호화가 잘못된 padding 값에 slice 범위 초과로 pre-auth 원격 프로세스 종료
+free5gc/free5gc PR/MR 43 n=5 equipment={'CORE', 'PLATFORM'}
+     DF-CORE-2021-01255 [명시/동시성] [UPF] 로그 함수 UTLT_LogPrint()가 thread-safe하지 않아 다른 log 내용으로 덮어씀
+     DF-CORE-2025-02417 [명시/입력 검증] [AMF NAS] malformed 5GS Mobile Identity를 담은 Registration Request로 index out of range 비정상 종
+     DF-CORE-2026-02464 [명시/입력 검증] [AMF NAS] malformed SUCI를 담은 Registration Request로 GetSUCI index out of range panic
+     DF-CORE-2026-02530 [명시/프로토콜 처리] [AMF NAS] Registration Request의 5GSID IE 길이 불일치로 decoder panic 뒤 Registration Reject 송신에서 
+     DF-PLATFORM-2023-04089 [해당 없음/-] [문서] install ueransim 페이지의 smfcfg.yaml 설명에서 key 이름이 실제 파일과 다름
+free5gc/free5gc PR/MR 47 n=5 equipment={'CORE'}
+     DF-CORE-2021-01291 [명시/상태 관리] [UPF] PFCP Session Deletion으로 지운 session을 UpfSessionFindBySeid()가 찾아 Modification Response
+     DF-CORE-2026-02600 [명시/입력 검증] [NSSF] registration 경로에서 servingSnssai가 빠진 mappingOfNssai 항목으로 nil pointer panic
+     DF-CORE-2026-02601 [명시/입력 검증] [NSSF] registration 경로에서 homeSnssai가 빠진 mappingOfNssai 항목으로 nil pointer panic
+     DF-CORE-2026-02602 [명시/입력 검증] [NSSF] registration 경로에서 subscribedSnssai가 빠진 subscribedNssai 항목으로 nil pointer panic
+     DF-CORE-2026-02875 [명시/입력 검증] [TNGF IKE] 인증 전 IKE_SA_INIT 한 개의 SA payload spiSize로 slice bounds panic, TNGF 프로세스 종료
+free5gc/free5gc PR/MR 61 n=5 equipment={'CORE', 'PLATFORM'}
+     DF-CORE-2026-02449 [명시/입력 검증] [CHF] underscore가 없는 rechargingInfo PUT 요청에 index out of range panic
+     DF-CORE-2026-02606 [명시/동시성] [UDR] POST /policy-data/subs-to-notify 동시 요청에 concurrent map writes로 프로세스 종료
+     DF-CORE-2026-02689 [명시/설정] [N3IWF] XFRM state에 ReplayWindow를 설정하지 않아 ESP anti-replay 보호가 꺼짐
+     DF-CORE-2026-02828 [명시/입력 검증] [AUSF] supiOrSuci의 null byte를 검사하지 않아 UDM URL 생성 실패로 HTTP 500
+     DF-PLATFORM-2023-04104 [해당 없음/-] [문서] Ubuntu VM 설치 demo 페이지의 오래된 버전, 깨진 URL, 오타 수정
+free5gc/free5gc PR/MR 188 n=5 equipment={'CORE'}
+     DF-CORE-2026-02511 [명시/프로토콜 처리] [SMF] NodeID IE가 없는 PFCP Association Release Request로 nil pointer dereference 비정상 종료(crash
+     DF-CORE-2026-02521 [명시/프로토콜 처리] [SMF] 필수 IE ReportType이 없는 PFCP Session Report Request로 nil pointer dereference, SMF proce
+     DF-CORE-2026-02522 [명시/프로토콜 처리] [SMF] ReportType.DLDR이 켜졌지만 DownlinkDataReport IE가 없는 PFCP Session Report Request로 비정상 종료(
+     DF-CORE-2026-02523 [명시/프로토콜 처리] [SMF] USAR UsageReport에 VolumeMeasurement가 없는 PFCP Session Report Request로 nil pointer der
+     DF-CORE-2026-02524 [명시/프로토콜 처리] [SMF] USAR UsageReport에 필수 URRID가 없는 PFCP Session Report Request로 nil pointer dereference 
+ocudu/ocudu PR/MR 1750 n=5 equipment={'RAN-DU'}
+     DF-RAN-DU-2026-00999 [명시/설정] [Scheduler PUCCH] 전용 PUCCH가 common PUCCH PRB를 차지해 fallback UE의 ra-ContentionResolutionTime
+     DF-RAN-DU-2026-01054 [추론/구현 오류] [functional] `multiue.slice.dedicated_prb`의 UL UE bitrate가 임계값에 조금 못 미침
+     DF-RAN-DU-2026-01055 [명시/설정] [DU 설정] 좁은 BWP 기본 설정에서 PRACH가 PUCCH 영역과 겹쳐 DU cell 설정 검증 실패
+     DF-RAN-DU-2026-01056 [미상/-] [performance] `multiue.test_mode.ru_dummy_10cell_50ue`의 UL bitrate가 임계값보다 3% 낮음
+     DF-RAN-DU-2026-01058 [추론/구현 오류] [functional·performance] 여러 test에서 DL·UL KO가 늘어남
+oai/openairinterface5g PR/MR 2854 n=4 equipment={'RAN-DU', 'PLATFORM'}
+     DF-PLATFORM-2015-01458 [해당 없음/-] [시험] oaisim, USRP, ExMIMO target별 OAI 시험 수행
+     DF-RAN-DU-2015-00007 [해당 없음/-] [PHY 시험] oaisim/PHY layer 단위 테스트 추가
+     DF-RAN-DU-2015-00008 [해당 없음/-] [openair2 테스트] MAC/RLC/RRC unit test·integration test 작성
+     DF-RAN-DU-2015-00010 [해당 없음/-] [PHY RF API] oaisim·USRP·bladeRF용 PHY API 추상화의 문서화와 코드 정리
+oai/openairinterface5g PR/MR 3277 n=4 equipment={'RAN-DU', 'UE', 'PLATFORM'}
+     DF-PLATFORM-2016-01808 [해당 없음/-] [코드 정리] `USER_MODE` define과 관련 코드 제거 제안
+     DF-RAN-DU-2016-00033 [해당 없음/-] [L1/L2 interface] `mac_xface` 구조체 초기화·사용 불일치 정리 제안
+     DF-UE-2024-00299 [명시/규격 미준수] [nrUE NAS] `derive_kgnb`에 NAS UL COUNT 대신 0을 고정으로 넘김
+     DF-UE-2025-00321 [해당 없음/-] [nrUE NAS] UE-initiated Service Request 절차 구현
+free5gc/free5gc PR/MR 11 n=4 equipment={'CORE', 'OAM'}
+     DF-CORE-2020-00247 [명시/빌드·의존성] [UPF 빌드] free5gc-stage-3에서 고친 testgtpv1 생성 누락과 README clone 경로가 free5gc 저장소에 반영되지 않음
+     DF-CORE-2020-00505 [명시/상태 관리] [AMF] Mobility·Periodic Registration Update 처리 중 HandleRegistrationComplete()에서 panic
+     DF-CORE-2026-02541 [추론/프로토콜 처리] [AMF] NGSetupRequest RANNodeName에 PrintableString이 아닌 값을 받아들임
+     DF-OAM-2020-00100 [해당 없음/-] [WebConsole] UE의 S-NSSAI·DNN 수정 기능 요청, MongoDB 가입자 문서의 S-NSSAI 형식 지적
+free5gc/free5gc PR/MR 3 n=4 equipment={'CORE'}
+     DF-CORE-2020-00300 [명시/구현 오류] [AMF] AmfUe가 nil인 이벤트 하나로 handler가 종료되어 AMF가 NGAP 메시지를 처리하지 않음
+     DF-CORE-2020-00365 [미상/-] [SMF] PDU Session Establishment Accept의 default QoS rule 인코딩 오류
+     DF-CORE-2021-01264 [해당 없음/-] [AMF/SMF/PCF] locality 기반 PCF 선택 기능 요청
+     DF-CORE-2026-02685 [명시/입력 검증] [TNGF] GRE Unmarshal이 입력 buffer를 전혀 bounds 검사하지 않아 짧은 패킷에 프로세스 종료
+free5gc/free5gc PR/MR 20 n=4 equipment={'CORE'}
+     DF-CORE-2020-00410 [해당 없음/-] [AMF] NITZ: Configuration Update Command로 UE에 현재 시각과 operator 이름 전달
+     DF-CORE-2021-00581 [명시/구현 오류] [AMF] handleRequestedNssai()에서 TargetAmfSet을 pointer와 값으로 DeepEqual 비교
+     DF-CORE-2021-01216 [명시/입력 검증] [NRF] NF Discovery의 잘못된 target-nf-type 입력에 NRF 비정상 종료(crash)
+     DF-CORE-2026-02669 [명시/입력 검증] [N3IWF·TNGF] 받은 Diffie-Hellman public value를 검증하지 않아 IKE SA 키 복구 가능
+free5gc/free5gc PR/MR 21 n=4 equipment={'CORE'}
+     DF-CORE-2020-00410 [해당 없음/-] [AMF] NITZ: Configuration Update Command로 UE에 현재 시각과 operator 이름 전달
+     DF-CORE-2023-01738 [추론/규격 미준수] [NRF] `GET nf-instances`가 optional parameter `limit`, `nf-type`을 필수처럼 처리
+     DF-CORE-2025-02232 [해당 없음/-] [의존성] 지원 종료 예정인 MongoDB Go Driver 1.x를 2.0으로 올리기
+     DF-CORE-2026-02671 [명시/구현 오류] [N3IWF·TNGF] 폐기된 암호 알고리즘(PRF_HMAC_MD5, AUTH_HMAC_MD5_96, DH Group 2)을 수락해 downgrade 허용
+free5gc/free5gc PR/MR 84 n=4 equipment={'CORE', 'OAM'}
+     DF-CORE-2026-02615 [명시/입력 검증] [UDM] re-synchronization 중 1바이트 AUTS로 generate-auth-data에서 slice bounds panic
+     DF-CORE-2026-02633 [명시/입력 검증] [NRF] 짧게 저장된 BSF ipv6PrefixRanges.start를 discovery 응답에서 IPv6 문자열로 되돌리다 slice bounds panic
+     DF-CORE-2026-03002 [명시/상태 관리] [PCF] app-session modify가 extractUmData 실패 시 SM policy decision에 고아 PCC rule을 남김
+     DF-OAM-2020-00100 [해당 없음/-] [WebConsole] UE의 S-NSSAI·DNN 수정 기능 요청, MongoDB 가입자 문서의 S-NSSAI 형식 지적
+free5gc/free5gc PR/MR 9 n=4 equipment={'CORE', 'OAM'}
+     DF-CORE-2020-00466 [명시/입력 검증] [AMF] null인 nsiInformation 접근으로 비정상 종료(crash)
+     DF-CORE-2021-00817 [명시/규격 미준수] [UDM] Nudm_SDM GetDataSets에서 dataset-names 파라미터를 무시해 404 DATA NOT FOUND 응답
+     DF-CORE-2022-01661 [명시/규격 미준수] [NAS·PFCP] DNN 길이를 TS 23.003이 아닌 RFC 1035 기준으로 검사함
+     DF-OAM-2020-00100 [해당 없음/-] [WebConsole] UE의 S-NSSAI·DNN 수정 기능 요청, MongoDB 가입자 문서의 S-NSSAI 형식 지적
+free5gc/free5gc PR/MR 15 n=4 equipment={'CORE'}
+     DF-CORE-2020-00481 [명시/프로토콜 처리] [AMF] InitialContextSetupRequest의 UESecurityCapabilities에서 NEA/NIA 비트를 잘못 인코딩
+     DF-CORE-2021-00587 [미상/-] [UPF] Paging 응답 없이 DL data가 계속 들어오면 double free 오류
+     DF-CORE-2021-01217 [명시/규격 미준수] [AUSF] 대문자 RES*를 받으면 5G-AKA 확인 실패
+     DF-CORE-2022-01663 [미상/-] [UDM] UE deregistration 때 amf3gppAccess에 불필요한 `Guami`·`PurgeFlag` field가 추가됨
+free5gc/free5gc PR/MR 18 n=4 equipment={'CORE', 'UE'}
+     DF-CORE-2021-00579 [명시/구현 오류] [AMF] Requested NSSAI 비교에서 pointer와 값 비교 오류로 Registration Status Update Error
+     DF-CORE-2021-01271 [미상/-] [UPF] webconsole에서 UE별 QoS parameter를 다르게 넣어도 QER이 하나만 생성
+     DF-CORE-2026-02627 [명시/입력 검증] [N3IWF] 짧은 transform attribute가 든 IKE SecurityAssociation 파싱에서 panic
+     DF-UE-2025-00358 [추론/상태 관리] [TNGFUE] 두 번째 인증부터 SQN 불일치로 AMF NAS MAC 검증 실패
+free5gc/free5gc PR/MR 14 n=4 equipment={'CORE', 'UE'}
+     DF-CORE-2021-00586 [명시/동시성] [UPF] registration·deregistration 반복 시 TimerList lock 누락으로 SEGV 비정상 종료(crash)
+     DF-CORE-2021-00635 [추론/프로토콜 처리] [SMF] DNSIPv4Request만 있는 요청에 PDU Session Establishment Accept의 PCO 누락
+     DF-CORE-2021-01185 [명시/구현 오류] [UDR/webconsole] DNN에 마침표(.)가 있으면 MongoDB 조회 실패로 PDU session 수립 불가
+     DF-UE-2025-00330 [추론/설정] [N3IWUE] 앞자리 0이 든 SQN 설정이 재실행 뒤 `1`로 바뀌어 NAS MAC 불일치
+free5gc/free5gc PR/MR 38 n=4 equipment={'CORE'}
+     DF-CORE-2021-00994 [명시/동시성] [UPF] 다수 UE 재기동 후 PFCP Session Establishment Request를 처리하지 못해 일부 UE 미등록
+     DF-CORE-2021-01079 [미상/-] [AMF] Service Request(mo-data) 수신 시 SMF에 sm-context modify 요청을 보내지 않음
+     DF-CORE-2024-02199 [명시/규격 미준수] [SMF·PCF] PDU session establishment accept의 QoS rule·QoS flow description·QosFlowSetupRequ
+     DF-CORE-2026-02687 [명시/입력 검증] [TNGF] Proposals가 비어 있는 CREATE_CHILD_SA 응답에 index 초과로 프로세스 종료
+free5gc/free5gc PR/MR 28 n=4 equipment={'CORE'}
+     DF-CORE-2021-01087 [미상/-] [SMF] 가입 정보의 DNN이 SMF·UPF·UE 설정과 다르면 PDU Session Establishment 중 panic
+     DF-CORE-2022-01576 [명시/플랫폼] [gtp5g] 새 kernel에서 iovec에 kernel-space 주소를 넣을 수 없어 TestPaging 실패
+     DF-CORE-2026-02632 [명시/입력 검증] [TNGF] InitialContextSetup 상태에서 짧은 EAP 메시지로 RADIUS handler panic
+     DF-CORE-2026-02688 [명시/입력 검증] [SMF] NEF traffic-influence로 전파된 null RouteToLocs[0]에 sm-policy update callback이 nil 참조 pa
+free5gc/free5gc PR/MR 39 n=4 equipment={'CORE'}
+     DF-CORE-2021-01144 [명시/구현 오류] [UPF] BufblkAlloc()·BufblkBytes() 반환값을 검사하지 않아 segmentation fault 가능
+     DF-CORE-2025-02324 [추론/입력 검증] [AMF NAS] Registration Request의 5GS mobile identity 길이 검증 오류로 slice 범위 밖 접근, 비정상 종료
+     DF-CORE-2025-02343 [명시/입력 검증] [NSSF] expiry 없는 NSSAIAvailability 구독 POST 요청에 nil pointer dereference panic, 500 응답
+     DF-CORE-2026-02690 [명시/설정] [TNGF] XFRM state에 ReplayWindow를 설정하지 않아 ESP anti-replay 보호가 꺼짐
+free5gc/free5gc PR/MR 42 n=4 equipment={'CORE', 'OAM'}
+     DF-CORE-2021-01189 [명시/동시성] [UPF] 다수 PfcpXact timer가 동시에 만료되면 TimerExpireCheck 교착으로 PFCP 송수신 중단
+     DF-CORE-2026-02613 [명시/입력 검증] [CHF] nFPLMNID의 mcc·mnc가 짧으면 POST /chargingdata에서 index out of range panic
+     DF-CORE-2026-02693 [명시/자원 관리] [TNGF] INFORMATIONAL 처리·SA timeout·SA 개수 제한이 없어 IKE SA가 무한히 쌓여 OOM
+     DF-OAM-2023-00455 [해당 없음/-] [WebConsole] EOL된 NodeJS v12.x 대신 v18.x 이상으로 이전 요청
+open5gs/open5gs PR/MR 1479 n=4 equipment={'CORE'}
+     DF-CORE-2021-01224 [해당 없음/-] [SMF] Gy interface(Gy handler) 구현 요청
+     DF-CORE-2021-01254 [해당 없음/-] [SMF] Gy interface 지원 요청
+     DF-CORE-2023-01810 [명시/규격 미준수] [SMF Gy] CCR의 기본 Service-Context-Id가 3GPP TS 32.299 7.1.12와 다름
+     DF-CORE-2023-01873 [추론/결함 아님] [SMF] Gy 연동 외부 OCS가 Gy CCR뿐 아니라 Gx CCR도 받음
+free5gc/free5gc PR/MR 51 n=4 equipment={'CORE', 'PLATFORM'}
+     DF-CORE-2021-01264 [해당 없음/-] [AMF/SMF/PCF] locality 기반 PCF 선택 기능 요청
+     DF-CORE-2021-01291 [명시/상태 관리] [UPF] PFCP Session Deletion으로 지운 session을 UpfSessionFindBySeid()가 찾아 Modification Response
+     DF-CORE-2025-02344 [명시/구현 오류] [PCF] Npcf_BDTPolicyControl POST 처리 중 안전하지 않은 type assertion으로 panic, 500 응답
+     DF-PLATFORM-2023-04098 [해당 없음/-] [문서] 재부팅·kernel 업데이트 뒤 GTP-U module 재설치 troubleshooting과 ufw 영구 비활성화 명령 추가
+free5gc/free5gc PR/MR 52 n=4 equipment={'CORE'}
+     DF-CORE-2021-01276 [명시/상태 관리] [AMF] SecurityModeComplete 대기 중 UEContextReleaseRequest를 받아도 T3560이 멈추지 않아 SecurityModeCom
+     DF-CORE-2026-02473 [명시/입력 검증] [AUSF] resynchronizationInfo가 담긴 UE 인증 요청에서 nil SuciSupiMap interface conversion panic
+     DF-CORE-2026-02625 [명시/입력 검증] [N3IWF] IKE_AUTH 중 길이 4인 짧은 EAP Response로 IKE dispatcher가 fatal 종료
+     DF-CORE-2026-02923 [명시/설정] [PCF/NSSF] 잘못된 설정 검증 중 ReadConfig()의 unsafe type assertion으로 panic
+free5gc/free5gc PR/MR 53 n=4 equipment={'CORE'}
+     DF-CORE-2021-01321 [명시/상태 관리] [AMF] 같은 UE의 반복 Registration마다 Allowed NSSAI가 늘어 Initial Context Setup Request 생성 실패
+     DF-CORE-2025-02344 [명시/구현 오류] [PCF] Npcf_BDTPolicyControl POST 처리 중 안전하지 않은 type assertion으로 panic, 500 응답
+     DF-CORE-2026-02626 [명시/입력 검증] [N3IWF] VendorData가 빈 EAP-5G expanded 패킷으로 IKE_AUTH 처리에서 panic
+     DF-CORE-2026-02647 [추론/구현 오류] [AUSF] 변조한 SUCI의 인증 요청에서 UDM 404를 500 Internal Server Error로 응답
+free5gc/free5gc PR/MR 85 n=4 equipment={'CORE', 'OAM'}
+     DF-CORE-2025-02416 [명시/입력 검증] [UPF PFCP] 길이 필드가 잘못된 SDF Filter IE를 담은 Session Modification Request로 heap buffer overflow
+     DF-CORE-2026-02811 [명시/입력 검증] [UDM] sequenceNumber 없는 AuthenticationSubscription으로 generate-auth-data 시 nil pointer pani
+     DF-CORE-2026-03002 [명시/상태 관리] [PCF] app-session modify가 extractUmData 실패 시 SM policy decision에 고아 PCC rule을 남김
+     DF-OAM-2024-00474 [명시/구현 오류] [webconsole] React 업그레이드 중 UE PDU session static IP 설정 UI가 빠짐
+oai/openairinterface5g PR/MR 3176 n=4 equipment={'UE'}
+     DF-UE-2024-00296 [해당 없음/-] [nrUE NAS] 유효한 5G NAS security context가 있으면 Registration Request를 integrity protected로 보내도
+     DF-UE-2024-00316 [명시/규격 미준수] [nrUE NAS] 최초 Registration Request에 5GMM capability IE를 넣지 않아 free5GC AMF가 등록 거부
+     DF-UE-2025-00321 [해당 없음/-] [nrUE NAS] UE-initiated Service Request 절차 구현
+     DF-UE-2025-00329 [명시/프로토콜 처리] [nrUE NAS] MR !3176 뒤 3rd party gNB·core와 SA registration 실패, 두 번째 Security Mode Command 수
+free5gc/free5gc PR/MR 65 n=4 equipment={'CORE'}
+     DF-CORE-2025-02341 [명시/입력 검증] [UDM] 잘못된 파라미터가 든 Nudm_SDM SubscribeToSharedData POST 요청에 4xx 대신 500 응답
+     DF-CORE-2025-02342 [명시/구현 오류] [UDM] 없는 ueID로 Nudm_SDM id-translation-result 조회 시 UDR의 404 대신 500 응답
+     DF-CORE-2026-02567 [명시/입력 검증] [PCF] npcf-policyauthorization app-session 생성에서 suppFeat=1이고 AfRoutReq가 없으면 nil pointer pa
+     DF-CORE-2026-02691 [명시/입력 검증] [N3IWF] IKE Message ID를 검증하지 않아 DELETE/CREATE_CHILD_SA 메시지 replay 허용
+free5gc/free5gc PR/MR 67 n=4 equipment={'CORE'}
+     DF-CORE-2025-02345 [명시/구현 오류] [SBI OAuth] `VerifyOAuth`가 scope 검증 실패에 nil을 돌려줘 scope가 맞지 않는 access token을 허용
+     DF-CORE-2026-02444 [명시/프로토콜 처리] [AMF] multipart/related CreateUEContext 요청 역직렬화 중 reflect panic
+     DF-CORE-2026-02595 [명시/구현 오류] [PCF] BDT-only app-session의 events-subscription DELETE·PUT에서 nil SmPolicyData panic
+     DF-CORE-2026-02613 [명시/입력 검증] [CHF] nFPLMNID의 mcc·mnc가 짧으면 POST /chargingdata에서 index out of range panic
+free5gc/free5gc PR/MR 57 n=4 equipment={'CORE'}
+     DF-CORE-2025-02368 [명시/구현 오류] [PCF] AM policy association 삭제 시 오류 처리 뒤 return 누락으로 nil pointer panic
+     DF-CORE-2026-02571 [명시/구현 오류] [UDR] outbound callback notification에 OAuth2 token을 붙이지 않음
+     DF-CORE-2026-02668 [명시/입력 검증] [N3IWF] SelectedPLMNID가 없으면 AMF 선택이 nil 참조로 프로세스 종료
+     DF-CORE-2026-02804 [명시/입력 검증] [AUSF] 짧은 EAP-AKA' payload에서 decodeEapAkaPrime index out of range panic
+oai/openairinterface5g PR/MR 3899 n=4 equipment={'UE'}
+     DF-UE-2025-00371 [추론/입력 검증] [nrUE PHY] 변조된 RRCSetup의 SRS `nrofSymbols`(n1→n4)를 받으면 `generate_srs_nr()`에서 SIGSEGV
+     DF-UE-2025-00372 [추론/입력 검증] [nrUE PHY] 변조된 RRCSetup의 CSI-RS `nrofPorts`(p2→p4)를 받으면 `csi_rs_resource_mapping()`에서 SIGS
+     DF-UE-2025-00373 [추론/입력 검증] [nrUE MAC] 변조된 RRCSetup의 `csi-ResourceConfigId`(→1)를 받으면 CSI bit 길이·payload 계산에서 SIGSEGV
+     DF-UE-2025-00374 [명시/입력 검증] [nrUE MAC] 변조된 TimeDomainAllocationList `mappingType`(typeA↔typeB)을 받으면 DMRS 설정 NULL 참조로 S
+free5gc/free5gc PR/MR 78 n=4 equipment={'CORE'}
+     DF-CORE-2026-02446 [명시/입력 검증] [NRF Discovery] 7자보다 짧은 gpsi 파라미터에 slice bounds out of range panic
+     DF-CORE-2026-02447 [명시/입력 검증] [NRF Discovery] 빈 snssais 파라미터에 slice bounds out of range panic
+     DF-CORE-2026-02476 [추론/입력 검증] [UDM] `/sdm-subscriptions` callback 요청에서 `DataChangeNotificationProcedure` nil pointer der
+     DF-CORE-2026-02923 [명시/설정] [PCF/NSSF] 잘못된 설정 검증 중 ReadConfig()의 unsafe type assertion으로 panic
+free5gc/free5gc PR/MR 189 n=4 equipment={'CORE'}
+     DF-CORE-2026-02531 [명시/프로토콜 처리] [SMF] USAR UsageReport에 UsageReportTrigger가 없는 PFCP Session Report Request로 nil pointer de
+     DF-CORE-2026-02532 [명시/프로토콜 처리] [SMF] Cause IE가 없는 PFCP Session Establishment Response로 nil pointer dereference 비정상 종료(cra
+     DF-CORE-2026-02533 [명시/프로토콜 처리] [SMF] NodeID IE가 없는 PFCP Session Establishment Response로 `ResolveNodeIdToIp()` nil pointer
+     DF-CORE-2026-02534 [명시/프로토콜 처리] [SMF] Cause IE가 없는 PFCP Session Deletion Response로 nil pointer dereference 비정상 종료(crash)
+ocudu/ocudu PR/MR 860 n=4 equipment={'RAN-DU'}
+     DF-RAN-DU-2026-00727 [추론/상태 관리] [DU] 정상적인 UE 제거 뒤 MAC이 `Discarding PDU` 경고를 냄
+     DF-RAN-DU-2026-00833 [추론/상태 관리] [DU] 기능 load 시험에서 detach 시점과 그 뒤에 간헐적 KO
+     DF-RAN-DU-2026-00887 [추론/상태 관리] [functional] load_test에서 DL·UL KO와 warning이 대량 발생
+     DF-RAN-DU-2026-00888 [추론/상태 관리] [functional] singleue.mocn.moran 시험에서 AMF Empty NAS PDU 오류와 C-RNTI CE 폐기 warning
+free5gc/free5gc PR/MR 211 n=4 equipment={'CORE', 'OAM'}
+     DF-CORE-2026-02585 [명시/입력 검증] [AMF] namf-comm ue-contexts PUT에서 TargetId 하위 필드가 비어 있으면 nil pointer panic
+     DF-CORE-2026-02735 [명시/입력 검증] [SMF] PDUSessionResourceModifyResponse에 SMF가 추가하지 않은 QFI가 오면 nil pointer panic
+     DF-CORE-2026-02739 [명시/프로토콜 처리] [SMF] IEExtensions 없는 PathSwitchRequestTransfer에서 NrdcIndicator가 켜져 있으면 nil pointer panic
+     DF-OAM-2026-00524 [명시/구현 오류] [webconsole] 인증 없이 가입자 레코드 조회·수정·삭제 가능, SIM 인증키(K/OPc) 노출
+open5gs/open5gs PR/MR 4513 n=4 equipment={'CORE'}
+     DF-CORE-2026-02746 [명시/구현 오류] [SMF] 같은 QoS Rule Identifier를 두 번 담은 PDU Session Modification Request로 assert 실패해 비정상 종료(c
+     DF-CORE-2026-02747 [명시/입력 검증] [SMF] QoS Flow Description의 num_params 불일치로 알 수 없는 parameter identifier에서 abort
+     DF-CORE-2026-02769 [명시/입력 검증] [SMF] sm-contexts modify의 `n1SmMsg` QoS flow description에 잘못된 bitrate unit이 있으면 abort
+     DF-CORE-2026-02823 [명시/입력 검증] [SMF] PDU Session Modification Request의 bitrate unit이 0이거나 25를 넘으면 assert로 비정상 종료
+ocudu/ocudu PR/MR 1772 n=4 equipment={'RAN-DU'}
+     DF-RAN-DU-2026-01049 [미상/-] [radio DIFI] ASAN에서 `RxReassembly.QueuedSamplesAreConsumedWithoutWaiting`이 2000 ms 시간 제한 초
+     DF-RAN-DU-2026-01050 [추론/구현 오류] [radio DIFI] valgrind가 `radio_difi_rx_stream` 생성자의 `set_level()` 호출에서 초기화되지 않은 값 사용을 검출
+     DF-RAN-DU-2026-01052 [미상/-] [radio DIFI] 지원하지 않는 bit depth로 거부된 tx stream이 packet을 송신해 `TxStreamConfig.UnsupportedBitD
+     DF-RAN-DU-2026-01053 [미상/-] [radio DIFI] `RxReassembly.SlotIsReassembledFromSixPackets`에서 재조립한 slot buffer가 0으로 채워짐
+ocudu/ocudu PR/MR 1876 n=4 equipment={'RAN-DU'}
+     DF-RAN-DU-2026-01073 [명시/구현 오류] [UBSAN] `single_ue_ta_manager_test`에서 null `logical_channel_system` reference binding
+     DF-RAN-DU-2026-01076 [명시/구현 오류] [UBSAN] `bounded_object_pool::get()`이 CPU 0에서 64bit 값을 64만큼 shift
+     DF-RAN-DU-2026-01081 [명시/구현 오류] [UBSAN gcc/arm] `sib_information` copy constructor가 초기화되지 않은 bool member를 load
+     DF-RAN-DU-2026-01082 [명시/구현 오류] [UBSAN gcc/arm] `csi_report_data` copy constructor가 초기화되지 않은 bool member를 load
+oai/openairinterface5g PR/MR 255 n=3 equipment={'RAN-CU'}
+     DF-RAN-CU-2017-00015 [해당 없음/-] [eNB RRC] eNB paging 기능 구현
+     DF-RAN-CU-2017-00016 [해당 없음/-] [eNB RRC] RRC RE-ESTABLISHMENT 기능 구현
+     DF-RAN-CU-2017-00017 [해당 없음/-] [eNB RRC] RRC CONNECTION RELEASE 기능 구현
+open5gs/open5gs PR/MR 327 n=3 equipment={'CORE'}
+     DF-CORE-2019-00137 [명시/상태 관리] [MME] 같은 UE의 attach 절차 두 개가 겹치면 다른 attach의 Delete Session Response를 받아 비정상 종료
+     DF-CORE-2019-00174 [추론/규격 미준수] [MME GTPv2-C] S11에서 알 수 없는 TEID의 메시지를 받으면 assert로 비정상 종료(crash)
+     DF-CORE-2019-00176 [명시/입력 검증] [MME] 예상 밖 ENB_UE_S1AP_ID를 받으면 `s1ap_handle_uplink_nas_transport()`의 ogs_assert로 비정상 종료(cr
+free5gc/free5gc PR/MR 7 n=3 equipment={'CORE'}
+     DF-CORE-2020-00416 [명시/구현 오류] [SMF] FQDN Node ID 사용 시 PFCP association을 엉뚱한 UPF와 맺음
+     DF-CORE-2024-02150 [추론/구현 오류] [TNGF] free5GC 종료 시 TNGF가 nil pointer dereference panic으로 비정상 종료(crash)
+     DF-CORE-2026-02611 [명시/동시성] [BSF] 없는 subId에 대한 동시 PUT /subscriptions/{subId}에서 concurrent map read and map write로 비정상 
+free5gc/free5gc PR/MR 10 n=3 equipment={'CORE'}
+     DF-CORE-2020-00491 [명시/프로토콜 처리] [AMF] InitialContextSetupRequest의 id-UERadioCapability를 String으로 디코딩
+     DF-CORE-2020-00532 [명시/입력 검증] [SMF] UE 경로에 UPF가 하나뿐인 uerouting 설정에서 index out of range로 비정상 종료(crash)
+     DF-CORE-2022-01730 [해당 없음/-] [SMF] PFCP Heartbeat 절차로 UPF 장애·재시작을 감지하도록 요청
+free5gc/free5gc PR/MR 12 n=3 equipment={'CORE'}
+     DF-CORE-2020-00492 [명시/자원 관리] [UPF] PDU session을 반복 설정·해제할 때 BufPacket 미해제
+     DF-CORE-2020-00506 [추론/규격 미준수] [AMF] CM-CONNECTED 전이 때 ServiceRequest가 두 번 발생
+     DF-CORE-2021-00585 [명시/자원 관리] [SMF] tunnel 활성·비활성 반복 시 IDGenerator 할당 누수로 메모리 증가
+free5gc/free5gc PR/MR 13 n=3 equipment={'CORE'}
+     DF-CORE-2020-00507 [추론/프로토콜 처리] [AMF] plain NAS 메시지 처리 시 Service Accept의 NAS security header를 잘못 설정
+     DF-CORE-2021-00634 [추론/규격 미준수] [SMF] PDUSessionTypeIPv4IPv6 요청에 EndPoint IP 주소를 돌려주지 않음
+     DF-CORE-2023-01800 [추론/설정] [NF 설정/webconsole] S-NSSAI SD 대소문자가 설정 파일과 webconsole 가입자 정보에서 달라 PDU session 생성 실패
+free5gc/free5gc PR/MR 25 n=3 equipment={'CORE'}
+     DF-CORE-2021-00583 [명시/동시성] [AMF] locking 누락으로 TestPDUSessionReleaseRequest에서 PDUSessionResourceSetupRequest를 못 받아 간헐 
+     DF-CORE-2026-02609 [명시/구현 오류] [NEF] 연결할 수 없는 notifyUri로 PFD 알림이 실패하면 logger.Fatal로 프로세스 종료
+     DF-CORE-2026-02629 [명시/입력 검증] [TNGF] UDP/4500 NAT-T 짧은 패킷으로 IKE dispatcher가 fatal 종료
+free5gc/free5gc PR/MR 26 n=3 equipment={'CORE'}
+     DF-CORE-2021-00633 [추론/상태 관리] [AMF] NGSetupRequest 전에 InitialUEMessage를 받으면 nil pointer dereference로 비정상 종료(crash)
+     DF-CORE-2026-02619 [추론/구현 오류] [NEF] supported-features가 중복된 PFD 조회에서 UDR 404를 HTTP 500으로 응답
+     DF-CORE-2026-02630 [명시/입력 검증] [TNGF] EAP5GNAS 단계의 짧은 EAP Response로 RADIUS dispatcher가 fatal 종료
+magma/magma PR/MR 6098 n=3 equipment={'PLATFORM'}
+     DF-PLATFORM-2021-03327 [해당 없음/-] [Pylint] orc8r `ctraced` service를 pylint test 대상에 다시 추가
+     DF-PLATFORM-2021-03328 [해당 없음/-] [Pylint] lte `smsd` service를 pylint test 대상에 다시 추가
+     DF-PLATFORM-2021-03329 [해당 없음/-] [Pylint] lte `pkt_tester` service를 pylint test 대상에 다시 추가
+magma/magma PR/MR 6092 n=3 equipment={'CORE', 'OAM', 'PLATFORM'}
+     DF-CORE-2021-00791 [명시/빌드·의존성] [CWAG PipelineD] PR #6092 이후 CWAG pipelined Docker image build가 python 의존성 오류로 실패
+     DF-OAM-2021-00213 [추론/빌드·의존성] [FEG magmad] docker-compose로 띄운 FEG에서 `systemd` module이 없어 magmad crashloop
+     DF-PLATFORM-2021-03341 [해당 없음/-] [FEG CI] FEG service crashloop 여부를 확인하는 Makefile target과 CI check 추가
+magma/magma PR/MR 9775 n=3 equipment={'CORE'}
+     DF-CORE-2021-01124 [해당 없음/-] [SubscriberDB] 가입자 설정에 core network type(4G·5G 허용 여부) 지원
+     DF-CORE-2021-01157 [해당 없음/-] [AGW subscriberdb] `subscriber_cli.py`에 forbidden_network_types 설정 추가
+     DF-CORE-2021-01221 [명시/빌드·의존성] [AGW subscriberdb] 1.7.0 CI build에서 subscriberdb가 orc8r와 동기화되지 않아 5G registration 무응답
+magma/magma PR/MR 10276 n=3 equipment={'OAM'}
+     DF-OAM-2021-00305 [해당 없음/-] [Orc8r mconfig] 모든 AGW 서비스가 쓰는 shared config 키를 두고 Sentry 설정을 그쪽으로 streaming
+     DF-OAM-2021-00328 [해당 없음/-] [AGW Sentry] Sentry mconfig 공유
+     DF-OAM-2022-00350 [해당 없음/-] [Sentry] server 쪽 error filter 수를 줄이기
+magma/magma PR/MR 9756 n=3 equipment={'CORE', 'OAM'}
+     DF-CORE-2021-01188 [해당 없음/-] [AMF] gateway.mconfig에 새로 생긴 amf section에서 AMF 설정을 읽도록 변경
+     DF-OAM-2021-00308 [해당 없음/-] [Orc8r] lte gateway swagger와 obsidian handler(POST, PUT, GET, DELETE)가 AMF 설정을 받도록 변경
+     DF-OAM-2021-00310 [해당 없음/-] [orc8r] Swagger API로 받은 AMF 설정을 mconfig에 채우도록 Mconfig builder와 `mconfigs.proto` 변경
+free5gc/free5gc PR/MR 40 n=3 equipment={'CORE'}
+     DF-CORE-2021-01189 [명시/동시성] [UPF] 다수 PfcpXact timer가 동시에 만료되면 TimerExpireCheck 교착으로 PFCP 송수신 중단
+     DF-CORE-2026-02513 [명시/프로토콜 처리] [UPF] 잘못된 OuterHeaderCreation이 든 PFCP Session Establishment Request로 index out of range 비정
+     DF-CORE-2026-02692 [명시/입력 검증] [TNGF] IKE Message ID를 검증하지 않아 DELETE/CREATE_CHILD_SA 메시지 replay 허용
+free5gc/free5gc PR/MR 33 n=3 equipment={'CORE'}
+     DF-CORE-2021-01256 [명시/상태 관리] [SMF/UPF] 재등록 뒤 이전 PFCP session이 남아 옛 UE IP로 오는 DL data에 PDUSessionResourceSetupRequest 송신
+     DF-CORE-2026-02683 [명시/입력 검증] [TNGF] UEIdentity가 nil인 UE가 pool에 있으면 UELoadbyIDi가 nil 역참조로 프로세스 종료
+     DF-CORE-2026-02975 [명시/동시성] [NEF] Traffic Influence handler가 PCF/UDR 호출 동안 af.Mu를 잡고, notification 경로와 lock 순서가 반대
+free5gc/free5gc PR/MR 34 n=3 equipment={'CORE'}
+     DF-CORE-2021-01256 [명시/상태 관리] [SMF/UPF] 재등록 뒤 이전 PFCP session이 남아 옛 UE IP로 오는 DL data에 PDUSessionResourceSetupRequest 송신
+     DF-CORE-2025-02409 [명시/규격 미준수] [UDM] SQN이 큰 가입자의 resynchronization에서 Re-Sync MAC failed로 UE 인증 실패
+     DF-CORE-2026-02685 [명시/입력 검증] [TNGF] GRE Unmarshal이 입력 buffer를 전혀 bounds 검사하지 않아 짧은 패킷에 프로세스 종료
+free5gc/free5gc PR/MR 54 n=3 equipment={'CORE'}
+     DF-CORE-2021-01322 [미상/-] [AMF] CM-CONNECTED에서 Mobility Registration Update에 대한 Registration Accept를 InitialContextS
+     DF-CORE-2026-02659 [명시/입력 검증] [N3IWF] 지원하지 않는 AN-parameter의 length가 과도하면 EAP-5G 파서가 slice 범위 초과로 프로세스 종료
+     DF-CORE-2026-02678 [명시/입력 검증] [AUSF] malformed EAP payload가 gopacket 파싱에 실패하면 EapAuthConfirmRequest가 nil 역참조 panic
+free5gc/free5gc PR/MR 64 n=3 equipment={'CORE'}
+     DF-CORE-2022-01488 [추론/상태 관리] [AMF] gNB가 내려가면 그 gNB에 붙은 UE 일부가 idle로 바뀌지 않음
+     DF-CORE-2025-02342 [명시/구현 오류] [UDM] 없는 ueID로 Nudm_SDM id-translation-result 조회 시 UDR의 404 대신 500 응답
+     DF-CORE-2026-02681 [명시/입력 검증] [N3IWF] 짧은 INTERNAL_IP4_ADDRESS attribute에 IKE_AUTH CP 처리가 index 초과로 프로세스 종료
+magma/magma PR/MR 12213 n=3 equipment={'CORE'}
+     DF-CORE-2022-01490 [해당 없음/-] [MME unit test] `mme_procedures_test`를 여러 Bazel target으로 나누기
+     DF-CORE-2022-01494 [미상/-] [MME unit test] `mme_procedures_mobile_reachability_timer_test`가 간헐 실패
+     DF-CORE-2022-01495 [미상/-] [MME 단위 테스트] `mme_procedures_network_initiated_test`가 불안정(flaky)하게 동작
+free5gc/free5gc PR/MR 59 n=3 equipment={'CORE'}
+     DF-CORE-2022-01614 [명시/규격 미준수] [SMF] PSI가 중복된 기존 PDU session 해제에 실패하면 UE에 PDU Session Establishment Reject를 보냄
+     DF-CORE-2026-02620 [명시/결함 아님] [UDM] shared-data-subscriptions DELETE에 unsupported scheme[] 오류로 HTTP 500
+     DF-CORE-2026-02671 [명시/구현 오류] [N3IWF·TNGF] 폐기된 암호 알고리즘(PRF_HMAC_MD5, AUTH_HMAC_MD5_96, DH Group 2)을 수락해 downgrade 허용
+magma/magma PR/MR 13451 n=3 equipment={'PLATFORM'}
+     DF-PLATFORM-2022-03774 [해당 없음/-] [AGW 패키징] magma debian 패키지에 들어가는 Python script를 Bazel py_binary로 이전
+     DF-PLATFORM-2022-03775 [해당 없음/-] [AGW 패키징] magma.deb를 Bazel로 빌드
+     DF-PLATFORM-2022-03810 [해당 없음/-] [AGW load test] `load_test` 현황 조사와 bazel 이전
+oai/openairinterface5g PR/MR 1855 n=3 equipment={'PLATFORM'}
+     DF-PLATFORM-2022-03827 [명시/빌드·의존성] [build_helper] Ubuntu 18.04에서 libuhd4.3.0과 libuhd4.2.0 충돌로 build 실패
+     DF-PLATFORM-2022-03902 [해당 없음/-] [build_oai] `-I`가 production build에 불필요한 의존성을 많이 설치
+     DF-PLATFORM-2023-03929 [해당 없음/-] [빌드 스크립트] Debian 11 지원 요청
+free5gc/free5gc PR/MR 94 n=3 equipment={'CORE', 'OAM'}
+     DF-CORE-2023-01828 [추론/프로토콜 처리] [AMF NGAP] 이해하지 못하는 IE가 든 NGAP 메시지를 APER decoder가 거부
+     DF-CORE-2026-02937 [명시/입력 검증] [UDM SDM] 6개 nudm-sdm handler가 SUPI를 검증하지 않아 500 응답에 내부 UDR URL 노출(CVE-2026-42459)
+     DF-OAM-2025-00507 [추론/설정] [webconsole charging] Helm 배포 단일 UPF 구성에서 charging data가 webconsole에 표시되지 않음
+free5gc/free5gc PR/MR 111 n=3 equipment={'CORE'}
+     DF-CORE-2023-01955 [명시/구현 오류] [AMF NGAP] 잘못된 NGAP 메시지를 보낸 SCTP 연결이 곧바로 닫히면 AMF가 비정상 종료(crash)
+     DF-CORE-2023-01959 [명시/구현 오류] [AMF NGAP] SCTP 연결의 상대 IP를 얻지 못해 nil pointer 참조로 AMF 비정상 종료(crash)
+     DF-CORE-2024-02100 [미상/-] [SMF] v3.4.2에서 PDUSessionSMContextCreate 실패 응답의 PDUSessionEstablishmentReject를 MIME multip
+free5gc/free5gc PR/MR 62 n=3 equipment={'CORE', 'PLATFORM'}
+     DF-CORE-2026-02520 [명시/구현 오류] [PCF] 하위 OpenAPI 호출이 404를 받으면 CreateSmPolicy 처리에서 nil pointer dereference 비정상 종료(crash)
+     DF-CORE-2026-02686 [명시/입력 검증] [N3IWF] Proposals가 비어 있는 CREATE_CHILD_SA 응답에 index 초과로 프로세스 종료
+     DF-PLATFORM-2023-04106 [해당 없음/-] [문서] WebConsole 신규 가입자 등록 안내 문구 정리
+oai/openairinterface5g PR/MR 2999 n=3 equipment={'RAN-DU', 'UE'}
+     DF-RAN-DU-2024-00579 [명시/구현 오류] [gNB TDD 설정] `set_tdd_config_nr`가 1 frame이 아니라 2 frame 분량의 slot을 설정
+     DF-RAN-DU-2025-00631 [해당 없음/-] [OAI] NR SA용 l2-fapi-proxy 기여를 위한 feature branch 생성 요청
+     DF-UE-2023-00270 [미상/-] [nrUE PHY] FR2 120 kHz SCS에서 DL traffic 중 `nr_rate_matching: invalid parameters` 오류 반복
+oai/openairinterface5g PR/MR 3047 n=3 equipment={'RAN-DU', 'PLATFORM'}
+     DF-PLATFORM-2024-04150 [명시/빌드·의존성] [ARM cross compilation] 명령행에 `-I /usr/include/x86_64-linux-gnu`가 붙어 intptr_t 정의가 달라지고 warn
+     DF-RAN-DU-2024-00560 [추론/빌드·의존성] [phy simulators] ARM 빌드에서 warning 6건 발생
+     DF-RAN-DU-2024-00569 [명시/빌드·의존성] [Aerial ARM64] 2024w41 oai-gnb-aerial 빌드가 `oai_dfts_neon.c`의 unused variable과 -Werror로 실패
+oai/openairinterface5g PR/MR 3291 n=3 equipment={'RAN-DU', 'UE'}
+     DF-RAN-DU-2024-00490 [명시/상태 관리] [gNB MAC] RRCReconfiguration 재전송이 새 MCS table 적용 뒤에 나가 MCSTableIdx와 target code rate가 어긋남
+     DF-RAN-DU-2025-00606 [미상/-] [gNB DU MAC] Aerial DL iperf3 시험 중 get_dl_dmrs_params() layer 수 0 assert 실패
+     DF-UE-2025-00350 [추론/연동] [nrUE MAC] RRCSetup 뒤 gNB가 보낸 DCI 0-0을 검출하지 못해 SR이 최대 횟수에 도달
+oai/openairinterface5g PR/MR 2725 n=3 equipment={'RAN-CU', 'UE'}
+     DF-RAN-CU-2024-00186 [추론/프로토콜 처리] [gNB RRC] Initial Context Setup Request의 GUAMI가 RRC UE context에 저장되지 않음
+     DF-UE-2024-00284 [명시/규격 미준수] [nrUE NAS·RRC] 5G-S-TMSI를 UE에 hardcode하고 NAS가 RRC로 넘기지 않아 RRC IDLE에서 다시 붙을 때 gNB가 Initial 
+     DF-UE-2024-00295 [명시/규격 미준수] [nrUE NAS·RRC] RRC IDLE에서 다시 연결할 때 kgNB를 새로 유도하지 않아 RRC Security Mode Command integrity 실패
+oai/openairinterface5g PR/MR 3684 n=3 equipment={'RAN-CU'}
+     DF-RAN-CU-2024-00188 [추론/상태 관리] [gNB] open5GS core와 COTS UE에서 mobile data를 껐다 켜면 internet이 동작하지 않음
+     DF-RAN-CU-2024-00202 [명시/상태 관리] [gNB RRC] PDU Session Release Command를 처리했다면서 DRB를 해제하지 않고, 이미 맺은 PDU session을 다시 setup
+     DF-RAN-CU-2025-00217 [추론/상태 관리] [gNB RRC] PDUSESSIONRelease 여러 개를 동시에 받으면 RRCReconfiguration이 겹쳐 Reconfiguration failure와 
+oai/openairinterface5g PR/MR 3334 n=3 equipment={'RAN-CU', 'UE'}
+     DF-RAN-CU-2024-00196 [해당 없음/-] [gNB RRC] DU에서 받은 CellGroupConfig를 RRC에서 재구성·재인코딩하지 말고 그대로 전달하도록 정리 요청
+     DF-UE-2025-00321 [해당 없음/-] [nrUE NAS] UE-initiated Service Request 절차 구현
+     DF-UE-2025-00342 [미상/-] [nrUE MAC] F1 handover를 연달아 할 때 `modlist_coreset()`에서 ASAN heap-use-after-free
+oai/openairinterface5g PR/MR 3318 n=3 equipment={'UE'}
+     DF-UE-2025-00334 [추론/입력 검증] [nrUE MAC] 조작된 RRC 메시지 처리 중 `compute_csi_bitlen()`에서 NULL pointer 역참조로 SIGSEGV
+     DF-UE-2025-00335 [추론/입력 검증] [nrUE MAC] 조작된 RRC 메시지 처리 중 `is_ss_monitor_occasion()`에 NULL SearchSpace가 넘어와 SIGSEGV
+     DF-UE-2025-00338 [명시/입력 검증] [nrUE MAC] 조작된 RRC 메시지의 CSI report 설정 처리 중 `compute_cqi_bitlen()`에서 NULL `freq_config` 역참조
+open5gs/open5gs PR/MR 3843 n=3 equipment={'CORE'}
+     DF-CORE-2025-02262 [명시/입력 검증] [UPF PFCP] 조작된 Node ID로 `ogs_pfcp_extract_node_id()` stack buffer overflow
+     DF-CORE-2025-02264 [명시/입력 검증] [UPF PFCP] SDF Filter flow description 길이로 `ogs_pfcp_parse_sdf_filter()` integer overflow
+     DF-CORE-2025-02267 [명시/입력 검증] [UPF PFCP] NULL로 끝나지 않는 Node ID FQDN에 strlen을 불러 `ogs_pfcp_node_id_to_string_static()` sta
+free5gc/free5gc PR/MR 66 n=3 equipment={'CORE'}
+     DF-CORE-2025-02340 [명시/입력 검증] [UDM] single-nssai 없는 Nudm_SDM GetSmData 요청에 500 응답
+     DF-CORE-2026-02571 [명시/구현 오류] [UDR] outbound callback notification에 OAuth2 token을 붙이지 않음
+     DF-CORE-2026-02593 [명시/입력 검증] [PCF] npcf-callback influence-data notify에서 TrafficInfluData.Snssai가 없으면 nil pointer panic
+ocudu/ocudu PR/MR 151 n=3 equipment={'RAN-DU', 'PLATFORM'}
+     DF-PLATFORM-2026-04418 [해당 없음/-] [CI 문서] CI 시험 도구 결과를 모아 SW test report 자동 생성
+     DF-RAN-DU-2025-00674 [추론/상태 관리] [Scheduler] UE가 RRC Release를 받은 뒤에도 TA CMD CE를 보냄
+     DF-RAN-DU-2026-00686 [추론/구현 오류] [scheduler TA] E2E test에서 `ue_ta_manager::handle_ul_n_ta_update_indication`의 `parent != nu
+free5gc/free5gc PR/MR 56 n=3 equipment={'CORE'}
+     DF-CORE-2025-02433 [명시/구현 오류] [NEF·UDR] 없는 appId의 PFD 조회에 UDR이 잘못된 JSON을 돌려줘 NEF가 500 응답
+     DF-CORE-2026-02583 [명시/입력 검증] [AUSF] eap-session에 짧은 EAP payload를 보내면 nil pointer panic
+     DF-CORE-2026-02667 [명시/입력 검증] [N3IWF] AN-parameter field length가 0이면 EAP-5G 처리가 nil 참조로 프로세스 종료
+free5gc/free5gc PR/MR 190 n=3 equipment={'CORE'}
+     DF-CORE-2026-02443 [명시/입력 검증] [AMF EE] 짧은 JSON Patch path를 담은 이벤트 구독 수정 요청에 slice bounds out of range panic
+     DF-CORE-2026-02470 [명시/입력 검증] [AMF Event Exposure] 11자보다 짧은 subscription path로 PATCH하면 slice bounds out of range panic
+     DF-CORE-2026-02471 [명시/입력 검증] [AMF Event Exposure] subscription path의 음수 index로 PATCH하면 slice bounds out of range panic
+free5gc/free5gc PR/MR 198 n=3 equipment={'CORE'}
+     DF-CORE-2026-02510 [추론/상태 관리] [AMF] Identity Response 대기 중 순서가 어긋난 Registration Complete를 받으면 비정상 종료(crash), v4.2.0에서는 R
+     DF-CORE-2026-02525 [추론/상태 관리] [AMF] Mobile Identity 없는 Security Mode Complete 직후 Registration Complete를 받으면 ContextSetup
+     DF-CORE-2026-02589 [명시/입력 검증] [SMF] nsmf-callback에 인증이 없고 짧은 notifyUri로 HTTPChargingNotification이 index out of range pan
+ocudu/ocudu PR/MR 524 n=3 equipment={'RAN-CU'}
+     DF-RAN-CU-2026-00239 [추론/동시성] [TSAN] gNB 시작 중 `cu_cp_metrics_producer_impl::notify_metrics_report_request`에서 data race
+     DF-RAN-CU-2026-00258 [추론/동시성] [CU-CP metrics] metrics notifier 연결과 주기 metric 보고 사이 TSAN data race
+     DF-RAN-CU-2026-00259 [추론/구현 오류] [CU app] E2E CU/DU split test에서 등록되지 않은 'CU-UP PDCP metrics'로 assert 실패
+ocudu/ocudu PR/MR 874 n=3 equipment={'RAN-DU'}
+     DF-RAN-DU-2026-00727 [추론/상태 관리] [DU] 정상적인 UE 제거 뒤 MAC이 `Discarding PDU` 경고를 냄
+     DF-RAN-DU-2026-00887 [추론/상태 관리] [functional] load_test에서 DL·UL KO와 warning이 대량 발생
+     DF-RAN-DU-2026-00888 [추론/상태 관리] [functional] singleue.mocn.moran 시험에서 AMF Empty NAS PDU 오류와 C-RNTI CE 폐기 warning
+ocudu/ocudu PR/MR 496 n=3 equipment={'RAN-DU', 'RAN-CU'}
+     DF-RAN-CU-2026-00379 [명시/구현 오류] [ASN.1 JSON] `setup_release_c::to_json`이 setup 값을 field name 없이 출력해 RRC JSON dump가 깨짐
+     DF-RAN-DU-2026-00759 [추론/구현 오류] [DU High SIB] 추가 SIB가 F1SetupRequest에 빠지고 설정 dump에 SIB period가 `~`로 표시
+     DF-RAN-DU-2026-00941 [추론/테스트] [functional PWS] SIB6·7·8은 송신됐지만 UE 수신 기준(ETWS Secondary, CMAS)을 못 채워 시험 실패
+free5gc/free5gc PR/MR 210 n=3 equipment={'CORE', 'OAM'}
+     DF-CORE-2026-02586 [명시/입력 검증] [AMF] namf-comm n1-n2-messages에서 SmInfo.SNssai가 없으면 nil pointer panic
+     DF-CORE-2026-02699 [추론/상태 관리] [SMF] PDU session release 직후 같은 SM context로 UL NAS 요청이 다시 들어오면 /release에서 500 응답
+     DF-OAM-2026-00526 [명시/구현 오류] [webconsole] GetUEPDUSessionInfo가 인증 없이 webconsole의 NF OAuth2 token으로 내부 SMF OAM을 대신 호출
+free5gc/free5gc PR/MR 218 n=3 equipment={'CORE'}
+     DF-CORE-2026-02623 [명시/입력 검증] [AMF] old AMF가 빈 본문의 UEContextTransfer 200을 돌려주면 namf-callback 처리에서 fatal 종료
+     DF-CORE-2026-02624 [명시/입력 검증] [AMF] old AMF UEContextTransfer 응답의 JsonData가 nil이면 namf-callback 처리에서 fatal 종료
+     DF-CORE-2026-02810 [명시/구현 오류] [SMF] charging notification callback에서 ChargingInfo 없는 MBQE/MAQE URR을 참조해 nil pointer pani
+free5gc/free5gc PR/MR 55 n=3 equipment={'CORE'}
+     DF-CORE-2026-02660 [명시/입력 검증] [N3IWF] payload가 비어 있는 IKE 패킷에 IKE 디코더가 index 초과로 프로세스 종료
+     DF-CORE-2026-02679 [명시/입력 검증] [AUSF] 5바이트로 잘린 EAP-AKA' 패킷에 decodeEapAkaPrime이 빈 slice의 data[0] 접근 panic
+     DF-CORE-2026-02680 [명시/입력 검증] [AUSF] attribute section 길이가 홀수인 EAP-AKA' 패킷에 decodeEapAkaPrime이 경계에서 data[i+1] 접근 panic
+ocudu/ocudu PR/MR 577 n=3 equipment={'RAN-DU', 'PLATFORM'}
+     DF-PLATFORM-2026-04432 [해당 없음/-] [docker 빌드] install script를 OS별 script로 나누는 요청
+     DF-PLATFORM-2026-04443 [해당 없음/-] [container 빌드] Fedora(fedora:43) 기반 gNB container image 빌드 지원 요청
+     DF-RAN-DU-2026-01044 [미상/-] [functional] NTN test `singleue.ntn.*`의 UL KO가 간헐적으로 임계값 초과
+free5gc/free5gc PR/MR 207 n=3 equipment={'CORE'}
+     DF-CORE-2026-02738 [명시/프로토콜 처리] [AMF] AMF-UE-NGAP-ID 없는 HandoverRequestAcknowledge에서 deferred 함수의 nil targetUe 참조로 NGAP wo
+     DF-CORE-2026-02863 [명시/프로토콜 처리] [AMF NGAP] AMF-UE-NGAP-ID 없는 HandoverRequestAcknowledge 처리 중 worker panic
+     DF-CORE-2026-02918 [명시/프로토콜 처리] [SMF] PCF가 CreateSMPolicyError로 응답하면 unchecked type assertion으로 panic, PDU Session Establi
+open5gs/open5gs PR/MR 4514 n=3 equipment={'CORE'}
+     DF-CORE-2026-02746 [명시/구현 오류] [SMF] 같은 QoS Rule Identifier를 두 번 담은 PDU Session Modification Request로 assert 실패해 비정상 종료(c
+     DF-CORE-2026-02768 [명시/입력 검증] [SMF] sm-contexts modify의 `n1SmMsg` QoS rule에 내용 없는 packet filter가 있으면 assert 실패해 비정상 종료(c
+     DF-CORE-2026-02824 [명시/구현 오류] [SMF] Modification Request의 QoS rule 두 개가 같은 Rule ID를 쓰면 packet filter index 오류로 assert 실패
+open5gs/open5gs PR/MR 4534 n=3 equipment={'CORE'}
+     DF-CORE-2026-02773 [명시/자원 관리] [NRF] inter-PLMN discovery의 Home-NRF `SearchResult`가 NF instance pool을 고갈시켜 assert 실패로 비정상
+     DF-CORE-2026-02782 [명시/자원 관리] [NRF] subscriptions 요청을 반복해 subscription pool을 고갈시키면 assert 실패로 비정상 종료(crash)
+     DF-CORE-2026-02783 [명시/자원 관리] [NRF/SBI] NFProfile의 많은 `nfServices`가 NF service pool을 고갈시켜 `ogs_sbi_nf_service_add()` ass
+ocudu/ocudu PR/MR 611 n=3 equipment={'RAN-DU', 'RAN-CU'}
+     DF-RAN-CU-2026-00272 [미상/-] [CU-CP CHO] functional 파이프라인에서 conditional handover가 한 번도 일어나지 않음
+     DF-RAN-CU-2026-00296 [명시/자원 관리] [CU-CP] inter-DU handover 시험에서 `intra_cu_handover_routine` use-after-free로 segfault
+     DF-RAN-DU-2026-01084 [추론/테스트] [functional test] `multiue.cplane_traffic_load.fdd`에서 DU DL KO 9건으로 기준(5 이하) 초과
+free5gc/free5gc PR/MR 214 n=3 equipment={'CORE', 'OAM'}
+     DF-CORE-2026-02820 [명시/입력 검증] [AMF] UEContextTransfer 200 응답에 jsonData가 없으면 target AMF가 nil pointer panic
+     DF-OAM-2026-00524 [명시/구현 오류] [webconsole] 인증 없이 가입자 레코드 조회·수정·삭제 가능, SIM 인증키(K/OPc) 노출
+     DF-OAM-2026-00532 [명시/구현 오류] [WebConsole] subscriber 조회 API가 인증 없이 가입자 정보를 반환
+free5gc/free5gc PR/MR 222 n=3 equipment={'CORE', 'OAM'}
+     DF-CORE-2026-02833 [명시/프로토콜 처리] [AMF] gNB-ID가 아닌 GlobalRANNodeID의 UplinkRANConfigurationTransfer에서 nil GNbId 참조로 panic
+     DF-CORE-2026-02864 [명시/프로토콜 처리] [AMF NGAP] TargetRANNodeID가 gNB가 아닌 UplinkRANConfigurationTransfer 처리 중 worker panic
+     DF-OAM-2026-00525 [명시/구현 오류] [webconsole] 인증 없이 provisioning Profile 조회·수정·삭제 가능
+ocudu/ocudu PR/MR 730 n=3 equipment={'RAN-DU'}
+     DF-RAN-DU-2026-00820 [추론/연동] [PHY] 상용 7.2 FDD RU 연동에서 PRACH는 검출되지만 Msg3 PUSCH가 항상 KO라 UE attach 실패
+     DF-RAN-DU-2026-00832 [추론/구현 오류] [PHY PRACH] band n66 기능 시험에서 RAR 뒤 UL grant가 없어 attach 실패
+     DF-RAN-DU-2026-00838 [추론/구현 오류] [PHY PRACH] FDD 5MHz·50MHz 설정에서 RAR 뒤 Msg3 UL KO로 attach 실패
+ocudu/ocudu PR/MR 899 n=3 equipment={'PLATFORM'}
+     DF-PLATFORM-2026-04480 [해당 없음/-] [docker] CentOS Stream 기반 container image 빌드 지원
+     DF-PLATFORM-2026-04492 [해당 없음/-] [docker] 배포용 docker image 크기와 취약점 줄이기
+     DF-PLATFORM-2026-04500 [해당 없음/-] [docker] CentOS Stream 10 gNB image 빌드 지원 요청
+ocudu/ocudu PR/MR 1024 n=3 equipment={'RAN-DU'}
+     DF-RAN-DU-2026-00917 [명시/상태 관리] [Scheduler] 1000 UE 시험 중 set_lcid_ran_slice()에서 `LCID not configured` assert 실패
+     DF-RAN-DU-2026-00944 [미상/-] [load 시험] UL MIMO·500 UE 넘는 부하에서 late가 나는 CPU로 돌리면 fmt print 중 terminate로 abort
+     DF-RAN-DU-2026-00970 [명시/상태 관리] [SCHED] U-plane UL 중단 후 복구 시 UE 재연결에서 LCID not configured assert 실패
+ocudu/ocudu PR/MR 1330 n=3 equipment={'RAN-DU'}
+     DF-RAN-DU-2026-00993 [미상/-] [PHY channel estimator] TD interpolation `interpolate` 전략에서 DM-RS additional position 2·3일
+     DF-RAN-DU-2026-01001 [명시/테스트] [PHY test] pxsch_bler_test가 `--help`와 잘못된 CLI 인자에 abort
+     DF-RAN-DU-2026-01002 [미상/-] [PHY PUSCH decoder] `pusch_decoder_impl::join_and_notify()`에서 초기화되지 않은 값에 따른 분기 (valgrind)
+free5gc/free5gc PR/MR 236 n=3 equipment={'CORE'}
+     DF-CORE-2026-02983 [명시/상태 관리] [SMF] PFCP Session Establishment 실패 시 SM context를 해제하지 않아 UE IP pool 고갈
+     DF-CORE-2026-02988 [명시/입력 검증] [SMF] 빈 FQDN Node ID를 담은 PFCP Association Setup Request 하나로 SMF 종료
+     DF-CORE-2026-02989 [명시/입력 검증] [SMF] PFCP Session Establishment Request의 IE 길이 uint16 wrap으로 panic, SMF 종료

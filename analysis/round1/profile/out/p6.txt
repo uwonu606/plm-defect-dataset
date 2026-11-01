@@ -1,0 +1,5 @@
+fix_ref_in_resolution: 5980 (59.8%)
+version_in_resolution: 1464 (14.6%)
+affected_version(location/problem): 3060 (30.6%)
+affected_and_fixed_version: 682 (6.8%)
+fix_ref by origin: adjacent-network=3615/3913 (92.4%), ran-core=2365/6087 (38.9%)
