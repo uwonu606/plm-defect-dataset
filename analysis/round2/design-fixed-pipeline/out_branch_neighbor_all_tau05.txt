@@ -1,0 +1,12 @@
+all       fired      n= 254 top5=0.429 top6=0.437 ask_filter5=0.492 branch2x3=0.402 branch3x2=0.362 gold_repo_in_top2=0.787
+all       not_fired  n=1062 top5=0.577 top6=0.595 ask_filter5=0.594 branch2x3=0.518 branch3x2=0.470 gold_repo_in_top2=0.989
+problem1  fired      n=  74 top5=0.405 top6=0.405 ask_filter5=0.473 branch2x3=0.378 branch3x2=0.338 gold_repo_in_top2=0.784
+problem1  not_fired  n= 346 top5=0.584 top6=0.613 ask_filter5=0.601 branch2x3=0.546 branch3x2=0.509 gold_repo_in_top2=1.000
+short6    fired      n= 128 top5=0.375 top6=0.391 ask_filter5=0.445 branch2x3=0.352 branch3x2=0.312 gold_repo_in_top2=0.773
+short6    not_fired  n= 310 top5=0.435 top6=0.448 ask_filter5=0.458 branch2x3=0.371 branch3x2=0.316 gold_repo_in_top2=0.977
+title     fired      n=  52 top5=0.596 top6=0.596 ask_filter5=0.635 branch2x3=0.558 branch3x2=0.519 gold_repo_in_top2=0.827
+title     not_fired  n= 406 top5=0.680 top6=0.692 ask_filter5=0.692 branch2x3=0.606 branch3x2=0.554 gold_repo_in_top2=0.988
+POLICY title     n=458 fired=0.114 never_ask_top5=0.670 never_ask_top6=0.681 ask_filter=0.675 branch2x3=0.677 branch3x2=0.672
+POLICY problem1  n=420 fired=0.176 never_ask_top5=0.552 never_ask_top6=0.576 ask_filter=0.564 branch2x3=0.571 branch3x2=0.564
+POLICY short6    n=438 fired=0.292 never_ask_top5=0.418 never_ask_top6=0.432 ask_filter=0.438 branch2x3=0.420 branch3x2=0.409
+POLICY all       n=1316 fired=0.193 never_ask_top5=0.549 never_ask_top6=0.565 ask_filter=0.561 branch2x3=0.558 branch3x2=0.550

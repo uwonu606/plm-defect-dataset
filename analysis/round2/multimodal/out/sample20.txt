@@ -1,0 +1,201 @@
+====================================================================================================
+PCAP free5gc/free5gc#26 DF-CORE-2020-00265 미상 
+TITLE: [SMF/UPF] UL CL에서 목적지 IP를 바꿔도 anchor UPF1로만 전달
+CAUSE: 
+RES: 메인테이너가 v3.0.3에서 SMF 쪽 버그를 고쳤다며 다시 시험해 달라고 답했다.
+  C0: Can you provide the pcap file and config file so that we can check the SDF filter and the config whom is generated from? |  | Thanks a lot.
+  C1: Hi, |  | I attached the pcap files. I used the default config file, and didn't change any parameters. I just changed the line 267 from 60.60.0.101 to 60.60.0.103 in the registration_test.go |  | I think you can reproduce thi
+  C2: @Dorian1982 did you tried to update your `uerouting.yaml` config file. It needs to be updated since it also sets the `DestinationIP` to `60.60.0.101`
+  C3: @abousselmi Sorry, I didn't change uerouting.yaml. I found that there are two DestinationIP in this file (60.60.0.101 and 60.60.0.103), so in my opinion, I don't need to change anything. Did you mean that I need to chang
+  C4: No I meant that if you update the test configuration you need also to update the ue routing.
+  C5: @abousselmi As my previous post, I used the default config file, and didn't change any parameters. I just changed the line 267 from 60.60.0.101 to 60.60.0.103 in the registration_test.go
+  C6: Hi @Dorian1982 , |  | We have release v3.0.3 and fix the bug from SMF. Can you try to test it again?  |  | Thanks a lot!
+====================================================================================================
+PCAP free5gc/free5gc#202 DF-CORE-2021-00847 명시 결함 아님
+TITLE: [N3IWF] 단말의 IKEv1 요청에 "Unimplemented IKE message type, exchange type: 2" 경고
+CAUSE: 보고자가 비교한 값은 IKEv1의 IANA 상수였다. N3IWF는 TS 23.502에 따라 RFC 7296 IKEv2를 쓰고, 휴대폰은 기본으로 IKEv1 요청을 보냈다.
+RES: 메인테이너가 IKEv2 IANA 값을 근거로 설명했고 보고자가 수긍했다. 수정은 없다.
+  BODY-IMG: tting of ike exchanged type from offical website is shown in screenshot 2. The ike exchange type of an ipsec request should be in 0-5. |  | ## Screenshots |  -> free5gc exchange type
+  BODY-IMG: reenshots | ![free5gc exchange type](https://user-images.githubusercontent.com/69676171/117433680-543cf600-af5e-11eb-93b3-fa318ba101f1.png) | screenshot 1 |  -> ike exchange type standard
+  BODY-PCAP:   v3.0.5 |  - Kernel version: 5.0.0-23-generic |  - go version: 1.14.4 linux/amd64 |  - wireless route: TL-WVR1200G |  | ### PCAP File | Here are some pcap files. Src.ip is my phone. Det.ip is ikeBindAddress of
+  C0: In the 3GPP standard TS 23.502, it mentions that the IKE part of N3IWF is based on RFC-7296 namely IKEv2. | Screenshot 2 looks like the constants defined by the IANA for IKE(v1) rather than IKEv2. |  | Please refer to [IKEV
+     ..y the IANA for IKE(v1) rather than IKEv2. |  | Please refer to [IKEV2IANA](https://www.iana.org/assignments/ikev2-parameters/ikev2-parameters.xhtml) | ![image](https://user-images.githubusercontent.com/26867223/117577821-f6570c80-b11d-11eb-9196-396b9bc3f9dd.png) | 
+  C1: You are right. N3IWF is based on ikev2. Thanks for correcting. |  | My phone is in default of sending ikev1 request. Is the version of ike request decided by the types of UE?
+  C2: It mentions in 23.502. |  | > The UE proceeds with the establishment of an IPsec Security Association (SA) with the selected N3IWF by initiating an IKE initial exchange according to RFC 7296 [3] |  | It's mean that UE plays 
+  C3: @Silverbullet9 Can you please let me know how did you configured your phone to connect to the n3iwf?
+  C4: > @Silverbullet9 Can you please let me know how did you configured your phone to connect to the n3iwf? |  | I set the IPsec VPN on my phone. Please refer to the following link. |  | [https://www.wipro.com/network-edge-provid
+====================================================================================================
+IMG free5gc/free5gc#681 DF-CORE-2025-02307 명시 프로토콜 처리
+TITLE: [SMF] `pdrToUpdatePDR`이 FARID를 두 번 넣고 QERID를 넣지 않아 PFCP Update PDR에 QER 누락
+CAUSE: 두 번째 `updatePDR.FARID` 대입이 `updatePDR.QERID` 대입이어야 했다. 그래서 update PDR 절차에서 QER 부분이 빠졌다.
+RES: update PDR에 QER 부분을 넣도록 고쳤다(PR #161 fix/duplicate-far-assignment).
+  BODY-IMG:  | ### ** |  |  -> Image
+  C0: Hi, thanks for your report. | It is fixing now!
+====================================================================================================
+IMG free5gc/free5gc#722 DF-CORE-2025-02363 명시 구현 오류
+TITLE: [UDM] newRouter가 routerAuthorizationCheck 변수를 덮어써 서비스별 scope 검증이 어긋남
+CAUSE: `newRouter()`가 서비스 group마다 같은 변수 `routerAuthorizationCheck`에 새 값을 다시 대입하고, 각 group의 middleware closure는 그 변수를 참조했다. 그래서 앞서 등록한 group도 마지막에 대입된 서비스 이름으로 scope를 검사했다.
+RES: routerAuthorizationCheck 처리를 고쳤다(udm PR #69, PR #70). `UeCmRegistration`에서 token의 서비스 이름이 틀린 것도 고쳤다(PR #181).
+  BODY-IMG:      ueidAuthCheck.Check(c, s.Context()) |  |   }) |  |   AddService(udmUEIDGroup, udmUEIDRoutes) |  |   return router | } | ``` |  |  |  | ## Screenshots |  | 
+  BODY-IMG: s from the https://github.com/free5gc/free5gc-compose, but we didn't launch some UERANISIM-related network function container instances. |  | ### Log File |  | 
+====================================================================================================
+IMG free5gc/free5gc#746 DF-CORE-2025-02416 명시 입력 검증
+TITLE: [UPF PFCP] 길이 필드가 잘못된 SDF Filter IE를 담은 Session Modification Request로 heap buffer overflow 비정상 종료
+CAUSE: SDF Filter IE를 파싱할 때 길이 필드를 실제 buffer 크기와 대조하지 않아 범위 밖 메모리에 접근했다.
+RES: SDF Filter 검증을 강화해 잘못된 filter를 감지·기록·거부한다(go-upf PR #85).
+  BODY-IMG: aintain network element stability and continue serving other sessions | 4.Implement proper bounds checking in SDF Filter parsing logic |  | ## Screenshots |  | 
+  BODY-IMG: QDN of N4 interface on this SMF (PFCP) |     assocFailAlertInterval: 10s |     assocFailRetryInterval: 30s |     heartbeatInterval: 10s |  | ### PCAP File |  | 
+  BODY-PCAP: ation |    | # SMF Configuration |     # addr config is deprecated in smf config v1.0.3, please use the following config |  | ### PCAP File |  |   |  | ### Log File | UPF Network Element Crash: | goroutine 36 [running]: | github
+  C0: @Alonza0314 Hi, I noticed you added the component labels. Could you please help to triage these critical security vulnerability reports? They have been open for two weeks without response. I've provided detailed steps an
+  C1: @zhaofeidudu Hi, we managed to replicate the bug you reported. We've added necessary input validation/safety checks around the problematic parsing logic to make sure the UPF doesn't panic. | We're preparing this patch and 
+  C2: @DBGR18 Thank you for the quick confirmation and the fix! I‘m glad to hear that safety checks have been added. Looking forward to seeing the patch land.Thanks again for your work!
+  C3: @Alonza0314 @DBGR18 |  | Regarding the heap buffer overflow vulnerability in the UPF (Issue #746), I would like to coordinate on **the CVE assignment.** |  | Background: I previously submitted a CVE request for this to MITRE (re
+     ..or the free5GC project to manage the CVE process through the GitHub Security Advisory. |  | [vulnerability_summary_issue_746.txt](https://github.com/user-attachments/files/24359566/vulnerability_summary_issue_746.txt) |  | Supporting Material: I have attached a ready-to-use summary (vulnerability_summary_is
+     ..GC project to manage the CVE process through the GitHub Security Advisory. |  | [vulnerability_summary_issue_746.txt](https://github.com/user-attachments/files/24359566/vulnerability_summary_issue_746.txt) |  | Supporting Material: I have attached a ready-to-use summary (vulnerability_summary_issue_746.txt)
+  C4: @Alonza0314 @DBGR18  (Following up to provide the information in your requested format for convenience:) |  | **Impact** | This is a Heap-based Buffer Overflow (CWE-122) vulnerability leading to Denial of Service. | Security Imp
+     ..ues/746 | Fixing Pull Request: https://github.com/free5gc/go-upf/pull/85 |  | Credits: Reported by zfei10990-cmd (GitHub). | (A detailed technical summary is attached in vulnerability_summary_issue_746.txt for your reference.)
+  C5: This vulnerability has been assigned **CVE-2025-70122**
+====================================================================================================
+IMG free5gc/free5gc#807 DF-CORE-2026-02524 명시 프로토콜 처리
+TITLE: [SMF] USAR UsageReport에 필수 URRID가 없는 PFCP Session Report Request로 nil pointer dereference 비정상 종료(crash)
+CAUSE: `HandleReports()`가 `report.URRID`를 검증하지 않고 `report.URRID.UrrIdValue`에 접근했다.
+RES: Usage Report의 필수 `URRID`에 nil 검사를 넣었다(PR #188, #794·#804·#805·#806과 함께 수정).
+  BODY-IMG: (including URRID) and reject malformed SessionReportRequests (e.g., respond with an error cause / ignore the report) without crashing. |  | ## Screenshots |  | 
+  BODY-PCAP: he configuration files. |  | If you are unsure of what to do, please zip free5gc's `config` folder and upload it here. |  | ### PCAP File |  |  | ### Log File |  | 
+  C0: @LinZiyuu Hi! |  | We really appreciate your help in identifying these stability issues. |  | I’ve just submitted a PR that addresses the nil pointer dereference crashes reported in #804, #805, #806, and #807. The fix implements
+  C1: Hi @Alonza0314 , |  | here’s the summary for free5GC issue #807.  ￼ | 	•	Title: SMF crash (nil pointer dereference) on PFCP SessionReportRequest when ReportType.USAR=1 and UsageReport omits mandatory URRID sub-IE  ￼ | 	•	Impact:
+====================================================================================================
+PCAP free5gc/free5gc#832 DF-CORE-2026-02542 추론 규격 미준수
+TITLE: [AMF] NGSetupRequest의 not comprehended IE 처리 중 성공 응답과 NGSetupFailure를 함께 송신
+CAUSE: NGSetupRequest handler가 criticality가 notify인 not comprehended IE를 규격대로 처리하지 않았다.
+RES: NGSetupRequest handler가 criticality notify인 not comprehended IE를 처리하도록 고쳤다(PR #201).
+  BODY-IMG: |  | ## Expected Behavior | Criticality should be handled properly as per specification, and multiple responses shouldn't be produced. |  | ## Screenshots |  | 
+  BODY-PCAP:  | ## Environment |  - free5GC Version: v4.2.0 |  - Ubuntu 22.04 |  |  | ## Trace Files | ### Configuration Files |  | [amfcfg.yaml  |  | ### PCAP File |  | [criticality.pcap.zip  |  | ### Log File |  | 00000000  00 15 00 3a 00 00 06 00  
+====================================================================================================
+IMG free5gc/free5gc#1023 DF-CORE-2026-02744 명시 입력 검증
+TITLE: [CHF] nfConsumerIdentification 없는 ChargingDataRequest에서 panic, CULock이 풀리지 않아 같은 SUPI 요청이 멈춤
+CAUSE: `ChargingDataCreate`가 `NfConsumerIdentification`을 nil 검사 없이 참조했다. `ue.CULock`을 직접 잡고 알려진 오류 반환 경로에서만 풀어서, panic이 나면 mutex가 계속 잠겨 있었다.
+RES: nfConsumerIdentification nil panic은 chf#69로 고쳤다. `Lock()` 직후 `defer ue.CULock.Unlock()`을 걸어 panic이나 이른 반환에도 lock이 풀리게 했다(PR #72, PR #73).
+  BODY-IMG: an panicking and returning 500. | - A single malformed request must not be able to permanently disable charging for an entire subscriber. |  | ## Screenshots | 
+  BODY-PCAP: nal): normal |  | ## Trace Files | ### Configuration Files |     - nchf-convergedcharging # Nchf_ConvergedCharging service |  | ### PCAP File | [chf.zip  |  | ### Log File | 2026-04-20T16:34:13.996191709Z [INFO][CHF][Chargin
+  C0: @zhaofeidudu Thank you for reporting this issue. | For the fix addressing the nil-pointer panic caused by a missing nfConsumerIdentification, please refer to [free5gc/chf#69](https://github.com/free5gc/chf/pull/69). |  | In ad
+  C1: @solar224  | Thanks for good work. Cheers! 
+====================================================================================================
+IMG free5gc/free5gc#1112 DF-CORE-2026-02927 추론 상태 관리
+TITLE: [SMF] gNB CU/DU 재시작 뒤 "IP is used"·"UE IP pool exhausted"로 PDU session 수립 실패
+CAUSE: 오래된 SM context를 지울 때 더 새 SM context가 가진 canonical reference까지 지워서, 새 SM context에 닿을 수 없게 되고 UE IP가 반환되지 않았다.
+RES: `RemoveSMContext`가 canonical reference를 `CompareAndDelete`로 지워 그 이름을 아직 가진 SM context만 지울 수 있게 했다. `TestRemoveSMContextKeepsCanonicalRefOfNewerSMContext` test를 추가했다(PR #235).
+  BODY-IMG: gNB CU/DU | 3. Re-run gNB CU/DU | 4. Check free5gc log |  | ## Expected Behavior | UE successfully obtained IP after gNB CU/DU resumed |  | ## Screenshots |  | 
+  BODY-IMG: 96" height="140" alt="Image" src="https://github.com/user-attachments/assets/a71d5e38-5d85-48a2-aa17-0a71ccf6b2d7" /> |  | - **SCTP shutdown and NGSetup** |  | 
+  BODY-IMG: dth="972" height="231" alt="Image" src="https://github.com/user-attachments/assets/5ae8f9a1-70c8-49fc-80cb-896d5fd5ce17" /> |  | - **Registration Accept** |  | 
+  BODY-IMG: "363" alt="Image" src="https://github.com/user-attachments/assets/aa96461f-c737-4473-b698-a83345b38559" /> |  | - **PDU Session Establishment NOT accept** |  | 
+  BODY-PCAP: mpiler version (optional): gcc version 11.4.0 |  | ## Trace Files | ### Configuration Files |  | [free5gc-config_202608.zip  |  | ### PCAP File |  | [after_killcudu_pdu_NOK_202608.zip  |  | ### Log File |  | [program log_202608.tx
+====================================================================================================
+PCAP magma/magma#9370 DF-CORE-2021-01128 명시 결함 아님
+TITLE: [FeG Gy] 1.6에서 Gx dynamic rule의 Service Identifier가 Gy MSCC request에 빠짐
+CAUSE: 1.6에는 Gx rule의 Service Identifier를 Gy MSCC에 넣는 기능이 구현되지 않았다. 메인테이너는 이를 새 기능으로 보았다.
+RES: 메인테이너가 이 기능은 #8683을 계기로 8월 17일 master에 이미 추가됐고, 1.6 요구사항에는 없었다고 답했다.
+  BODY-IMG: Build: 1.6.0-1625592603-1f26ba81 | TeraVm test Scenarios: | gx_gy_combined_05_capacity | gx_gy_combined_05 |  | [Snaps] | Gx Dynamic rule: (SI+RG) |  | 
+  BODY-IMG: "https://user-images.githubusercontent.com/70725754/135398118-380280fc-3d00-44e4-a407-2bf35b95a0e9.png"> |  | Gy MSCC Request ( only RG, Missing "SI") |  | 
+  BODY-PCAP: : (SI+RG) |  |   |  | Gy MSCC Request ( only RG, Missing "SI") |  |   |  | [Enclosed traces] | [gx_gy_combined_06_210929_062436-1.pcapng.zip  | [gx_gy_combined_05_capacity_210929_062242-1.pcapng.zip  |  |  |  |  |  | 
+  C0: This had never been implemented, so was considered a new feature. |  | This feature was already added to master on Aug 17 after @arun-magma  raised the issue below.  |  | This feature was never part of any requirement for 1.
+====================================================================================================
+PCAP magma/magma#9681 DF-CORE-2021-01166 추론 연동
+TITLE: [AGW GTP] echo response를 DSCP 0으로 보내 eNodeB가 path management를 끝내지 못하고 session setup 실패
+CAUSE: 보고자는 echo request와 echo response의 DSCP 값이 달라서(46과 0) eNodeB가 echo response를 처리하지 못한다고 의심했다.
+RES: 활동이 없어 stale bot이 자동으로 닫았다(`wontfix` 라벨).
+  BODY-IMG:  `echo response` is sent using DSCP = 0 while `echo request` uses DSCP = 46 .  | **- Is possible change this DSCP value for echo response message in AGW?** |  -> image
+  BODY-PCAP: h procedure. |  | **Additional context** | Attached the logs of syslog and mme service, taken during the test & s1 and FeG pcap. | [attach_1310.zip  |  |  | 
+  C0: This pull request has been automatically marked as stale because it has not had any recent activity by the author or maintainer in the past 45 days. It will be closed if no further activity occurs in the next 7 days. Tha
+  C1: This pull request has exceeded its lifecylce and will be closed. Should you wish to continue working on this, please reopen it or start a new pull request. Thank you again for your contributions. | 
+====================================================================================================
+IMG magma/magma#13506 DF-OAM-2022-00421 추론 구현 오류
+TITLE: [NMS] 첫 page에 없는 가입자의 설정 편집 page를 새로 고치면 오류
+CAUSE: 편집 page가 backend에서 자동으로 불러온 첫 N명의 가입자 데이터만 써서, 첫 page에 없는 가입자는 데이터를 찾지 못했다.
+RES: `SubscriberDetail`에 있던 fallback 방식을 `SubscriberDetailConfig`에도 넣었다. 로컬에서 재현한 뒤 수정으로 오류가 사라진 것을 확인했다(PR #14172).
+  C0: Tasks | - [x] Reproduce and fix the bug |   - The problem seems to be how the contexts of the subscriber data are handled on the subpage, i.e. that only the data for the first N subscribers is automatically loaded from the
+====================================================================================================
+IMG open5gs/open5gs#1217 DF-CORE-2021-01210 추론 플랫폼
+TITLE: [UPF] 시작 시 `ogs_link_local_addr_by_dev() failed` 오류 로그
+CAUSE: 메인테이너는 권한 문제일 수 있다고 봤고, 기여자는 docker 구성의 IPv6 미지원 때문이라고 봤다.
+RES: 메인테이너가 이 코드가 필요 없어서 지웠다.
+  BODY-IMG:  -> image
+  BODY-IMG: ![image](https://user-images.githubusercontent.com/15867686/139408162-4583464d-e4a9-4829-ae8c-1852f82e79ab.png) |  -> image
+  BODY-IMG: 4583464d-e4a9-4829-ae8c-1852f82e79ab.png) | ![image](https://user-images.githubusercontent.com/15867686/139408320-a580442c-fa36-49f1-8fd7-357513b4e83c.png) |  -> image
+  C0: I too see these messages in my docker setup, but i believe its due to lack of IPv6 support in docker setup.
+  C1: @herlesupreeth apt install open5gs on host computer，Check upf log， This error also exists！ | 
+  C2: @shuimoshusheng  |  | Perhaps, there could be a permission problem. But now we don't have to worry about hits. | This code has been removed as it is not needed. |  | Thank you so much! | Sukchan | 
+  C3: @acetcom  |  This means that my docker service starts normally and there is no problem, right? thank you very much！
+====================================================================================================
+PCAP open5gs/open5gs#1470 DF-CORE-2022-01517 명시 결함 아님
+TITLE: [NSSF] Nnssf_NSSelection 응답의 nrfId에 NRF 대신 NSSF 주소가 들어감
+CAUSE: 보고자가 `nssf.yaml`의 nsi 태그에 NRF IP가 아닌 NSSF IP를 설정했다.
+RES: 메인테이너가 `nssf.yaml`의 nsi 설정을 확인하라고 했고, 보고자가 설정 실수를 확인했다.
+  BODY-PCAP: ** will send a `GET nnrf-disc/v1/nf-instances` on the **NSSF** and not on the **NRF**. |  | I joined the [NSSF_issue.zip  pcap file for more details. My actual setup: | - 10.26.11.39 -> NSSF | - 10.26.11.32 -
+  C0: @williamblonay  |  | Please check your NSSF configuration (nssf.yaml). You probably set the NSSF IP address instead of the NRF IP address in the nsi tag. |  | Good luck with you! | Sukchan
+  C1: Yes true, thanks :)
+====================================================================================================
+PCAP open5gs/open5gs#3600 DF-CORE-2024-02193 미상 
+TITLE: [SMF/PCF] VoNR N5 QoS에서 PDUSessionResourceModify에 GBR 정보 누락, PCF가 Audio·Control 외 media type 거부
+CAUSE: 
+RES: 토론과 수정 기록 없이 닫혔다.
+  BODY-PCAP: sion in #3473  | Those gNB answers with invalid-qos-combination. |  | Done a trace also inside SMF Container, as sometimes Wireshark has issues with HTTP2 DATA decoding. | In Trace  :  | With GBR Info on N5 Session
+====================================================================================================
+IMG open5gs/open5gs#3653 DF-CORE-2025-02209 미상 
+TITLE: [SMF] third-party PCF가 준 session AMBR를 PFCP 메시지에 반영하지 않고 기본값을 보냄
+CAUSE: 
+RES: 원문에 답변과 조치 기록이 없고, 'Housekeeping:ToClose' label이 붙었다.
+  BODY-IMG:  from SMF to UPF. it looks like SMF uses some default settings all the time, is that as desgined or is there any configurations to support customize rules ? | 
+  C0: This issue has been closed automatically due to lack of activity. This has been done to try and reduce the amount of noise. Please do not comment any further. The Open5GS Team may choose to re-open this issue if necessar
+====================================================================================================
+PCAP srsran/srsRAN_4G#384 DF-RAN-CU-2019-00062 미상 
+TITLE: [srsENB RRC ASN.1] Samsung Galaxy A30S의 UE Capability Information decode 실패
+CAUSE: 
+RES: 메인테이너가 UE 기종과 PCAP을 요청했고 보고자가 PCAP과 enb.log를 올렸다. 이후 기록은 없다.
+  C0: Can you tell what UE it is and attach the PCAP?
+  C1: UE: Samsung galaxy A30S |  | I will upload the pcap soon. Its the UE Capablity Information message which is huge. | 
+  C2: Thanks for the patience.  Please find the pcap attached. The zip also contains the enb.log |  | Thanks | [enboctetissue.zip](https://github.com/srsLTE/srsLTE/files/3790501/enboctetissue.zip) |  | 
+====================================================================================================
+PCAP srsran/srsRAN_4G#456 DF-CORE-2020-00224 추론 상태 관리
+TITLE: [srsepc MME] Service Request 반복 중 UE context 조회 실패로 k_enb = 0x0 전달과 malformed S1AP 메시지 송신
+CAUSE: 메인테이너는 srsEPC가 UE context를 정리하는 방식이 바뀌어 이 문제에 도움이 될 것이라고 했다.
+RES: 보고자가 commit c892ae56be5302eaee5ca00e270efc7a5ce6fbb2에서 대부분 해결된 것을 확인했다. 예상하지 못한 Identity Response를 보내면 MME UE S1AP ID와 eNB UE S1AP ID가 모두 0인 메시지가 나가고 srsEPC가 비정상 종료하는 문제는 남았다. 메인테이너는 그 뒤 srsEPC 변경이 몇 가지 있어 문제가 남았는지 확실하지 않다며 닫고, 남아 있으면 다시 열라고 했다.
+  BODY-PCAP: , |  | there seem to be issues with user and connection management between eNB and EPC, and I can't clearly isolate them. PCAPs and logs are attached, hope it helps to understand what S1AP is doing here. |  | 
+  C0: Thanks a lot for the detailed report Merlin. I'll have a look into this. | 
+  C1: Hi Merlin, sorry for the delayed reply, but you would you mind checking if the issue is still there in the latest version of the code? |  | There were some changes made to the way that srsEPC cleans up the UE's context tha
+  C2: Yes it seems mostly resolved on c892ae56be5302eaee5ca00e270efc7a5ce6fbb2 |  | There's just one exception I can spot now: connect to srsEPC and throw in an unexpected Identity Response, then srsEPC gets some hiccups. |  | <im
+     ..one exception I can spot now: connect to srsEPC and throw in an unexpected Identity Response, then srsEPC gets some hiccups. |  | <img width="389" alt="image" src="https://user-images.githubusercontent.com/1729953/85609766-b0549f80-b656-11ea-86cf-cb6225622e96.png"> |  | I think the cause for Wireshark s
+     ..now: connect to srsEPC and throw in an unexpected Identity Response, then srsEPC gets some hiccups. |  | <img width="389" alt="image" src="https://user-images.githubusercontent.com/1729953/85609766-b0549f80-b656-11ea-86cf-cb6225622e96.png"> |  | I think the cause for Wireshark showing this as malformed 
+  C3: There have been a few changes to srsEPC recently I believe so I am unsure if the issue still exists. I am closing the ticket but feel free to reopen if you still see the issue. Patches are more than welcome if so ;-)
+====================================================================================================
+IMG srsran/srsRAN_4G#711 DF-UE-2021-00176 추론 플랫폼
+TITLE: [srsUE/pdsch_ue] USRP B210에서 실행 1초 안에 `Error timed out while receiving samples from UHD` 반복
+CAUSE: sudo 없이 실행해서 생긴 문제일 수 있다. 답변자가 sudo로 다시 실행하라고 했다.
+RES: 답변자가 `sudo`로 다시 실행해 보고 문제가 남으면 다시 열라고 하며 닫았다.
+  BODY-IMG: ce the problem ## | Simply running "./pdsch_ue" in the examples folder or srsue directly in "home" | The two screenshots are displaying these two examples |  -> Screenshot from 2021-07-29 20-19-03
+  BODY-IMG: wo examples | ![Screenshot from 2021-07-29 20-19-03](https://user-images.githubusercontent.com/83959756/127545321-100ea868-eef8-4578-9ed5-fcfc2451c980.png) |  -> Screenshot from 2021-07-29 20-18-42
+  C0: You should run with `sudo` and try again. Re-open if you still see the issue. Thanks
+====================================================================================================
+PCAP srsran/srsRAN_Project#604 DF-RAN-DU-2024-00516 미상 
+TITLE: [DU OFH] split 7.2 구성에서 RU가 DU로 U-Plane 패킷을 보내지 않음
+CAUSE: 
+RES: 메인테이너는 UE가 붙어 있지 않으면 DU가 UL C-Plane을 요청하지 않으므로 UL Section Type 1이 없는 것은 정상이라고 답했다. 근본 문제는 RU가 PRACH를 요청한 C-Plane에 PRACH U-Plane으로 응답하지 않는 것이고, frameStructure 불일치는 PRACH 설정 불일치 때문일 수 있다고 했다. pcap으로 보아 Fujitsu RU로 보인다고 했다. 원문에 그 뒤 해결 기록이 없다.
+  BODY-PCAP: nal Information ## | [Any additional information, configuration or data that might be necessary to reproduce the issue] | PCAP file captured on srsDU: |  | 
+  C0: Attached the PCAP. All packets received at RU are ONTIME. But RU doesn't respond to DU with U-plane packets | [srs_gen1_tb_cisco.pcap.gz](https://github.com/srsran/srsRAN_Project/files/15252973/srs_gen1_tb_cisco.pcap.gz)
+  C1: Hello  | Any support from team on this issue? |  | Our RU requires Section Type-1 C-plane message with "data direction" field set to "UL". So need support from gNB configto be able to send this message. 
+  C2: First of all it would be good if you could format the issue text correctly, explain what RU you use and your setup. It's very difficult to read your ticket. | Looking at the PCAP it seems you're using a Fujitsu RU. There 
+  C3: Hi Andre, actually Ven457 and us have been working on closely the same integration activities from different regions and looking from the different angles. 
+  C4: Hi @andrepuschmann ,  | We are also debugging why RU is not sending PRACH to DU.  | We observed that "framestructure","cpLength" fields in  in C-plane Section type3 msg sent by DU were incorrect compared to RU supported va
+     ..es. RU supports frameStructure=188, but DU sends 204. Can you please suggest us how can we change DU configuration to send framestructure to 188?  | **PCAP c-plane section type 3 msg:** | ![image](https://github.com/srsran/srsRAN_Project/assets/48293282/e2c38dfb-38e5-4a47-9c94-0b134c82dfe0) | **RU PRAC
+     ..t DU sends 204. Can you please suggest us how can we change DU configuration to send framestructure to 188?  | **PCAP c-plane section type 3 msg:** | ![image](https://github.com/srsran/srsRAN_Project/assets/48293282/e2c38dfb-38e5-4a47-9c94-0b134c82dfe0) | **RU PRACH configuration:** | ![image](https://g
+  C5: You probably have a mismatch in the PRACH configuration, hence the mismatched frame structure. You're not providing any insights into your RU configuration.
+  C6: Please let us know what information is needed from RU side. 
+  C7: Hi @andrepuschmann ,  | Please find attached gnb config file, RU M-plane endpoint configurations used and gnb log for your reference.  | We see following warnings in the gnb log. | 2024-05-17T10:20:22.089488 [SCHED   ] [D] 
+     ..rded, PDSCH discarded | - ErrorIndication: slot=233.3, PDCCH discarded, PDSCH discarded |  | [gnb_17052024.log](https://github.com/srsran/srsRAN_Project/files/15347781/gnb_17052024.log) | [n71_10mhz_4x4_v7.txt](https://github.com/srsran/srsRAN_Project/files/15347782/n71_10mhz_4x4_v7.txt) | [low_level_end
+  C8: Hi @andrepuschmann ,  | can you please check configuration shared above and point us what can be done to resolve this? 
+  C9: Hi Team, | Any update on this? | 
+  C10: Hey @ven457 - what PRACH config do you use in the RU? In the gNB config you've commented the section but I doubt that the default values will match your RU config by chance.
+  C11: Hi @andrepuschmann , sorry above gNB config shared was with prach config commented out for testing. Please ignore. | Otherwise, we use below prach config at gNB side. | **gNB config:** |     prach_config_index 16           
+     ..ce index. |     zero_correlation_zone 2                                      # Zero correlation zone. |     prach_frequency_start 0  |  | **RU side:** | ![image](https://github.com/srsran/srsRAN_Project/assets/48293282/3ea89585-496b-4c69-9072-fc2df270985a)
+  C12: @ven457 any update on this issue?
+  C13: With tweaking the UL timings, now this is pcap similar another working system. However we are still getting PRACH msg2 timeout. | [srs_tb_gen1_fft_4096_run15.pcap.gz](https://github.com/user-attachments/files/16090627/srs

@@ -1,0 +1,17 @@
+dataset rows 10000 found in candidates 10000
+normalize 뒤(candidates) 이미지 링크가 남은 레코드: 982/1112
+normalize 뒤 업로드 파일 링크가 남은 레코드: 1133/1324
+본문 3000자 초과로 잘린 레코드: 2019/10000, 댓글 합계 2500자 초과: 2249/10000
+본문+댓글 글자 수 raw 72,337,313 → candidates 19,670,385 (27.2%)
+longlog: 1463 중 잘림 1263 (86.3%)
+fence50: 412 중 잘림 406 (98.5%)
+stack: 1471 중 잘림 1073 (72.9%)
+config: 489 중 잘림 379 (77.5%)
+canonical 서술에 '스크린샷·이미지·캡처': 113, records: 97
+canonical 서술에 'pcap·wireshark': 349, records: 346
+canonical 서술에 '첨부': 233, records: 332
+canonical 서술에 '로그 파일': 66, records: 74
+canonical 서술에 'URL': 136, records: 134
+이미지 있는 레코드 중 canonical이 이미지를 언급: 107/1112
+pcap 언급 레코드 중 canonical이 pcap을 언급: 323/924
+canonical 필드: ['case_code', 'record_type', 'title', 'equipment', 'location', 'problem', 'cause', 'cause_basis', 'cause_class', 'resolution', 'origin', 'duplicate_of', 'duplicate_of_case', 'persona', 'source_id', 'source_url', 'source_license', 'created']

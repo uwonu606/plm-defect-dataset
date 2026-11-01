@@ -1,0 +1,22 @@
+{
+ "free5gc/free5gc#807": "IMG",
+ "free5gc/free5gc#1023": "IMG",
+ "srsran/srsRAN_4G#711": "IMG",
+ "free5gc/free5gc#746": "IMG",
+ "free5gc/free5gc#681": "IMG",
+ "free5gc/free5gc#722": "IMG",
+ "magma/magma#13506": "IMG",
+ "open5gs/open5gs#1217": "IMG",
+ "open5gs/open5gs#3653": "IMG",
+ "free5gc/free5gc#1112": "IMG",
+ "magma/magma#9681": "PCAP",
+ "open5gs/open5gs#3600": "PCAP",
+ "srsran/srsRAN_Project#604": "PCAP",
+ "srsran/srsRAN_4G#384": "PCAP",
+ "free5gc/free5gc#832": "PCAP",
+ "magma/magma#9370": "PCAP",
+ "free5gc/free5gc#26": "PCAP",
+ "open5gs/open5gs#1470": "PCAP",
+ "free5gc/free5gc#202": "PCAP",
+ "srsran/srsRAN_4G#456": "PCAP"
+}
