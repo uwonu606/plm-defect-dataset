@@ -2,9 +2,11 @@
 
 ## 결론
 
-같은 테스트셋 117문항에서 다섯 구성의 과제 성공률은 0.81~0.83으로 갈리지 않았다. 고정 DAG와의 차이는 모두 paired bootstrap 95% 구간 안에서 0을 포함한다. 다만 고정 DAG는 LLM을 한 번도 부르지 않고 이 성공률을 냈다. 단일 LLM 루프는 문항당 Haiku 2.98회, LLM 시간 13.8초를 썼다.
+같은 테스트셋 117문항에서 오케스트레이션 구성끼리는 과제 성공률이 갈리지 않았다. 검색 단계를 BM25, hybrid(BM25+dense), rerank(hybrid+reranker) 세 가지로 바꿔 돌려도 같았다. 고정 DAG와의 차이는 모두 paired bootstrap 95% 구간 안에서 0을 포함한다. 고정 DAG는 LLM을 한 번도 부르지 않았고, 단일 LLM 루프는 문항당 Haiku 약 3회를 썼다.
 
-차이는 문항 유형별 강약과 실패 모드에서 났다.
+이 문서는 최적화가 아니라 구조 비교다. 어떤 칸(단계·경로·정책)이 있어야 하는지를 본다. 앞으로 다른 문서 종류가 들어오면 숫자는 바뀐다. 그래서 dev에 맞춘 값은 #현재 데이터에 맞춘 임시값에 따로 모았다.
+
+차이는 문항 유형별 강약과 실패 모드에서 났다. 아래 표는 BM25 실행 기준이고, 검색 단계를 바꿨을 때 달라진 점은 #검색 단계를 바꾸면에 있다.
 
 | 구상 | 이 시뮬레이션이 보인 것 |
 |---|---|
@@ -40,7 +42,7 @@
 
 ## 비교한 구성
 
-모두 같은 도구 6개(`sim/engine.py`)를 쓴다. 도구는 BM25 검색, 식별자 역색인, 레코드 조회, 중복·xref 확장, `trace_fix`, 집계다. dense 검색과 reranker는 없다.
+모두 같은 도구 6개(`sim/engine.py`)를 쓴다. 도구는 BM25 검색, 식별자 역색인, 레코드 조회, 중복·xref 확장, `trace_fix`, 집계다. 검색 도구의 안쪽은 BM25(기본), hybrid, rerank 가운데 하나를 끼운다(#검색 단계를 바꾸면).
 
 | 구성 | 계획 | 기권 판단 | LLM |
 |---|---|---|---|
@@ -55,7 +57,7 @@
 
 ## 결과
 
-유형별 과제 성공률이다. 성공은 유형마다 다르게 정의했다. single·logpaste는 기권하지 않고 정답이 상위 5건 안에 든 것, multihop은 정답이 상위 10건 안에 하나라도 든 것, fix는 수정 상태 일치, composite는 둘 다다.
+이 절부터 #되질문까지의 수치는 BM25 실행이다. 유형별 과제 성공률이다. 성공은 유형마다 다르게 정의했다. single·logpaste는 기권하지 않고 정답이 상위 5건 안에 든 것, multihop은 정답이 상위 10건 안에 하나라도 든 것, fix는 수정 상태 일치, composite는 둘 다다.
 
 | 구성 | single | logpaste | multihop | fix | composite | aggregate | unanswerable | 전체 | LLM 호출 | LLM 초 |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -158,13 +160,56 @@ clarify 50문항에서 정책 다섯과 가상 사용자 넷을 조합했다. �
 - **막고 묻기는 얻는 것이 없다.** 최종 Hit@5는 끝 한 줄과 같고, 첫 응답만 0.66에서 0.38로 떨어진다.
 - **모두 묻기는 맞는 값일 때만 가장 높다.** 0.80이다. 늘 묻는 효과와 장비군 필터 효과가 겹쳐 있어서 둘을 가르지 못했다. 그 대신 첫 응답이 늘 비고, 틀린 값에는 가장 약하다.
 
+## 검색 단계를 바꾸면
+
+검색 도구의 안쪽만 바꾸고 나머지는 그대로 두었다. hybrid는 BM25 상위 100건과 bge-m3 dense 상위 100건을 RRF로 합친다. rerank는 hybrid 상위 30건을 bge-reranker-v2-m3로 다시 정렬한다. 기권 τ는 모드마다 dev에서 다시 맞췄다. hybrid에서는 Haiku 루프를 돌리지 않았다.
+
+| 구성 | BM25 | hybrid | rerank | LLM 호출 |
+|---|---|---|---|---|
+| 검색만 | 0.376 | 0.419 | 0.470 | 0 |
+| `dag_regex` | 0.829 | 0.838 | 0.863 | 0 |
+| `dag_llm_slots` | 0.829 | 0.846 | 0.863 | 0.08 |
+| `dag_llm_front` | 0.821 | 0.846 | 0.821 | 1 |
+| `llm_loop` | 0.812 | – | 0.812 | 약 3 |
+| `llm_planner` | 0.812 | 0.829 | 0.872 | 1 |
+
+rerank에서 `dag_regex` 대비 차이는 `llm_loop` −0.051 [−0.120, 0.017], `llm_planner` +0.009 [−0.043, 0.060], `dag_llm_front` −0.043 [−0.103, 0.009]다. 셋 다 0을 포함한다.
+
+검색 품질이 바뀌면 그 위 칸들의 효과 크기도 바뀌었다. 그래서 효과 크기가 아니라 칸이 필요한지로 읽는다.
+
+| 칸 | BM25 | rerank | 구조로 읽은 것 |
+|---|---|---|---|
+| 관계 확장 | 끄면 multihop 0.944 → 0.389 | 1.000 → 0.444 | 검색이 좋아져도 필요하다 |
+| 식별자 경로 | 끄면 logpaste 1.000 → 0.444 | 1.000 → 0.611 | 줄었지만 필요하다 |
+| 기권 신호 | BM25 점수 τ로 single 오기권 16.7% | reranker 점수 τ로 0%. τ를 0.5~1.25배로 흔들어도 같다 | 기권은 검색 단계가 내는 점수에 기대야 한다 |
+| 루프의 single 우위 | 루프 0.917, DAG 0.792 | 둘 다 0.958 | 루프의 강점은 약한 검색을 메운 것이었다 |
+| 되질문(τ=0.5, 맞는 값) | 묻는 비율 46%, Hit@5 0.66 → 0.72 | 20%, 0.92 → 0.92 | 검색이 좋아지면 물을 일과 이득이 함께 준다 |
+| 틀린 값에 hard filter | 0.66 → 0.38 | 0.92 → 0.72 | soft 반영은 원래 값을 거의 지켰다(BM25·rerank 그대로, hybrid −2pt) |
+| 수정 상태 | 0.60~0.73 | 0.53~0.73 | `trace_fix` 규칙에 묶여 검색과 상관없다 |
+
+세 모드 모두에서 남은 칸은 관계 확장, 식별자 경로, 검색 점수 기반 기권, soft 반영이다. 루프와 되질문은 검색이 좋아질수록 이득이 줄었다. 이 칸들은 남기되, 켜는 조건은 고정하지 않고 데이터가 바뀔 때마다 다시 잰다.
+
+## 현재 데이터에 맞춘 임시값
+
+아래 값은 지금 테스트셋에 맞춰 정했거나 손으로 정했다. 새 문서 종류가 들어오면 다시 정해야 하는 값이라 결론의 근거로 쓰지 않는다.
+
+| 값 | 위치 | 정한 방법 |
+|---|---|---|
+| 기권 τ(BM25 42.6, hybrid 0.56, rerank 0.017) | `sim/run.py` `calibrate_tau` | dev 70문항 |
+| boost 1.15, RRF 상수 60, 합치기 깊이 100, rerank 깊이 30 | `sim/engine.py` | 관례값을 그대로 씀 |
+| 제품·장비군·의도 정규식 | `sim/systems.py` `PRODUCT_WORDS` 등 | 현재 7개 제품의 용어 |
+| 전처리 프롬프트의 의도 정의 문구 | `sim/systems.py` `llm_front` | 첫 판 실패를 보고 고침 |
+| 되질문 비율 τ 0.5·0.7 | `sim/run.py` `clarify_sim` | 두 값만 시험 |
+| 수정 상태 규칙 | `sim/engine.py` `FIX_RULES` | 정본 resolution 문구 |
+| bge-m3, bge-reranker-v2-m3 | `sim/dense.py` | 1차 권고안의 후보. 칸을 채운 기본값이다 |
+
 ## 설계 문서에 주는 것
 
 | 대상 | 바꿀 것 |
 |---|---|
-| 02 #3 MA 대조군 | 이 데이터에서 루프와 DAG는 차이가 없다. 루프 차이의 구간 하한 −9.4pt가 미리 정한 비열등 마진 −3pt보다 넓어서 비열등은 아직 판정할 수 없다. 문항 수를 늘려야 한다 |
-| 02 #2 런타임 | 결정적 DAG 앞에 LLM 전처리 1회(검색어 재작성·범위 판단)를 두는 안을 후보로 더한다. 배타 경로를 여는 의도는 코드가 한 번 더 확인한다 |
-| 01 #B-2 기권 | BM25 점수 임계값만으로는 부족하다. LLM 범위 판단이나 reranker 점수와 함께 쓴다 |
+| 02 #3 MA 대조군 | 세 검색 모드 모두에서 루프와 DAG의 차이가 없다. rerank에서 루프 차이의 구간 하한이 −12.0pt라, 미리 정한 비열등 마진 −3pt로는 판정할 수 없다. 문항 수를 늘려야 한다 |
+| 02 #2 런타임 | 결정적 DAG 앞에 LLM 전처리 1회(검색어 재작성·범위 판단)를 두는 안을 후보로 더한다. 배타 경로를 여는 의도는 코드가 한 번 더 확인한다. 검색에 reranker가 있으면 이 칸의 이득이 줄어든다 |
+| 01 #B-2 기권 | BM25 점수로는 부족하고 reranker 점수는 잘 갈랐다. 기권 판단은 검색 단계의 출력 계약에 점수를 넣어 두고 소스마다 다시 잰다 |
 | 01 #B-2 `trace_fix` | 규칙 정확도 27/33. 상태에 "고쳐졌지만 참조 없음"을 더하고, 정답은 사람이 검수한 표본으로 잰다 |
 | 02 #4 되질문 | 답 끝 한 줄 + soft를 기본으로 둔다. hard filter는 결과가 비거나 점수가 떨어질 때 되돌리는 장치와 함께만 쓴다. 장비군 slot도 묻는 후보로 잰다 |
 
@@ -174,7 +219,8 @@ clarify 50문항에서 정책 다섯과 가상 사용자 넷을 조합했다. �
 |---|---|
 | test 117문항, 유형당 12~24문항 | 유형별 수치는 1문항이 4~8pt다. 유형 간 비교는 경향으로만 읽는다 |
 | LLM은 Haiku 한 번 실행 | 캐시를 바꿔 다시 돌린 5개 호출만으로 루프 전체가 0.821에서 0.812로 움직였다 |
-| BM25만 사용 | dense·reranker가 있으면 single·multihop 격차가 줄 수 있다 |
+| dense·reranker 모델이 하나씩이다 | bge-m3와 bge-reranker-v2-m3만 썼다. hybrid에서는 루프를 돌리지 않았다 |
+| GPU attention 커널을 바꿨다 | RTX 4070(WSL)에서 fp16 memory-efficient attention이 메모리 접근 오류로 죽어서, flash·memory-efficient 커널을 끄고 기본 커널로 돌렸다(`sim/dense.py`) |
 | 질문을 Haiku가 씨앗에서 썼다 | 실제 현장 질의 분포가 아니다. 제목과의 겹침이 있다 |
 | 가상 사용자가 결정적이다 | 되질문 이탈률·응답률은 재지 않았다 |
 
@@ -189,11 +235,22 @@ PYTHONHASHSEED=0 python3 -I sim/ablations.py
 PYTHONHASHSEED=0 python3 -I sim/make_examples.py
 ```
 
+hybrid·rerank 모드는 torch와 sentence-transformers가 든 venv에서 `SIM_RETRIEVER`로 고른다. 결과는 `sim/results/<모드>/`에 따로 쌓인다. 코퍼스 임베딩(`sim/runs/emb/`, 40MB)은 레포에 없고 처음 돌릴 때 만든다. RTX 4070에서 114초 걸렸다.
+
+```bash
+uv venv --python 3.12 sim/.venv
+VIRTUAL_ENV=sim/.venv uv pip install torch sentence-transformers numpy --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple
+PYTHONHASHSEED=0 SIM_RETRIEVER=rerank sim/.venv/bin/python -I sim/run.py
+PYTHONHASHSEED=0 SIM_RETRIEVER=hybrid SIM_SKIP=llm_loop sim/.venv/bin/python -I sim/run.py
+```
+
 | 파일 | 내용 |
 |---|---|
-| `sim/engine.py` | 코퍼스, BM25, 식별자 역색인, 도구 6개 |
+| `sim/engine.py` | 코퍼스, BM25, 식별자 역색인, 검색 모드, 도구 6개 |
+| `sim/dense.py` | bge-m3 임베딩, bge-reranker-v2-m3 |
 | `sim/systems.py` | 비교한 구성 여섯 |
 | `sim/run.py` | 채점, bootstrap, slot 정확도, 되질문 시뮬레이션 |
-| `sim/results/summary.json`, `ablations.json` | 이 문서의 수치 |
+| `sim/results/summary.json`, `ablations.json` | BM25 실행의 수치 |
+| `sim/results/hybrid/`, `sim/results/rerank/` | 검색 모드별 수치·문항별 결과·예시 |
 | `sim/results/<구성>.jsonl` | 문항별 답과 실행 경로 |
 | `sim/examples.md` | 유형별 한 문항의 구성별 실행 경로 |

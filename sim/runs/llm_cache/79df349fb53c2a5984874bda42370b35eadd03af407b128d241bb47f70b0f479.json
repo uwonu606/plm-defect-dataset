@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"NFProfile fqdn localhost 127.0.0.1 loopback 등록 NRF crash assert\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 6.14, "input_tokens": 4338, "output_tokens": 405, "cost_usd": 0.00089225}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"셀 상태 Unknown 표시 재기동 후에도 회복 안 됨 cell state 로그\", \"filters\": {\"equipment\": \"OAM\"}, \"k\": 10}}", "seconds": 5.0, "input_tokens": 4343, "output_tokens": 330, "cost_usd": 0.0008557500000000001}

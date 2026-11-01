@@ -1,0 +1,1 @@
+{"text": "{\"final\": {\"cases\": [\"DF-PLATFORM-2024-04154\", \"DF-PLATFORM-2015-01219\", \"DF-PLATFORM-2025-04367\", \"DF-PLATFORM-2018-02738\", \"DF-PLATFORM-2015-01655\"], \"fix_status\": \"fixed_in_version\", \"count\": null, \"abstain\": false}}", "seconds": 5.44, "input_tokens": 3243, "output_tokens": 667, "cost_usd": 0.00080425}

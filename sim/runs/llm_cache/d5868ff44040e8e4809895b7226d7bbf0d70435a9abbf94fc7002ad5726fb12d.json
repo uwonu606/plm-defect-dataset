@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"셀 상태 Unknown 재기동 후에도 미복구 로그 확인 Nokia AirScale EMS\", \"filters\": {\"equipment\": \"RAN-DU\"}, \"k\": 10}}", "seconds": 7.27, "input_tokens": 4491, "output_tokens": 812, "cost_usd": 0.00112635}

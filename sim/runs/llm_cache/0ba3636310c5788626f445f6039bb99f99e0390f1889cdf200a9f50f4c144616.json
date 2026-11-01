@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"EMS 알람 마스킹 미해제 잔존 정상 셀 장애 보고 알람 필터\", \"filters\": {}, \"k\": 10}}", "seconds": 5.32, "input_tokens": 3048, "output_tokens": 425, "cost_usd": 0.0006442500000000001}

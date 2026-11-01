@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"random access 재수행 중 RRC reconfiguration 또는 reestablishment 처리에서 gNB assert 실패로 비정상 종료\", \"filters\": {\"record_type\": \"결함\"}, \"k\": 10}}", "seconds": 9.6, "input_tokens": 4592, "output_tokens": 800, "cost_usd": 0.00114055}

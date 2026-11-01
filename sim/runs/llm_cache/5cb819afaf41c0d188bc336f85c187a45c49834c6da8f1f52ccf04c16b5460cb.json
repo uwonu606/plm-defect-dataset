@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"RRCReestablishment 처리 중 UE random access 재수행 시 gNB assert로 비정상 종료\", \"filters\": {\"equipment\": \"RAN-CU\"}, \"k\": 10}}", "seconds": 5.76, "input_tokens": 3089, "output_tokens": 460, "cost_usd": 0.00066995}

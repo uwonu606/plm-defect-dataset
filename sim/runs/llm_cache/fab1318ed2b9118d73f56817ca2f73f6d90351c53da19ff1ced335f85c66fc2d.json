@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"알람 마스킹 해제 누락 정상 셀 장애 보고 지속\", \"filters\": {\"equipment\": \"OAM\"}, \"k\": 10}}", "seconds": 6.68, "input_tokens": 3048, "output_tokens": 443, "cost_usd": 0.00065325}

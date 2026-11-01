@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"StaleDataError UPDATE ports 0 rows matched 동시 삭제 update_port_status 원인\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 6.23, "input_tokens": 3635, "output_tokens": 780, "cost_usd": 0.0009391499999999999}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"RRCReestablishment 처리 중 random access 재수행 시 gNB assert 실패로 비정상 종료\", \"filters\": {\"equipment\": \"RAN-CU\", \"record_type\": \"결함\"}, \"k\": 10}}", "seconds": 7.57, "input_tokens": 3088, "output_tokens": 606, "cost_usd": 0.00074275}

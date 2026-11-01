@@ -1,0 +1,128 @@
+{
+ "tau_sweep": {
+  "0.00xtau=0.0": {
+   "aggregate": 1.0,
+   "composite": 0.6,
+   "fix": 0.611,
+   "logpaste": 1.0,
+   "multihop": 1.0,
+   "single": 0.958,
+   "unanswerable": 0.0,
+   "ALL": 0.778
+  },
+  "0.50xtau=0.0": {
+   "aggregate": 1.0,
+   "composite": 0.6,
+   "fix": 0.611,
+   "logpaste": 1.0,
+   "multihop": 1.0,
+   "single": 0.958,
+   "unanswerable": 0.833,
+   "ALL": 0.863
+  },
+  "0.75xtau=0.0": {
+   "aggregate": 1.0,
+   "composite": 0.6,
+   "fix": 0.611,
+   "logpaste": 1.0,
+   "multihop": 1.0,
+   "single": 0.958,
+   "unanswerable": 0.833,
+   "ALL": 0.863
+  },
+  "1.00xtau=0.0": {
+   "aggregate": 1.0,
+   "composite": 0.6,
+   "fix": 0.611,
+   "logpaste": 1.0,
+   "multihop": 1.0,
+   "single": 0.958,
+   "unanswerable": 0.833,
+   "ALL": 0.863
+  },
+  "1.25xtau=0.0": {
+   "aggregate": 1.0,
+   "composite": 0.6,
+   "fix": 0.611,
+   "logpaste": 1.0,
+   "multihop": 1.0,
+   "single": 0.958,
+   "unanswerable": 0.833,
+   "ALL": 0.863
+  }
+ },
+ "components": {
+  "dag": {
+   "aggregate": 1.0,
+   "composite": 0.6,
+   "fix": 0.611,
+   "logpaste": 1.0,
+   "multihop": 1.0,
+   "single": 0.958,
+   "unanswerable": 0.833,
+   "ALL": 0.863
+  },
+  "dag_no_expand": {
+   "aggregate": 1.0,
+   "composite": 0.6,
+   "fix": 0.611,
+   "logpaste": 1.0,
+   "multihop": 0.444,
+   "single": 0.958,
+   "unanswerable": 0.833,
+   "ALL": 0.778
+  },
+  "dag_no_identifier": {
+   "aggregate": 1.0,
+   "composite": 0.667,
+   "fix": 0.667,
+   "logpaste": 0.611,
+   "multihop": 1.0,
+   "single": 0.958,
+   "unanswerable": 0.833,
+   "ALL": 0.821
+  }
+ },
+ "tool_calls_per_question": {
+  "dag_regex": {
+   "aggregate": 1.0,
+   "composite": 4.13,
+   "fix": 3.0,
+   "logpaste": 4.06,
+   "multihop": 5.22,
+   "single": 2.08,
+   "unanswerable": 2.08,
+   "ALL": 3.16
+  },
+  "dag_llm_front": {
+   "aggregate": 1.0,
+   "composite": 4.07,
+   "fix": 3.0,
+   "logpaste": 4.17,
+   "multihop": 5.17,
+   "single": 3.04,
+   "unanswerable": 3.08,
+   "ALL": 3.46
+  },
+  "llm_loop": {
+   "aggregate": 1.08,
+   "composite": 2.33,
+   "fix": 2.17,
+   "logpaste": 1.94,
+   "multihop": 2.28,
+   "single": 1.46,
+   "unanswerable": 2.25,
+   "ALL": 1.92
+  },
+  "llm_planner": {
+   "aggregate": 1.0,
+   "composite": 3.53,
+   "fix": 2.5,
+   "logpaste": 4.11,
+   "multihop": 3.44,
+   "single": 2.54,
+   "unanswerable": 2.92,
+   "ALL": 2.92
+  }
+ }
+}

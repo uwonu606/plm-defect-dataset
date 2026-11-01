@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"Initial Context Setup Response 미송신 단말 LTE bandwidth 또는 capability 미지원으로 UE Context Release\", \"filters\": {\"product\": \"open5gs\", \"equipment\": \"UE\", \"cause_class\": \"연동\"}, \"k\": 10}}", "seconds": 5.73, "input_tokens": 4027, "output_tokens": 676, "cost_usd": 0.00096555}

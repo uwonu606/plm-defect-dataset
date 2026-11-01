@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"AMQP RabbitMQ 연결 실패 재연결 reconnect RPC socket error\", \"filters\": {\"product\": \"neutron\", \"cause_class\": \"연동\"}, \"k\": 10}}", "seconds": 6.0, "input_tokens": 3279, "output_tokens": 626, "cost_usd": 0.00079095}

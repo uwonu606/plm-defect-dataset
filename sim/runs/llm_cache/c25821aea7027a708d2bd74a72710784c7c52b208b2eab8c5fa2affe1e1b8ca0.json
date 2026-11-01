@@ -1,0 +1,1 @@
+{"text": "{\"final\": {\"cases\": [\"DF-CORE-2026-02786\", \"DF-CORE-2026-02816\", \"DF-CORE-2025-02385\", \"DF-CORE-2026-02918\", \"DF-CORE-2026-02592\", \"DF-CORE-2026-02913\", \"DF-CORE-2026-02579\"], \"fix_status\": \"fix_ref_only\", \"count\": null, \"abstain\": false}}", "seconds": 5.81, "input_tokens": 2948, "output_tokens": 593, "cost_usd": 0.0007082500000000001}

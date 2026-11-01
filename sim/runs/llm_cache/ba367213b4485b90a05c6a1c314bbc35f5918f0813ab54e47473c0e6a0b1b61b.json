@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"EMS 셀 상태 Unknown 표시 재기동 후에도 미해결 cell state 로그\", \"filters\": {}, \"k\": 10}}", "seconds": 6.18, "input_tokens": 2993, "output_tokens": 628, "cost_usd": 0.0007347499999999999}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"EMS 셀 상태 Unknown 재기동 후에도 미복구 로그 확인\", \"filters\": {\"equipment\": \"OAM\"}, \"k\": 10}}", "seconds": 6.55, "input_tokens": 2989, "output_tokens": 297, "cost_usd": 0.0005684500000000001}

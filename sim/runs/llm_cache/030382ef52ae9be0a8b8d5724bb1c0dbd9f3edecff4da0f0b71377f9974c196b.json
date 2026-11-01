@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"trace_fix\", \"args\": {\"case_code\": \"DF-PLATFORM-2026-04401\"}}", "seconds": 5.75, "input_tokens": 3288, "output_tokens": 376, "cost_usd": 0.0006677499999999999}
