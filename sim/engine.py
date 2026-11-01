@@ -1,6 +1,7 @@
 import collections
 import json
 import math
+import os
 import re
 from functools import lru_cache
 from pathlib import Path
@@ -151,20 +152,75 @@ def summarize(record, snippet=110):
     }
 
 
-def search(query, filters=None, k=10, boost=None):
+RETRIEVER = os.environ.get("SIM_RETRIEVER", "bm25")
+RETRIEVERS = ("bm25", "hybrid", "rerank")
+FUSION_DEPTH = 100
+RERANK_DEPTH = 30
+
+
+def results_dir():
+    base = Path(__file__).resolve().parent / "results"
+    return base if RETRIEVER == "bm25" else base / RETRIEVER
+
+
+def boost_factor(record, boost):
+    factor = 1.0
+    for key, value in (boost or {}).items():
+        if value and ((key == "product" and product_of(record) == value) or record.get(key) == value):
+            factor *= 1.15
+    return factor
+
+
+def bm25_ranked(query, filters, boost):
     c = corpus()
-    scored = c.bm25.scores(query)
     hits = []
-    for i, score in scored.items():
+    for i, score in c.bm25.scores(query).items():
         record = c.records[i]
-        if not c.matches(record, filters):
-            continue
-        for key, value in (boost or {}).items():
-            if value and ((key == "product" and product_of(record) == value) or record.get(key) == value):
-                score *= 1.15
-        hits.append((score, record["case_code"]))
+        if c.matches(record, filters):
+            hits.append((score * boost_factor(record, boost), record["case_code"], i))
     hits.sort(reverse=True)
-    return [{"case_code": code, "score": round(score, 2)} for score, code in hits[:k]]
+    return hits
+
+
+@lru_cache(maxsize=1)
+def dense_matrix():
+    import dense
+    return dense.corpus_matrix(corpus().records)
+
+
+def dense_ranked(query, filters):
+    import dense
+    c = corpus()
+    sims = dense.similarities(dense_matrix(), query)
+    order = sims.argsort()[::-1]
+    hits = []
+    for i in order:
+        if c.matches(c.records[i], filters):
+            hits.append(int(i))
+            if len(hits) == FUSION_DEPTH:
+                break
+    return hits, sims
+
+
+def search(query, filters=None, k=10, boost=None):
+    bm = bm25_ranked(query, filters, boost)
+    if RETRIEVER == "bm25":
+        return [{"case_code": code, "score": round(score, 2)} for score, code, _ in bm[:k]]
+    import dense
+    c = corpus()
+    dense_hits, sims = dense_ranked(query, filters)
+    fused = collections.defaultdict(float)
+    for rank, (_, _, i) in enumerate(bm[:FUSION_DEPTH]):
+        fused[i] += 1 / (60 + rank)
+    for rank, i in enumerate(dense_hits):
+        fused[i] += 1 / (60 + rank)
+    ranked = sorted(fused, key=lambda i: (-fused[i] * boost_factor(c.records[i], boost), c.codes[i]))
+    if RETRIEVER == "hybrid":
+        return [{"case_code": c.codes[i], "score": round(float(sims[i]), 4)} for i in ranked[:k]]
+    candidates = ranked[:max(RERANK_DEPTH, k)]
+    scores = dense.rerank_scores(query, [c.codes[i] for i in candidates], [dense.doc_text(c.records[i]) for i in candidates])
+    reranked = sorted(zip(candidates, scores), key=lambda x: (-x[1] * boost_factor(c.records[x[0]], boost), c.codes[x[0]]))
+    return [{"case_code": c.codes[i], "score": round(s, 4)} for i, s in reranked[:k]]
 
 
 def find_by_identifier(text, max_df=10):

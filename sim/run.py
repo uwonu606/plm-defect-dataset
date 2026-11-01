@@ -1,5 +1,6 @@
 import collections
 import json
+import os
 import random
 import sys
 from concurrent.futures import ThreadPoolExecutor
@@ -10,7 +11,8 @@ sys.path.insert(0, str(HERE))
 import engine as e
 import systems as s
 
-RESULTS = HERE / "results"
+RESULTS = e.results_dir()
+SEARCH_ONLY = "bm25_only" if e.RETRIEVER == "bm25" else "search_only"
 RETRIEVAL_TYPES = ("single", "logpaste", "multihop", "fix", "composite")
 TRUE_INTENTS = {"single": set(), "logpaste": {"cause"}, "multihop": {"cause"}, "fix": {"fix"},
                 "composite": {"cause", "fix"}, "aggregate": {"aggregate"}, "clarify": set()}
@@ -174,7 +176,7 @@ def clarify_sim(items, abstain_tau):
 
 
 def main():
-    RESULTS.mkdir(exist_ok=True)
+    RESULTS.mkdir(parents=True, exist_ok=True)
     items = load()
     tau, tau_info = calibrate_tau(items)
     test = [it for it in items if it["split"] == "test" and it["type"] != "clarify"]
@@ -189,16 +191,19 @@ def main():
             llm_table[it["question"]] = part.get(it["qid"], {})
 
     runs = {
-        "bm25_only": lambda it: s.bm25_only(it, tau),
+        SEARCH_ONLY: lambda it: s.bm25_only(it, tau),
         "dag_regex": lambda it: s.fixed_dag(it, tau),
         "dag_llm_slots": lambda it: s.fixed_dag(it, tau, normalize_fn=s.llm_normalizer(llm_table)),
         "dag_llm_front": lambda it: s.dag_llm_front(it, tau),
         "llm_loop": lambda it: s.llm_loop(it, tau),
         "llm_planner": lambda it: s.llm_planner(it, tau),
     }
+    skip = set(filter(None, os.environ.get("SIM_SKIP", "").split(",")))
     rows = {}
     for name, fn in runs.items():
-        rows[name] = run_system(name, fn, test, workers=6 if "llm" in name else 1)
+        if name in skip:
+            continue
+        rows[name] = run_system(name, fn, test, workers=int(os.environ.get("SIM_WORKERS", 6)) if "llm" in name else 1)
         print(name, summarize(rows[name])["ALL"], flush=True)
 
     summary = {

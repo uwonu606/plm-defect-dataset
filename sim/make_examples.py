@@ -6,12 +6,12 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import engine as e
 
-SYSTEMS = ("bm25_only", "dag_regex", "dag_llm_front", "llm_loop", "llm_planner")
+SYSTEMS = ("bm25_only" if e.RETRIEVER == "bm25" else "search_only", "dag_regex", "dag_llm_front", "llm_loop", "llm_planner")
 PER_TYPE = 1
 
 
 def load(name):
-    return {r["qid"]: r for r in map(json.loads, open(HERE / "results" / f"{name}.jsonl", encoding="utf-8"))}
+    return {r["qid"]: r for r in map(json.loads, open(e.results_dir() / f"{name}.jsonl", encoding="utf-8"))}
 
 
 def describe_trace(name, out):
@@ -29,7 +29,7 @@ def describe_trace(name, out):
 
 def main():
     items = [json.loads(line) for line in open(HERE / "testset.jsonl", encoding="utf-8")]
-    results = {name: load(name) for name in SYSTEMS}
+    results = {name: load(name) for name in SYSTEMS if (e.results_dir() / f"{name}.jsonl").exists()}
     picked, seen = [], {}
     for it in items:
         if it["split"] == "test" and it["type"] != "clarify" and seen.get(it["type"], 0) < PER_TYPE:
@@ -50,7 +50,7 @@ def main():
         if it["type"] == "unanswerable":
             expect.append("정답: 기권(데이터에 없음)")
         lines += ["- " + x for x in expect] + ["", "| 시스템 | 실행 경로 | 답 | LLM 호출 |", "|---|---|---|---|"]
-        for name in SYSTEMS:
+        for name in results:
             out = results[name][it["qid"]]
             answer = []
             if out.get("abstain"):
@@ -64,8 +64,8 @@ def main():
                 answer.append(f"count={out['count']}")
             lines.append(f"| {name} | {describe_trace(name, out)} | {'; '.join(answer) or '-'} | {out.get('llm_calls', 0)} |")
         lines.append("")
-    (HERE / "examples.md").write_text("\n".join(lines), encoding="utf-8")
-    print("wrote", HERE / "examples.md")
+    (e.results_dir() / "examples.md" if e.RETRIEVER != "bm25" else HERE / "examples.md").write_text("\n".join(lines), encoding="utf-8")
+    print("wrote examples for", e.RETRIEVER)
 
 
 if __name__ == "__main__":

@@ -29,7 +29,7 @@ def no_identifier(item, tau):
 def tool_counts(results_name):
     counts = collections.defaultdict(list)
     items = {it["qid"]: it for it in R.load()}
-    for out in map(json.loads, open(HERE / "results" / f"{results_name}.jsonl", encoding="utf-8")):
+    for out in map(json.loads, open(e.results_dir() / f"{results_name}.jsonl", encoding="utf-8")):
         n = sum(1 for t in out.get("trace", []) if "tool" in t)
         counts[items[out["qid"]]["type"]].append(n)
     return {k: round(sum(v) / len(v), 2) for k, v in sorted(counts.items())} | {
@@ -53,8 +53,9 @@ def main():
         rows = [R.score(it, fn(it, tau)) for it in test]
         summary = R.summarize(rows)
         out["components"][name] = {k: summary[k]["success"] for k in summary}
-    out["tool_calls_per_question"] = {name: tool_counts(name) for name in ("dag_regex", "dag_llm_front", "llm_loop", "llm_planner")}
-    (HERE / "results" / "ablations.json").write_text(json.dumps(out, ensure_ascii=False, indent=1))
+    out["tool_calls_per_question"] = {name: tool_counts(name) for name in ("dag_regex", "dag_llm_front", "llm_loop", "llm_planner")
+                                      if (e.results_dir() / f"{name}.jsonl").exists()}
+    (e.results_dir() / "ablations.json").write_text(json.dumps(out, ensure_ascii=False, indent=1))
     print(json.dumps(out, ensure_ascii=False, indent=1))
 
 
