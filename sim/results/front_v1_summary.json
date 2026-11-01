@@ -1,0 +1,72 @@
+{
+ "systems": {
+  "dag_llm_front_v1": {
+   "aggregate": {
+    "n": 12,
+    "success": 0.75,
+    "count_ok": 0.75
+   },
+   "composite": {
+    "n": 15,
+    "success": 0.667,
+    "hit5": 0.933,
+    "recall10": 1.0,
+    "mrr": 0.793,
+    "status_ok": 0.667,
+    "false_abstain": 0.0
+   },
+   "fix": {
+    "n": 18,
+    "success": 0.667,
+    "hit5": 0.944,
+    "recall10": 0.917,
+    "mrr": 0.75,
+    "status_ok": 0.667,
+    "false_abstain": 0.0
+   },
+   "logpaste": {
+    "n": 18,
+    "success": 0.222,
+    "hit5": 0.222,
+    "recall10": 0.222,
+    "mrr": 0.222,
+    "false_abstain": 0.0
+   },
+   "multihop": {
+    "n": 18,
+    "success": 0.333,
+    "hit5": 0.333,
+    "recall10": 0.333,
+    "mrr": 0.157,
+    "false_abstain": 0.0
+   },
+   "single": {
+    "n": 24,
+    "success": 0.625,
+    "hit5": 0.625,
+    "recall10": 0.625,
+    "mrr": 0.535,
+    "false_abstain": 0.042
+   },
+   "unanswerable": {
+    "n": 12,
+    "success": 1.0
+   },
+   "ALL": {
+    "n": 117,
+    "success": 0.581,
+    "llm_calls": 1.0,
+    "llm_seconds": 5.598
+   }
+  }
+ },
+ "paired_vs_dag_regex": {
+  "dag_llm_front_v1": {
+   "diff": -0.248,
+   "ci95": [
+    -0.333,
+    -0.154
+   ]
+  }
+ }
+}

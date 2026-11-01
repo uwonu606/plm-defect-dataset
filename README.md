@@ -11,6 +11,7 @@
 | `docs/personas.md` | `records`를 다시 쓴 작성자 14명의 문체 |
 | `docs/design/` | 네트워크 부서 에이전트·GraphRAG·온톨로지 설계 검토 |
 | `analysis/` | 설계 검토의 수치를 낸 스크립트와 출력 |
+| `sim/` | 설계 구상을 같은 테스트셋에서 비교한 시뮬레이터, 테스트셋, 결과 |
 | `samples/` | 변환 어투를 확인받은 샘플 |
 | `tools/` | 수집부터 조립까지의 스크립트 |
 
@@ -41,5 +42,6 @@
 |---|---|
 | [01-graphrag-ontology.md](docs/design/01-graphrag-ontology.md) | 부서 수요와 향후 데이터, GraphRAG 구성, 온톨로지 판정 |
 | [02-roles-planner-clarify.md](docs/design/02-roles-planner-clarify.md) | 역할 분담, planner, 되질문, 멀티모달, LlamaIndex |
+| [03-simulation.md](docs/design/03-simulation.md) | 고정 DAG, LLM 루프, planner, 되질문 정책을 245문항 테스트셋으로 비교한 결과 |
 
 두 문서는 여러 에이전트가 조사·설계·반박을 거쳐 쓴 권고안이다. 결론은 가설이고, 문서 안의 평가 게이트로 검증한다. 문서에 나오는 `~/` 경로는 작성자 로컬 자료라서 레포에 없다.
