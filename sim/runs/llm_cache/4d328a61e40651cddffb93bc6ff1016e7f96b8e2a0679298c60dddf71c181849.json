@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"HA router 삭제 중 같은 삭제 에러 반복 로그 폭주 디스크 가득\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 4.31, "input_tokens": 1550, "output_tokens": 368, "cost_usd": 0.00031615000000000007}

@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"open5gs NRF abort PUT NFProfile AUSF fqdn localhost 등록 크래시 NF register\", \"intents\": [\"cause\", \"fix\"], \"product\": \"open5gs\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 6.34, "input_tokens": 1178, "output_tokens": 544, "cost_usd": 0.0005074}

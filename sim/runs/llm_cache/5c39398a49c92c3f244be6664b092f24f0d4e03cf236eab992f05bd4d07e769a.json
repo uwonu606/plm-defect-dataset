@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"EMS 알람 설명 한글 깨짐 DB charset 클라이언트 폰트 locale encoding UTF-8\", \"intents\": [\"cause\"], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": false}", "seconds": 4.73, "input_tokens": 1138, "output_tokens": 405, "cost_usd": 0.0004299}

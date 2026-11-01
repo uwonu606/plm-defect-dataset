@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"OAI 결함 등록 건수 2017 defect count\",\"intents\":[\"aggregate\"],\"product\":\"oai\",\"equipment\":null,\"year\":2017,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.85, "input_tokens": 1229, "output_tokens": 267, "cost_usd": 0.0003791}

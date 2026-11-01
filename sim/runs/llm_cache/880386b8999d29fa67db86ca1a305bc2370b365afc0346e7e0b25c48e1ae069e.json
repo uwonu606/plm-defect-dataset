@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"open5gs PGW Diameter setsockopt EINVAL 기동 크래시 master libfreeDiameter\", \"intents\": [\"cause\", \"fix\"], \"product\": \"open5gs\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 5.99, "input_tokens": 1145, "output_tokens": 669, "cost_usd": 0.0005633}

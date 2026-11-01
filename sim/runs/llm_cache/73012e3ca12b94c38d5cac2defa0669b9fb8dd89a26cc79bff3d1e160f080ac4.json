@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"amf_ue context pool allocation failed AMF ERROR context.c 컨텍스트 할당 실패 UE 풀 고갈 max_num_ue\", \"intents\": [\"cause\"], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 4.49, "input_tokens": 1309, "output_tokens": 577, "cost_usd": 0.0005501}

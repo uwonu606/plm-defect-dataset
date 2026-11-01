@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"neutron LBaaS VIP 생성 시 protocol 조합 검증 누락\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.41, "input_tokens": 1544, "output_tokens": 258, "cost_usd": 0.00025995}

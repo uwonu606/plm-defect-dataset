@@ -1,0 +1,1 @@
+{"text": "{\"steps\": [{\"id\": \"s1\", \"tool\": \"aggregate\", \"args\": {\"filters\": {\"product\": \"open5gs\", \"equipment\": \"CORE\", \"year\": \"2019\", \"cause_class\": \"결함 아님\"}}}], \"answer\": {\"cases\": [], \"fix_status\": null, \"count\": \"s1\"}}", "seconds": 3.68, "input_tokens": 1539, "output_tokens": 278, "cost_usd": 0.00026249}

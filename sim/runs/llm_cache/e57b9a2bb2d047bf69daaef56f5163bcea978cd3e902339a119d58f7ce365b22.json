@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"sinkhole patch RPC dispatch traceback AttributeError 'function' object has no attribute agent log flood\", \"intents\": [\"cause\"], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 5.26, "input_tokens": 1286, "output_tokens": 608, "cost_usd": 0.0005610000000000001}

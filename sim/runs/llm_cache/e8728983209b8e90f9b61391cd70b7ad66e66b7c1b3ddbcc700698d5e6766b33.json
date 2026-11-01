@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs GTP-U sock_write() failed eNB UE attach 패킷 수신 소켓 쓰기 실패 patch fix\",\"intents\":[\"cause\",\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.87, "input_tokens": 1146, "output_tokens": 426, "cost_usd": 0.000442}

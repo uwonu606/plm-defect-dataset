@@ -1,0 +1,1 @@
+{"text": "```json\n{\"query\":\"magma MME handover PathSwitchRequestAcknowledge 디코드 실패 핸드오버 중단 eNB S1AP 1.7.0 수정\",\"intents\":[\"cause\",\"fix\"],\"product\":\"magma\",\"equipment\":\"CORE\",\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}\n```", "seconds": 7.64, "input_tokens": 1148, "output_tokens": 524, "cost_usd": 0.0004914000000000001}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"find_by_identifier\", \"args\": {\"text\": \"Assertion (crc->rnti == rx->rnti) failed!\"}}", "seconds": 3.61, "input_tokens": 1554, "output_tokens": 183, "cost_usd": 0.00022445}

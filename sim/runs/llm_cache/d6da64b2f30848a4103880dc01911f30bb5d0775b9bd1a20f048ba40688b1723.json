@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs MME S1AP eNB 연결 실패 S1 Setup 거부 attach detach Airspan AirSpeed 1030\",\"intents\":[\"cause\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":false}", "seconds": 8.86, "input_tokens": 1185, "output_tokens": 890, "cost_usd": 0.0006818}

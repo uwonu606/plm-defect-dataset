@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"aggregate\", \"args\": {\"filters\": {\"equipment\": \"RAN-DU\", \"year\": \"2018\", \"cause_class\": \"규격 미준수\"}}}", "seconds": 3.54, "input_tokens": 1519, "output_tokens": 232, "cost_usd": 0.00024195000000000003}

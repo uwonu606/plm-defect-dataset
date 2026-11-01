@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"ocudu scheduler_multi_ue_benchmark CI RealtimeSanitizer 오류 실패 수정 패치 fix\",\"intents\":[\"fix\"],\"product\":\"ocudu\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.69, "input_tokens": 1149, "output_tokens": 382, "cost_usd": 0.00042060000000000003}

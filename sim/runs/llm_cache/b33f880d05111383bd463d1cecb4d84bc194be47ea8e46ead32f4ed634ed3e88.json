@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"ngap_server Assertion sock failed NGAP SCTP 소켓 assert 반복 AMF N2 연결 오류\",\"intents\":[\"cause\",\"aggregate\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.94, "input_tokens": 1146, "output_tokens": 561, "cost_usd": 0.0005095}

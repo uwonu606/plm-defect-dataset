@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"RRC reconfiguration random access gNB assert abort 재설정 RACH 재시도 PRACH crash gNB 종료 rrc_reconfig\",\"intents\":[],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 8.38, "input_tokens": 1294, "output_tokens": 1116, "cost_usd": 0.0008166}

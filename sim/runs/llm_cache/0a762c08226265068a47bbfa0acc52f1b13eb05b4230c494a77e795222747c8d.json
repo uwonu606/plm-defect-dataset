@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"PDSCH VRB 테스트 DL KO 2000 assert DU MAC 스케줄러 ocudu\",\"intents\":[\"cause\"],\"product\":\"ocudu\",\"equipment\":\"RAN-DU\",\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.21, "input_tokens": 1311, "output_tokens": 492, "cost_usd": 0.000508}

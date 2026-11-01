@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron CI 빌드 이슈 구현 오류 build failure CI pipeline implementation bug gate job\",\"intents\":[\"aggregate\"],\"product\":\"neutron\",\"equipment\":\"PLATFORM\",\"year\":2015,\"record_type\":\"CI·빌드 이슈\",\"cause_class\":\"구현 오류\",\"in_scope\":true}", "seconds": 5.22, "input_tokens": 1267, "output_tokens": 502, "cost_usd": 0.0005042}

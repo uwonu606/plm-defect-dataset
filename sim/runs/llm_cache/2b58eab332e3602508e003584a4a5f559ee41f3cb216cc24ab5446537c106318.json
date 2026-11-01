@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"Initial Context Setup Response 미전송 UE Context Release eNB MME open5gs attach PDN 데이터 연결 실패 bearer setup\",\"intents\":[\"cause\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.84, "input_tokens": 1330, "output_tokens": 578, "cost_usd": 0.0005548}

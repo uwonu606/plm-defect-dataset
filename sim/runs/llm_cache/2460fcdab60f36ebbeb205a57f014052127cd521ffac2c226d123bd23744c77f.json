@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"UE 구현 오류 implementation error 결함 건수 2015\", \"intents\": [\"aggregate\"], \"product\": null, \"equipment\": \"UE\", \"year\": 2015, \"record_type\": null, \"cause_class\": \"구현 오류\", \"in_scope\": true}", "seconds": 3.6, "input_tokens": 1111, "output_tokens": 333, "cost_usd": 0.0003885}

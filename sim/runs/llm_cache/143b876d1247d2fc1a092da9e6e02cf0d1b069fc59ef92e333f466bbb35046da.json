@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"CI 빌드 의존성 오류\", \"filters\": {\"product\": \"srsran\", \"equipment\": \"RAN-DU\", \"year\": \"2020\", \"record_type\": \"CI·빌드\", \"cause_class\": \"빌드·의존성\"}, \"k\": 10}}", "seconds": 4.66, "input_tokens": 1703, "output_tokens": 426, "cost_usd": 0.00037575}

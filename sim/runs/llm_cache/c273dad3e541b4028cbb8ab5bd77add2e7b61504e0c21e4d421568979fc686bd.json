@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"HSS에 없는 사용자 attach 시 Attach Reject EMM cause 11 대신 기대한 8\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 3.98, "input_tokens": 1554, "output_tokens": 317, "cost_usd": 0.00029145000000000006}

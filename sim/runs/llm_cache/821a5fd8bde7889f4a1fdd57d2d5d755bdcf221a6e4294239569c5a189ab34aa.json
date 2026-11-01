@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"free5gc AMF NG Setup InitialUEMessage crash 종료 segfault 수정 패치 버전\", \"intents\": [\"fix\"], \"product\": \"free5gc\", \"equipment\": \"CORE\", \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 5.67, "input_tokens": 1273, "output_tokens": 339, "cost_usd": 0.0004239}

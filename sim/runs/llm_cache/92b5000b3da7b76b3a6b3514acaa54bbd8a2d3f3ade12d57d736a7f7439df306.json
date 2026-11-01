@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"MME Tracking area update 처리 중 S11 Delete Session Response assertion 크래시\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 3.73, "input_tokens": 1545, "output_tokens": 311, "cost_usd": 0.00028665000000000006}

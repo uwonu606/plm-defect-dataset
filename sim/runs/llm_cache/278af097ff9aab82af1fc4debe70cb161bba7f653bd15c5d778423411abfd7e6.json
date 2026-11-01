@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"aggregate\", \"args\": {\"filters\": {\"product\": \"neutron\", \"equipment\": \"PLATFORM\", \"year\": \"2015\", \"record_type\": \"CI·빌드\", \"cause_class\": \"구현 오류\"}}}", "seconds": 3.25, "input_tokens": 1528, "output_tokens": 244, "cost_usd": 0.00024975}

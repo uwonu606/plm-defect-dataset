@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"RRC 재설정 도중 random access 재수행 시 gNB assert 종료\", \"filters\": {}, \"k\": 10}}", "seconds": 3.41, "input_tokens": 1555, "output_tokens": 231, "cost_usd": 0.00024865}

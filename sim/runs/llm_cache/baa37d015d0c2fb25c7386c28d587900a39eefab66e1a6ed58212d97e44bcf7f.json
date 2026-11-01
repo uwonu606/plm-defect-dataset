@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"PCC rule non-default QoS flow uplink traffic not forwarded to DN for about 20 minutes then recovers\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 3.67, "input_tokens": 1575, "output_tokens": 191, "cost_usd": 0.00023265000000000002}

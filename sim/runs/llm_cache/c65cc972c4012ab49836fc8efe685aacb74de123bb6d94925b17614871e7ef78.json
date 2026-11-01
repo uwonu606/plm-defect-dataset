@@ -1,0 +1,1 @@
+{"text": "```json\n{\"steps\": [{\"id\": \"s1\", \"tool\": \"search\", \"args\": {\"query\": \"RRC reconfiguration 중 random access 재시도 시 gNB assert 종료\", \"k\": 10}}], \"answer\": {\"cases\": [\"s1\"], \"fix_status\": null, \"count\": null}}\n```", "seconds": 4.86, "input_tokens": 1575, "output_tokens": 436, "cost_usd": 0.00034869}

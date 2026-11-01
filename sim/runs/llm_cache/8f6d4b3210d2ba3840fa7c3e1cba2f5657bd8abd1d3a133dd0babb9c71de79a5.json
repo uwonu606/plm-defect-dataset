@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"DVR SNAT L3HA FIP VIP 로드밸런서 라우터 생성 삭제 반복 return traffic SNAT namespace 누락 keepalived ha_router 라우팅 실패\",\"intents\":[\"cause\",\"fix\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 7.26, "input_tokens": 1186, "output_tokens": 749, "cost_usd": 0.0006115000000000001}

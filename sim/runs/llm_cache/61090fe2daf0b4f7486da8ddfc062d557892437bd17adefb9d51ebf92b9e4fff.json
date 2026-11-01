@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"free5gc UPF 다중 DNN 패킷 미전달 upfgtp 인터페이스 수정 패치 버전\", \"intents\": [\"fix\"], \"product\": \"free5gc\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 3.92, "input_tokens": 1298, "output_tokens": 424, "cost_usd": 0.0004714}

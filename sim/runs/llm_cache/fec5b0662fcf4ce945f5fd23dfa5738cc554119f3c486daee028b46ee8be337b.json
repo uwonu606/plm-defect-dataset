@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs HSS 미등록 가입자 Attach Reject EMM cause 8 11 PLMN not allowed 패치 수정\",\"intents\":[\"cause\",\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.12, "input_tokens": 1151, "output_tokens": 652, "cost_usd": 0.0005560000000000001}

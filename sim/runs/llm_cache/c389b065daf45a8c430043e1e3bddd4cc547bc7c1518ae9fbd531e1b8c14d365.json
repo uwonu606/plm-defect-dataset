@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"셀 상태 Unknown EMS 표시 재기동 후에도 지속 원인 로그\", \"filters\": {\"equipment\": \"OAM\"}, \"k\": 10}}", "seconds": 4.36, "input_tokens": 3059, "output_tokens": 332, "cost_usd": 0.0005999500000000001}

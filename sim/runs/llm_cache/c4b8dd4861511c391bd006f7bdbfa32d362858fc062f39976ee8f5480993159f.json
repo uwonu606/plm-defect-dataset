@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron LBaaS v2 pool member 추가 PENDING_UPDATE stuck 존재하지 않는 subnet_id\",\"intents\":[\"cause\",\"fix\"],\"product\":\"neutron\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.45, "input_tokens": 1160, "output_tokens": 351, "cost_usd": 0.0004073}

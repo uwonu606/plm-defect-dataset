@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"pipelined qos_tc_impl error deleting class not releasing idx\", \"filters\": {}}}", "seconds": 3.55, "input_tokens": 1620, "output_tokens": 156, "cost_usd": 0.00022415}

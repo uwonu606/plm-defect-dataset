@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"find_by_identifier\", \"args\": {\"text\": \"DetachedInstanceError\"}}", "seconds": 5.32, "input_tokens": 2891, "output_tokens": 427, "cost_usd": 0.00061385}

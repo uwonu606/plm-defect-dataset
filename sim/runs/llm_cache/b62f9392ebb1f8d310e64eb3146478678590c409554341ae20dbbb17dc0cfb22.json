@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"load balancer provider list 중복 duplicate provider LBaaS provider-list 출력 중복 neutron octavia\",\"intents\":[\"aggregate\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.78, "input_tokens": 1132, "output_tokens": 565, "cost_usd": 0.0005087}

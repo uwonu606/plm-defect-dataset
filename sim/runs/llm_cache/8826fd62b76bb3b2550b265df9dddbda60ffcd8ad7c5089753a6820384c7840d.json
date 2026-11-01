@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"Contrail 환경 neutron 방화벽 플러그인 설치 설정 단계 실패\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.88, "input_tokens": 1544, "output_tokens": 327, "cost_usd": 0.00029445000000000003}

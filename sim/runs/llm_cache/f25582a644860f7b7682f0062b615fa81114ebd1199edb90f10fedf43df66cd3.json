@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"DVR SNAT L3HA FIP 로드밸런서 VIP 접속 불가 router 생성 삭제 반복 후 반환 패킷 SNAT 미전달\", \"filters\": {}, \"k\": 10}}", "seconds": 3.76, "input_tokens": 1589, "output_tokens": 336, "cost_usd": 0.00030795}

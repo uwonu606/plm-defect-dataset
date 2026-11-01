@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"service provider 목록 조회 결과 항목 중복 출력\", \"filters\": {\"product\": \"neutron\", \"equipment\": \"PLATFORM\"}, \"k\": 10}}", "seconds": 3.84, "input_tokens": 2942, "output_tokens": 309, "cost_usd": 0.00056505}

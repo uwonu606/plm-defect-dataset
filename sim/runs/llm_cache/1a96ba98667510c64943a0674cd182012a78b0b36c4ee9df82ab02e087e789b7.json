@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"로드밸런서 provider 목록 조회 시 같은 provider가 중복 출력됨\", \"filters\": {}, \"k\": 10}}", "seconds": 2.94, "input_tokens": 1535, "output_tokens": 205, "cost_usd": 0.00023165000000000002}

@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"testtools MismatchError matchers._impl != assertion 불일치 반복 로그 원인 유사 사례\", \"intents\": [\"cause\", \"aggregate\"], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 6.09, "input_tokens": 1149, "output_tokens": 753, "cost_usd": 0.0006061}

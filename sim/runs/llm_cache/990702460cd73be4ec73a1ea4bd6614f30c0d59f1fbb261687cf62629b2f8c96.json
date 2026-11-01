@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"conntrack -D -p 0 protocol 0 entry 삭제 실패 conntrack command fail\", \"filters\": {}, \"k\": 10}}", "seconds": 4.43, "input_tokens": 1864, "output_tokens": 367, "cost_usd": 0.00037845}

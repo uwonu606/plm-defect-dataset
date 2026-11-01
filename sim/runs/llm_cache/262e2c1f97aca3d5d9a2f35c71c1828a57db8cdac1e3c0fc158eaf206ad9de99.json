@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron folsom_initial migration NSX plugin quotas 테이블 누락 DB migration 실패 원인 nsx quotas table missing\",\"intents\":[\"cause\",\"aggregate\"],\"product\":\"neutron\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.24, "input_tokens": 1151, "output_tokens": 543, "cost_usd": 0.0005015}

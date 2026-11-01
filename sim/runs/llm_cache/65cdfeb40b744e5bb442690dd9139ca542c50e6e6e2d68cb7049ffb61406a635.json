@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"Airspan AirSpeed 1030 eNB attach failure disconnect MME\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 3.37, "input_tokens": 1588, "output_tokens": 245, "cost_usd": 0.00026225}

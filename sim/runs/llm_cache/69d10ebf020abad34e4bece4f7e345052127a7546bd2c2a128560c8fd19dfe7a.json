@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"free5gc AMF EAP-AKA' AuthenticationResponse EAP 정보 누락 NGAP worker crash 원인 수정 v4.2.1\", \"intents\": [\"cause\", \"fix\"], \"product\": \"free5gc\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 4.38, "input_tokens": 1157, "output_tokens": 521, "cost_usd": 0.0004917}

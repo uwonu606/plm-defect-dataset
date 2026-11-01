@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"open5gs MME eNB attach 실패 S1 Setup Attach Reject 연결 끊김 Airspan AirSpeed 1030 interoperability\", \"intents\": [\"cause\"], \"product\": \"open5gs\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 6.96, "input_tokens": 1327, "output_tokens": 695, "cost_usd": 0.0006127}

@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"Assertion HASH_TABLE_OK data NULL failed 해시테이블 assert 반복 크래시 hashtable ret\", \"intents\": [\"cause\", \"aggregate\"], \"product\": null, \"equipment\": null, \"year\": 2026, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 6.95, "input_tokens": 1162, "output_tokens": 1101, "cost_usd": 0.0007827}

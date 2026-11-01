@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"라이선스 일련번호 불일치 기능 비활성화 license serial mismatch feature not activated 장비 교체\",\"intents\":[],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":false}", "seconds": 3.92, "input_tokens": 1268, "output_tokens": 230, "cost_usd": 0.00036840000000000006}

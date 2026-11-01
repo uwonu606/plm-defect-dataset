@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"ML2 mechanism driver unit test VLAN type driver 설정이 테스트 간 반영되지 않음 실패\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.62, "input_tokens": 1564, "output_tokens": 208, "cost_usd": 0.00023894999999999998}

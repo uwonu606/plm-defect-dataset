@@ -1,0 +1,1 @@
+{"text": "{\"final\": {\"cases\": [\"DF-UE-2023-00251\", \"DF-RAN-DU-2023-00436\", \"DF-UE-2023-00264\", \"DF-CORE-2024-02001\", \"DF-CORE-2024-02161\", \"DF-UE-2023-00263\"], \"fix_status\": \"fix_ref_only\", \"count\": null, \"abstain\": false}}", "seconds": 6.23, "input_tokens": 3406, "output_tokens": 847, "cost_usd": 0.0009268499999999999}

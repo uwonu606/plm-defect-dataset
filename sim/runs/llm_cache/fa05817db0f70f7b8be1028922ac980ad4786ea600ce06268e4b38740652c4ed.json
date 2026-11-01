@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"oai gNB segfault libuhd USRP 초기화 CI crash 세그멘테이션 폴트 uhd_usrp_source\", \"intents\": [\"cause\", \"fix\"], \"product\": \"oai\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 7.2, "input_tokens": 1153, "output_tokens": 446, "cost_usd": 0.00045339999999999996}

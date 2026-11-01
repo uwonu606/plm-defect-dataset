@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron legacy router SNAT disabled floating IP 응답 fixed IP 주소 불일치 DNAT ICMP reply source address same subnet\",\"intents\":[\"cause\"],\"product\":\"neutron\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.59, "input_tokens": 1298, "output_tokens": 388, "cost_usd": 0.0004534}

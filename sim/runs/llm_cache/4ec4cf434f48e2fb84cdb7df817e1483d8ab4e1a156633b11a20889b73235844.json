@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"REST API 리소스 목록 조회 filter 키에 DB 모델 속성 이름 사용 시 500 에러\", \"filters\": {}, \"k\": 10}}", "seconds": 3.07, "input_tokens": 1541, "output_tokens": 173, "cost_usd": 0.00021685}

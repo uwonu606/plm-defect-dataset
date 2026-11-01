@@ -1,0 +1,1 @@
+{"text": "{\"steps\": [{\"id\": \"s1\", \"tool\": \"aggregate\", \"args\": {\"filters\": {\"year\": \"2021\", \"equipment\": \"PLATFORM\", \"cause_class\": \"테스트\"}}}], \"answer\": {\"cases\": [], \"fix_status\": null, \"count\": \"s1\"}}", "seconds": 3.88, "input_tokens": 1536, "output_tokens": 247, "cost_usd": 0.00024639}

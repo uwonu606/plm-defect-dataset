@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"UE 장비 레코드 2023 등록 건수 count equipment UE\", \"intents\": [\"aggregate\"], \"product\": null, \"equipment\": \"UE\", \"year\": 2023, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 3.66, "input_tokens": 1233, "output_tokens": 353, "cost_usd": 0.00042290000000000003}

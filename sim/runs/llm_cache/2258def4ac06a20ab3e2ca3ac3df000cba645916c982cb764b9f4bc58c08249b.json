@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"스케줄러 PUCCH CSI 자원 할당 실패 warning, 다수 UE 접속 시 CSI 자원 부족\", \"filters\": {}, \"k\": 10}}", "seconds": 4.39, "input_tokens": 1583, "output_tokens": 295, "cost_usd": 0.00028625000000000005}

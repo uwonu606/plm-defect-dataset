@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"neutron worker SIGTERM graceful shutdown 지연 SIGKILL 강제 종료 ML2/OVN\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.97, "input_tokens": 1565, "output_tokens": 271, "cost_usd": 0.00027065}

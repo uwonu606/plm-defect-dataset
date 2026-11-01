@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"RRC reconfiguration RACH random access gNB assert abort crash COTS UE 재현 드묾 재설정 재접속 크래시\",\"intents\":[\"cause\",\"fix\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.63, "input_tokens": 1152, "output_tokens": 602, "cost_usd": 0.0005312}

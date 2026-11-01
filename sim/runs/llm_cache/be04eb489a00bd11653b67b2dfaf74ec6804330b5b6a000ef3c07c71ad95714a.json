@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"srsRAN gNB srsUE RRC connected PDU session not established UE no IP address\", \"filters\": {\"product\": \"srsran\"}, \"k\": 10}}", "seconds": 2.97, "input_tokens": 1545, "output_tokens": 175, "cost_usd": 0.00021865000000000003}

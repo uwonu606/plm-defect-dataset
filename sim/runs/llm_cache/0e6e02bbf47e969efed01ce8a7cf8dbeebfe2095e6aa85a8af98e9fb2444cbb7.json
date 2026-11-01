@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron OVS agent 호스트 IP 변경 GRE tunnel 미동작 local_ip br-tun tunnel endpoint 재연결 ovs-agent\", \"intents\": [\"cause\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 7.36, "input_tokens": 1293, "output_tokens": 445, "cost_usd": 0.00048090000000000003}

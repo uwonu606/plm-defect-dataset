@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"ActivateFlows processing timed out, Could not activate rules, rpc failed, terminating session\", \"k\": 10}}", "seconds": 3.82, "input_tokens": 1577, "output_tokens": 269, "cost_usd": 0.00027205}

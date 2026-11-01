@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"magma NMS UE IP pool 잘못된 CIDR AGW mme crash 1.3.1 패치 수정\",\"intents\":[\"fix\"],\"product\":\"magma\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.44, "input_tokens": 1296, "output_tokens": 662, "cost_usd": 0.00059}

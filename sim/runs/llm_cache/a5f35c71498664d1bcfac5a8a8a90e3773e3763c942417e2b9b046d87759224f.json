@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"NRF PUT NFProfile AUSF fqdn localhost 등록 요청 시 abort crash\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 4.21, "input_tokens": 1581, "output_tokens": 337, "cost_usd": 0.00030685}

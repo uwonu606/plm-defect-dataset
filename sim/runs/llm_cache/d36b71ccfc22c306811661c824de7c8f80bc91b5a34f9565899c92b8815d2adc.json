@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs MME Diameter assert abort 기동 실패 kvm Ubuntu 20.04 v2.3.3 원인 패치 수정\",\"intents\":[\"cause\",\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.48, "input_tokens": 1301, "output_tokens": 566, "cost_usd": 0.0005430000000000001}

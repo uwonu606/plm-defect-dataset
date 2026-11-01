@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"subscription_data failed 가입자 데이터 조회 실패 UDM UDR MongoDB 인증 HSS 5GC 반복 에러\", \"intents\": [\"cause\", \"aggregate\"], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 12.04, "input_tokens": 1138, "output_tokens": 626, "cost_usd": 0.0005404}

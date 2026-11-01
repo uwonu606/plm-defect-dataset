@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"amf_ue context 할당 실패 pool 고갈 ERROR context.c:1589 UE context allocation AMF\",\"intents\":[\"cause\",\"aggregate\"],\"product\":null,\"equipment\":null,\"year\":2026,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.33, "input_tokens": 1167, "output_tokens": 788, "cost_usd": 0.0006272000000000001}

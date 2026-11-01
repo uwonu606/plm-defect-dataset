@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron SIGTERM SIGKILL systemctl ML2/OVN worker graceful shutdown 종료 지연 timeout stop\", \"intents\": [\"fix\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 5.04, "input_tokens": 1162, "output_tokens": 596, "cost_usd": 0.0005302}

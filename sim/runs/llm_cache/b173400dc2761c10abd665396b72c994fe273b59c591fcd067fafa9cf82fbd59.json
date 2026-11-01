@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"Assertion crc->rnti == rx->rnti failed, RNTI 불일치, CRC, MAC PHY, 반복 로그, srsRAN OAI gNB eNB\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.13, "input_tokens": 1293, "output_tokens": 442, "cost_usd": 0.00047940000000000005}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"PLC 정전 신호 접점 채터링으로 정전 알람 반복\", \"filters\": {}, \"k\": 10}}", "seconds": 3.83, "input_tokens": 1530, "output_tokens": 218, "cost_usd": 0.00023715000000000002}

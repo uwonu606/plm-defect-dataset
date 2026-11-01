@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron DHCP lease 기간 단축 인스턴스 IP 조기 만료 dnsmasq dhcp_lease_duration renew\", \"intents\": [\"cause\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 5.87, "input_tokens": 1286, "output_tokens": 858, "cost_usd": 0.000686}

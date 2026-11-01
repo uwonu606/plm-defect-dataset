@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"amf_ue context pool allocation failure ERROR Could not allocate amf_ue context from pool\", \"filters\": {}, \"k\": 10}}", "seconds": 3.55, "input_tokens": 1623, "output_tokens": 164, "cost_usd": 0.00022875}

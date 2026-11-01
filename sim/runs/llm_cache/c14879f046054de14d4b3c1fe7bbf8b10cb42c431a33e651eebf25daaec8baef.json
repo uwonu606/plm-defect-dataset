@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron allocation pool IP 회수 실패 No more IP addresses available nova boot 포트 누수 port leak DHCP\",\"intents\":[\"cause\",\"fix\"],\"product\":\"neutron\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.54, "input_tokens": 1173, "output_tokens": 587, "cost_usd": 0.0005279}

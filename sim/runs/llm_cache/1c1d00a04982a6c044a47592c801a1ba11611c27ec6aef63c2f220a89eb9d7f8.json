@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"EAP-5G NAS EAP Response 짧은 메시지 RADIUS index out of range panic 프로세스 크래시 segfault 버퍼 길이 검증\",\"intents\":[\"cause\",\"fix\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.54, "input_tokens": 1146, "output_tokens": 607, "cost_usd": 0.0005325}

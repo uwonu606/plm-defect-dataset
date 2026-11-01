@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"OVS agent host IP 변경 후 GRE tunnel 동작 안 함\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.94, "input_tokens": 1554, "output_tokens": 179, "cost_usd": 0.00022245}

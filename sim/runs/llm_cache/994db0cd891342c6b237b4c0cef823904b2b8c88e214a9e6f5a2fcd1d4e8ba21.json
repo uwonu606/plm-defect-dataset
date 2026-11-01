@@ -1,0 +1,1 @@
+{"text": "```json\n{\"steps\": [{\"id\": \"s1\", \"tool\": \"aggregate\", \"args\": {\"filters\": {\"product\": \"oai\", \"year\": 2017, \"record_type\": \"결함\"}}}], \"answer\": {\"cases\": null, \"fix_status\": null, \"count\": \"s1\"}}\n```", "seconds": 4.53, "input_tokens": 1510, "output_tokens": 441, "cost_usd": 0.00033819}

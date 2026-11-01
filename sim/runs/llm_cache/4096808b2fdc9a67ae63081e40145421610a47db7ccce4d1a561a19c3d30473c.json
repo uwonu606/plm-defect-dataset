@@ -1,0 +1,1 @@
+{"text": "```json\n{\"steps\": [{\"id\": \"s1\", \"tool\": \"aggregate\", \"args\": {\"filters\": {\"product\": \"open5gs\", \"year\": \"2025\", \"cause_class\": \"결함 아님\"}}}], \"answer\": {\"cases\": [], \"fix_status\": null, \"count\": \"s1\"}}\n```", "seconds": 4.08, "input_tokens": 1533, "output_tokens": 217, "cost_usd": 0.00023079}

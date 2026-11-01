@@ -1,0 +1,1 @@
+{"text": "{\"steps\": [{\"id\": \"s1\", \"tool\": \"aggregate\", \"args\": {\"filters\": {\"equipment\": \"RAN-CU\", \"year\": \"2026\", \"cause_class\": \"테스트\"}}}], \"answer\": {\"cases\": null, \"fix_status\": null, \"count\": \"s1\"}}", "seconds": 3.62, "input_tokens": 1536, "output_tokens": 98, "cost_usd": 0.00017189}

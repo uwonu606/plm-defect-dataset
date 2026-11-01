@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"magma containerized AGW systemd init_system docker FileNotFoundError 컨테이너 AGW 기동 오류\", \"intents\": [\"cause\", \"fix\"], \"product\": \"magma\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 4.48, "input_tokens": 1150, "output_tokens": 536, "cost_usd": 0.0004978000000000001}

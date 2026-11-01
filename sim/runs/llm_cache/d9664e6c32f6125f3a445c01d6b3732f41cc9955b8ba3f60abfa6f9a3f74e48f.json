@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"알람 마스킹 잔존 해제 누락 EMS alarm masking stale suppression 정상 셀 장애 보고\", \"intents\": [\"fix\"], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": false}", "seconds": 5.06, "input_tokens": 1151, "output_tokens": 430, "cost_usd": 0.00044500000000000003}

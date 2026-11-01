@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"LBaaS v2 pool member 존재하지 않는 subnet_id 추가 시 load balancer PENDING_UPDATE 고착\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 4.09, "input_tokens": 1563, "output_tokens": 245, "cost_usd": 0.00043490000000000005}

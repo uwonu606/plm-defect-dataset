@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"stateless MME crash under continuous UE attach load, around 50 UEs\", \"filters\": {\"product\": \"magma\"}, \"k\": 10}}", "seconds": 3.56, "input_tokens": 1572, "output_tokens": 255, "cost_usd": 0.00026405000000000005}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"aggregate\", \"args\": {\"filters\": {\"product\": \"open5gs\", \"equipment\": \"CORE\", \"year\": \"2019\", \"cause_class\": \"결함 아님\"}}}", "seconds": 4.98, "input_tokens": 1519, "output_tokens": 160, "cost_usd": 0.00020595000000000002}

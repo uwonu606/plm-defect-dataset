@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"electrical tilt 설정값 단위 변환 반올림 EMS 반영 불일치 펌웨어\", \"filters\": {\"equipment\": \"RAN-DU\"}, \"k\": 10}}", "seconds": 4.62, "input_tokens": 4652, "output_tokens": 512, "cost_usd": 0.00100855}

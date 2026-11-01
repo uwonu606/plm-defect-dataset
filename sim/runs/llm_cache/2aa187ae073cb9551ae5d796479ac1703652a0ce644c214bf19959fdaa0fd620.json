@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"Initial Context Setup Response 미응답 eNB UE Context Release 데이터 연결 실패 attach 단말 재시작 시\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 4.19, "input_tokens": 1591, "output_tokens": 416, "cost_usd": 0.00034835}

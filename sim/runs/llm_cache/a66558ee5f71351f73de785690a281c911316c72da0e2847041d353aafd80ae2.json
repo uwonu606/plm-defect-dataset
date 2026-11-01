@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"gNB 셀 상태 Unknown OAM 재기동 후에도 지속 cell resource reconciler 로그\", \"filters\": {}, \"k\": 10}}", "seconds": 6.04, "input_tokens": 4564, "output_tokens": 688, "cost_usd": 0.00107895}

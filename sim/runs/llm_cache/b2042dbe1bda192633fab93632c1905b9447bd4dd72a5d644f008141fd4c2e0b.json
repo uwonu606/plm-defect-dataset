@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"aggregate\", \"args\": {\"filters\": {\"equipment\": \"UE\", \"year\": \"2015\", \"cause_class\": \"구현 오류\"}}}", "seconds": 2.69, "input_tokens": 1514, "output_tokens": 149, "cost_usd": 0.00019945}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"aggregate\", \"args\": {\"filters\": {\"equipment\": \"RAN-CU\", \"year\": \"2026\", \"cause_class\": \"테스트\"}}}", "seconds": 3.09, "input_tokens": 1516, "output_tokens": 213, "cost_usd": 0.00023185}

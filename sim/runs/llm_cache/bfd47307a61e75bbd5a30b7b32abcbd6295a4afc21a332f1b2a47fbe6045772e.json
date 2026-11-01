@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"provider:segmentation_id -1 vxlan network 생성 201 Created ACTIVE 검증 누락\", \"filters\": {\"product\": \"neutron\"}}}", "seconds": 4.02, "input_tokens": 1564, "output_tokens": 296, "cost_usd": 0.00028295}

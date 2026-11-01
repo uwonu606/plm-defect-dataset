@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"로드밸런서 pool 스케줄러 마이그레이션 agent 컬럼 이름 불일치 lbaas agent scheduler migration alembic column rename\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.32, "input_tokens": 1299, "output_tokens": 672, "cost_usd": 0.0005956}

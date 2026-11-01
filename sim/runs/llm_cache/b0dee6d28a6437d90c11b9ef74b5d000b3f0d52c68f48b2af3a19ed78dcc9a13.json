@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"open5gs UPF SGi-LAN FAR 설치 후 일치하는 GTP-U 패킷 수신 시 프로세스 종료\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 4.35, "input_tokens": 1578, "output_tokens": 240, "cost_usd": 0.00025775}

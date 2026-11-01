@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs PCC rule dedicated bearer QoS flow 업링크 미전달 DN 지연 20분 uplink not forwarded fix patch SMF PCRF\",\"intents\":[\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.0, "input_tokens": 1172, "output_tokens": 655, "cost_usd": 0.0005617}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"legacy router SNAT disabled floating IP ping reply source address fixed IP mismatch same subnet VM\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.28, "input_tokens": 1559, "output_tokens": 260, "cost_usd": 0.00026395}

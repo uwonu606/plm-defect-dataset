@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"REST API list filter 키 DB 모델 속성명 500 error 필터 매핑 실패 목록 조회 unfiltered attribute mapping\",\"intents\":[\"aggregate\",\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.01, "input_tokens": 1138, "output_tokens": 513, "cost_usd": 0.0004839}

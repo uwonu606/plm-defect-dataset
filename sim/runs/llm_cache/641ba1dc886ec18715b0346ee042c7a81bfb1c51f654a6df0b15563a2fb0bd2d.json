@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"OVN FDB learning FDB table growth 확장성 성능 저하 mac_learning ovn-controller neutron fix\", \"intents\": [\"fix\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 6.76, "input_tokens": 1153, "output_tokens": 460, "cost_usd": 0.0004604}

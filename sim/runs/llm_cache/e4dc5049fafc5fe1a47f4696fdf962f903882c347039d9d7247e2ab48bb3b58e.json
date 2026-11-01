@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"allocation pool IP 회수 안 됨 instance 삭제 후 No more IP addresses available\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.05, "input_tokens": 1576, "output_tokens": 171, "cost_usd": 0.00022285000000000002}

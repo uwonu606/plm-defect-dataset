@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"PDSCH VRB 시험 DL KO 다수 발생\", \"filters\": {\"product\": \"ocudu\", \"equipment\": \"RAN-DU\"}, \"k\": 10}}", "seconds": 3.81, "input_tokens": 1572, "output_tokens": 262, "cost_usd": 0.0002675500000000001}

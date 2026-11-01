@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"UDR amf-subscriptions 삭제 요청 없는 subsId 패닉 EE subscription\", \"filters\": {\"product\": \"free5gc\"}, \"k\": 10}}", "seconds": 6.12, "input_tokens": 1583, "output_tokens": 282, "cost_usd": 0.00027975000000000005}

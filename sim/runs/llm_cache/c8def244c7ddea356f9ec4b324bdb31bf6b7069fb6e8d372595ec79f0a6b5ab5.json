@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs v2.2.0 No S-NSSAI UL NAS AMF 회귀 Amarisoft\",\"intents\":[\"cause\",\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.94, "input_tokens": 1314, "output_tokens": 475, "cost_usd": 0.0005001000000000001}

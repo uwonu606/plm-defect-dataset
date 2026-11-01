@@ -1,0 +1,1 @@
+{"text": "```json\n{\"steps\": [{\"id\": \"s1\", \"tool\": \"search\", \"args\": {\"query\": \"Contrail 환경 neutron 방화벽 플러그인 설치 설정 단계 실패\", \"filters\": {\"product\": \"neutron\"}, \"k\": 5}}], \"answer\": {\"cases\": [\"s1\"], \"fix_status\": null, \"count\": null}}\n```", "seconds": 3.89, "input_tokens": 1564, "output_tokens": 403, "cost_usd": 0.00032999}

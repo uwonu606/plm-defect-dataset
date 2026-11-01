@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"find_by_identifier\", \"args\": {\"text\": \"Validation of PDUSessionResourceSetupRequest failed\"}}", "seconds": 4.21, "input_tokens": 1553, "output_tokens": 328, "cost_usd": 0.00029675000000000003}

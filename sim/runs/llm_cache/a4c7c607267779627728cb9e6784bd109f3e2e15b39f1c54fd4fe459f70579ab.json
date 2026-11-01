@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs SMF 미등록 DNN SM context 생성 FATAL 프로세스 크래시 abort PDU session establishment\",\"intents\":[\"cause\",\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.68, "input_tokens": 1152, "output_tokens": 536, "cost_usd": 0.0004982000000000001}

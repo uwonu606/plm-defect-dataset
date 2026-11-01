@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"ML2/OVN distributed FIP enabled then switched to centralized, VLAN tenant network existing floating IP not working\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.81, "input_tokens": 1569, "output_tokens": 220, "cost_usd": 0.00024595}

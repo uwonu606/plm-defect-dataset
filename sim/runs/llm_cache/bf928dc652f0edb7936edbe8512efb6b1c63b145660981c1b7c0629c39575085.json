@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"magma orchestrator helm metricsd ha subscriberdb_cache SERVICE303 metric 수집 실패 1.8.0 fix\",\"intents\":[\"cause\",\"fix\"],\"product\":\"magma\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.54, "input_tokens": 1159, "output_tokens": 494, "cost_usd": 0.00047860000000000003}

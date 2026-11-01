@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"AMF panic HandoverRequestAcknowledge after NGSetup\", \"filters\": {\"product\": \"free5gc\"}, \"k\": 10}}", "seconds": 3.94, "input_tokens": 1573, "output_tokens": 288, "cost_usd": 0.00028075}

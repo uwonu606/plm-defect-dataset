@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"magma MME crash UE attach 부하 시험 stateless attach storm 50 UE 원인 유사 사례\", \"intents\": [\"cause\"], \"product\": \"magma\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 4.81, "input_tokens": 1311, "output_tokens": 403, "cost_usd": 0.00046350000000000004}

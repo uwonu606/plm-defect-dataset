@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs v2.2.0 UL NAS No S-NSSAI 에러 S-NSSAI 누락 회귀 regression\",\"intents\":[\"cause\",\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.62, "input_tokens": 1172, "output_tokens": 518, "cost_usd": 0.0004932000000000001}

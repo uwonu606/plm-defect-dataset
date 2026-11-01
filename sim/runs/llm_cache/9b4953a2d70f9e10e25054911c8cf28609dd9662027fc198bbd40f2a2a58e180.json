@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"aggregate\", \"args\": {\"filters\": {\"product\": \"srsran\", \"equipment\": \"RAN-DU\", \"year\": \"2020\", \"record_type\": \"CI·빌드\", \"cause_class\": \"빌드·의존성\"}}}", "seconds": 3.94, "input_tokens": 1530, "output_tokens": 274, "cost_usd": 0.00026515}

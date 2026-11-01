@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"find_by_identifier\", \"args\": {\"text\": \"Could not allocate amf_ue context from pool\"}}", "seconds": 3.23, "input_tokens": 1570, "output_tokens": 173, "cost_usd": 0.00022265000000000002}

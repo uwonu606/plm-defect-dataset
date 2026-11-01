@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs MME Diameter assert abort 인터페이스 미기동 kvm Ubuntu 20.04 커널 원인 패치\",\"intents\":[\"cause\",\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.87, "input_tokens": 1159, "output_tokens": 423, "cost_usd": 0.0004431}

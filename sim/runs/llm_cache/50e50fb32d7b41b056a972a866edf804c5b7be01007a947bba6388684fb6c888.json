@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"UE 결함 레코드 2023 등록 건수 count\",\"intents\":[\"aggregate\"],\"product\":null,\"equipment\":\"UE\",\"year\":2023,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 3.71, "input_tokens": 1091, "output_tokens": 366, "cost_usd": 0.000401}

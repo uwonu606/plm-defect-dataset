@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"nrUE SIGSEGV crash on malformed downlink RRC message\", \"filters\": {\"product\": \"oai\", \"equipment\": \"UE\"}, \"k\": 10}}", "seconds": 5.21, "input_tokens": 1558, "output_tokens": 274, "cost_usd": 0.00027075000000000005}

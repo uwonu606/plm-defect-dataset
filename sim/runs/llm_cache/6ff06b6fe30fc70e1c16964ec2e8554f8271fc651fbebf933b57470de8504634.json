@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs PCRF 초기화 Address already in use bind 포트 충돌 testepc CentOS 7 EADDRINUSE\",\"intents\":[\"cause\",\"aggregate\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.61, "input_tokens": 1157, "output_tokens": 422, "cost_usd": 0.0004422}

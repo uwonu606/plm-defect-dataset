@@ -1,0 +1,1 @@
+{"text": "{\"steps\": [{\"id\": \"s1\", \"tool\": \"aggregate\", \"args\": {\"filters\": {\"equipment\": \"UE\", \"year\": \"2015\", \"cause_class\": \"구현 오류\"}}}], \"answer\": {\"cases\": null, \"fix_status\": null, \"count\": \"s1\"}}", "seconds": 3.59, "input_tokens": 1534, "output_tokens": 196, "cost_usd": 0.00022049}

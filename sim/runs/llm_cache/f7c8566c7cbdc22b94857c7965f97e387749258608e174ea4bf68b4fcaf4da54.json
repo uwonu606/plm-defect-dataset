@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"license serial number mismatch feature not activated after hardware replacement 라이선스 일련번호 불일치 기능 활성화 실패 장비 교체\",\"intents\":[\"fix\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":false}", "seconds": 5.3, "input_tokens": 1126, "output_tokens": 541, "cost_usd": 0.0004955000000000001}

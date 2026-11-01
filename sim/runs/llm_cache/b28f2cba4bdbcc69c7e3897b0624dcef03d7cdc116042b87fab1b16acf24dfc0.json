@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"oai nrUE SIGSEGV 크래시 downlink RRC 메시지 조작 segmentation fault ASN.1 decode RRC fuzzing 원인\",\"intents\":[\"cause\",\"aggregate\"],\"product\":\"oai\",\"equipment\":\"UE\",\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.32, "input_tokens": 1155, "output_tokens": 721, "cost_usd": 0.0005913}

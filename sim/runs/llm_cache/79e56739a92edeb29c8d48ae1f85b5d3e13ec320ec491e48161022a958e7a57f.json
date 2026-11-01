@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"antenna tilt 0.5도 설정이 EMS에서 1도로 반영 단위 반올림 불일치 펌웨어\", \"filters\": {\"equipment\": \"OAM\"}, \"k\": 10}}", "seconds": 4.39, "input_tokens": 3136, "output_tokens": 498, "cost_usd": 0.0006983499999999999}

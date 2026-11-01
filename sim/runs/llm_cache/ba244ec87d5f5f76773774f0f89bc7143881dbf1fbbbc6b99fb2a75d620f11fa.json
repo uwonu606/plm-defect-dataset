@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"free5gc AMF Registration Request NAS 파싱 크래시 panic 비정상 길이 Registration Reject 재크래시 segfault decode\",\"intents\":[\"cause\",\"fix\"],\"product\":\"free5gc\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.19, "input_tokens": 1162, "output_tokens": 646, "cost_usd": 0.0005552}

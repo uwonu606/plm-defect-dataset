@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"magma MME crash UE attach 부하 연속 attach 50 UE 스테이트리스 MME 크래시 segfault 메모리 누수\",\"intents\":[\"cause\",\"aggregate\"],\"product\":\"magma\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.35, "input_tokens": 1169, "output_tokens": 445, "cost_usd": 0.00045610000000000003}

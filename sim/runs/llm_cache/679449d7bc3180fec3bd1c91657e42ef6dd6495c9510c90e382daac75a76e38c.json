@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"UPF 다중 DNN 추가 시 새 DNN 패킷이 upfgtp 인터페이스 밖으로 나가지 않음\", \"filters\": {\"product\": \"free5gc\"}, \"k\": 10}}", "seconds": 4.15, "input_tokens": 1559, "output_tokens": 324, "cost_usd": 0.00029595}

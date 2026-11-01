@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"OVN FDB learning enabled FDB table grows continuously performance at scale\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.83, "input_tokens": 1556, "output_tokens": 247, "cost_usd": 0.00025685}

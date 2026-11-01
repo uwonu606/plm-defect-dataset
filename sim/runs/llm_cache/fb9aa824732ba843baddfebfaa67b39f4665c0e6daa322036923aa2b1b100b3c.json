@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"RAN-DU 규격 미준수 spec non-compliance 결함 레코드 건수 2018\", \"intents\": [\"aggregate\"], \"product\": null, \"equipment\": \"RAN-DU\", \"year\": 2018, \"record_type\": null, \"cause_class\": \"규격 미준수\", \"in_scope\": true}", "seconds": 5.05, "input_tokens": 1116, "output_tokens": 373, "cost_usd": 0.00040950000000000003}

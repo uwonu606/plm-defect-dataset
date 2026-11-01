@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"setsockopt Invalid argument Diameter PGW 기동 시 크래시\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 4.89, "input_tokens": 1548, "output_tokens": 220, "cost_usd": 0.00024175000000000002}

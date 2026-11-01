@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron OVS agent RPC timeout port update br-int new port 원인 패치\", \"intents\": [\"cause\", \"fix\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 4.83, "input_tokens": 1307, "output_tokens": 286, "cost_usd": 0.0004042}

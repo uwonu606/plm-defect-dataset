@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"PUCCH CSI 자원 할당 실패 warning scheduler many UE CSI resource shortage\", \"intents\": [], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 5.23, "input_tokens": 1322, "output_tokens": 748, "cost_usd": 0.0006382}

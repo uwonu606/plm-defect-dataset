@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"free5gc SMF sm-contexts POST multipart/related Content-Type panic 500 multipart 본문 파싱 오류 패치\",\"intents\":[\"cause\",\"fix\"],\"product\":\"free5gc\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.79, "input_tokens": 1160, "output_tokens": 428, "cost_usd": 0.0004458}

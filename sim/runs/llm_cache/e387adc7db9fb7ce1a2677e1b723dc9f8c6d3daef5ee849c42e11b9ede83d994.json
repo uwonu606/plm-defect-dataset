@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"PLATFORM 장비 결함 레코드 원인 분류 테스트 2021 등록 건수 defect record count\",\"intents\":[\"aggregate\"],\"product\":null,\"equipment\":\"PLATFORM\",\"year\":2021,\"record_type\":null,\"cause_class\":\"테스트\",\"in_scope\":true}", "seconds": 5.97, "input_tokens": 1255, "output_tokens": 459, "cost_usd": 0.0004803}

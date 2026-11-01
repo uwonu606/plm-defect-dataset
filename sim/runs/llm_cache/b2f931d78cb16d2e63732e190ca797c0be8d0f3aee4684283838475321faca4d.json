@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs MME UE attach 프로세스 크래시 segfault Attach Request NAS-EPS mme-sm 원인 패치\",\"intents\":[\"cause\",\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.51, "input_tokens": 1275, "output_tokens": 599, "cost_usd": 0.0005543}

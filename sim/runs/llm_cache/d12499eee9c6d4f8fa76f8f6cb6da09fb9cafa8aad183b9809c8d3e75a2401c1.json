@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"CU-CP paging cycle 256 CLI 옵션 입력 거부 validation 범위 초과 paging-cycle 32 64 128 parsing\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":\"RAN-CU\",\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 7.7, "input_tokens": 1144, "output_tokens": 798, "cost_usd": 0.0006276000000000001}

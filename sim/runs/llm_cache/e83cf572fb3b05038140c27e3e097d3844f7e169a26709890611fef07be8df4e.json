@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"open5gs MME UE attach 프로세스 crash segfault 간헐적 abort NAS attach request 패치\", \"intents\": [\"cause\", \"fix\"], \"product\": \"open5gs\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 4.24, "input_tokens": 1133, "output_tokens": 473, "cost_usd": 0.00046290000000000003}

@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"srsRAN RAN-DU CI 빌드 실패 build dependency 의존성 2020\",\"intents\":[\"aggregate\"],\"product\":\"srsran\",\"equipment\":\"RAN-DU\",\"year\":2020,\"record_type\":\"CI·빌드 이슈\",\"cause_class\":\"빌드·의존성\",\"in_scope\":true}", "seconds": 5.82, "input_tokens": 1269, "output_tokens": 410, "cost_usd": 0.0004586}

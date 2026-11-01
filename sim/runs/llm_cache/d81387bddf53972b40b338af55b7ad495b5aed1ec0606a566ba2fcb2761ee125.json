@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"open5gs SMF PDU session 타입 협상 IPv4v6 IPv4 PDN type cause 불일치 APN internet PDU Session Establishment Accept\", \"intents\": [\"cause\"], \"product\": \"open5gs\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 6.91, "input_tokens": 1198, "output_tokens": 759, "cost_usd": 0.0006189}

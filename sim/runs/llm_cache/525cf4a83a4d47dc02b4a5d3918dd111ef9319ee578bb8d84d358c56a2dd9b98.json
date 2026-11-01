@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron ML2/OVN distributed FIP centralized 전환 VLAN tenant network floating IP 동작 불가 dvr fip gateway\", \"intents\": [\"cause\", \"fix\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 4.58, "input_tokens": 1308, "output_tokens": 470, "cost_usd": 0.0004964}

@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"배터리 뱅크 온도 보상 설정 충전 전압 과충전 temperature compensation float voltage\",\"intents\":[\"cause\",\"fix\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":false}", "seconds": 4.64, "input_tokens": 1136, "output_tokens": 365, "cost_usd": 0.00040950000000000003}

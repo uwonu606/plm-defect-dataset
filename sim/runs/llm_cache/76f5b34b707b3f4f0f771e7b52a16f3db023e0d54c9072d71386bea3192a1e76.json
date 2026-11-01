@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"LBaaS pool agent scheduler 테이블 DB 마이그레이션 후 agent 참조 컬럼 이름 불일치\", \"filters\": {}, \"k\": 10}}", "seconds": 5.14, "input_tokens": 3184, "output_tokens": 494, "cost_usd": 0.0007059499999999999}

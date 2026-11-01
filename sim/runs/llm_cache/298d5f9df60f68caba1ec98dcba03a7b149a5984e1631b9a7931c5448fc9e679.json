@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"EMS KPI PRB utilization 0% metric collection missing counter traffic\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":false}", "seconds": 5.72, "input_tokens": 1291, "output_tokens": 482, "cost_usd": 0.0004990000000000001}

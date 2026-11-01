@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"aggregate\", \"args\": {\"filters\": {\"year\": \"2021\", \"equipment\": \"PLATFORM\", \"cause_class\": \"테스트\"}}}", "seconds": 3.56, "input_tokens": 1516, "output_tokens": 157, "cost_usd": 0.00020385}

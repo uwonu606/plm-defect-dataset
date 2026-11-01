@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"open5gs v2.3.3 MME Diameter 인터페이스 미기동 assert 종료 Ubuntu 20.04 kvm 커널\", \"filters\": {\"product\": \"open5gs\", \"equipment\": \"CORE\"}, \"k\": 10}}", "seconds": 4.3, "input_tokens": 1562, "output_tokens": 312, "cost_usd": 0.00029055}

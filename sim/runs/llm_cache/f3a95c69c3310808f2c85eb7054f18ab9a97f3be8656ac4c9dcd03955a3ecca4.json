@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"neutron 인스턴스가 연결된 bridge의 IPv6 주소로 host 접근 가능, ssh 접속 확인 프롬프트 노출, 보안 문제\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 4.07, "input_tokens": 1581, "output_tokens": 345, "cost_usd": 0.00031085}

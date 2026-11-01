@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"SMF PDN 타입 협상 IPv4v6 요청을 IPv4로 바꿔 응답하면서 cause 값 불일치 (PDN Type, PDN session establishment, cause accept)\", \"filters\": {\"product\": \"open5gs\", \"equipment\": \"CORE\"}, \"k\": 10}}", "seconds": 4.36, "input_tokens": 1601, "output_tokens": 317, "cost_usd": 0.00030085}

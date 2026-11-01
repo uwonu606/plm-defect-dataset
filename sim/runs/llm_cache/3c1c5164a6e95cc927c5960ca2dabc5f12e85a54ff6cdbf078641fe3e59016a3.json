@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"EMS 알람 마스킹 해제 누락 알람 억제 잔존 정상 셀 장애 보고 alarm mask unmask\", \"filters\": {}, \"k\": 10}}", "seconds": 4.77, "input_tokens": 4468, "output_tokens": 409, "cost_usd": 0.0009202500000000001}

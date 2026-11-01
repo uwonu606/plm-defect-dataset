@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron port forwarding floating IP 목록 조회 지연 slow list API 대량 포트 성능 저하 원인\", \"intents\": [\"cause\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 3.88, "input_tokens": 1289, "output_tokens": 363, "cost_usd": 0.0004391}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"aggregate\", \"args\": {\"filters\": {\"equipment\": \"UE\", \"record_type\": \"결함\", \"cause_class\": \"설정\"}}}", "seconds": 3.39, "input_tokens": 1500, "output_tokens": 212, "cost_usd": 0.00022815000000000002}

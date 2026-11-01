@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"SMF 미등록 DNN으로 SM context 생성 요청 시 FATAL 로그 후 프로세스 종료\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 4.29, "input_tokens": 1555, "output_tokens": 303, "cost_usd": 0.00028465}

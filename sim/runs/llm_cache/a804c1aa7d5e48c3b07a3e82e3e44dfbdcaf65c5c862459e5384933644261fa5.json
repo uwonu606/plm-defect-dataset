@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"PDUSessionResourceSetupRequest Validation failed NGAP PDU 세션 자원 설정 실패 AMF SMF gNB\",\"intents\":[\"cause\",\"aggregate\"],\"product\":null,\"equipment\":null,\"year\":2026,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.55, "input_tokens": 1150, "output_tokens": 986, "cost_usd": 0.0007228}

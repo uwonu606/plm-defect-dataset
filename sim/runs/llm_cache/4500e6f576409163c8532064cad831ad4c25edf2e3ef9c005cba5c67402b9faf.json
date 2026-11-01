@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"open5gs v2.2.0 UL NAS S-NSSAI 없음 No S-NSSAI 에러 Amarisoft\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 3.99, "input_tokens": 1575, "output_tokens": 302, "cost_usd": 0.00028815000000000004}

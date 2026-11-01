@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron OVS agent RPC timeout port update br-int compute node ovs-agent get_devices_details port_bound\",\"intents\":[\"cause\",\"fix\"],\"product\":\"neutron\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.77, "input_tokens": 1165, "output_tokens": 404, "cost_usd": 0.00043480000000000005}

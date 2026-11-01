@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"AMF EAP-AKA' AuthenticationResponse EAP 정보 없음 NGAP worker crash\", \"filters\": {\"product\": \"free5gc\"}, \"k\": 10}}", "seconds": 3.87, "input_tokens": 1560, "output_tokens": 239, "cost_usd": 0.00025365}

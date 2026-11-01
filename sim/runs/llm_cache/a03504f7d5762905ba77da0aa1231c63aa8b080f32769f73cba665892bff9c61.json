@@ -1,0 +1,1 @@
+{"text": "```json\n{\"query\":\"ngap_server Assertion 'sock' failed NGAP SCTP socket AMF 소켓 어서션 실패 반복 로그\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}\n```", "seconds": 5.33, "input_tokens": 1288, "output_tokens": 471, "cost_usd": 0.0004929}

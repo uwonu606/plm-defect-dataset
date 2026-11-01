@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron OVS agent trunk subport 잔존 tpi- spi- br-int stale interface VM 생성 삭제 반복 누수\",\"intents\":[\"cause\",\"fix\"],\"product\":\"neutron\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.13, "input_tokens": 1153, "output_tokens": 482, "cost_usd": 0.00047139999999999997}

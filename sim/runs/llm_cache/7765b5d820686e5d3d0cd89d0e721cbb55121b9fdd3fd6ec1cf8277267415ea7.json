@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"ocudu DU PDSCH VRB 할당 assert DL KO HARQ NACK 대량 시험 실패 원인\",\"intents\":[\"cause\",\"fix\"],\"product\":\"ocudu\",\"equipment\":\"RAN-DU\",\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.43, "input_tokens": 1169, "output_tokens": 666, "cost_usd": 0.0005666}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"scheduler_multi_ue_benchmark RealtimeSanitizer 오류 CI 실패\", \"filters\": {\"product\": \"ocudu\"}, \"k\": 10}}", "seconds": 3.78, "input_tokens": 1552, "output_tokens": 324, "cost_usd": 0.00029455000000000003}

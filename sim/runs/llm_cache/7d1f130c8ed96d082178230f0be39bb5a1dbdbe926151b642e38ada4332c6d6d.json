@@ -1,0 +1,1 @@
+{"text": "```json\n{\"query\": \"open5gs-webui 서비스 재시작 반복 crash restart loop QuickStart 설치 systemd webui 기동 실패\", \"intents\": [\"cause\"], \"product\": \"open5gs\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}\n```", "seconds": 4.72, "input_tokens": 1292, "output_tokens": 329, "cost_usd": 0.0004227}

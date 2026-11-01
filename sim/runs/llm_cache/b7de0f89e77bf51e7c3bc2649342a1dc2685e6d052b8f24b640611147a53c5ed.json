@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"gNB random access failure when multiple UEs attach simultaneously, RACH collision, UE re-attach from scratch, RA procedure failure under concurrent UE attach load\", \"filters\": {}, \"k\": 10}}", "seconds": 4.59, "input_tokens": 1575, "output_tokens": 383, "cost_usd": 0.00032865}

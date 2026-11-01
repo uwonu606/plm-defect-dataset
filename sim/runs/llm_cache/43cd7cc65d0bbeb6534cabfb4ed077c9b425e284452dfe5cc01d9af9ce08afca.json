@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"antenna tilt 0.5 degree 1 degree rounding EMS firmware config unit 설정 단위 반영\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":false}", "seconds": 3.84, "input_tokens": 1139, "output_tokens": 374, "cost_usd": 0.0004146}

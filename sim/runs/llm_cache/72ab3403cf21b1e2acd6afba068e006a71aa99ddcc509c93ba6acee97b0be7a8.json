@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"MME UE attach 중 프로세스 크래시 종료\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 4.63, "input_tokens": 1536, "output_tokens": 301, "cost_usd": 0.00027985}

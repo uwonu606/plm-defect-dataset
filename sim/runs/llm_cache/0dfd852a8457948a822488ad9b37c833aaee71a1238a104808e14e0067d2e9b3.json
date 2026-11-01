@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"PUCCH CSI 할당 실패 scheduler warning CSI 자원 부족 many UEs 32 UE TDD PUCCH allocation failed\",\"intents\":[\"cause\",\"aggregate\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 7.63, "input_tokens": 1180, "output_tokens": 833, "cost_usd": 0.0006523}

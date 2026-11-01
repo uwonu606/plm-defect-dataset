@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"NSSF target-plmn-list 많은 PLMN 요청 세그폴트 종료 139 검증 에러 없음\", \"filters\": {\"equipment\": \"CORE\"}, \"k\": 10}}", "seconds": 3.38, "input_tokens": 1572, "output_tokens": 216, "cost_usd": 0.00024455}

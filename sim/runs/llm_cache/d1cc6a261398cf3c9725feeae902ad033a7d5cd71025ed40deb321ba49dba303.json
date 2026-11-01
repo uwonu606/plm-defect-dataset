@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"neutron tempest pg-isolated DetachedInstanceError\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.55, "input_tokens": 1546, "output_tokens": 197, "cost_usd": 0.00022984999999999998}

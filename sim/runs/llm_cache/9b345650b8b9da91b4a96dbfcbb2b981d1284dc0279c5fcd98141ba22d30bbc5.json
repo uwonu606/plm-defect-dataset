@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"AMF Registration Request 비정상 길이 NAS 파싱 중 프로세스 크래시, reject 메시지 전송 단계에서 재크래시\", \"filters\": {\"product\": \"free5gc\"}, \"k\": 10}}", "seconds": 7.88, "input_tokens": 1565, "output_tokens": 468, "cost_usd": 0.00036915}

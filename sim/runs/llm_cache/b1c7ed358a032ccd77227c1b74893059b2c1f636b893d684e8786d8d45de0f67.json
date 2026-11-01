@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"aggregate\", \"args\": {\"filters\": {\"product\": \"oai\", \"year\": \"2017\", \"record_type\": \"결함\"}}}", "seconds": 4.66, "input_tokens": 1490, "output_tokens": 301, "cost_usd": 0.00027065}

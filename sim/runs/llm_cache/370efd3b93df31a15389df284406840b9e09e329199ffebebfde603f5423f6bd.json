@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs MME HSS AIA Authentication Request assert abort 종료 크래시 수정 패치 버전\",\"intents\":[\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.81, "input_tokens": 1147, "output_tokens": 392, "cost_usd": 0.00042520000000000004}

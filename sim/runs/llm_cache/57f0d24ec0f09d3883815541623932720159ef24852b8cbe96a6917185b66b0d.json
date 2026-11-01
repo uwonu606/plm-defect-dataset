@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"로드밸런서 pool 스케줄러 마이그레이션 agent 컬럼명 스키마 불일치 alembic lbaas agent scheduler\",\"intents\":[\"cause\",\"fix\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.57, "input_tokens": 1157, "output_tokens": 618, "cost_usd": 0.0005402}

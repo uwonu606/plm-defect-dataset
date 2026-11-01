@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron dhcp agent Unable to plug DHCP port Releasing port 포트 플러그 실패 dhcp_port linux bridge OVS tap 디바이스\",\"intents\":[\"cause\",\"fix\"],\"product\":\"neutron\",\"equipment\":null,\"year\":2026,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.99, "input_tokens": 1195, "output_tokens": 656, "cost_usd": 0.0005668}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"neutron OVS agent RPC timeout during port update on compute node, OVS br-int new port lookup\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.76, "input_tokens": 1568, "output_tokens": 222, "cost_usd": 0.00024675}

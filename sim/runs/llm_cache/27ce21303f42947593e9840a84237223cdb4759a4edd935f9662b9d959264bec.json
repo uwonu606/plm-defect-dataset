@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"RAN-CU 원인분류 테스트 결함 건수 집계 count defect 2026\",\"intents\":[\"aggregate\"],\"product\":null,\"equipment\":\"RAN-CU\",\"year\":2026,\"record_type\":null,\"cause_class\":\"테스트\",\"in_scope\":true}", "seconds": 3.8, "input_tokens": 1113, "output_tokens": 369, "cost_usd": 0.0004069}

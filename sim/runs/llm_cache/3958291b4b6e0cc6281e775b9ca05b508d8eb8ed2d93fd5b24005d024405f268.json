@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"free5gc N3IWF UE router ping 실패 forwarding 라우팅 IPsec 10.0.1.2 ip_forward NAT\",\"intents\":[\"cause\"],\"product\":\"free5gc\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.7, "input_tokens": 1317, "output_tokens": 364, "cost_usd": 0.0004452}

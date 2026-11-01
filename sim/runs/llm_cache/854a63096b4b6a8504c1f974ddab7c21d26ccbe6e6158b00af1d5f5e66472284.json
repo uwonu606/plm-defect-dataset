@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron CI 빌드 실패 구현 오류 gate job 2015\", \"intents\": [\"aggregate\"], \"product\": \"neutron\", \"equipment\": \"PLATFORM\", \"year\": 2015, \"record_type\": \"CI·빌드 이슈\", \"cause_class\": \"구현 오류\", \"in_scope\": true}", "seconds": 4.25, "input_tokens": 1125, "output_tokens": 462, "cost_usd": 0.0004558}

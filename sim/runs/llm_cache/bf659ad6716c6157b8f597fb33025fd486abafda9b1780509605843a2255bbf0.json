@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron tempest pg-isolated DetachedInstanceError 원인 SQLAlchemy session detached lazy-load 세션\", \"intents\": [\"cause\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 4.52, "input_tokens": 1285, "output_tokens": 527, "cost_usd": 0.0005203}

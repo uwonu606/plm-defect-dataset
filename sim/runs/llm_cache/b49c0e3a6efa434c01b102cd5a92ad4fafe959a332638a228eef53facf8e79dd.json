@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"aggregate\", \"args\": {\"filters\": {\"year\": 2024, \"equipment\": \"CORE\", \"cause_class\": \"프로토콜 처리\"}}}", "seconds": 3.81, "input_tokens": 1518, "output_tokens": 290, "cost_usd": 0.00027075000000000005}

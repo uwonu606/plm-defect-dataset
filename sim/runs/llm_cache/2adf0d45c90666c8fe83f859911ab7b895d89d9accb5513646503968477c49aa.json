@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"AirScale EMS 셀 상태 Unknown 재기동 미해결 로그 cell state unknown\", \"intents\": [\"cause\"], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": false}", "seconds": 4.2, "input_tokens": 1145, "output_tokens": 394, "cost_usd": 0.0004258}

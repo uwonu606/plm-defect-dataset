@@ -1,0 +1,1 @@
+{"text": "{\"steps\": [{\"id\": \"s1\", \"tool\": \"aggregate\", \"args\": {\"filters\": {\"equipment\": \"UE\", \"record_type\": \"결함\", \"cause_class\": \"설정\"}}}], \"answer\": {\"cases\": [], \"fix_status\": null, \"count\": \"s1\"}}", "seconds": 4.51, "input_tokens": 1520, "output_tokens": 423, "cost_usd": 0.00033119}

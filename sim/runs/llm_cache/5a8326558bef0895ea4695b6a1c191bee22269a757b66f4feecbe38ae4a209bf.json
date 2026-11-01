@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"화웨이 BBU SPU 보드 FAN 알람 온도 알람 동시 발생 대응 우선순위\",\"intents\":[\"fix\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":false}", "seconds": 4.3, "input_tokens": 1133, "output_tokens": 433, "cost_usd": 0.00044290000000000003}

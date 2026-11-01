@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"./test.sh TestRegistration invalid memory address 에러 segmentation fault\", \"filters\": {\"product\": \"free5gc\"}, \"k\": 10}}", "seconds": 2.95, "input_tokens": 1587, "output_tokens": 224, "cost_usd": 0.00025155}

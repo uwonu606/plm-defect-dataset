@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"AMF NG Setup 이전 InitialUEMessage 수신 시 크래시\", \"filters\": {\"product\": \"free5gc\", \"equipment\": \"CORE\"}, \"k\": 10}}", "seconds": 3.58, "input_tokens": 1534, "output_tokens": 187, "cost_usd": 0.00022245}

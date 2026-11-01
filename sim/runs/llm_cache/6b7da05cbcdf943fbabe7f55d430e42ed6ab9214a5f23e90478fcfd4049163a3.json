@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"ActivateFlows 타임아웃 rules activation rpc failed session terminating IMSI sessiond PCRF 규칙 활성화 실패 세션 종료\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.35, "input_tokens": 1316, "output_tokens": 686, "cost_usd": 0.000606}

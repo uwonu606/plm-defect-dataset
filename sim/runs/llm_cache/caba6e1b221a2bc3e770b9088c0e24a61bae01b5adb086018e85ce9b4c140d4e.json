@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"PCRF 초기화 Address already in use testepc 바인드 포트 충돌\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 4.17, "input_tokens": 1560, "output_tokens": 282, "cost_usd": 0.00027515000000000005}

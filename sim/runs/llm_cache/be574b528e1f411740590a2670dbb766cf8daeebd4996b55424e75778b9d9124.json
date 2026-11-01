@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"neutron quota list 응답 project_id 누락 tenant_id\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.57, "input_tokens": 1544, "output_tokens": 223, "cost_usd": 0.00024245}

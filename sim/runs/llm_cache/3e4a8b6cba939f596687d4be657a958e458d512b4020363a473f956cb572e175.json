@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"crc->rnti == rx->rnti assertion failed CRC.indication RX.indication RNTI 불일치 handle_nr_ulsch\", \"filters\": {}, \"k\": 10}}", "seconds": 4.42, "input_tokens": 1830, "output_tokens": 384, "cost_usd": 0.00038015}

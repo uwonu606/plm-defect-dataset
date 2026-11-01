@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"알람 설명 한글 깨짐 UTF-8 charset 문자셋 DB 인코딩 EMS 로케일\", \"filters\": {\"record_type\": \"결함\"}, \"k\": 10}}", "seconds": 4.54, "input_tokens": 4632, "output_tokens": 350, "cost_usd": 0.0009235500000000001}

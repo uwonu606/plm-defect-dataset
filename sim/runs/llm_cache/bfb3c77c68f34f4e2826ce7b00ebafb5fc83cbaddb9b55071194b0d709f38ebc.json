@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron service_plugins lbaasv2 alias neutron-server 시작 실패 startup fail fix patch 수정 버전\",\"intents\":[\"fix\"],\"product\":\"neutron\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.61, "input_tokens": 1145, "output_tokens": 496, "cost_usd": 0.0004768}

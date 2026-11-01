@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"pipelined qos_tc_impl error deleting class idx 반복 TC class 삭제 실패 idx 미해제 magma QoS OVS\",\"intents\":[\"cause\",\"aggregate\"],\"product\":\"magma\",\"equipment\":null,\"year\":2026,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 7.0, "input_tokens": 1165, "output_tokens": 716, "cost_usd": 0.0005908}

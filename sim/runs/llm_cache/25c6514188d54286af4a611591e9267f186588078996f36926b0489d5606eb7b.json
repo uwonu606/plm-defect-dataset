@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"프로토콜 처리 CORE 결함 건수 protocol processing defect count 2024\", \"intents\": [\"aggregate\"], \"product\": null, \"equipment\": \"CORE\", \"year\": 2024, \"record_type\": null, \"cause_class\": \"프로토콜 처리\", \"in_scope\": true}", "seconds": 3.54, "input_tokens": 1115, "output_tokens": 407, "cost_usd": 0.0004263}

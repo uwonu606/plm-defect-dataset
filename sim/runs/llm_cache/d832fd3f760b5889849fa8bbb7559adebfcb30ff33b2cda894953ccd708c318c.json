@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron router delete HA router 삭제 에러 로그 폭주 반복 disk full keepalived l3-agent\", \"intents\": [], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 3.74, "input_tokens": 1289, "output_tokens": 394, "cost_usd": 0.0004546}

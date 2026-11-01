@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"ClientException HTTP 500 server erred incapable performing requested operation 반복 로그 원인 neutron\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.09, "input_tokens": 1304, "output_tokens": 463, "cost_usd": 0.0004921}

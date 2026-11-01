@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"oai EPC docker 배포 실패 new-epc-docker 절차 컨테이너 이미지 docker-compose 기동 오류 원인 수정 HSS MME SPGW\",\"intents\":[\"cause\",\"fix\"],\"product\":\"oai\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.52, "input_tokens": 1149, "output_tokens": 613, "cost_usd": 0.0005361000000000001}

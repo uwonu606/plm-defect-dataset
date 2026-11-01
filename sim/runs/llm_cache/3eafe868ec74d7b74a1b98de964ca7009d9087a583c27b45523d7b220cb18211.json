@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"Assertion crc->rnti == rx->rnti failed CRC RNTI 불일치 PUSCH HARQ MAC RX assert 반복 크래시\",\"intents\":[\"cause\",\"aggregate\"],\"product\":null,\"equipment\":null,\"year\":2026,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 7.82, "input_tokens": 1151, "output_tokens": 751, "cost_usd": 0.0006055}

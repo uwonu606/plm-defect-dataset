@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs-webui 서비스 재시작 반복 시작 실패 systemd crash loop Node.js npm MongoDB 연결 QuickStart WebUI\",\"intents\":[\"cause\",\"aggregate\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.92, "input_tokens": 1150, "output_tokens": 701, "cost_usd": 0.0005803}

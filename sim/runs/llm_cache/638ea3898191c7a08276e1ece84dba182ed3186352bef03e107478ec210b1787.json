@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron L3 agent Failed to process compatible router 라우터 namespace 에러 반복 원인 router_id l3 agent 재동기화\",\"intents\":[\"cause\",\"aggregate\"],\"product\":\"neutron\",\"equipment\":null,\"year\":2026,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 8.04, "input_tokens": 1186, "output_tokens": 703, "cost_usd": 0.0005885}

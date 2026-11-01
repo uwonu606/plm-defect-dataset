@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"paging cycle 256 CLI 입력 거부 CU-CP\", \"filters\": {\"equipment\": \"RAN-CU\"}, \"k\": 10}}", "seconds": 3.86, "input_tokens": 1547, "output_tokens": 326, "cost_usd": 0.00029455000000000003}

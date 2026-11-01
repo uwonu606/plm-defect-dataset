@@ -1,0 +1,1 @@
+{"text": "```json\n{\"query\": \"conntrack -D 실패 Failed execute conntrack command netfilter 세션 삭제 반복 로그 UPF NAT 연결 추적\", \"intents\": [\"cause\", \"aggregate\"], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}\n```", "seconds": 9.73, "input_tokens": 1189, "output_tokens": 1121, "cost_usd": 0.0007981}

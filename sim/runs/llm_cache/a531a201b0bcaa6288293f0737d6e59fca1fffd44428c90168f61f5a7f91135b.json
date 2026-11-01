@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"oai gNB segfault libuhd USRP 초기화 crash 원인 SIGSEGV uhd_usrp_probe\",\"intents\":[\"cause\"],\"product\":\"oai\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.46, "input_tokens": 1295, "output_tokens": 384, "cost_usd": 0.00045080000000000006}

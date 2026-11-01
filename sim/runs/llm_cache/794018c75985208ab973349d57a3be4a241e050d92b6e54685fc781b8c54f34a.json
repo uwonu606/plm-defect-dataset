@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"TypeError 'NoneType' object is not iterable Python traceback 반복 발생 원인 수정\",\"intents\":[\"cause\",\"fix\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 7.88, "input_tokens": 1147, "output_tokens": 1034, "cost_usd": 0.0007462}

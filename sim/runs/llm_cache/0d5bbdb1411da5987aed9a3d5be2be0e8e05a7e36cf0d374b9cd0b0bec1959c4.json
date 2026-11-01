@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs MME InitialContextSetupResponse 미응답 UE Context Release eNB LTE 단말 전원 data 연결 실패 attach PDN\",\"intents\":[\"cause\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.14, "input_tokens": 1188, "output_tokens": 819, "cost_usd": 0.0006469}

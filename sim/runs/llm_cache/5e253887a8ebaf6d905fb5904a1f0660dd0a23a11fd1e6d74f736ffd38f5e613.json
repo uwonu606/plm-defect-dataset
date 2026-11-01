@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"containerized AGW systemd 오류 init_system docker FileNotFoundError\", \"filters\": {\"product\": \"magma\"}, \"k\": 10}}", "seconds": 3.52, "input_tokens": 1553, "output_tokens": 170, "cost_usd": 0.00021775}

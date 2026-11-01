@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs NRF NFRegister PUT AUSF NFProfile fqdn localhost abort crash 등록 요청 v2.4.3 segfault\",\"intents\":[\"cause\",\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 8.87, "input_tokens": 1320, "output_tokens": 960, "cost_usd": 0.0007438}

@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron worker SIGTERM graceful shutdown SIGKILL systemd 종료 지연 ML2/OVN 패치 수정\", \"intents\": [\"fix\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 4.7, "input_tokens": 1304, "output_tokens": 387, "cost_usd": 0.0004541}

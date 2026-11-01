@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"free5gc N3IWF UE 라우터 ping 실패 10.0.1.2 IP forwarding NAT routing UE 서브넷 iptables\",\"intents\":[\"cause\",\"aggregate\"],\"product\":\"free5gc\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.81, "input_tokens": 1175, "output_tokens": 547, "cost_usd": 0.0005082999999999999}

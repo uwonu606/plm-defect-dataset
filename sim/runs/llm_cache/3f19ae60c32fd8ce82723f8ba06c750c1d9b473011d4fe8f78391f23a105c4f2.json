@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"EMS 성능 KPI 셀 평균 PRB 사용률 0% 분 단위 수집 문제 또는 실제 트래픽\", \"filters\": {}, \"k\": 10}}", "seconds": 4.0, "input_tokens": 1552, "output_tokens": 265, "cost_usd": 0.00026505}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"UE IP pool 잘못된 CIDR 설정 AGW 전달 MME 크래시\", \"filters\": {\"product\": \"magma\", \"record_type\": \"결함\"}, \"k\": 10}}", "seconds": 3.69, "input_tokens": 1557, "output_tokens": 207, "cost_usd": 0.00023705}

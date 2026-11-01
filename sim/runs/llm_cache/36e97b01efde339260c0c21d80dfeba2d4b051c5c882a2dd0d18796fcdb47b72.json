@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"라이선스 키 일련번호 검증 실패 기능 미활성화 교체 후 재등록\", \"filters\": {\"equipment\": \"OAM\"}, \"k\": 10}}", "seconds": 4.68, "input_tokens": 5852, "output_tokens": 519, "cost_usd": 0.0012520500000000002}

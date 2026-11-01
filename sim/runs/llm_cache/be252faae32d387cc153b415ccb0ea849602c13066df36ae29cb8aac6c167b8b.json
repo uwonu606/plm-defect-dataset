@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"PLATFORM 결함 레코드 원인 분류 테스트 건수 2021 aggregate count\",\"intents\":[\"aggregate\"],\"product\":null,\"equipment\":\"PLATFORM\",\"year\":2021,\"record_type\":null,\"cause_class\":\"테스트\",\"in_scope\":true}", "seconds": 3.74, "input_tokens": 1113, "output_tokens": 392, "cost_usd": 0.0004184}

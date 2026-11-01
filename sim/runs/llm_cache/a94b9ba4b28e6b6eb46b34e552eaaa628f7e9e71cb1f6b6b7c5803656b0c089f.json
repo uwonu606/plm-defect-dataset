@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron HA legacy router gateway 다중 IP qrouter qg- device secondary IP 누락 fixed_ips external gateway\",\"intents\":[\"cause\",\"fix\"],\"product\":\"neutron\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.75, "input_tokens": 1157, "output_tokens": 339, "cost_usd": 0.00040070000000000004}

@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"gNB RA 실패 random access failure 다수 UE 동시 attach PRACH msg1 msg2 msg3 contention 재시도\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.64, "input_tokens": 1314, "output_tokens": 762, "cost_usd": 0.0006436}

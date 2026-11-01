@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"UE 구현 오류 결함 건수 implementation error defect count 2015\",\"intents\":[\"aggregate\"],\"product\":null,\"equipment\":\"UE\",\"year\":2015,\"record_type\":null,\"cause_class\":\"구현 오류\",\"in_scope\":true}", "seconds": 4.82, "input_tokens": 1253, "output_tokens": 404, "cost_usd": 0.00045240000000000005}

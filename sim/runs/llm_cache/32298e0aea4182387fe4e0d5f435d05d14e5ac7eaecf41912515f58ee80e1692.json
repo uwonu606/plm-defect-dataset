@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs SMF DNN 미존재 SM context 생성 FATAL 프로세스 종료 crash 원인 patch fix v2.7.1\",\"intents\":[\"cause\",\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 3.99, "input_tokens": 1294, "output_tokens": 375, "cost_usd": 0.0004461}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"Huawei BBU 하드웨어 온도 알람 팬 알람 보드 장애\", \"filters\": {\"equipment\": \"RAN-DU\", \"record_type\": \"결함\"}, \"k\": 10}}", "seconds": 3.8, "input_tokens": 5998, "output_tokens": 363, "cost_usd": 0.0012032500000000003}

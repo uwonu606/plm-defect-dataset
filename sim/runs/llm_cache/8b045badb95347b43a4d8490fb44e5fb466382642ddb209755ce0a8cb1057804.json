@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs 결함 아님 원인 분류 2025 등록 레코드 건수 count\",\"intents\":[\"aggregate\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":2025,\"record_type\":null,\"cause_class\":\"결함 아님\",\"in_scope\":true}", "seconds": 4.38, "input_tokens": 1252, "output_tokens": 288, "cost_usd": 0.00039420000000000004}

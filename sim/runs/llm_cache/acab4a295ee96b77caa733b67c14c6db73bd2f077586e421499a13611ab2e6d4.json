@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"magma Orc8r terraform EKS worker autoscaling group 생성 실패 Provider produced inconsistent final plan fix patch\", \"intents\": [\"cause\", \"fix\"], \"product\": \"magma\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 5.4, "input_tokens": 1159, "output_tokens": 754, "cost_usd": 0.0006086}

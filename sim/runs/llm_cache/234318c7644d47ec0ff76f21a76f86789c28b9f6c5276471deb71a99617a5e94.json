@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"free5gc UDR 패닉 amf-subscriptions 삭제 subsId EE subscription nil pointer panic 존재하지 않는\",\"intents\":[\"cause\",\"fix\"],\"product\":\"free5gc\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.0, "input_tokens": 1180, "output_tokens": 632, "cost_usd": 0.0005518}

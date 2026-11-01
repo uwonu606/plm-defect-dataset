@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"TypeError Unknown arguments _type 알 수 없는 인자 _type 반복 로그 원인 사례\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.78, "input_tokens": 1286, "output_tokens": 707, "cost_usd": 0.0006104999999999999}

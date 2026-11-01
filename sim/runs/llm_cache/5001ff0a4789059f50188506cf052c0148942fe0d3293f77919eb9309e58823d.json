@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"N3IWF 테스트 UE 라우터 뒤 단말 10.0.1.2 ping 실패, UE 대역 ping은 성공\", \"filters\": {\"product\": \"free5gc\"}, \"k\": 10}}", "seconds": 3.61, "input_tokens": 1578, "output_tokens": 289, "cost_usd": 0.00028225}

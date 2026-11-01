@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"ClientException HTTP 500 server erred incapable requested operation 반복 오류 원인 neutron nova cinder API\", \"intents\": [\"cause\", \"aggregate\"], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 6.65, "input_tokens": 1162, "output_tokens": 1070, "cost_usd": 0.0007672}

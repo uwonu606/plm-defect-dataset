@@ -1,0 +1,1 @@
+{"text": "```json\n{\"query\": \"srsRAN gNB srsUE RRC 연결 PDU session 설정 실패 UE IP 미할당 패치 수정\", \"intents\": [\"fix\", \"cause\"], \"product\": \"srsran\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}\n```", "seconds": 3.48, "input_tokens": 1142, "output_tokens": 303, "cost_usd": 0.0003797}

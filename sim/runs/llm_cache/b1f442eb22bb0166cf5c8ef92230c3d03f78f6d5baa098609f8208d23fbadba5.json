@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"free5gc SMF sm-contexts POST multipart/related Content-Type 본문 파싱 panic 500 Internal Server Error\",\"intents\":[\"cause\",\"fix\"],\"product\":\"free5gc\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.76, "input_tokens": 1302, "output_tokens": 414, "cost_usd": 0.00046719999999999997}

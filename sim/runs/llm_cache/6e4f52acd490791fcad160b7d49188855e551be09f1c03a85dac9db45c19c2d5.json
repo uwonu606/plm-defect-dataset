@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"gNB RACH random access failure with multiple UEs attaching at the same time, preamble collision, RA procedure stuck, UE re-attach\", \"filters\": {\"equipment\": \"RAN-DU\"}, \"k\": 10}}", "seconds": 5.19, "input_tokens": 2892, "output_tokens": 493, "cost_usd": 0.00064705}

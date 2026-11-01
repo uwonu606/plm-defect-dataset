@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"open5gs CORE 결함 아님 원인 분류 레코드 건수 2019\", \"intents\": [\"aggregate\"], \"product\": \"open5gs\", \"equipment\": \"CORE\", \"year\": 2019, \"record_type\": null, \"cause_class\": \"결함 아님\", \"in_scope\": true}", "seconds": 3.86, "input_tokens": 1258, "output_tokens": 383, "cost_usd": 0.0004429}

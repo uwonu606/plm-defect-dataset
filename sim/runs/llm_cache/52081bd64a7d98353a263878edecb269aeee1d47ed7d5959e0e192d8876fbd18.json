@@ -1,0 +1,1 @@
+{"text": "```json\n{\"query\": \"Contrail neutron 방화벽 플러그인 설치 설정 실패 FWaaS firewall plugin configuration failure\", \"intents\": [], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}\n```", "seconds": 7.17, "input_tokens": 1283, "output_tokens": 1137, "cost_usd": 0.0008248999999999999}

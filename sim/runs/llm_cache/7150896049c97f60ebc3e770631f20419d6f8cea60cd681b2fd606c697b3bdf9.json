@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"lib/sbi/context.c:2367 client' failed ogs_sbi_client_associate nf_instance_find_client\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 5.63, "input_tokens": 1763, "output_tokens": 599, "cost_usd": 0.00047425}

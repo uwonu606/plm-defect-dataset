@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"RAN-CU 결함 레코드 원인 분류 테스트 등록 건수 defect record cause_class test\", \"intents\": [\"aggregate\"], \"product\": null, \"equipment\": \"RAN-CU\", \"year\": 2026, \"record_type\": null, \"cause_class\": \"테스트\", \"in_scope\": true}", "seconds": 6.31, "input_tokens": 1255, "output_tokens": 582, "cost_usd": 0.0005418}

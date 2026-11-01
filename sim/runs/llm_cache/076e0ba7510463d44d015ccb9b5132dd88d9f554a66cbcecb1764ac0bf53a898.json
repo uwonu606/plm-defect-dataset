@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"Failed to process compatible router neutron l3 agent 라우터 처리 실패 ERROR l3 agent router_info 반복 로그 원인\",\"intents\":[\"cause\"],\"product\":\"neutron\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.19, "input_tokens": 1328, "output_tokens": 490, "cost_usd": 0.0005104}

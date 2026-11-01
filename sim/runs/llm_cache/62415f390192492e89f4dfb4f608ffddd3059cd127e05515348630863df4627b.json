@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"std::length_error 예외 크래시 UE eNB 분리 호스트 간헐적 프로세스 종료 abort\",\"intents\":[\"cause\",\"fix\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 7.56, "input_tokens": 1131, "output_tokens": 959, "cost_usd": 0.0007055}

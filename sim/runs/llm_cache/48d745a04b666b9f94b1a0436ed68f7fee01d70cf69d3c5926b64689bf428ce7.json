@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"로드밸런서 pool 스케줄러 테이블 마이그레이션 후 agent 참조 컬럼 이름이 스펙과 다름\", \"filters\": {}, \"k\": 10}}", "seconds": 4.11, "input_tokens": 1560, "output_tokens": 326, "cost_usd": 0.00029715000000000004}

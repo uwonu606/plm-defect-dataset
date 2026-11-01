@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"SMF sm-contexts POST multipart/related Content-Type with non-multipart body causes panic and HTTP 500\", \"filters\": {\"product\": \"free5gc\"}, \"k\": 10}}", "seconds": 3.58, "input_tokens": 1563, "output_tokens": 281, "cost_usd": 0.00027525}

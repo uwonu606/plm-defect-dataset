@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"legacy router gateway secondary IP qg-device qrouter namespace only one IP remains HA\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.18, "input_tokens": 1560, "output_tokens": 203, "cost_usd": 0.00023565}

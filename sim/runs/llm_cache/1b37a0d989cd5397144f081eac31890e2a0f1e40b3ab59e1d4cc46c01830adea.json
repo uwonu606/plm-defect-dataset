@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron dhcp agent Unable to plug DHCP port Releasing port 포트 plug 실패 network 네임스페이스 dnsmasq\", \"intents\": [\"cause\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 4.5, "input_tokens": 1337, "output_tokens": 474, "cost_usd": 0.0005042}

@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"EAP 5GNAS RADIUS 짧은 EAP Response index out of range panic 프로세스 crash\", \"intents\": [], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 8.86, "input_tokens": 1288, "output_tokens": 684, "cost_usd": 0.0005994}

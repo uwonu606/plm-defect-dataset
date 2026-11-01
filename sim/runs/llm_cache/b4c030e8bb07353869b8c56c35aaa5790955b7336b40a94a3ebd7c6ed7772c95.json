@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"TypeError Unknown arguments _type 반복 로그 인자 전달 오류 keyword argument 파이썬\", \"intents\": [\"cause\", \"fix\"], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 6.99, "input_tokens": 1144, "output_tokens": 815, "cost_usd": 0.0006361}

@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"gNB random access RA 실패 동시 UE attach PRACH msg1 msg2 contention resolution 재시도 RRC 연결 지연\", \"intents\": [\"cause\", \"aggregate\"], \"product\": null, \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 8.75, "input_tokens": 1172, "output_tokens": 852, "cost_usd": 0.0006602}

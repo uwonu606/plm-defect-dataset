@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"UE 결함 원인 설정 configuration misconfiguration 건수\",\"intents\":[\"aggregate\"],\"product\":null,\"equipment\":\"UE\",\"year\":null,\"record_type\":null,\"cause_class\":\"설정\",\"in_scope\":true}", "seconds": 4.65, "input_tokens": 1239, "output_tokens": 486, "cost_usd": 0.0004906}

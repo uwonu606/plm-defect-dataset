@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"EMS 알람 마스킹 해제 누락 alarm masking stale suppression 장애 보고\",\"intents\":[],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":false}", "seconds": 4.16, "input_tokens": 1293, "output_tokens": 477, "cost_usd": 0.0004969}

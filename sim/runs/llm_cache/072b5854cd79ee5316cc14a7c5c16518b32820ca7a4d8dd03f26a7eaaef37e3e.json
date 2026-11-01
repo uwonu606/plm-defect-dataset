@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs SMF PDN type 협상 IPv4v6 IPv4 PDU Session Establishment cause 불일치 Create SM Context Response internet APN\",\"intents\":[\"cause\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 6.01, "input_tokens": 1340, "output_tokens": 602, "cost_usd": 0.0005688}

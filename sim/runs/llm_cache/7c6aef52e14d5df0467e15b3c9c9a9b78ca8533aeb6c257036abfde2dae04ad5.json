@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"원격 전원 감시 장치 PLC 정전 신호 접점 채터링 반복 알람 debounce power failure alarm\",\"intents\":[\"cause\",\"fix\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":false}", "seconds": 4.2, "input_tokens": 1127, "output_tokens": 371, "cost_usd": 0.0004107}

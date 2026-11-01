@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"ClientException HTTP 500 server erred incapable of performing requested operation nova 연동 error trace\", \"filters\": {}, \"k\": 10}}", "seconds": 4.54, "input_tokens": 1784, "output_tokens": 381, "cost_usd": 0.00036945}

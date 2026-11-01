@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"nr-softmodem N310 segfault libuhd UHD USRP Ettus 세그폴트 크래시 OAI\", \"intents\": [\"cause\", \"fix\"], \"product\": \"oai\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 5.8, "input_tokens": 1140, "output_tokens": 654, "cost_usd": 0.0005548}

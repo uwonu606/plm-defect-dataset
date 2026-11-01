@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"ML2 mechanism driver unit test VLAN type driver 설정 미반영 test isolation 테스트 간 상태 누수 fix\", \"intents\": [\"fix\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 3.76, "input_tokens": 1303, "output_tokens": 353, "cost_usd": 0.00043690000000000005}

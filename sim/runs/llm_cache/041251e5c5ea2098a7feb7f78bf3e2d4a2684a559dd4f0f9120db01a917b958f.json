@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"upfgtp0 GTP device Create fail gtp5g UPF 생성 실패 netlink ip link add 커널 모듈\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.65, "input_tokens": 1287, "output_tokens": 635, "cost_usd": 0.0005747}

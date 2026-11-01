@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"load balancer provider 목록 중복 출력 duplicate provider list lbaas neutron\",\"intents\":[],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.11, "input_tokens": 1274, "output_tokens": 428, "cost_usd": 0.0004686}

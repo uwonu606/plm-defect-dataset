@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"upfgtp0 GTP device Create fail 생성 실패 UPF GTP-U tunnel netlink ip link add gtp 모듈 권한\",\"intents\":[\"cause\",\"aggregate\"],\"product\":null,\"equipment\":null,\"year\":2026,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 7.68, "input_tokens": 1145, "output_tokens": 995, "cost_usd": 0.0007263}

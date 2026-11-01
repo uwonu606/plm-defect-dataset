@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"metricsd ha subscriberdb_cache metric 수집 실패 SERVICE303\", \"filters\": {\"product\": \"magma\"}, \"k\": 10}}", "seconds": 4.65, "input_tokens": 1562, "output_tokens": 257, "cost_usd": 0.00026305}

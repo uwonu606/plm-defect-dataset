@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron IPv6 인스턴스 bridge host 접근 anti-spoofing security group ip6tables 주소 우회 ssh\",\"intents\":[],\"product\":\"neutron\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.63, "input_tokens": 1320, "output_tokens": 664, "cost_usd": 0.0005958000000000001}

@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron quota list 응답 tenant_id project_id 누락 클라이언트 혼동 원인 수정\", \"intents\": [\"cause\", \"fix\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 3.94, "input_tokens": 1283, "output_tokens": 283, "cost_usd": 0.00039789999999999997}

@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"CORE 결함 레코드 프로토콜 처리 원인 분류 2024 등록 건수 protocol processing defect\", \"intents\": [\"aggregate\"], \"product\": null, \"equipment\": \"CORE\", \"year\": 2024, \"record_type\": null, \"cause_class\": \"프로토콜 처리\", \"in_scope\": true}", "seconds": 4.03, "input_tokens": 1257, "output_tokens": 439, "cost_usd": 0.0004707}

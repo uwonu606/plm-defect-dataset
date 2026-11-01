@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"upfgtp0 GTP device create fail gtp5g module kernel\", \"filters\": {\"product\": \"free5gc\", \"equipment\": \"CORE\"}, \"k\": 10}}", "seconds": 6.5, "input_tokens": 2095, "output_tokens": 495, "cost_usd": 0.00048865}

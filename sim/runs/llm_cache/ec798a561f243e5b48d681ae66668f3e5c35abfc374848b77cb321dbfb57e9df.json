@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs 2025 원인 분류 결함 아님 건수 집계 cause_class\",\"intents\":[\"aggregate\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":2025,\"record_type\":null,\"cause_class\":\"결함 아님\",\"in_scope\":true}", "seconds": 5.75, "input_tokens": 1110, "output_tokens": 321, "cost_usd": 0.0003823}

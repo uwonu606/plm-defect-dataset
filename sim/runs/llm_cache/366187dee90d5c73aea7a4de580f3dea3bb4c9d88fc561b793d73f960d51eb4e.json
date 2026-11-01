@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"trace_fix\", \"args\": {\"case_code\": \"DF-CORE-2021-00633\"}}", "seconds": 3.8, "input_tokens": 2943, "output_tokens": 303, "cost_usd": 0.00056225}

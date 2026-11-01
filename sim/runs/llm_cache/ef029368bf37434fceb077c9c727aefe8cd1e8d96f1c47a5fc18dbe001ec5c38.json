@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"neutron OVS agent trunk subport 다수 trunk port VM 생성 삭제 반복 br-int tpi- spi- interface 잔존\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.91, "input_tokens": 1556, "output_tokens": 304, "cost_usd": 0.00028535}

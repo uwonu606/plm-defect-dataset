@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"MME HSS AIA 응답 후 Authentication Request 전송 중 assert 종료\", \"filters\": {\"product\": \"open5gs\"}, \"k\": 10}}", "seconds": 3.59, "input_tokens": 1550, "output_tokens": 248, "cost_usd": 0.00025615}

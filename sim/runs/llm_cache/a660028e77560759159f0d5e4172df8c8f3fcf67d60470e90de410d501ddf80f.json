@@ -1,0 +1,1 @@
+{"text": "```json\n{\"steps\": [{\"id\": \"s1\", \"tool\": \"aggregate\", \"args\": {\"filters\": {\"equipment\": \"CORE\", \"year\": \"2024\", \"cause_class\": \"프로토콜 처리\"}}}], \"answer\": {\"cases\": [], \"fix_status\": null, \"count\": \"s1\"}}\n```", "seconds": 4.05, "input_tokens": 1538, "output_tokens": 233, "cost_usd": 0.00023979000000000003}

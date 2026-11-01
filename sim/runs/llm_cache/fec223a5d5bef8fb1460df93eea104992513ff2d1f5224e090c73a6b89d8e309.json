@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"SPU 보드 FAN 알람 온도 알람 동시 발생 하드웨어 알람 대응\", \"filters\": {\"equipment\": \"RAN-DU\"}, \"k\": 10}}", "seconds": 3.99, "input_tokens": 4462, "output_tokens": 331, "cost_usd": 0.0008800500000000001}

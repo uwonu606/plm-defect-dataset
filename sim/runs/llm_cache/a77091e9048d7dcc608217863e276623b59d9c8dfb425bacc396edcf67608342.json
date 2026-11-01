@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"free5gc AMF NG Setup 이전 InitialUEMessage 크래시 종료 panic 수정 버전\", \"intents\": [\"fix\", \"cause\"], \"product\": \"free5gc\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 4.82, "input_tokens": 1131, "output_tokens": 405, "cost_usd": 0.0004285}

@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"Orc8r terraform EKS worker autoscaling group 생성 실패 Provider produced inconsistent final plan\", \"filters\": {\"product\": \"magma\"}, \"k\": 10}}", "seconds": 4.05, "input_tokens": 1562, "output_tokens": 275, "cost_usd": 0.00027205}

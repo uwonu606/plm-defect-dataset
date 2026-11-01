@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"neutron q-svc RPC 처리 중 예외 발생\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.53, "input_tokens": 1557, "output_tokens": 285, "cost_usd": 0.00027605}

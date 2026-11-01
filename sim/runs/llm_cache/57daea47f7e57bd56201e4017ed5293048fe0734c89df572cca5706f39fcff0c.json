@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"neutron q-svc RPC 예외 tempest gate oslo.messaging MessagingTimeout 원인 timeout\", \"intents\": [\"cause\", \"fix\"], \"product\": \"neutron\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 5.77, "input_tokens": 1154, "output_tokens": 518, "cost_usd": 0.0004896}

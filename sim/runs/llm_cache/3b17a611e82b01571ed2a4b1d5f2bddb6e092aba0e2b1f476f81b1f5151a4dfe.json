@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"PIM -140dBc 실측 커넥터 체결 토크 안테나 내부 접촉 불량 passive intermodulation\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":false}", "seconds": 4.79, "input_tokens": 1286, "output_tokens": 478, "cost_usd": 0.000496}

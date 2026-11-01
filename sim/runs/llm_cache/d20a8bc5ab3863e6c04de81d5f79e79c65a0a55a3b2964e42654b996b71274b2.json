@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"open5gs PCC rule non-default QoS flow 업링크 트래픽 DN 미전달 지연 20분 fix patch\",\"intents\":[\"fix\"],\"product\":\"open5gs\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.29, "input_tokens": 1314, "output_tokens": 545, "cost_usd": 0.0005351}

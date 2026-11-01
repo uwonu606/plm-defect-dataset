@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"aggregate\", \"args\": {\"filters\": {\"product\": \"open5gs\", \"year\": 2025, \"cause_class\": \"결함 아님\"}}}", "seconds": 3.51, "input_tokens": 1513, "output_tokens": 290, "cost_usd": 0.00026975}

@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"open5gs HSS 미등록 사용자 Attach Reject EMM cause 11 vs 8 패치 수정 버전\", \"intents\": [\"fix\"], \"product\": \"open5gs\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 5.92, "input_tokens": 1293, "output_tokens": 791, "cost_usd": 0.0006539}

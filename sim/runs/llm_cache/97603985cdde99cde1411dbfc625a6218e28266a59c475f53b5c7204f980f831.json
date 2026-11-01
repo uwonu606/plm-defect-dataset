@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"UE 결함 원인 분류 설정 configuration 건수 집계 count\",\"intents\":[\"aggregate\"],\"product\":null,\"equipment\":\"UE\",\"year\":null,\"record_type\":null,\"cause_class\":\"설정\",\"in_scope\":true}", "seconds": 3.87, "input_tokens": 1097, "output_tokens": 372, "cost_usd": 0.0004052}

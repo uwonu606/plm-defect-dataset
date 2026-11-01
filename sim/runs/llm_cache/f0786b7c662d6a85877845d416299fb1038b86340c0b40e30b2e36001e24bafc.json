@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"Validation of PDUSessionResourceSetupRequest failed NGAP PDU session resource setup 검증 실패\", \"filters\": {\"equipment\": \"RAN-CU\"}, \"k\": 10}}", "seconds": 4.73, "input_tokens": 1911, "output_tokens": 489, "cost_usd": 0.00044885}

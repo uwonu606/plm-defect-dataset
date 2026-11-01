@@ -1,0 +1,1 @@
+{"text": "```json\n{\"steps\": [{\"id\": \"s1\", \"tool\": \"search\", \"args\": {\"query\": \"로드밸런서 provider 목록 조회 시 같은 provider 중복 출력\", \"k\": 10}}], \"answer\": {\"cases\": [\"s1\"], \"fix_status\": null, \"count\": null}}\n```", "seconds": 3.42, "input_tokens": 1555, "output_tokens": 329, "cost_usd": 0.00029119}

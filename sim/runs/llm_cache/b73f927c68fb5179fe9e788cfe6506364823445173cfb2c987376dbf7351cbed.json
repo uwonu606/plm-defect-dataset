@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"NSSF target-plmn-list 대량 PLMN discovery 요청 크래시 exit 139 SIGSEGV 세그폴트 nssf 메모리 버퍼\",\"intents\":[\"cause\",\"fix\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.65, "input_tokens": 1169, "output_tokens": 478, "cost_usd": 0.00047260000000000005}

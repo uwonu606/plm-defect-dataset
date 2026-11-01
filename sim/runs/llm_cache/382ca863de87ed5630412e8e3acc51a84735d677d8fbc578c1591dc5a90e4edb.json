@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"aggregate\", \"args\": {\"filters\": {\"equipment\": \"UE\", \"year\": \"2023\"}}}", "seconds": 3.57, "input_tokens": 1494, "output_tokens": 195, "cost_usd": 0.00021845}

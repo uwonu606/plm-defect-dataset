@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"OVN FDB learning FDB table 증가 MAC learning 성능 neutron ovn fdb aging fix 수정 버전\",\"intents\":[\"fix\"],\"product\":\"neutron\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.43, "input_tokens": 1295, "output_tokens": 362, "cost_usd": 0.00043980000000000007}

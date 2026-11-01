@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"AMF Registration Reject 메시지 생성·전송 중 panic, NAS 메시지 길이 오류\", \"filters\": {\"product\": \"free5gc\", \"equipment\": \"CORE\"}, \"k\": 10}}", "seconds": 5.09, "input_tokens": 3154, "output_tokens": 488, "cost_usd": 0.00069695}

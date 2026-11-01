@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"oai nrUE SIGSEGV downlink RRC 조작 메시지 crash 원인 nr_rrc UE 크래시\",\"intents\":[\"cause\"],\"product\":\"oai\",\"equipment\":\"UE\",\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.83, "input_tokens": 1297, "output_tokens": 561, "cost_usd": 0.0005396999999999999}

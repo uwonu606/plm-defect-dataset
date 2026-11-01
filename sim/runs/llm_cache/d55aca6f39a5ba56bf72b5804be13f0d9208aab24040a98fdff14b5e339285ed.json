@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"open5gs UPF FAR SGi-LAN GTP-U 패킷 수신 크래시 종료 PFCP 세션 설치 segfault\", \"intents\": [\"cause\", \"fix\"], \"product\": \"open5gs\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 7.28, "input_tokens": 1317, "output_tokens": 508, "cost_usd": 0.0005172}

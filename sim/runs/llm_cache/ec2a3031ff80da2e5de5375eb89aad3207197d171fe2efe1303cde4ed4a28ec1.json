@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"neutron tempest pg-isolated job DetachedInstanceError SQLAlchemy session 로그 원인\",\"intents\":[\"cause\",\"fix\"],\"product\":\"neutron\",\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 4.73, "input_tokens": 1143, "output_tokens": 384, "cost_usd": 0.00042040000000000003}

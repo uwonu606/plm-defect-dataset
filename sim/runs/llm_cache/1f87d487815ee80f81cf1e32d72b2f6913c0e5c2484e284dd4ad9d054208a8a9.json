@@ -1,0 +1,1 @@
+{"text": "{\"tool\": \"search\", \"args\": {\"query\": \"DHCP lease 기간 단축 후 인스턴스 IP 조기 상실\", \"filters\": {\"product\": \"neutron\"}, \"k\": 10}}", "seconds": 3.69, "input_tokens": 1547, "output_tokens": 209, "cost_usd": 0.00023605000000000002}

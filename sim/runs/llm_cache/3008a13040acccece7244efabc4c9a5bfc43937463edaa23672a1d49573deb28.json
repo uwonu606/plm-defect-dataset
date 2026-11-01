@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"subscription_data failed 가입자 데이터 조회 실패 UDM UDR MongoDB Nudr_DataRepository 원인\",\"intents\":[\"cause\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":true}", "seconds": 5.93, "input_tokens": 1280, "output_tokens": 399, "cost_usd": 0.00045530000000000006}

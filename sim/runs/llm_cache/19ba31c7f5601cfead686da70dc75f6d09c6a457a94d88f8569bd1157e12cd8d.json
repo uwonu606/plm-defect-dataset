@@ -1,0 +1,1 @@
+{"text": "{\"query\":\"광중계기 과열 출력 저하 방열 팬 온도 점검\",\"intents\":[\"cause\",\"fix\"],\"product\":null,\"equipment\":null,\"year\":null,\"record_type\":null,\"cause_class\":null,\"in_scope\":false}", "seconds": 4.83, "input_tokens": 1124, "output_tokens": 435, "cost_usd": 0.0004421}

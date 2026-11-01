@@ -1,0 +1,1 @@
+{"text": "{\"query\": \"open5gs GTP sock_write() failed eNB UE attach 패치 수정 버전\", \"intents\": [\"fix\"], \"product\": \"open5gs\", \"equipment\": null, \"year\": null, \"record_type\": null, \"cause_class\": null, \"in_scope\": true}", "seconds": 4.06, "input_tokens": 1288, "output_tokens": 425, "cost_usd": 0.0004699}
