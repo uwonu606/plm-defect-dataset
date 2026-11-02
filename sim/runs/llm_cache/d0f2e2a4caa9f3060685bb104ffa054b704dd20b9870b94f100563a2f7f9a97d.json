@@ -1,0 +1,1 @@
+{"text": "```json\n[{\"case_code\": \"DF-UE-2020-00137\", \"problem\": {\"primary\": \"p.halt\", \"secondary\": null}, \"cause\": {\"primary\": \"_none\", \"secondary\": null}, \"resolution\": {\"primary\": \"r.field.adjust\", \"secondary\": null}}]\n```", "seconds": 5.12, "input_tokens": 32569, "output_tokens": 673, "cost_usd": 0.00084477}

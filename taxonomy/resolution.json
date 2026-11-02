@@ -1,0 +1,484 @@
+{
+ "axis": "resolution",
+ "version": "v3",
+ "axis_definition": {
+  "label_ko": "해결책",
+  "criterion": "조치·종결 방식. 어떤 종류의 조치로 끝났나.",
+  "independence": "세 축(problem, cause, resolution)은 서로 독립이다. 한 축의 판정 조건에 다른 축의 값을 쓰지 않는다."
+ },
+ "label_rule": "레코드마다 축별 주 라벨 1개(필수)와 보조 라벨 0~1개를 단다. 가장 깊은 노드를 고르고, 하위를 가를 근거가 없으면 중간 노드에 단다. 트리에 맞지 않으면 특수 코드 _none(정보 없음), _na(해당 없음), _other(맞는 노드 없음) 중 하나를 쓴다. 축 루트 id는 라벨로 쓰지 않는다.",
+ "depth_policy": {
+  "max_depth": 3,
+  "levels": "축 루트 아래 L1(대분류), L2(중분류), L3(세분류)까지 둔다.",
+  "l1_count": "축마다 4~9개.",
+  "children_count": "자식을 두는 노드는 자식 2~9개.",
+  "one_criterion": "한 층의 형제는 축이 정한 기준 하나로 나눈다. 다른 기준(탐지 활동, 요구 출처, 누구 것인지, 바꾼 산출물 종류, 처분)은 facet이나 다른 축으로 보낸다.",
+  "open_breadth": "L1·L2는 (a) 표준 범주(ODC, NORS, X.733·X.736, IEEE 1044, 트래커 처분 값)가 받치거나 (b) 둘 이상의 문서 종류에서 독립적으로 판정 가능하면 연다. 지금 데이터에 없어도 연다(status=new).",
+  "open_depth": "L3는 (a) 자식마다 판정 가능 표의 2% 이상이고 (b) held-out 표본에서 같은 L2 안의 L3 일치가 0.9 이상일 때 연다. 외부 표준 값과 1:1로 대응하는 노드(CWE id 등)는 (a)를 면제한다.",
+  "merge": "정의가 겹치거나 라벨러가 자주 혼동하는 형제는 합친다. 위 넓이 근거가 없는 노드가 판정 가능 표의 2% 미만이면 부모나 형제로 합친다.",
+  "denominator": "판정 가능 표 = 특수 코드(_none, _na, _other)를 뺀 주 라벨 표.",
+  "intermediate": "하위 갈래를 가를 근거가 없거나 맞는 자식이 없으면 중간 노드에 단다. 잎 크기 통계에서 따로 센다. 중간 노드 직접 배정이 판정 가능 표의 2%를 넘으면 자식을 여는 후보다.",
+  "large_leaf": "판정 가능 표의 25%를 넘는 잎은 나눌 독립 의미를 찾는 신호다. 독립 의미가 없으면 남기고 이유를 적는다.",
+  "other_code": "_other 비율은 트리가 모든 경우를 덮는다는 근거로 쓰지 않는다. 라벨러는 맞지 않는 레코드도 가까운 노드로 당긴다. 새 문서 종류는 30건쯤 사람이 확인한 뒤 확장을 정한다.",
+  "provisional": "2%, 25%, 0.9는 이 데이터셋(공개 트래커 결함 10,000건)으로 정한 임시값이다."
+ },
+ "scheme": {
+  "id": "r",
+  "pref_label": {
+   "ko": "해결책(조치·종결 방식)",
+   "en": "Resolution"
+  },
+  "definition": "기록이 어떤 조치나 판정으로 끝났는지, 또는 끝나지 않았는지를 가리킨다.",
+  "include": "L1은 '어떤 종류의 조치로 끝났나' 하나로 고른다: 배포되는 산출물을 바꿈(r.change), 이 설치·현장에서 조치·복구(r.field), 일하는 방식을 바꿈(r.process), 바꾸지 않기로 판정(r.verdict), 아직 끝나지 않음(r.unresolved). 누가 했는지(조치 주체), 바꾼 산출물 종류, 임시 우회인지, 어느 단계의 조치인지(복구·근본 수정·재발 방지)는 facet이다. 주 라벨은 이 기록을 끝낸 조치이고, 조치가 여럿이면 r.change > r.field > r.process > r.verdict > r.unresolved 순으로 더 강한 결과를 따른다. 보조 라벨은 다른 단계의 조치 하나(대개 재발 방지)다. 조치가 여럿인 문서(장애 보고서)는 조치 항목마다 노드와 조치 단계를 actions facet에 적는다. L2를 정할 근거가 없으면 L1 노드에 바로 붙인다.",
+  "exclude": "무엇이 보였는가는 problem 축, 무엇이 잘못됐는가는 cause 축이 맡는다. 장비군·NF·모듈·버전은 '어디서' facet이다. 조치·판정·예정·종결 사실이 하나도 없으면 트리 밖 _none이다.",
+  "std_mapping": "IEEE 1044-2009 failure Disposition(2차 출처), 트래커 resolution 값(Bugzilla, Jira, GitHub state_reason, Launchpad)"
+ },
+ "concepts": [
+  {
+   "id": "r.change",
+   "scheme": "r",
+   "broader": "r",
+   "pref_label": {
+    "ko": "산출물 변경 반영",
+    "en": "Change to delivered artifacts"
+   },
+   "alt_labels": [
+    "제품 변경 반영",
+    "제품 코드·기본 설정 수정",
+    "시험 수정·보강",
+    "빌드·CI·배포 자산 변경",
+    "문서 수정"
+   ],
+   "definition": "기록이 다루는 제품(배포 단위로 관리되는 SW·HW·기본 설정·문서·시험·빌드 산출물)이 이 기록에 대응해 바뀌었고, 그 변경이 들어갔다고 적혀 있다.",
+   "include": "commit·PR·MR·review가 이 기록의 수정으로 들어갔다고 적힘, 수정 내용을 적은 PR·MR이 이 기록에 연결됐다고 적힘, 수정 버전 표기, 메인테이너가 고쳤다고 답함. 로직 수정, 검사·예외 처리 추가, 기능·API 구현, refactor, 제품 코드 revert, DB migration, backport, 제품 코드 안의 우회 로직, 기본 설정 파일·기본값·상수 변경, 시험 코드·판정 기준 수정, 빌드 스크립트·CI 설정·의존 버전 변경, 매뉴얼·주석 수정, HW 설계 변경. 부분 반영도 여기에 두고 남은 부분은 보조 라벨로 단다. 기능 요청을 구현한 경우도 여기다. 무엇을 바꿨는지는 변경 산출물 facet(code / config / test / build / doc / hw)에 적는다.",
+   "exclude": "이 기록에 대한 변경 없이 '이미 고쳐졌다'·'최신 버전을 쓰라'만 있으면 r.field.upgrade. patch·PR이 올라왔다·제안됐다는 말만 있고 반영 기록이 없으면 r.unresolved.pending. 다른 기록이 이 문제를 맡는다고 넘겼으면 r.verdict.redirect. 특정 설치·현장의 설정·환경·장비만 바꿨으면 r.field. 일하는 절차만 바꿨으면 r.process.",
+   "examples": [
+    "DF-PLATFORM-2017-02336",
+    "DF-PLATFORM-2025-04362",
+    "DF-PLATFORM-2016-01872"
+   ],
+   "std_mapping": "Bugzilla FIXED, Jira Done, GitHub state_reason completed, Launchpad Fix Committed·Fix Released; 변경 산출물 facet은 ODC v5.2 Target(§4.1)",
+   "status": "merged",
+   "v2_ids": [
+    "r.change",
+    "r.change.code",
+    "r.change.test",
+    "r.change.build",
+    "r.change.doc"
+   ]
+  },
+  {
+   "id": "r.field",
+   "scheme": "r",
+   "broader": "r",
+   "pref_label": {
+    "ko": "현장 조치·복구",
+    "en": "Site-level action or recovery"
+   },
+   "alt_labels": [
+    "사용 측 조치로 해소"
+   ],
+   "definition": "제품 산출물은 바꾸지 않고, 이 설치·현장의 설정·버전·환경·장비를 바꾸거나 서비스를 되살려 풀었거나, 그렇게 하라는 구체적 안내가 있다. 운용자·사용자·벤더 지원 누가 했든 같다.",
+   "include": "보고자·운영자·다른 사용자가 한 조치, 메인테이너·지원 조직이 준 구체적 조치 안내. '구체적'은 읽는 사람이 적힌 대로 따라 할 수 있다는 뜻이다: 무엇을 무엇으로 바꾸는지(설정 항목과 값, 버전, 설치·교체·재시작할 구성 요소)가 적혀 있다. 결과 확인이 없어도 조치가 구체적이면 여기에 둔다. 판정(r.verdict)과 구체적 조치가 함께 있으면 주 라벨은 이 노드다. 조치 종류를 가를 근거가 없으면 이 노드에 바로 붙인다.",
+   "exclude": "이 기록을 위해 배포되는 산출물이 바뀌었으면 r.change. 방법이 있다는 언급이나 방향만 있고 무엇을 바꿀지 없으면 주 라벨이 될 수 없다(대개 r.verdict). 조치가 보고자에게는 효과가 없었다고 적혀 있으면 주 라벨이 될 수 없다. 조치 없이 '정상 동작'·'다른 제품 문제'라는 판정만 있으면 r.verdict. 질문이나 log 요청만 있으면 _none.",
+   "examples": [
+    "DF-CORE-2023-01863",
+    "DF-CORE-2021-00802",
+    "DF-CORE-2018-00063"
+   ],
+   "std_mapping": "X.733 proposedRepairActions(RFC 8632, 값 목록 없음), Avizienis 2004 §3.3.1 operator-assisted recovery·workaround, JSM Known error(우회 기록)",
+   "status": "revised",
+   "v2_ids": [
+    "r.field"
+   ]
+  },
+  {
+   "id": "r.field.adjust",
+   "scheme": "r",
+   "broader": "r.field",
+   "pref_label": {
+    "ko": "설정·절차 조정(우회 포함)",
+    "en": "Configuration or procedure adjustment, incl. workaround"
+   },
+   "alt_labels": [],
+   "definition": "쓰는 쪽이 이 설치의 설정 값·구성이나 사용 절차를 바로잡거나 바꿔서 문제를 없앴거나 피해 갔다.",
+   "include": "사용자 설정 정정, 예시 설정 안내, 튜닝 권고(PRB 축소, 안테나 수 변경), 기능을 끄고 진행하는 우회, 구성 요소를 pipeline에서 빼는 우회, 파일을 수동으로 복사하는 임시 우회, 이 현장의 이중화·용량 증설 같은 구성 변경, 감시·알람 설정 추가.",
+   "exclude": "제품 밖의 OS·library·package·인증서·함께 도는 서비스를 고쳤으면 r.field.env. 다른 버전으로 옮겨서 풀렸으면 r.field.upgrade. 구성은 그대로 두고 재시작·절체·교체만 했으면 r.field.recover. 제품이 배포하는 기본값이 바뀌었으면 r.change. 무엇을 바꿀지 없는 방향 안내는 r.field 바깥이다.",
+   "examples": [
+    "DF-CORE-2023-01863",
+    "DF-CORE-2020-00443",
+    "DF-PLATFORM-2013-00248"
+   ],
+   "std_mapping": "ITIL workaround(임시 우회일 때, ITIL 원문 미확인)",
+   "status": "revised",
+   "v2_ids": [
+    "r.field.adjust"
+   ]
+  },
+  {
+   "id": "r.field.upgrade",
+   "scheme": "r",
+   "broader": "r.field",
+   "pref_label": {
+    "ko": "다른 버전으로 해소",
+    "en": "Resolved in another version"
+   },
+   "alt_labels": [],
+   "definition": "이미 나온 다른 버전(최신 release, 최신 코드, stable branch, 이전 정상 버전)에서 문제가 없다고 보고, 그 버전으로 옮기는 것으로 처리했다.",
+   "include": "'already-fixed' 류 라벨만 있음, '이미 고쳐졌다'고 보고 닫음, '어떤 patch에서 고쳐진 듯', stable·최신 버전으로 교체, 소스를 새로 clone·갱신, '재현되면 다시 열라'가 붙은 '고쳐졌을 것', 운영 중인 버전을 이전 버전으로 되돌림(rollback·downgrade).",
+   "exclude": "이 기록을 고친 commit·PR이 적혀 있으면 버전 안내가 함께 있어도 r.change. 버전이 아니라 다른 기록(이슈·PR)이 이 문제를 맡는다고 넘겼으면 r.verdict.redirect. 다음 release에 넣겠다는 약속이면 r.unresolved.pending. 제품이 아닌 library·kernel module의 버전을 바꿨으면 r.field.env. 제품 소스에서 변경을 되돌리는 commit이면 r.change.",
+   "examples": [
+    "DF-CORE-2026-02714",
+    "DF-CORE-2021-00802",
+    "DF-OAM-2020-00035"
+   ],
+   "std_mapping": "Launchpad Fix Released(다른 변경으로 고쳐진 경우). Red Hat Bugzilla CURRENTRELEASE와 같은 자리다(이번 조사에서 원문 미확인).",
+   "status": "measured",
+   "v2_ids": [
+    "r.field.upgrade"
+   ]
+  },
+  {
+   "id": "r.field.env",
+   "scheme": "r",
+   "broader": "r.field",
+   "pref_label": {
+    "ko": "외부 환경 수정",
+    "en": "External environment correction"
+   },
+   "alt_labels": [
+    "환경·운용 복구"
+   ],
+   "definition": "제품 밖의 실행 환경(OS, library, package, kernel module, 인증서, 방화벽, 함께 도는 서비스)을 고치거나 다시 만들었다.",
+   "include": "인증서 재생성, kernel module 설치·버전 교체, 방화벽 zone 설정, OS 기능 켜기·끄기, 다른 저장소의 package로 교체, 의존 서비스 오류 해결, 빠진 network interface 준비.",
+   "exclude": "제품 자체의 설정 값을 바꿨으면 r.field.adjust. 제품의 버전을 바꿨으면 r.field.upgrade. 구성은 그대로 두고 재시작·절체·장비 교체만 했으면 r.field.recover. 다른 제품의 결함이라고만 하고 조치가 없으면 r.verdict.redirect. 지원 환경이 아니라고만 하고 바꿀 대상을 적지 않았으면 r.verdict.not_defect.",
+   "examples": [
+    "DF-CORE-2018-00063",
+    "DF-RAN-CU-2024-00204",
+    "DF-CORE-2021-00694"
+   ],
+   "std_mapping": "Avizienis 2004 §3.3.1 reconfiguration(근사)",
+   "status": "revised",
+   "v2_ids": [
+    "r.field.env"
+   ]
+  },
+  {
+   "id": "r.field.recover",
+   "scheme": "r",
+   "broader": "r.field",
+   "pref_label": {
+    "ko": "복구·교체",
+    "en": "Restart, failover or replacement"
+   },
+   "alt_labels": [],
+   "definition": "구성을 바꾸지 않고 재시작·재생성·절체·장비나 부품 교체로 서비스를 되살렸거나, 시스템이 스스로 절체·복구했거나, 일시 현상이 스스로 해소됐다.",
+   "include": "process·서비스·agent 재시작, VM 삭제 뒤 재생성, 이중화 절체, 고장 보드·모듈·장비 교체(RMA 포함), 알람 자동 해제, 자동 절체·자동 복구. 누가 했는지는 조치 주체 facet(자동 포함), lot 단위 회수 같은 범위는 반영 범위 facet에 적는다.",
+   "exclude": "교체한 장비·부품이 다른 모델·다른 버전이라 문제를 피했으면 r.field.upgrade나 r.field.env. 해소됐다는 사실 없이 닫혔으면 r.unresolved.abandoned. 제품 결함을 고친 변경이 함께 들어갔으면 주 라벨 r.change, 보조 라벨 이 노드.",
+   "examples": [
+    "DF-PLATFORM-2013-00426",
+    "DF-PLATFORM-2016-01995"
+   ],
+   "std_mapping": "Avizienis 2004 §3.3.1 'automatic or operator-assisted recovery, restart or reboot'; X.733 proposedRepairActions 예시(switch in standby equipment, replace media), X.733 cleared alarm",
+   "status": "new",
+   "v2_ids": [
+    "r.field.env"
+   ]
+  },
+  {
+   "id": "r.process",
+   "scheme": "r",
+   "broader": "r",
+   "pref_label": {
+    "ko": "절차·조직 조치",
+    "en": "Process or organizational action"
+   },
+   "alt_labels": [],
+   "definition": "제품 산출물이나 현장 구성을 바꾸지 않고, 일하는 방식(작업 절차·MOP, 검토·승인, 교육, 감시 체계, 협력사·연락 체계)을 바꿨다.",
+   "include": "MOP·체크리스트 개정, 작업 승인 절차 변경, 교육·훈련, 운용 감시 체계 정비, 장애 연락·보고 체계 정비, 협력사 관리 강화, 개발 조직 절차(보안 신고, triage 규칙) 변경.",
+   "exclude": "감시 설정 추가처럼 현장 구성을 바꿨으면 r.field.adjust. 감시 기능을 제품에 넣었으면 r.change. 매뉴얼만 고쳤으면 r.change(변경 산출물=doc).",
+   "examples": [],
+   "std_mapping": "대응 표준 없음. 장애 보고서의 재발 방지책 칸(rebut-newdoc 사례집 91건 중 61건이 절차·검토·교육·체계·연락)",
+   "status": "new",
+   "v2_ids": []
+  },
+  {
+   "id": "r.verdict",
+   "scheme": "r",
+   "broader": "r",
+   "pref_label": {
+    "ko": "변경 없이 판정 종결",
+    "en": "Closed by disposition without change"
+   },
+   "alt_labels": [],
+   "definition": "책임자(메인테이너·담당자·보고자)가 조사나 검토 뒤 이 기록에서 제품을 바꾸지 않기로 판정하고 닫았다.",
+   "include": "판정 질문은 '문제가 있나, 있다면 어디에 있나'다. 문제가 없으면 r.verdict.not_defect, 이 제품 밖이나 다른 기록에 있으면 r.verdict.redirect, 이 제품에 있지만 고치지 않으면 r.verdict.decline. 판정한 사람이나 이유가 적혀 있다.",
+   "exclude": "판정 없이 활동이 끊겨 닫혔으면 r.unresolved.abandoned. 판정과 함께 현장 조치가 구체적으로 적혀 있으면 주 라벨 r.field, 보조 라벨 이 아래 노드.",
+   "examples": [
+    "DF-CORE-2023-01874",
+    "DF-PLATFORM-2024-04226",
+    "DF-PLATFORM-2022-03879"
+   ],
+   "std_mapping": "Bugzilla INVALID·WONTFIX·DUPLICATE·MOVED, Launchpad Invalid·Won't Fix·Opinion, Jira Won't do·Duplicate. GitHub not_planned는 섞인 값이라 하위 노드로 풀어서 대응한다.",
+   "status": "measured",
+   "v2_ids": [
+    "r.verdict"
+   ]
+  },
+  {
+   "id": "r.verdict.not_defect",
+   "scheme": "r",
+   "broader": "r.verdict",
+   "pref_label": {
+    "ko": "결함 아님(정상·미지원·사용 오해)",
+    "en": "Not a defect"
+   },
+   "alt_labels": [],
+   "definition": "보고된 동작이 정상·설계대로이거나, 제품이 지원하지 않는 범위이거나, 보고자의 오해·잘못된 사용이라서 고칠 결함이 없다고 판정했다.",
+   "include": "'정상 동작', '의도된 설계', '그 버전에서는 예상된 동작', 무시해도 되는 메시지라는 답(wontfix 라벨이 함께 붙어도), 미지원 기능·장비·환경, 보고자가 규격·코드를 잘못 읽었다고 인정, 분석 도구 오탐, 어디가 문제인지 말하지 않는 'not a bug' 류 라벨만 있음.",
+   "exclude": "결함이 다른 제품·구성 요소·다른 기록에 있다고 적었으면 r.verdict.redirect. 결함이나 요청을 인정하면서 고치지 않기로 했으면 r.verdict.decline. wontfix 라벨만으로 decline을 고르지 않고, 적힌 이유가 '정상·무시해도 됨'이면 이 노드다. 판정 뒤 사용자가 설정을 고쳐 풀린 것이 적혀 있으면 주 라벨 r.field.adjust, 보조 라벨 이 노드. 재현이 안 된다는 말만 있으면 r.unresolved.abandoned.",
+   "examples": [
+    "DF-CORE-2023-01874",
+    "DF-UE-2019-00115",
+    "DF-RAN-DU-2019-00229"
+   ],
+   "std_mapping": "Bugzilla INVALID, Launchpad Invalid·Opinion, CSAF/OpenVEX status not_affected(원문 미확인). cause 축에서는 _na다.",
+   "status": "measured",
+   "v2_ids": [
+    "r.verdict.not_defect"
+   ]
+  },
+  {
+   "id": "r.verdict.redirect",
+   "scheme": "r",
+   "broader": "r.verdict",
+   "pref_label": {
+    "ko": "다른 곳으로 넘김(중복·외부 결함·이관)",
+    "en": "Redirected: duplicate or outside this product"
+   },
+   "alt_labels": [],
+   "definition": "문제가 이 기록이나 이 제품이 아니라 다른 곳(같은 문제를 다루는 다른 기록, 다른 제품·구성 요소, 다른 담당·프로젝트)에 있다고 보고 그쪽으로 넘기고 닫았다.",
+   "include": "중복 종결, 다른 기록에서 다뤄 고쳐졌다며 닫음, 다른 PR이 이 문제도 맡는다고 넘김, duplicate_of가 채워진 기록, 다른 제품·구성 요소의 문제라는 판정, '이 제품과 관련 없는 문제'라는 판정, 다른 프로젝트에서 구현하기로 함, 다른 담당·채널로 이관.",
+   "exclude": "다른 기록이 아니라 버전·release를 가리키면 r.field.upgrade. 이 기록을 고쳤다고 commit·PR이 적혀 있으면 여러 기록을 함께 고쳤어도 r.change. 어디가 문제인지 말하지 않는 'not a bug' 류 라벨만 있으면 r.verdict.not_defect. 원인만 같고 현상이 다르면 중복이 아니다.",
+   "examples": [
+    "DF-CORE-2021-01059",
+    "DF-PLATFORM-2024-04226",
+    "DF-OAM-2022-00411"
+   ],
+   "std_mapping": "Bugzilla DUPLICATE·MOVED, Jira Duplicate, GitHub state_reason duplicate, Launchpad duplicate. 외부 제품으로 넘김은 Bugzilla MOVED와 같은 자리다.",
+   "status": "measured",
+   "v2_ids": [
+    "r.verdict.redirect",
+    "r.verdict.duplicate"
+   ]
+  },
+  {
+   "id": "r.verdict.decline",
+   "scheme": "r",
+   "broader": "r.verdict",
+   "pref_label": {
+    "ko": "조치 안 함 결정",
+    "en": "Declined"
+   },
+   "alt_labels": [],
+   "definition": "문제나 요청이 이 제품에 있다고 인정하면서도, 사람이 비용·방향·유효성을 이유로 고치지 않기로 결정했다.",
+   "include": "not planned 판정, 안전하지 않다고 인정했지만 상용 목적이 아니라며 하지 않음, 규격상 제한이 없어 넣지 않겠다, 지금은 필요 없음, 구조가 바뀌어 더는 유효하지 않음, 다른 설계로 대체할 계획이라 닫음, 구현했다가 불필요하다고 보고 되돌림, 지원 종료 branch라 backport 포기.",
+   "exclude": "결함이 아니라는 판정(정상·의도된 설계·무시해도 됨·미지원)이면 wontfix 라벨이 붙어 있어도 r.verdict.not_defect. 책임자가 이유를 적지 않고 bot·정리 라벨·EOL 일괄 종료로만 닫혔으면 r.unresolved.abandoned. 나중에 하겠다며 열어 두면 r.unresolved.pending. 다른 프로젝트나 제품이 맡기로 했으면 r.verdict.redirect.",
+   "examples": [
+    "DF-PLATFORM-2022-03879",
+    "DF-OAM-2022-00434",
+    "DF-CORE-2020-00288"
+   ],
+   "std_mapping": "Bugzilla WONTFIX·LATER, Launchpad Won't Fix, Jira Won't do, OpenVEX status affected에 'will not fix' action statement(이번 조사에서 원문 미확인)",
+   "status": "measured",
+   "v2_ids": [
+    "r.verdict.decline"
+   ]
+  },
+  {
+   "id": "r.unresolved",
+   "scheme": "r",
+   "broader": "r",
+   "pref_label": {
+    "ko": "해결되지 않음",
+    "en": "Unresolved"
+   },
+   "alt_labels": [],
+   "definition": "기록 시점까지 문제를 없앤 조치도, 바꾸지 않기로 한 판정도 없지만, 조치 예정·수정안·종결 사실 중 하나는 적혀 있다.",
+   "include": "고치겠다는 약속이나 반영되지 않은 수정안(r.unresolved.pending), 또는 해결 없이 닫힌 사실(r.unresolved.abandoned). 둘이 함께 있으면 주 라벨 r.unresolved.pending, 보조 라벨 r.unresolved.abandoned.",
+   "exclude": "셋 모두 없고 질문·log 요청·보고자가 바라는 동작만 있거나 기록이 없으면 _none. 부분이라도 제품 변경이 들어갔으면 주 라벨 r.change, 보조 라벨 이 아래 노드. 책임자가 이유를 들어 고치지 않기로 했으면 r.verdict.decline.",
+   "examples": [
+    "DF-CORE-2020-00412",
+    "DF-RAN-DU-2024-00519",
+    "DF-CORE-2021-01106"
+   ],
+   "std_mapping": "Launchpad Confirmed·Triaged·In Progress·Incomplete·Expired, IEEE 1044 Disposition 'Cause unknown'(2차 출처)",
+   "status": "measured",
+   "v2_ids": [
+    "r.unresolved"
+   ]
+  },
+  {
+   "id": "r.unresolved.pending",
+   "scheme": "r",
+   "broader": "r.unresolved",
+   "pref_label": {
+    "ko": "반영 대기(예정·수정안)",
+    "en": "Fix pending: planned or proposed"
+   },
+   "alt_labels": [],
+   "definition": "제품을 맡은 쪽이 고치거나 구현하겠다고 했거나, 누군가 구체적 수정안(patch, review, PR, 고칠 코드 줄)을 냈지만, 반영됐다는 기록이 없다.",
+   "include": "'다음 release에서 고치겠다', 지원하고 싶지만 시점 미정, RFE 승인 라벨만 있음, '살펴보겠다', review·PR 시작만 있음, 보고자의 수정 PR, 시험용 patch 제공 뒤 결과 없음, 보고자의 local 수정 제시, 수정안이 올라왔다가 abandon됨.",
+   "exclude": "merge·수정 버전·수정 내용을 적은 연결 PR이 있으면 r.change. 보고자가 제품이 어떻게 동작해야 하는지만 적었고 patch·PR·고칠 코드 줄이 없으면 _none. 재현용 PoC·branch는 수정안이 아니다. 제품이 아니라 사용자 설정을 바꾸라는 안내면 r.field.adjust. 하지 않겠다고 했으면 r.verdict.decline.",
+   "examples": [
+    "DF-CORE-2020-00412",
+    "DF-PLATFORM-2021-03245",
+    "DF-RAN-DU-2024-00519"
+   ],
+   "std_mapping": "Launchpad Confirmed·Triaged·In Progress, Bugzilla ASSIGNED, OpenVEX status under_investigation·affected(조치 예정, 이번 조사에서 원문 미확인)",
+   "status": "measured",
+   "v2_ids": [
+    "r.unresolved.pending",
+    "r.unresolved.planned",
+    "r.unresolved.proposed"
+   ]
+  },
+  {
+   "id": "r.unresolved.abandoned",
+   "scheme": "r",
+   "broader": "r.unresolved",
+   "pref_label": {
+    "ko": "해결 없이 종결",
+    "en": "Closed without resolution"
+   },
+   "alt_labels": [],
+   "definition": "조치도 결함 판정도 없이, 활동 중단·정보 부족·재현 불가·재발 없음·대상 소멸을 이유로 닫혔거나 닫을 대상으로 표시됐다.",
+   "include": "stale bot 자동 종료, 'ToClose' 류 정리 표시, 재현 PoC만 붙고 정리 라벨이 붙음, 정보 부족·재현 불가로 닫음, log 만료와 최근 안정을 이유로 닫음, release EOL 일괄 종료, 더 쓰지 않는 대상이라 닫음, 보고자가 내용 없이 닫음.",
+   "exclude": "닫혔다거나 닫을 대상이라는 사실이 전혀 적혀 있지 않으면 _none. 책임자가 이유를 들어 고치지 않기로 했으면 r.verdict.decline. 고치겠다는 약속이나 수정안이 있으면 주 라벨 r.unresolved.pending, 보조 라벨 이 노드. 다른 사람이 남긴 구체적 조치가 있으면 확인되지 않았어도 주 라벨 r.field, 보조 라벨 이 노드. 상태가 스스로 해소됐다고 적혔으면(알람 자동 해제 등) r.field.recover.",
+   "examples": [
+    "DF-CORE-2021-01106",
+    "DF-CORE-2018-00070",
+    "DF-PLATFORM-2015-01736"
+   ],
+   "std_mapping": "Bugzilla WORKSFORME·INCOMPLETE, Jira Cannot reproduce, Launchpad Expired·Incomplete, ServiceNow 'Resolved - No response from caller', GitHub not_planned 가운데 stale 종료",
+   "status": "revised",
+   "v2_ids": [
+    "r.unresolved.abandoned"
+   ]
+  }
+ ],
+ "special_codes": [
+  {
+   "id": "_none",
+   "pref_label": {
+    "ko": "정보 없음",
+    "en": "No information"
+   },
+   "definition": "조치·판정·예정·종결 사실이 원문에 하나도 없다.",
+   "include": "resolution 서술이 비었음, 질문·log 요청만 있음, 보고자가 바라는 동작만 적힘, 재현용 PoC·branch만 있음, '고칠 방법을 찾는 중' 같은 진행 언급뿐임.",
+   "exclude": "고치겠다는 약속이나 수정안이 있으면 r.unresolved.pending. 닫혔다는 사실이 있으면 r.unresolved.abandoned.",
+   "examples": [],
+   "std_mapping": "ODC v5.2 §5.1 Unknown(나중에 알게 되면 채우는 임시값)에 가깝다"
+  },
+  {
+   "id": "_na",
+   "pref_label": {
+    "ko": "해당 없음",
+    "en": "Not applicable"
+   },
+   "definition": "해결할 문제가 없어 종결 방식을 물을 수 없는 기록이다.",
+   "include": "정보성 공지, 해결 대상이 아닌 순수 작업 기록, 이벤트 통지만 하는 문서(종결 개념이 없는 알람 통지 등).",
+   "exclude": "문제가 있는데 기록이 없으면 _none. 기능 요청은 _na가 아니다(구현·거절·대기 중 하나로 단다).",
+   "examples": [],
+   "std_mapping": "표준 대응 없음"
+  },
+  {
+   "id": "_other",
+   "pref_label": {
+    "ko": "기타",
+    "en": "Other"
+   },
+   "definition": "조치·판정은 적혀 있지만 트리의 어느 노드에도 맞지 않는다.",
+   "include": "트리 개정 후보로 모은다. 같은 모양이 판정 가능 표의 2%를 넘으면 노드를 연다.",
+   "exclude": "가까운 노드의 include에 비슷한 예가 있으면 그 노드.",
+   "examples": [],
+   "std_mapping": "NORS Other/Unknown"
+  }
+ ],
+ "facets": [
+  {
+   "id": "location",
+   "label": "어디서",
+   "values": "장비군·NF·프로토콜·제품·버전·모듈",
+   "note": "세 축 공통. 'AMF crash'는 problem=p.halt + location NF=AMF다."
+  },
+  {
+   "id": "actor",
+   "label": "조치 주체",
+   "values": "벤더·개발 / 운용자 / 사용자·고객 / 자동 / 미상",
+   "note": "v2의 r.change(제품을 맡은 쪽)·r.field(쓰는 쪽) 구분이 담던 '누가'다."
+  },
+  {
+   "id": "changed_artifact",
+   "label": "변경 산출물",
+   "values": "code / config / test / build / doc / hw",
+   "note": "r.change일 때. v2의 r.change L2(ODC Target)다."
+  },
+  {
+   "id": "temporariness",
+   "label": "임시성",
+   "values": "임시 우회 / 영구 / 미상",
+   "note": "ITIL workaround·permanent fix."
+  },
+  {
+   "id": "stage",
+   "label": "조치 단계",
+   "values": "복구 / 근본 수정 / 재발 방지",
+   "note": "보조 라벨과 actions 항목에 단다."
+  },
+  {
+   "id": "actions",
+   "label": "조치 항목",
+   "values": "[{node, stage}] 목록",
+   "note": "조치가 여럿인 문서(장애 보고서 중앙값 4개)에서 주·보조 라벨 밖의 조치를 담는다."
+  },
+  {
+   "id": "scope",
+   "label": "반영 범위",
+   "values": "수정 버전·backport·lot 등",
+   "note": ""
+  },
+  {
+   "id": "customer_response",
+   "label": "고객 대응",
+   "values": "보상·정정 / 설명·보고 / 안내",
+   "note": "고객 티켓에서만 쓴다. 기술 조치 축과 독립이다."
+  },
+  {
+   "id": "fix_proposal",
+   "label": "수정안 유무",
+   "values": "수정안 있음 / 약속만",
+   "note": "r.unresolved.pending 안에서 쓴다."
+  }
+ ],
+ "open_conditions": [
+  "r.change: 판정 가능 표의 65%다. 변경 성질(교정 / 추가 / 제거 / 되돌림)이 독립 의미 후보지만 교정·추가는 record_type과 같고 되돌림은 2.3%라 열지 않았다.",
+  "r.process: L2 후보는 절차·검토 강화, 교육, 감시·탐지 체계, 협력사·연락 체계다. 장애 보고서를 실측해 갈래마다 2%를 넘으면 연다.",
+  "r.field.recover: 자동 복구와 사람 복구는 조치 주체 facet으로 가른다. 알람 문서가 들어와 둘이 모두 크면 L3를 검토한다."
+ ],
+ "changes_from_v2": [
+  "특수 코드 _none·_na·_other를 노드로 넣었다. v2 파일에는 없었는데 v2 라벨은 _none을 11~13% 썼다.",
+  "합침: r.change.code·test·build·doc → r.change 잎. 바꾼 산출물은 변경 산출물 facet으로 옮겼다. cause L1과 같은 정보를 되풀이했고(c.code 표 634개 중 631개가 r.change.code), 부모↔자식 엇갈림을 만들었다.",
+  "r.change와 r.field의 기준을 '누가 했나'에서 '배포되는 산출물인가, 이 설치·현장인가'로 바꿨다. 누가 했는지는 조치 주체 facet이다.",
+  "새 L2 r.field.recover(재시작·절체·교체·자동 복구). r.field.env에서 장비 교체·재시작을 떼어 냈고, 알람 자동 해제가 r.unresolved.abandoned로 가던 자리를 막는다.",
+  "새 L1 r.process(절차·조직 조치). 장애 보고서 재발 방지책의 자리다.",
+  "주·보조 라벨의 역할을 정했다. 주 = 기록을 끝낸 조치, 보조 = 다른 단계의 조치 하나. 나머지 조치는 actions facet.",
+  "include·exclude 본문에서 case_code 136개를 뺐다. 정의 층은 문서 종류와 관계없이 쓰고, 경계 사례는 docs/design/04-taxonomy.md와 v2 작업 기록에 남긴다."
+ ],
+ "status_values": {
+  "measured": "v2와 같은 정의, v2 실측 있음",
+  "revised": "정의를 고침, 재측정 안 함",
+  "merged": "v2 노드를 합침, 재측정 안 함",
+  "new": "v2에 없음, 실측 0"
+ }
+}

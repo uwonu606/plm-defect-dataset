@@ -1,0 +1,1 @@
+{"text": "[{\"case_code\": \"DF-CORE-2019-00135\", \"problem\": {\"primary\": \"p.halt\", \"secondary\": null}}, {\"case_code\": \"DF-CORE-2020-00244\", \"problem\": {\"primary\": \"p.halt\", \"secondary\": \"p.func.config\"}}]", "seconds": 6.31, "input_tokens": 10806, "output_tokens": 923, "cost_usd": 0.0008218699999999999}

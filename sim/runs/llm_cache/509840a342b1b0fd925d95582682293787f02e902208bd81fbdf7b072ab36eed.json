@@ -1,0 +1,1 @@
+{"text": "[{\"case_code\": \"DF-CORE-2021-01038\", \"problem\": {\"primary\": \"p.halt\", \"secondary\": null}, \"cause\": {\"primary\": \"c.code.guard.error\", \"secondary\": \"c.code.state.lifecycle\"}, \"resolution\": {\"primary\": \"r.change.code\", \"secondary\": null}}]", "seconds": 7.42, "input_tokens": 32806, "output_tokens": 982, "cost_usd": 0.0010466700000000002}

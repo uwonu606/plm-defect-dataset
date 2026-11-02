@@ -1,0 +1,1 @@
+{"text": "```json\n[{\"case_code\": \"DF-CORE-2016-00007\", \"problem\": {\"primary\": \"p.halt\", \"secondary\": \"p.deploy.startup\"}}]\n```", "seconds": 5.11, "input_tokens": 10341, "output_tokens": 389, "cost_usd": 0.00047061}

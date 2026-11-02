@@ -1,0 +1,661 @@
+{
+ "axis": "problem",
+ "version": "v3",
+ "axis_definition": {
+  "label_ko": "문제점",
+  "criterion": "관찰된 현상·증상. 무엇이 어떻게 잘못 보였나.",
+  "independence": "세 축(problem, cause, resolution)은 서로 독립이다. 한 축의 판정 조건에 다른 축의 값을 쓰지 않는다."
+ },
+ "label_rule": "레코드마다 축별 주 라벨 1개(필수)와 보조 라벨 0~1개를 단다. 가장 깊은 노드를 고르고, 하위를 가를 근거가 없으면 중간 노드에 단다. 트리에 맞지 않으면 특수 코드 _none(정보 없음), _na(해당 없음), _other(맞는 노드 없음) 중 하나를 쓴다. 축 루트 id는 라벨로 쓰지 않는다.",
+ "depth_policy": {
+  "max_depth": 3,
+  "levels": "축 루트 아래 L1(대분류), L2(중분류), L3(세분류)까지 둔다.",
+  "l1_count": "축마다 4~9개.",
+  "children_count": "자식을 두는 노드는 자식 2~9개.",
+  "one_criterion": "한 층의 형제는 축이 정한 기준 하나로 나눈다. 다른 기준(탐지 활동, 요구 출처, 누구 것인지, 바꾼 산출물 종류, 처분)은 facet이나 다른 축으로 보낸다.",
+  "open_breadth": "L1·L2는 (a) 표준 범주(ODC, NORS, X.733·X.736, IEEE 1044, 트래커 처분 값)가 받치거나 (b) 둘 이상의 문서 종류에서 독립적으로 판정 가능하면 연다. 지금 데이터에 없어도 연다(status=new).",
+  "open_depth": "L3는 (a) 자식마다 판정 가능 표의 2% 이상이고 (b) held-out 표본에서 같은 L2 안의 L3 일치가 0.9 이상일 때 연다. 외부 표준 값과 1:1로 대응하는 노드(CWE id 등)는 (a)를 면제한다.",
+  "merge": "정의가 겹치거나 라벨러가 자주 혼동하는 형제는 합친다. 위 넓이 근거가 없는 노드가 판정 가능 표의 2% 미만이면 부모나 형제로 합친다.",
+  "denominator": "판정 가능 표 = 특수 코드(_none, _na, _other)를 뺀 주 라벨 표.",
+  "intermediate": "하위 갈래를 가를 근거가 없거나 맞는 자식이 없으면 중간 노드에 단다. 잎 크기 통계에서 따로 센다. 중간 노드 직접 배정이 판정 가능 표의 2%를 넘으면 자식을 여는 후보다.",
+  "large_leaf": "판정 가능 표의 25%를 넘는 잎은 나눌 독립 의미를 찾는 신호다. 독립 의미가 없으면 남기고 이유를 적는다.",
+  "other_code": "_other 비율은 트리가 모든 경우를 덮는다는 근거로 쓰지 않는다. 라벨러는 맞지 않는 레코드도 가까운 노드로 당긴다. 새 문서 종류는 30건쯤 사람이 확인한 뒤 확장을 정한다.",
+  "provisional": "2%, 25%, 0.9는 이 데이터셋(공개 트래커 결함 10,000건)으로 정한 임시값이다."
+ },
+ "scheme": {
+  "id": "p",
+  "pref_label": {
+   "ko": "문제점",
+   "en": "Problem"
+  },
+  "definition": "레코드가 보고하는 관찰된(또는 예상되는) 현상·증상, 또는 기능 요청에서 요청 배경이 된 부족함이다.",
+  "include": "L1은 '무엇이 어떻게 잘못 보였나' 하나로 고른다. 주 라벨 고르기: (1) 실행에서 관찰된 증상이 있으면 그 증상 노드가 p.stage.build·p.stage.test·p.gap보다 앞선다. (2) 증상이 여럿이면 서비스 영향이 큰 쪽을 주 라벨로, 다음 것 하나를 보조 라벨로 단다: p.halt > p.stage.install·p.stage.startup > p.conn > p.sec > p.func > p.perf > p.state > p.info > p.stage.build·p.stage.test > p.gap. 같은 L1 안에서는 각 노드의 제외 기준을 따른다. (3) 증상이 하나뿐이면 보조 라벨은 비운다. (4) 실행 결과(로그·출력·재현) 없이 코드 읽기·분석 도구로 지적한 결함은 예상되는 증상 노드에 달고 관찰 여부 facet=예상을 채운다. 예상 증상이 적히지 않았으면 원문이 짚은 잘못된 동작에 가장 가까운 증상 노드(대개 p.func.wrong)에 단다. (5) L2를 가를 근거가 없거나 맞는 자식이 없으면 L1 노드에 바로 단다.",
+  "exclude": "원인(왜)은 cause 축, 조치(어떻게 끝났나)는 resolution 축이다. 결함 아님·미지원 같은 판정도 resolution 축이다. 위치(장비군·NF·프로토콜·제품·버전·모듈), 재현성, 탐지 활동, 관찰 여부, 보안 영향, 서비스 영향은 트리 밖 facet이다.",
+  "std_mapping": "IEEE 1044-2009 problem·failure 객체(defect는 cause 축); Avizienis 2004 failure mode"
+ },
+ "concepts": [
+  {
+   "id": "p.halt",
+   "scheme": "p",
+   "broader": "p",
+   "pref_label": {
+    "ko": "비정상 종료·멈춤",
+    "en": "Abnormal termination or hang"
+   },
+   "alt_labels": [],
+   "definition": "이미 동작하던 process·서비스가 예기치 않게 끝나거나 스스로 재시작하거나, 살아 있지만 더 진행하지 못하고 응답하지 않는다.",
+   "include": "crash, segfault, panic, assert 실패·abort, core dump, 잡히지 않은 예외로 process 종료, 반복 재시작, OOM kill. 기동 직후라도 signal·assert·panic으로 죽으면 여기다. hang, deadlock, thread 블록, 처리 loop 정지, 진행이 막힌 무한 loop, server 무응답.",
+   "exclude": "초기화 단계에서 프로그램이 실패 사유를 알리고 스스로 멈추면 p.stage.startup. panic이 났어도 호출자가 오류 응답(500 등)을 받았다고 적혔으면 process가 살아 있으므로 p.func.fail이고 이 노드는 쓰지 않는다. 같은 동작을 끝없이 되풀이하지만 다른 처리는 계속되면 p.perf. 느리지만 결국 끝나면 p.perf. 시험 job의 시간 초과만 있으면 p.stage.test. 조작된 입력으로 죽거나 멈춰도 여기다(보안 영향 facet=있음). 살아 있는 서비스에서 개별 작업·요청 하나가 진행 중 상태에 머물러 끝나지 않으면 p.func.fail.",
+   "examples": [
+    "DF-PLATFORM-2016-02153",
+    "DF-RAN-CU-2023-00139",
+    "DF-CORE-2020-00412"
+   ],
+   "std_mapping": "Avizienis 2004 service failure mode halt(특수형 silent); ODC Impact Reliability(\"ABEND and WAIT\"); X.733 event type processingErrorAlarm; IANAItuProbableCause softwareProgramAbnormallyTerminated(545)·timeoutExpired(164) (IANAItuProbableCause 이름·번호는 RFC 3877 MIB 원문과 대조하지 않았다)",
+   "status": "measured",
+   "v2_ids": [
+    "p.halt"
+   ]
+  },
+  {
+   "id": "p.stage",
+   "scheme": "p",
+   "broader": "p",
+   "pref_label": {
+    "ko": "빌드·시험·설치·기동 실패",
+    "en": "Build, test, install or startup failure"
+   },
+   "alt_labels": [
+    "설치·기동 실패",
+    "빌드·시험·검토 지적"
+   ],
+   "definition": "구성 요소를 빌드하고, 시험하고, 설치하고, 기동하는 단계 작업이 끝나지 않아 다음 단계(시험 통과, 운용 상태)에 이르지 못한다.",
+   "include": "p.stage.build, p.stage.test, p.stage.install, p.stage.startup의 판정 기준을 따른다. 개발·CI 환경인지 운용 환경인지는 보지 않는다(탐지 활동 facet).",
+   "exclude": "한 번 운용 상태에 이른 뒤 죽거나 멈추면 p.halt. 시험·운용에서 제품 증상(crash, reject, 접속 실패, 지연, 노출 등)이 관찰됐으면 그 증상 노드가 주 라벨이고 p.stage.test는 보조다. 실패한 시험의 이름만으로는 제품 증상으로 보지 않는다.",
+   "examples": [
+    "DF-CORE-2019-00122",
+    "DF-PLATFORM-2014-00778",
+    "DF-CORE-2018-00063"
+   ],
+   "std_mapping": "ODC Impact Installability·Migration; IEEE 1044 Detection activity(build·test)",
+   "status": "merged",
+   "v2_ids": [
+    "p.deploy",
+    "p.dev"
+   ]
+  },
+  {
+   "id": "p.stage.build",
+   "scheme": "p",
+   "broader": "p.stage",
+   "pref_label": {
+    "ko": "빌드·환경 준비 실패",
+    "en": "Build or environment preparation failure"
+   },
+   "alt_labels": [],
+   "definition": "compile, link, 빌드 의존성 받기, container image·package 빌드, 빌드·CI 환경 준비가 실패하거나 경고를 낸다.",
+   "include": "compile·link 오류, 새 compiler 경고로 실패, compilation warning 재발, header·의존 package 없음, 외부 저장소 clone·fetch 실패, CI provisioning 실패, build script option 이상.",
+   "exclude": "빌드는 됐고 시험이 실패하면 p.stage.test. 운용 환경에 설치·업그레이드하는 단계의 실패는 p.stage.install.",
+   "examples": [
+    "DF-CORE-2019-00122",
+    "DF-PLATFORM-2020-02968",
+    "DF-RAN-DU-2018-00143"
+   ],
+   "std_mapping": "대응 없음(ODC Target Build/Package는 cause 축 쪽)",
+   "status": "measured",
+   "v2_ids": [
+    "p.dev.build"
+   ]
+  },
+  {
+   "id": "p.stage.test",
+   "scheme": "p",
+   "broader": "p.stage",
+   "pref_label": {
+    "ko": "시험 실패",
+    "en": "Test failure"
+   },
+   "alt_labels": [],
+   "definition": "unit·functional·통합 시험이나 lint·sanitizer 같은 검사 job을 실행했더니 실패하거나, 간헐적으로 실패하거나, 시간 안에 끝나지 않는다.",
+   "include": "assertion 불일치, 시험 중 예외, 시험 코드 안의 crash, 의존성 버전 변경 뒤 기대값 불일치, flaky test(재현성 facet=간헐), job timeout, 시험 간 자원 충돌, lint·style 검사 job 실패, 시험 중 sanitizer·valgrind 오류로 실행 중단(sanitizer가 시험 중 보고한 메모리 오류는 제품 crash로 보지 않는다).",
+   "exclude": "빌드·환경 준비 단계에서 멈추면 p.stage.build. 시험에서 제품 증상이 관찰됐으면 그 증상 노드가 주 라벨이고 이 노드는 보조. 실행 실패 없이 시험 코드를 읽어 찾은 잘못(아무것도 검사하지 않는 시험 등)은 p.gap.maint. 시험을 더하자는 개선 요청은 p.gap.maint.",
+   "examples": [
+    "DF-PLATFORM-2013-00343",
+    "DF-CORE-2020-00274",
+    "DF-UE-2020-00152"
+   ],
+   "std_mapping": "IEEE 1044 Detection activity Testing",
+   "status": "revised",
+   "v2_ids": [
+    "p.dev.test"
+   ]
+  },
+  {
+   "id": "p.stage.install",
+   "scheme": "p",
+   "broader": "p.stage",
+   "pref_label": {
+    "ko": "설치·업그레이드 실패",
+    "en": "Install or upgrade failure"
+   },
+   "alt_labels": [],
+   "definition": "운용 환경에 package를 설치하거나, 버전을 올리거나, DB migration·설치 도구를 돌리는 단계가 실패한다.",
+   "include": "package 설치 실패, upgrade·migration 실패·누락, cluster·제품 설치 중 구성 요소 생성 실패, 설치 뒤 module 없음, 설치·배포 도구 실행 실패, release 산출물 누락으로 설치 불가.",
+   "exclude": "설치는 끝났고 process 시작이 실패하면 p.stage.startup. 개발자·CI가 산출물을 만드는 compile·image build 실패는 p.stage.build.",
+   "examples": [
+    "DF-PLATFORM-2014-00778",
+    "DF-CORE-2020-00341",
+    "DF-PLATFORM-2012-00172"
+   ],
+   "std_mapping": "ODC Impact Installability·Migration; IANAItuProbableCause sfwrDownloadFailure(156)·versionMismatch(166) 일부 (IANAItuProbableCause 이름·번호는 RFC 3877 MIB 원문과 대조하지 않았다)",
+   "status": "measured",
+   "v2_ids": [
+    "p.deploy.install"
+   ]
+  },
+  {
+   "id": "p.stage.startup",
+   "scheme": "p",
+   "broader": "p.stage",
+   "pref_label": {
+    "ko": "기동·초기화 실패",
+    "en": "Startup or initialization failure"
+   },
+   "alt_labels": [],
+   "definition": "process·서비스·agent가 시작하지 못하거나 초기화를 마치지 못하고 실패 사유를 남기며 멈춘다.",
+   "include": "설정 검증 오류로 시작 거부, port bind 실패, 인증서 만료, 장치를 열지 못함, import·plugin 로딩 실패, 기동 중 필요한 interface·장치 생성 실패, boot 중 준비 상태에 이르지 못함, 시작 직후 exit code로 종료.",
+   "exclude": "기동 중이라도 signal·assert·panic으로 죽으면 p.halt. 설치·migration 단계에서 멈추면 p.stage.install. 시작은 됐지만 일부 기능이 실패하면 p.func.fail. 설정 값 때문에 프로그램이 사유를 알리고 시작을 멈추면 값이 유효하든 아니든 여기가 주 라벨이다(설정 때문이어도 assert·signal·panic으로 죽으면 p.halt).",
+   "examples": [
+    "DF-CORE-2018-00063",
+    "DF-OAM-2024-00477",
+    "DF-RAN-DU-2019-00206"
+   ],
+   "std_mapping": "IANAItuProbableCause sfwrEnvironmentProblem(155)·configurationOrCustomizationError(506)·underlyingResourceUnavailable(554) 일부; ODC Impact Installability·Reliability (IANAItuProbableCause 이름·번호는 RFC 3877 MIB 원문과 대조하지 않았다)",
+   "status": "measured",
+   "v2_ids": [
+    "p.deploy.startup"
+   ]
+  },
+  {
+   "id": "p.conn",
+   "scheme": "p",
+   "broader": "p",
+   "pref_label": {
+    "ko": "접속·연결 이상",
+    "en": "Connectivity problem"
+   },
+   "alt_labels": [],
+   "definition": "단말·가입자·peer 노드 사이, 또는 관리 시스템과 장비 사이의 접속 수립, 연결 유지, 데이터 전달이 실패하거나 나빠진다.",
+   "include": "p.conn.setup, p.conn.delivery의 판정 기준을 따른다.",
+   "exclude": "운영자의 관리 API·CLI 요청 실패는 p.func.fail. 망 요소가 보낸 메시지나 forwarding 상태(flow·route·rule)가 틀렸어도 단말·peer의 접속 실패나 traffic 불통이 기록에 적히지 않으면 p.func.wrong. 보안 규칙이 적용되지 않아 막혀야 할 traffic이 통과하면 p.sec. 응용 서비스의 중단·저하만 적히고 접속·전달 증상이 적히지 않으면 _none이고 서비스 영향은 facet에 적는다.",
+   "examples": [
+    "DF-CORE-2018-00019",
+    "DF-CORE-2026-02897",
+    "DF-RAN-DU-2023-00443"
+   ],
+   "std_mapping": "X.733 event type communicationsAlarm; 3GPP TS 28.554 Accessibility·Retainability·Integrity",
+   "status": "revised",
+   "v2_ids": [
+    "p.conn"
+   ]
+  },
+  {
+   "id": "p.conn.setup",
+   "scheme": "p",
+   "broader": "p.conn",
+   "pref_label": {
+    "ko": "접속·세션 수립 실패",
+    "en": "Access or session setup failure"
+   },
+   "alt_labels": [],
+   "definition": "단말·peer가 접속·등록·세션·link를 맺으려다 거절되거나, 응답을 받지 못하거나, 끝내지 못한다.",
+   "include": "attach·registration·service request·PDU session·bearer 수립 reject·실패, random access 미완료, cell 탐색·camp 실패, peer association·제어 link(SCTP, Diameter, TLS 등) 수립 실패, 수립 중 상대가 끊음, 인증 절차 실패.",
+   "exclude": "수립 절차(등록·세션·link 수립)가 끝난 뒤 끊기거나, 수립은 됐는데 데이터가 안 흐르면 p.conn.delivery. 수립 절차가 끝나기 전에 거절·해제되면 여기다. 운영자의 관리 API·CLI 요청 실패는 p.func.fail. 메시지 IE 이상이 거절을 낳았으면 주 라벨은 여기, p.func.wrong은 보조.",
+   "examples": [
+    "DF-CORE-2018-00019",
+    "DF-RAN-CU-2021-00085",
+    "DF-RAN-DU-2017-00096"
+   ],
+   "std_mapping": "3GPP TS 28.554 Accessibility; IANAItuProbableCause callEstablishmentError(503) (IANAItuProbableCause 이름·번호는 RFC 3877 MIB 원문과 대조하지 않았다)",
+   "status": "measured",
+   "v2_ids": [
+    "p.conn.setup"
+   ]
+  },
+  {
+   "id": "p.conn.delivery",
+   "scheme": "p",
+   "broader": "p.conn",
+   "pref_label": {
+    "ko": "연결 끊김·데이터 전달 실패",
+    "en": "Connection loss or data delivery failure"
+   },
+   "alt_labels": [],
+   "definition": "수립된 연결·세션·link가 끊기거나, 연결은 있는데 사용자 데이터·패킷이 전달되지 않거나 손실·잘못된 경로·잘못된 QoS로 가거나 전송 품질이 나빠진다.",
+   "include": "통화·세션 도중 중단, RLF, peer link timer 만료로 끊김, heartbeat 실패로 등록 해제, port가 DOWN에 고착, link·주소 flap, ping 실패, 도달 불가, 한 방향·전부 packet 폐기, 다른 bearer·경로로 흐름, 오류율·재전송 증가, 신호 품질 지표 악화, 무선 송신 신호의 품질·방사 규격 미달, 망 서비스(DHCP·DNS 등)가 응답하지 않음.",
+   "exclude": "처음부터 수립되지 않으면 p.conn.setup. 처리량·지연만 기준에 못 미치고 손실·폐기가 적히지 않으면 p.perf. 처리량 저하와 packet 폐기가 함께 적히면 여기가 주, p.perf는 보조. 보내는 메시지의 내용만 틀리고 끊김·불통이 서술되지 않으면 p.func.wrong. 정책·rate limit이 적용되지 않아 traffic이 더 많이 통과하면 p.func.wrong.",
+   "examples": [
+    "DF-CORE-2026-02897",
+    "DF-PLATFORM-2015-01470",
+    "DF-RAN-DU-2023-00443"
+   ],
+   "std_mapping": "3GPP TS 28.554 Retainability·Integrity; IANAItuProbableCause communicationsSubsystemFailure(505)·transmissionError(10)·degradedSignal(3) (IANAItuProbableCause 이름·번호는 RFC 3877 MIB 원문과 대조하지 않았다)",
+   "status": "measured",
+   "v2_ids": [
+    "p.conn.delivery"
+   ]
+  },
+  {
+   "id": "p.func",
+   "scheme": "p",
+   "broader": "p",
+   "pref_label": {
+    "ko": "기능 오동작",
+    "en": "Functional misbehavior"
+   },
+   "alt_labels": [],
+   "definition": "process는 살아 있고 응답하지만, 요청·작업이 오류로 끝나거나 결과·상태가 기대·규격·운영자 설정과 다르다.",
+   "include": "p.func.fail, p.func.wrong의 판정 기준을 따른다.",
+   "exclude": "단말·peer의 접속·전달 문제는 p.conn. 기능이 아예 없으면 p.gap.capability. process가 끝나거나 멈추면 p.halt. 갈래는 오류 신호가 있었는지로 가른다(있으면 p.func.fail, 없으면 p.func.wrong).",
+   "examples": [
+    "DF-PLATFORM-2013-00259",
+    "DF-OAM-2020-00066",
+    "DF-PLATFORM-2022-03610"
+   ],
+   "std_mapping": "Avizienis content failure; ODC Impact Capability; IEEE 1044 Effect Functionality",
+   "status": "measured",
+   "v2_ids": [
+    "p.func"
+   ]
+  },
+  {
+   "id": "p.func.fail",
+   "scheme": "p",
+   "broader": "p.func",
+   "pref_label": {
+    "ko": "요청·작업 실패",
+    "en": "Request or task failure"
+   },
+   "alt_labels": [],
+   "definition": "명령·API 요청·background 작업이 오류 응답·예외·거부·timeout 같은 오류 신호를 내며 끝난다.",
+   "include": "API가 오류·500·traceback 응답, 400이어야 할 곳에 500처럼 오류 형태가 틀림, 관리 명령 실패, agent·event handler 예외로 작업 미수행, 요청 무시로 timeout, 조회 실패, 받은 응답·메시지를 parse하지 못함, handler panic 뒤 오류 응답, 유효한 설정·입력 값을 오류로 거부, 실행 중 설정 파일 parse 오류, 살아 있는 서비스의 개별 작업·요청이 진행 중 상태에 머물러 끝나지 않음.",
+   "exclude": "오류 신호 없이 끝났는데 결과가 틀리거나 효과가 없으면 p.func.wrong. 단말·peer의 접속·세션 수립 실패는 p.conn.setup. 설치·기동 단계의 실패와 기동 중 설정 거부는 p.stage.install·p.stage.startup. panic·segfault 뒤 호출자 응답이나 process 생존이 적히지 않았으면 p.halt. 로그에만 오류가 찍히고 작업은 제대로 끝났으면 p.info.log.",
+   "examples": [
+    "DF-PLATFORM-2013-00259",
+    "DF-CORE-2022-01479",
+    "DF-OAM-2019-00012"
+   ],
+   "std_mapping": "IANAItuProbableCause softwareError(163)·configurationOrCustomizationError(506, 유효한 설정 거부); ODC Impact Capability·Usability (IANAItuProbableCause 이름·번호는 RFC 3877 MIB 원문과 대조하지 않았다)",
+   "status": "revised",
+   "v2_ids": [
+    "p.func.fail"
+   ]
+  },
+  {
+   "id": "p.func.wrong",
+   "scheme": "p",
+   "broader": "p.func",
+   "pref_label": {
+    "ko": "잘못된 결과·상태",
+    "en": "Wrong output or state"
+   },
+   "alt_labels": [],
+   "definition": "동작이 오류 신호 없이 끝나지만 만들어진 값·출력·송신 메시지·저장 데이터·내부 상태가 기대·규격·운영자 설정과 다르거나, 아무 효과가 없다.",
+   "include": "계산·판정 오류, API 응답 필드 누락, 엉뚱한 대상에 동작, 명령이 성공으로 끝나지만 효과 없음, 설정 변경 미적용·일부 적용, option·parameter 무시, 기본값·단위·type 해석 오류, 잘못된·범위 밖 값 수용, 의도하지 않은 생성·삭제, peer에 보내는 메시지의 IE 누락·값 오류·불필요한 송신·미송신·순서 이상, 틀린 forwarding 상태(flow·route·rule 누락), 정책·rate limit 미적용으로 traffic이 더 통과, 삭제 뒤 자원·context 잔류, 구성 요소 사이 상태 불일치, 중복 생성·이중 초기화. 실행 결과 없이 코드를 읽고 틀린 값·동작을 지적한 경우도 여기다(관찰 여부 facet=예상).",
+   "exclude": "오류·예외·거부로 끝나면 p.func.fail. 메시지 이상의 결과로 접속이 거절되거나 끊기거나 traffic이 불통이면 p.conn.*가 주 라벨이고 이 노드는 보조. 화면·로그 문구만 틀리면 p.info.log. 보안 통제 설정(방화벽·권한)이 적용되지 않아 막아야 할 접근이 허용되면 p.sec. 기능 요청이 지금 동작을 설계대로라고 보고 새 동작을 청하면 p.gap.capability.",
+   "examples": [
+    "DF-OAM-2020-00066",
+    "DF-CORE-2021-01041",
+    "DF-PLATFORM-2022-03610"
+   ],
+   "std_mapping": "IANAItuProbableCause corruptData(153)·communicationsProtocolError(504)·configurationOrCustomizationError(506, 설정 미적용); ODC Impact Capability·Standards(규격과 다른 메시지) (IANAItuProbableCause 이름·번호는 RFC 3877 MIB 원문과 대조하지 않았다)",
+   "status": "revised",
+   "v2_ids": [
+    "p.func.wrong"
+   ]
+  },
+  {
+   "id": "p.perf",
+   "scheme": "p",
+   "broader": "p",
+   "pref_label": {
+    "ko": "성능·자원 이상",
+    "en": "Performance or resource problem"
+   },
+   "alt_labels": [],
+   "definition": "결과는 맞지만 처리·응답·복구가 오래 걸리거나, 처리량이 기준에 못 미치거나, 자원을 필요 이상 쓰거나 계속 늘린다.",
+   "include": "응답·처리 지연, 실시간 마감 위반, 처리량 상한, 재연결·복구 지연, 규모가 커지면 느려짐, 메모리 증가·누수, CPU 과다, 자원(port 등) 누적, 불필요한 반복 호출·조회·갱신이 끝없이 이어짐, 속도·자원·비용을 줄이자는 개선 요청. 실행 없이 코드를 읽고 지적한 누수·과다 사용도 여기다(관찰 여부 facet=예상).",
+   "exclude": "진행이 막혀 끝나지 않으면 p.halt. 자원 고갈로 process가 실제로 종료되면 p.halt. 데이터 손실·폐기가 적히면 p.conn.delivery. 시험 job의 시간 초과만 있으면 p.stage.test. 동기(속도·자원·비용)가 적히지 않은 구현 방식 교체 요청은 p.gap.maint. 개발·시험 절차의 시간 단축 요청은 p.gap.maint. 제품의 속도·자원·운영 비용이 동기일 때만 여기다.",
+   "examples": [
+    "DF-PLATFORM-2018-02651",
+    "DF-CORE-2021-00584",
+    "DF-RAN-DU-2015-00020"
+   ],
+   "std_mapping": "Avizienis late timing; ODC Impact Performance; IEEE 1044 Effect Performance; X.733 event type qualityOfServiceAlarm; IANAItuProbableCause responseTimeExecessive(542, MIB 철자 그대로)·performanceDegraded(532)·outOfMemory(162)·outOfCPUCycles(154)·storageCapacityProblem(151)·thresholdCrossed(549)·queueSizeExceeded(537) (IANAItuProbableCause 이름·번호는 RFC 3877 MIB 원문과 대조하지 않았다)",
+   "status": "revised",
+   "v2_ids": [
+    "p.perf"
+   ]
+  },
+  {
+   "id": "p.sec",
+   "scheme": "p",
+   "broader": "p",
+   "pref_label": {
+    "ko": "보안 통제 실패",
+    "en": "Security control failure"
+   },
+   "alt_labels": [],
+   "definition": "인증·권한·격리·무결성·기밀성 같은 보안 통제가 적용되지 않아, 허용되면 안 되는 접근·조작·노출이 가능하다.",
+   "include": "권한 없는 사용자의 변경 허용, 인증 없는 등록·조작, 무결성 보호 없는 메시지 수용, spoofing 보호 우회, 방화벽·security group 규칙이 적용되지 않아 막혀야 할 traffic 통과, 다른 tenant 트래픽 노출, 비밀·내부 정보 노출, 외부 입력으로 out-of-bounds 읽기·쓰기 같은 메모리 안전성 위반이 일어나지만 crash는 관찰되지 않음. 코드 검토로만 찾았어도 외부 입력으로 통제 우회·노출이 가능하다고 적히면 여기다.",
+   "exclude": "조작된 입력으로 crash·hang이 나면 p.halt, 세션 삭제·끊김(DoS)이면 p.conn.delivery가 주 라벨이다. 이때 p.sec를 보조 라벨로 달지 않고 보안 영향 facet=있음으로 적는다. 외부 입력 경로 없이 정적 분석·sanitizer·코드 검토가 찾은 결함은 예상 증상 노드에 달고 관찰 여부 facet=예상으로 적는다. 권한과 무관한 설정 값 판정 오류는 p.func.*.",
+   "examples": [
+    "DF-OAM-2021-00193",
+    "DF-CORE-2023-01926",
+    "DF-PLATFORM-2021-03463"
+   ],
+   "std_mapping": "X.736 security alarm(event type integrityViolation·operationalViolation·securityServiceOrMechanismViolation; IANAItuProbableCause unauthorizedAccessAttempt(614)); ODC Impact Integrity/Security; IEEE 1044 Effect Security; CVE 문서는 CWE (IANAItuProbableCause 이름·번호는 RFC 3877 MIB 원문과 대조하지 않았다)",
+   "status": "revised",
+   "v2_ids": [
+    "p.sec"
+   ]
+  },
+  {
+   "id": "p.info",
+   "scheme": "p",
+   "broader": "p",
+   "pref_label": {
+    "ko": "문서·출력 문구 이상",
+    "en": "Documentation or message issue"
+   },
+   "alt_labels": [],
+   "definition": "제품 동작은 맞지만 사람이 읽는 정보(문서, 예시 설정, 로그, 경고, 알람, 오류 문구, 화면 표시·이름)가 틀리거나, 빠지거나, 지나치거나, 헷갈리게 한다.",
+   "include": "p.info.doc, p.info.log의 판정 기준을 따른다.",
+   "exclude": "동작 자체가 틀리면 해당 기능 노드(p.func.* 등). 제품에 기능이 없으면 p.gap.capability.",
+   "examples": [
+    "DF-PLATFORM-2021-03377",
+    "DF-PLATFORM-2016-02235",
+    "DF-RAN-CU-2025-00220"
+   ],
+   "std_mapping": "ODC Impact Documentation·Serviceability; IEEE 1044 Effect Serviceability",
+   "status": "measured",
+   "v2_ids": [
+    "p.info"
+   ]
+  },
+  {
+   "id": "p.info.doc",
+   "scheme": "p",
+   "broader": "p.info",
+   "pref_label": {
+    "ko": "문서 오류·누락",
+    "en": "Documentation error or omission"
+   },
+   "alt_labels": [],
+   "definition": "문서, API reference, README, 예시 설정, docstring·주석이 틀리거나, 낡거나, 빠져 있다.",
+   "include": "설치 명령 누락, 옵션 설명이 실제와 다름, 깨진 링크, 지원 목록 누락, 새 기능 문서화 요청(기능 요청이어도 여기), 예시 설정과 코드 불일치, 주석의 틀린 출처.",
+   "exclude": "로그·경고·알람 문구는 p.info.log. 동작이 문서와 다르고 동작 쪽을 고쳐야 하면 해당 기능 노드. 문서 사이트 이전처럼 내용 결함 없는 작업은 p.gap.maint.",
+   "examples": [
+    "DF-PLATFORM-2021-03377",
+    "DF-PLATFORM-2013-00581",
+    "DF-RAN-DU-2025-00607"
+   ],
+   "std_mapping": "ODC Impact Documentation; IEEE 1044 defect Type Description(2차 출처)",
+   "status": "measured",
+   "v2_ids": [
+    "p.info.doc"
+   ]
+  },
+  {
+   "id": "p.info.log",
+   "scheme": "p",
+   "broader": "p.info",
+   "pref_label": {
+    "ko": "로그·알람·화면 문구 이상",
+    "en": "Log, alarm or displayed text issue"
+   },
+   "alt_labels": [],
+   "definition": "실행 중 나오는 로그·경고·알람·오류 문구·화면 표시가 거짓이거나, 지나치게 많거나, 빠지거나, 수준이 맞지 않거나, 엉뚱한 원인을 가리키거나, 사용자를 헷갈리게 한다.",
+   "include": "정상 상황의 오류 로그, 반복 trace, 잘못된 log level, deprecation 경고, 빌드·시험 중 불필요한 출력, 오해를 부르는 오류 문구, 값 형식이 틀린 로그, logging 호출 자체의 format 오류, 화면 단위·이름 표기 오류, 알람 누락·오탐·폭주.",
+   "exclude": "문서·예시 설정은 p.info.doc. 로그가 실제로 실패한 작업을 알리면 그 실패의 노드(p.func.fail 등). 호출자가 받는 응답 코드가 틀리면 p.func.fail.",
+   "examples": [
+    "DF-PLATFORM-2016-02235",
+    "DF-CORE-2023-01874",
+    "DF-RAN-CU-2025-00220"
+   ],
+   "std_mapping": "ODC Impact Serviceability; Avizienis detectability(false alarm·unsignaled failure)",
+   "status": "measured",
+   "v2_ids": [
+    "p.info.log"
+   ]
+  },
+  {
+   "id": "p.state",
+   "scheme": "p",
+   "broader": "p",
+   "pref_label": {
+    "ko": "구성요소·설비 상태 이상",
+    "en": "Equipment or facility condition"
+   },
+   "alt_labels": [],
+   "definition": "서비스 증상이 아직 없거나 적히지 않은 채, 장비·부품·설비·자원의 상태가 정상 범위를 벗어났거나 곧 벗어난다고 보고된다.",
+   "include": "p.state.equipment, p.state.environment의 판정 기준을 따른다. 인증서·license 만료 임박처럼 두 자식에 맞지 않는 상태 경보는 이 노드에 바로 단다.",
+   "exclude": "서비스 증상(종료, 접속 실패, 전달 실패, 지연)이 함께 적히면 그 증상 노드가 주 라벨이고 이 노드는 보조. 처리량·지연·CPU·메모리 사용량 같은 성능 지표의 임계 초과는 p.perf.",
+   "examples": [],
+   "std_mapping": "X.733 event type equipmentAlarm·environmentalAlarm",
+   "status": "new",
+   "v2_ids": []
+  },
+  {
+   "id": "p.state.equipment",
+   "scheme": "p",
+   "broader": "p.state",
+   "pref_label": {
+    "ko": "장비·부품 고장",
+    "en": "Equipment or component failure"
+   },
+   "alt_labels": [],
+   "definition": "보드·port·fan·전원 모듈·광 모듈 같은 HW 구성 요소가 고장·이탈했거나 이중화의 한쪽을 잃었다.",
+   "include": "보드·카드 고장 알람, fan 정지, 전원 모듈 고장, 광 모듈 이상, 이중화 상실(서비스 영향 없음), 장비 탈장.",
+   "exclude": "환경·설비 조건(온도·전원 공급·습도)이 임계를 넘으면 p.state.environment. 고장 때문에 서비스가 끊기거나 멈췄으면 그 증상 노드가 주.",
+   "examples": [],
+   "std_mapping": "X.733 event type equipmentAlarm",
+   "status": "new",
+   "v2_ids": []
+  },
+  {
+   "id": "p.state.environment",
+   "scheme": "p",
+   "broader": "p.state",
+   "pref_label": {
+    "ko": "환경·설비 조건 이상",
+    "en": "Environmental or facility condition"
+   },
+   "alt_labels": [],
+   "definition": "온도·습도·전원 공급·냉방·함체 상태 같은 설치 환경·설비 조건이 임계를 넘었다.",
+   "include": "함체·장비 온도 초과, 상용 전원 단절, 축전지 저전압, 냉방 정지, 함체 문 열림, 습도 초과.",
+   "exclude": "장비 자체의 부품이 고장 났으면 p.state.equipment. 조건 때문에 서비스가 끊기거나 멈췄으면 그 증상 노드가 주.",
+   "examples": [],
+   "std_mapping": "X.733 event type environmentalAlarm",
+   "status": "new",
+   "v2_ids": []
+  },
+  {
+   "id": "p.gap",
+   "scheme": "p",
+   "broader": "p",
+   "pref_label": {
+    "ko": "기능·개선 필요",
+    "en": "Capability or improvement need"
+   },
+   "alt_labels": [],
+   "definition": "있는 기능의 오동작이 아니라, 필요한 기능·지원이 없거나 코드·시험·절차를 보강해야 하는 상태가 요청 배경으로 적혔다.",
+   "include": "p.gap.capability, p.gap.maint의 판정 기준을 따른다.",
+   "exclude": "지원된다고 되어 있는데 동작하지 않으면 p.func.* 등 증상 노드. 요청 배경에 관찰된 오작동이 서술되면 그 증상이 주 라벨. 문서 누락은 p.info.doc. 효율 개선은 p.perf. 결함으로 올라왔다가 미지원으로 판정된 건은 관찰된 증상 노드다(판정은 resolution 축).",
+   "examples": [
+    "DF-CORE-2015-00003",
+    "DF-OAM-2020-00062",
+    "DF-CORE-2020-00442"
+   ],
+   "std_mapping": "ODC Impact Capability·Requirements·Maintenance",
+   "status": "revised",
+   "v2_ids": [
+    "p.gap"
+   ]
+  },
+  {
+   "id": "p.gap.capability",
+   "scheme": "p",
+   "broader": "p.gap",
+   "pref_label": {
+    "ko": "기능·지원 부재",
+    "en": "Missing capability"
+   },
+   "alt_labels": [],
+   "definition": "제품이 요구된 기능·규격 항목·구성·실행 환경·규모·관측 수단을 지원하지 않는다.",
+   "include": "미구현 표준 기능, 프로토콜 버전·option 지원 요청, 미지원 topology·HW·OS·외부 library, 관리 API·CLI 동작 부재, metric·event 부재, 숨은 설정 노출 요청.",
+   "exclude": "바뀐 것을 겪는 사람이 개발자·기여자뿐인 코드·시험·절차·개발 조직 정책 정리는 p.gap.maint. 있는 기능이 틀리게 동작하면 p.func.*. 이미 지원 대상인 환경에서 실행이 실패하면 p.stage.install·p.stage.startup. 속도·자원·비용 절감이 동기면 p.perf. 결함으로 올라왔다가 미지원으로 판정된 건은 관찰된 증상 노드다(판정은 resolution 축).",
+   "examples": [
+    "DF-CORE-2015-00003",
+    "DF-OAM-2020-00062",
+    "DF-RAN-CU-2016-00011"
+   ],
+   "std_mapping": "ODC Impact Capability·Requirements",
+   "status": "revised",
+   "v2_ids": [
+    "p.gap.capability"
+   ]
+  },
+  {
+   "id": "p.gap.maint",
+   "scheme": "p",
+   "broader": "p.gap",
+   "pref_label": {
+    "ko": "코드·시험·절차 보강",
+    "en": "Maintenance or process improvement"
+   },
+   "alt_labels": [],
+   "definition": "제품 사용자·운영자에게 보이는 동작은 바꾸지 않고 코드 구조·의존성·시험 범위·개발 절차를 정리하거나 보강해야 한다.",
+   "include": "refactor, deprecated 구성 요소 제거, 의존성·runtime upgrade·정리, style·lint 경고 정리, 빌드 체계·image 전환, 시험 추가·coverage 보강, CI·triage·보안 신고 절차 같은 개발 조직 절차 변경, 동기 없는 구현 방식 교체, 문서 사이트 이전. 시험 분할·병렬화처럼 개발 절차 시간을 줄이는 요청.",
+   "exclude": "제품 사용자·운영자가 쓰는 새 동작·설정·환경 지원이 생기면 p.gap.capability. 코드가 잘못 동작할 수 있다고 지적하면 예상 증상 노드(관찰 여부 facet=예상). 시험·검사 job이 실제로 실패하면 p.stage.test. 속도·자원·비용 절감이 동기면 p.perf.",
+   "examples": [
+    "DF-CORE-2020-00442",
+    "DF-PLATFORM-2012-00032",
+    "DF-PLATFORM-2014-00705"
+   ],
+   "std_mapping": "ODC Impact Maintenance·Migration",
+   "status": "revised",
+   "v2_ids": [
+    "p.gap.maint"
+   ]
+  }
+ ],
+ "special_codes": [
+  {
+   "id": "_none",
+   "pref_label": {
+    "ko": "정보 없음",
+    "en": "No information"
+   },
+   "definition": "기술 증상을 판정할 내용이 원문에 없다.",
+   "include": "title도 의미가 없고 본문·댓글·연결 PR이 모두 비어 있다. 서비스 영향(중단·저하)만 적히고 기술 증상이 없다(서비스 영향은 facet).",
+   "exclude": "본문이 비어도 title이나 댓글·연결 PR로 현상을 알 수 있으면 해당 노드.",
+   "examples": [],
+   "std_mapping": "ODC v5.2 §5.1 Unknown(나중에 알게 되면 채우는 임시값)에 가깝다; NORS Insufficient Data"
+  },
+  {
+   "id": "_na",
+   "pref_label": {
+    "ko": "해당 없음",
+    "en": "Not applicable"
+   },
+   "definition": "현상도 부족함도 적히지 않은 순수 작업 기록이나 문의다.",
+   "include": "이유가 적히지 않은 검증·조사 작업, 실행 방식만 바꾸는 작업. 사용법·정보 문의(제품 결함이나 부족함을 주장하지 않음).",
+   "exclude": "정리·보강이 필요한 이유(EOL, 중복, style 등)가 적혀 있으면 p.gap.maint. 시험을 더하자는 요청은 p.gap.maint. 문서가 부족하다고 명시한 문의는 p.info.doc.",
+   "examples": [
+    "DF-CORE-2022-01515",
+    "DF-PLATFORM-2020-03184"
+   ],
+   "std_mapping": "표준 대응 없음"
+  },
+  {
+   "id": "_other",
+   "pref_label": {
+    "ko": "기타",
+    "en": "Other"
+   },
+   "definition": "현상은 적혀 있지만 위 어느 노드에도 맞지 않는다.",
+   "include": "트리 개정 후보로 모은다. 같은 모양이 2% 넘게 쌓이면 노드를 연다.",
+   "exclude": "가까운 노드의 include에 비슷한 예가 있으면 그 노드.",
+   "examples": [],
+   "std_mapping": "NORS Other/Unknown; 3GPP TS 28.111 Annex B의 목록 밖 probableCause 허용"
+  }
+ ],
+ "facets": [
+  {
+   "id": "location",
+   "label": "어디서",
+   "values": "장비군·NF·프로토콜·제품·버전·모듈",
+   "note": "세 축 공통. 'AMF crash'는 problem=p.halt + location NF=AMF다."
+  },
+  {
+   "id": "reproducibility",
+   "label": "재현성",
+   "values": "항상 / 간헐 / 1회 / 미상",
+   "note": ""
+  },
+  {
+   "id": "detection",
+   "label": "탐지 활동",
+   "values": "운용 / 고객 신고 / 알람 / 시험 / CI / 코드 검토 / 분석 도구 / 보안 제보 / 미상",
+   "note": "IEEE 1044 Detection activity, ODC Trigger. v2의 p.dev가 담던 정보다."
+  },
+  {
+   "id": "observation",
+   "label": "관찰 여부",
+   "values": "관찰 / 예상",
+   "note": "실행 결과 없이 코드·분석 도구로 지적한 결함은 예상. v2의 p.dev.finding을 대신한다."
+  },
+  {
+   "id": "security_impact",
+   "label": "보안 영향",
+   "values": "있음 / 없음 / 미상",
+   "note": "p.sec가 주 라벨이 아닐 때 보안 영향을 여기에 적는다."
+  },
+  {
+   "id": "service_impact",
+   "label": "서비스 영향",
+   "values": "중단 / 저하 / 영향 없음 / 미상",
+   "note": "범위·지속 시간은 메타데이터로 둔다. 3GPP TS 28.554 Accessibility·Retainability, ITU-T E.800 계열."
+  },
+  {
+   "id": "trigger",
+   "label": "계기 동작",
+   "values": "설정 변경 / 운영자 요청 / 단말 절차 / 기동 / upgrade / 미상",
+   "note": "정의만 했고 실측하지 않았다. v2에서 p.func.config를 없애며 넘긴 정보다."
+  }
+ ],
+ "open_conditions": [
+  "p.halt: 알람·장애 보고서가 들어와 hang이 판정 가능 표의 2%를 넘으면 crash와 hang으로 나눈다.",
+  "p.perf: 지연·처리량과 자원 과다로 나눌 후보다.",
+  "p.info.log: 로그와 알람으로 나눌 후보다.",
+  "p.sec: CWE 상위 묶음으로 나눌 후보다(CVE 문서가 들어올 때).",
+  "p.state: 만료·한도 임박(인증서·license·저장 공간)이 중간 노드 직접 배정으로 2%를 넘으면 L2로 연다."
+ ],
+ "changes_from_v2": [
+  "합침: p.deploy와 p.dev를 L1 p.stage(빌드·시험·설치·기동 실패)로 합쳤다. 두 L1은 같은 실패 모양을 개발 환경인지 운용 환경인지로 갈랐고, 환경은 탐지 활동 facet이 맡는다. L1이 10개가 되는 것도 막는다.",
+  "없앰: p.dev.finding. 루트가 facet이라고 한 탐지 활동·관찰 여부를 노드로 담고 있었다. 그 레코드는 예상 증상 노드 + 관찰 여부 facet=예상으로 단다.",
+  "새 L1: p.state(구성요소·설비 상태 이상)와 L2 equipment·environment. X.733 equipmentAlarm·environmentalAlarm 자리이고, 가상 알람 3건이 v2에서 두 pass 모두 _other로 갔다.",
+  "판정 이동: '미지원으로 판정된 결함'을 p.gap.capability에서 뺐다. 판정은 resolution 축만 담는다.",
+  "p.sec를 보조 라벨로 쓰지 않는다. 보안 영향 facet이 맡는다.",
+  "p.func.fail에 '살아 있는 서비스의 개별 작업이 진행 중에 멈춤'을 넣었다(p.halt와의 경계).",
+  "_none에 '서비스 영향만 있고 기술 증상 없음'을, _na에 '사용법·정보 문의'를 넣었다.",
+  "주 라벨 순서에 p.state를 넣고, 순서의 원칙(서비스 영향이 큰 증상 먼저)을 적었다."
+ ],
+ "status_values": {
+  "measured": "v2와 같은 정의, v2 실측 있음",
+  "revised": "정의를 고침, 재측정 안 함",
+  "merged": "v2 노드를 합침, 재측정 안 함",
+  "new": "v2에 없음, 실측 0"
+ }
+}

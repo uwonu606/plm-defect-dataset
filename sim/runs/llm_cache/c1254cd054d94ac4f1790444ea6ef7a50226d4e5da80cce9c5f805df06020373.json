@@ -1,0 +1,1 @@
+{"text": "```json\n[{\"case_code\": \"DF-CORE-2026-02510\", \"problem\": {\"primary\": \"p.halt\", \"secondary\": \"p.func.wrong\"}}]\n```", "seconds": 3.6, "input_tokens": 10154, "output_tokens": 335, "cost_usd": 0.00044592000000000004}

@@ -1,0 +1,1 @@
+{"text": "[{\"case_code\": \"DF-CORE-2016-00006\", \"problem\": {\"primary\": \"p.halt\", \"secondary\": \"p.func.wrong\"}, \"cause\": {\"primary\": \"c.code.logic.case\", \"secondary\": null}, \"resolution\": {\"primary\": \"_none\", \"secondary\": null}}]", "seconds": 7.24, "input_tokens": 32421, "output_tokens": 1082, "cost_usd": 0.00101967}

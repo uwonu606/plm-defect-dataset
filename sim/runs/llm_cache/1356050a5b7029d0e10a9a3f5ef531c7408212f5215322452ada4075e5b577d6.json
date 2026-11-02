@@ -1,0 +1,1 @@
+{"text": "[{\"case_code\": \"DF-CORE-2026-02966\", \"problem\": {\"primary\": \"p.halt\", \"secondary\": \"p.sec\"}}]", "seconds": 5.36, "input_tokens": 10519, "output_tokens": 630, "cost_usd": 0.0006335500000000001}

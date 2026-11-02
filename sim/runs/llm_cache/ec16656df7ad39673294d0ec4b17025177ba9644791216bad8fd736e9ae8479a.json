@@ -1,0 +1,1 @@
+{"text": "[{\"case_code\": \"DF-PLATFORM-2015-01257\", \"problem\": {\"primary\": \"p.halt\", \"secondary\": \"p.func.fail\"}}]", "seconds": 4.71, "input_tokens": 10322, "output_tokens": 606, "cost_usd": 0.00061502}

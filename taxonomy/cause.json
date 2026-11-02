@@ -1,0 +1,884 @@
+{
+ "axis": "cause",
+ "version": "v3",
+ "axis_definition": {
+  "label_ko": "원인",
+  "criterion": "근본 원인. 결함이 어떤 종류의 요소에 있었나.",
+  "independence": "세 축(problem, cause, resolution)은 서로 독립이다. 한 축의 판정 조건에 다른 축의 값을 쓰지 않는다."
+ },
+ "label_rule": "레코드마다 축별 주 라벨 1개(필수)와 보조 라벨 0~1개를 단다. 가장 깊은 노드를 고르고, 하위를 가를 근거가 없으면 중간 노드에 단다. 트리에 맞지 않으면 특수 코드 _none(정보 없음), _na(해당 없음), _other(맞는 노드 없음) 중 하나를 쓴다. 축 루트 id는 라벨로 쓰지 않는다.",
+ "depth_policy": {
+  "max_depth": 3,
+  "levels": "축 루트 아래 L1(대분류), L2(중분류), L3(세분류)까지 둔다.",
+  "l1_count": "축마다 4~9개.",
+  "children_count": "자식을 두는 노드는 자식 2~9개.",
+  "one_criterion": "한 층의 형제는 축이 정한 기준 하나로 나눈다. 다른 기준(탐지 활동, 요구 출처, 누구 것인지, 바꾼 산출물 종류, 처분)은 facet이나 다른 축으로 보낸다.",
+  "open_breadth": "L1·L2는 (a) 표준 범주(ODC, NORS, X.733·X.736, IEEE 1044, 트래커 처분 값)가 받치거나 (b) 둘 이상의 문서 종류에서 독립적으로 판정 가능하면 연다. 지금 데이터에 없어도 연다(status=new).",
+  "open_depth": "L3는 (a) 자식마다 판정 가능 표의 2% 이상이고 (b) held-out 표본에서 같은 L2 안의 L3 일치가 0.9 이상일 때 연다. 외부 표준 값과 1:1로 대응하는 노드(CWE id 등)는 (a)를 면제한다.",
+  "merge": "정의가 겹치거나 라벨러가 자주 혼동하는 형제는 합친다. 위 넓이 근거가 없는 노드가 판정 가능 표의 2% 미만이면 부모나 형제로 합친다.",
+  "denominator": "판정 가능 표 = 특수 코드(_none, _na, _other)를 뺀 주 라벨 표.",
+  "intermediate": "하위 갈래를 가를 근거가 없거나 맞는 자식이 없으면 중간 노드에 단다. 잎 크기 통계에서 따로 센다. 중간 노드 직접 배정이 판정 가능 표의 2%를 넘으면 자식을 여는 후보다.",
+  "large_leaf": "판정 가능 표의 25%를 넘는 잎은 나눌 독립 의미를 찾는 신호다. 독립 의미가 없으면 남기고 이유를 적는다.",
+  "other_code": "_other 비율은 트리가 모든 경우를 덮는다는 근거로 쓰지 않는다. 라벨러는 맞지 않는 레코드도 가까운 노드로 당긴다. 새 문서 종류는 30건쯤 사람이 확인한 뒤 확장을 정한다.",
+  "provisional": "2%, 25%, 0.9는 이 데이터셋(공개 트래커 결함 10,000건)으로 정한 임시값이다."
+ },
+ "scheme": {
+  "id": "c",
+  "pref_label": {
+   "ko": "원인",
+   "en": "Cause"
+  },
+  "definition": "보고된 증상을 만든 결함(fault)의 종류다. 결함이 누구 것인지(원인 소재), 어디서 났는지(위치), 결함인지에 대한 처분은 트리 밖이다.",
+  "include": "L1은 '결함이 어떤 종류의 요소에 있었나' 하나로 고른다: SW 코드(c.code), HW(c.hw), 설정·데이터·문서 내용(c.content), 빌드·의존 구성(c.supply), 시험 자산(c.test), 운용·구축 행위(c.operation), 외부 조건·사건(c.env). 그 요소가 누구 것인지(자사·공급사·운용자·제3자)는 보지 않고 원인 소재 facet에 적는다. 제품을 고쳤는지도 보지 않는다(resolution 축). 원인 서술이 비었거나 가설뿐이어도, 해결 서술이 바꾼 요소를 구체적으로 적어 노드 하나를 가리키면 그 노드로 단다. 주 라벨은 근본 원인 1개, 보조 라벨은 함께 보인 다른 메커니즘이나 확대·장기화 요인 1개다(원인 역할 facet). L2·L3를 가를 근거가 없으면 그 위 노드에 바로 단다.",
+  "exclude": "증상(crash, panic, 500 응답, 접속 실패)만 있고 원인 서술도 구체적인 해결 서술도 없으면 _none. 고칠 결함이 없는 기록(기능 요청, 결함 아님 판정, 사용법 문의)은 _na. 어느 L1에도 맞지 않으면 _other(모두 트리 밖).",
+  "std_mapping": "Avizienis 2004 fault class(development / physical / interaction, software / hardware); NORS Root Cause(\"why\")"
+ },
+ "concepts": [
+  {
+   "id": "c.code",
+   "scheme": "c",
+   "broader": "c",
+   "pref_label": {
+    "ko": "소프트웨어 결함",
+    "en": "Software defect"
+   },
+   "alt_labels": [
+    "제품 코드 결함"
+   ],
+   "definition": "SW·FW의 소스 코드가 의도·요구·계약과 다르게 작성되어 증상을 냈다. 제품 코드든 가져다 쓴 library·kernel·상대 장비의 SW든 같다.",
+   "include": "원인 서술이 코드의 특정 동작을 짚거나, 해결 서술이 코드 변경을 가리킨다. 우리가 고치는 운영 스크립트·도구 코드도 든다. 외부 library·kernel·상대 장비의 bug라고만 적혀 메커니즘을 모르면 이 노드에 바로 단다(원인 소재 facet=공급사·OSS 또는 제3자).",
+   "exclude": "코드는 맞고 설정 값·기본값·정책·데이터·문서 내용이 틀렸으면 c.content. 외부 구성요소가 의도적으로 바뀌었거나(새 버전의 API·기본값 변경) 설치·선언된 버전이 맞지 않으면 c.supply.dependency. 컴파일·빌드 정의 오류는 c.supply.build. 시험 코드·fixture 안의 결함은 메커니즘과 관계없이 c.test. 회로·부품·FPGA 논리 같은 HW 설계는 c.hw.design.",
+   "examples": [
+    "DF-PLATFORM-2018-02633",
+    "DF-CORE-2026-02615",
+    "DF-PLATFORM-2015-01257"
+   ],
+   "std_mapping": "ODC Target=Code; NORS Design-Software·Design-Firmware; Avizienis development fault(software)",
+   "status": "revised",
+   "v2_ids": [
+    "c.code"
+   ]
+  },
+  {
+   "id": "c.code.logic",
+   "scheme": "c",
+   "broader": "c.code",
+   "pref_label": {
+    "ko": "처리 논리 오류",
+    "en": "Processing logic error"
+   },
+   "alt_labels": [
+    "조건·참조 오류",
+    "처리 경우·기능 누락",
+    "값·계산·변환 오류",
+    "규격 절차·필수 요소 미준수"
+   ],
+   "definition": "입력·상태·상대가 정상인데 코드의 조건·분기·참조 대상·계산이 틀렸거나, 정상 범위의 경우나 약속한 기능을 다루지 않아 결과가 틀렸다.",
+   "include": "반대·누락된 조건, 다른 필드와의 비교, 오타 변수·이름, 엉뚱한 변수·ID 선택, 유일하지 않은 식별 key, 너무 넓은 query 조건, 특정 설정 조합·optional 요소·추가 인스턴스에 대한 분기 없음, 조건을 보지 않고 늘 같은 값·동작을 씀(하드코딩), 노출한 method 미구현, 규격이 요구한 절차 단계·필수 요소·필드 값·응답 코드 누락(요구 출처 facet=표준), 잘못된 상수·literal, off-by-one, 산술·비트·단위 환산·자료형 변환 오류, 내부의 두 표현(enum, 구조체) 사이 값 대응 오류, buffer offset 계산 오류. 빠진 것인지 틀린 것인지는 qualifier facet(누락/오류/불필요)에 적는다.",
+   "exclude": "바깥에서 온 값을 거르지 않았거나 실패 결과를 처리하지 않았으면 c.code.guard. 객체의 상태 값이나 생성·정리 시점이 틀렸으면 c.code.state. 원인 서술이 상대 구성요소가 무엇을 받는지·돌려주는지·어떻게 동작하는지를 근거로 들면 c.code.interface. 바깥으로 내보내거나 받는 메시지·데이터의 표현 규칙(인코딩·직렬화)이 틀렸으면 c.code.encoding.",
+   "examples": [
+    "DF-PLATFORM-2018-02633",
+    "DF-PLATFORM-2016-01894",
+    "DF-PLATFORM-2019-02843"
+   ],
+   "std_mapping": "ODC Defect Type Algorithm/Method, Assignment/Initialization, Function/Class/Object, Checking(조건); ODC Qualifier(Missing/Incorrect/Extraneous)는 qualifier facet; IEEE 1044 Type Logic·Data",
+   "status": "merged",
+   "v2_ids": [
+    "c.code.logic",
+    "c.code.logic.decision",
+    "c.code.logic.case",
+    "c.code.logic.compute",
+    "c.code.conformance.procedure"
+   ]
+  },
+  {
+   "id": "c.code.guard",
+   "scheme": "c",
+   "broader": "c.code",
+   "pref_label": {
+    "ko": "검사·오류 처리 결함",
+    "en": "Checking and error-handling defect"
+   },
+   "alt_labels": [],
+   "definition": "들어오는 값과 요청을 거르는 검사, 또는 실패한 호출의 뒤처리가 빠졌거나 틀렸다.",
+   "include": "바깥 입력 검증 누락, 인가·출처 검증 누락, 실패 결과 미검사, 예외 삼킴·잘못된 오류 변환, 회복 가능한 실패를 assert로 끝냄.",
+   "exclude": "정상 범위 입력을 틀리게 처리했으면 c.code.logic. 고정 한도를 넘어 자원이 고갈된 것이 핵심이면 c.code.resource.",
+   "examples": [
+    "DF-CORE-2026-02615",
+    "DF-CORE-2026-02570",
+    "DF-CORE-2022-01591"
+   ],
+   "std_mapping": "ODC Defect Type Checking; NORS Design-Software Inadequate Defensive Checks, Ineffective Fault Recovery or Re-initialization Action; CWE-20·CWE-284·CWE-754 계열(CWE 원문 미대조)",
+   "status": "measured",
+   "v2_ids": [
+    "c.code.guard"
+   ]
+  },
+  {
+   "id": "c.code.guard.input",
+   "scheme": "c",
+   "broader": "c.code.guard",
+   "pref_label": {
+    "ko": "입력 검증 누락·오류",
+    "en": "Missing or wrong input validation"
+   },
+   "alt_labels": [],
+   "definition": "신뢰 경계 밖(사용자, 상대 메시지, 파일, 설정 값, 외부 응답)에서 온 값의 형식·범위·길이·중복·필수 요소를 검사·거부하지 않았거나 검사 기준이 틀렸다.",
+   "include": "길이·index·범위·개수 상한 검사 누락, 바깥 메시지에 필수 요소가 없는데 있다고 가정하고 역참조(nil·NULL 역참조 포함), 허용 밖 enum·형식 통과, 중복 요청 미거부, 외부 입력을 assert로 단정, 검사가 너무 엄격해 유효한 값을 막음, 설정 값 validation 누락.",
+   "exclude": "nil·NULL이 우리 쪽 조회·호출의 실패 결과에서 왔으면 c.code.guard.error. 바깥 값을 거르지 않은 데다 그 실패를 assert·abort로 끝냈으면 이 노드가 주 라벨, c.code.guard.error가 보조 라벨이다. 요청자의 권한·출처·노출 범위를 검사하지 않았으면 c.code.guard.access. 값이 내부에서 만들어졌으면 c.code.logic.",
+   "examples": [
+    "DF-CORE-2026-02615",
+    "DF-PLATFORM-2014-01068",
+    "DF-RAN-DU-2023-00438"
+   ],
+   "std_mapping": "ODC Checking; NORS Inadequate Defensive Checks; CWE-20 Improper Input Validation(CWE 원문 미대조)",
+   "status": "measured",
+   "v2_ids": [
+    "c.code.guard.input"
+   ]
+  },
+  {
+   "id": "c.code.guard.access",
+   "scheme": "c",
+   "broader": "c.code.guard",
+   "pref_label": {
+    "ko": "인가·출처 검증 누락",
+    "en": "Missing authorization or origin check"
+   },
+   "alt_labels": [],
+   "definition": "요청자의 권한, 요청이 온 출처, 서비스가 노출되는 범위를 확인하지 않았거나 틀린 대상으로 확인했다.",
+   "include": "인가 middleware 누락, 권한 검사 target·action 이름 오류, redirect·href host 미검증, 의도보다 넓은 주소에서 listen, 다른 도메인·망 식별자 요청 수용, 기본 token으로 인증 우회.",
+   "exclude": "권한과 무관한 값 형식·범위 검사면 c.code.guard.input. 제품이 내보낸 권한 정책 파일의 규칙이 틀렸으면 c.content.config. 규격이 요구한 인가 단계가 빠졌어도 여기다(요구 출처 facet=표준).",
+   "examples": [
+    "DF-CORE-2026-02570",
+    "DF-PLATFORM-2026-04440",
+    "DF-CORE-2026-02886"
+   ],
+   "std_mapping": "CWE-284 Improper Access Control, CWE-862 Missing Authorization, CWE-863 Incorrect Authorization(CWE 원문 미대조, L3 깊이 조건의 표준 대응 면제 근거); X.736 security alarm 계열(미확인)",
+   "status": "revised",
+   "v2_ids": [
+    "c.code.guard.access"
+   ]
+  },
+  {
+   "id": "c.code.guard.error",
+   "scheme": "c",
+   "broader": "c.code.guard",
+   "pref_label": {
+    "ko": "실패 결과·예외 처리 결함",
+    "en": "Failure-result or exception handling defect"
+   },
+   "alt_labels": [],
+   "definition": "실패할 수 있는 호출의 결과를 검사하지 않았거나, 실패·예외 뒤의 경로(오류 응답, 전파, 재시도, 기록)를 잘못 처리했다.",
+   "include": "조회·할당 결과 NULL·zero value 미검사(이미 지운 대상 조회 포함), parse 실패 뒤 계속 진행, 오류 응답 대신 assert, 예외 삼킴·기록 누락, 원래 오류를 덮음, 오류 코드를 다른 코드로 바꿔 전달, 없는 대상 조회에 맞는 오류 대신 내부 오류 응답, 정상 상황을 ERROR로 기록.",
+   "exclude": "nil·NULL이 바깥 메시지에 요소가 빠져서 생겼으면 c.code.guard.input. 실패가 자원 고갈 때문이고 한도 설계가 핵심이면 c.code.resource.",
+   "examples": [
+    "DF-CORE-2022-01591",
+    "DF-PLATFORM-2015-01380",
+    "DF-CORE-2026-02775"
+   ],
+   "std_mapping": "ODC Checking(오류 경로); NORS Ineffective Fault Recovery or Re-initialization Action; CWE-252·CWE-754·CWE-755 계열(CWE 원문 미대조)",
+   "status": "measured",
+   "v2_ids": [
+    "c.code.guard.error"
+   ]
+  },
+  {
+   "id": "c.code.state",
+   "scheme": "c",
+   "broader": "c.code",
+   "pref_label": {
+    "ko": "상태·수명주기 관리 오류",
+    "en": "State and lifecycle management error"
+   },
+   "alt_labels": [],
+   "definition": "세션·컨텍스트·객체의 생성·정리 시점이나 상태 값의 초기화·전이·복원이 틀려, 처리 시점의 상태가 코드의 가정과 달랐다.",
+   "include": "정리 누락·과잉·순서 오류, 이미 지워졌거나 해제됐거나 아직 없는 대상 참조(use-after-free, double free 포함), 초기화 누락·중복, 상태 변화 미반영, 실패·재시작 뒤 복원 실패.",
+   "exclude": "둘 이상의 실행 흐름이 겹쳐야 재현되면 c.code.concurrency. 메모리·핸들·pool 같은 시스템 자원의 수량 문제면 c.code.resource. 규격이 정한 상태 전이를 어겼어도 여기다(요구 출처 facet=표준).",
+   "examples": [
+    "DF-PLATFORM-2015-01257",
+    "DF-CORE-2021-00961",
+    "DF-PLATFORM-2017-02531"
+   ],
+   "std_mapping": "ODC Assignment/Initialization 일부; 기존 cause_class 상태 관리",
+   "status": "revised",
+   "v2_ids": [
+    "c.code.state"
+   ]
+  },
+  {
+   "id": "c.code.state.lifecycle",
+   "scheme": "c",
+   "broader": "c.code.state",
+   "pref_label": {
+    "ko": "생성·정리 시점 오류",
+    "en": "Create or cleanup timing error"
+   },
+   "alt_labels": [],
+   "definition": "객체·컨텍스트·장치·메모리를 만들거나 지우는 일을 빠뜨렸거나 너무 이르게·두 번·잘못된 순서로 했거나, 이미 지워졌거나 아직 만들어지지 않은 대상을 참조했다.",
+   "include": "삭제 때 장치·status 미정리, signal 종료 때 정리 미실행, 의존 대상 확인 없이 제거, release 뒤 도착한 메시지 처리, 미완성 컨텍스트로 송신, 정리가 idempotent하지 않음, 해제된 buffer·객체를 계속 가리킴(use-after-free), 이중 해제, 소유하지 않은 pointer 해제.",
+   "exclude": "대상은 제대로 있는데 그 상태 값이 초기화·갱신·복원되지 않았으면 c.code.state.transition. 정리 누락으로 메모리·핸들·FD가 쌓여 고갈되는 것이 핵심이면 c.code.resource. 지워진 대상을 조회한 결과를 검사하지 않은 것이 핵심이면 c.code.guard.error.",
+   "examples": [
+    "DF-PLATFORM-2015-01257",
+    "DF-CORE-2021-00961",
+    "DF-RAN-CU-2026-00265"
+   ],
+   "std_mapping": "ODC Algorithm/Method(근사); CWE-416 Use After Free·CWE-415 Double Free(CWE 원문 미대조)",
+   "status": "measured",
+   "v2_ids": [
+    "c.code.state.lifecycle"
+   ]
+  },
+  {
+   "id": "c.code.state.transition",
+   "scheme": "c",
+   "broader": "c.code.state",
+   "pref_label": {
+    "ko": "상태 초기화·전이·복원 오류",
+    "en": "State initialization, transition or restore error"
+   },
+   "alt_labels": [],
+   "definition": "상태 값이 초기화되지 않았거나, 상태 변화(역할 전환, 비활성화, 삭제, 재시작)에 맞춰 바뀌지 않았거나, 실패 뒤 원래대로 되돌려지지 않았다.",
+   "include": "초기값 없는 속성, 특정 실행 모드에서 건너뛴 init, 생성자 부작용으로 생긴 중복 초기화, HA 역할 전환 미반영, 비활성 항목 계속 사용, rollback·commit 누락, 재시작 뒤 table 미복원, 상태 공유 범위 오류(class 변수).",
+   "exclude": "객체의 존재 자체(생성·정리·이미 지워진 대상 참조)가 문제면 c.code.state.lifecycle. 상태는 맞는데 그 상태를 보고 내린 판단이 틀렸으면 c.code.logic.",
+   "examples": [
+    "DF-PLATFORM-2017-02531",
+    "DF-PLATFORM-2017-02565",
+    "DF-CORE-2020-00431"
+   ],
+   "std_mapping": "ODC Assignment/Initialization",
+   "status": "measured",
+   "v2_ids": [
+    "c.code.state.transition"
+   ]
+  },
+  {
+   "id": "c.code.concurrency",
+   "scheme": "c",
+   "broader": "c.code",
+   "pref_label": {
+    "ko": "동시성·실행 순서 오류",
+    "en": "Concurrency or ordering error"
+   },
+   "alt_labels": [],
+   "definition": "둘 이상의 실행 주체(thread·process·agent·node)나 비동기 이벤트가 겹치는 순서를 코드가 통제하지 않아 경합·교착이 생겼다.",
+   "include": "race condition, TOCTOU, deadlock, 공유 자료구조 보호 누락, 비동기 메시지·패킷 도착 순서 의존, 두 이벤트 원천의 중복 처리, 일괄 적용과 개별 적용의 순서 뒤바뀜.",
+   "exclude": "한 실행 흐름 안에서 정리·전이 순서가 틀렸으면 c.code.state. 실시간 경로의 blocking·지연이면 c.code.resource. 병렬 시험끼리 간섭했으면 c.test.",
+   "examples": [
+    "DF-PLATFORM-2016-02109",
+    "DF-PLATFORM-2021-03567",
+    "DF-PLATFORM-2014-01095"
+   ],
+   "std_mapping": "ODC Defect Type Timing/Serialization; 기존 cause_class 동시성",
+   "status": "measured",
+   "v2_ids": [
+    "c.code.concurrency"
+   ]
+  },
+  {
+   "id": "c.code.resource",
+   "scheme": "c",
+   "broader": "c.code",
+   "pref_label": {
+    "ko": "자원·성능 결함",
+    "en": "Resource or performance defect"
+   },
+   "alt_labels": [
+    "자원 누수·고갈·한도 초과",
+    "처리 효율·실시간성 결함"
+   ],
+   "definition": "메모리·핸들·pool·CPU·시간 같은 자원의 수량을 새게 하거나 한도를 넘기거나 비효율적으로 써서 실패·지연이 생겼다.",
+   "include": "누수(예외 경로 메모리, goroutine·FD), reference count 불일치, 고정 크기 pool·배열 고갈, 상한 없는 할당·저장, 부하에서 queue·memory 고갈, 항목마다 DB 조회, 불필요한 복사, 비효율 query, 실시간 경로의 blocking·mutex, backoff 없는 재시도·full sync 폭주, timer·timeout 값 설계 오류.",
+   "exclude": "해제된 메모리를 쓰거나 두 번 해제했으면 수량이 아니라 존재 시점 문제라 c.code.state.lifecycle. 한도 값이 제공 설정·운용 설정 값이면 c.content.config. 한도가 설계상 의도라고 판정됐으면 _na. 외부 입력 길이를 검사하지 않아 배열을 넘었으면 c.code.guard.input. 두 흐름의 순서가 문제면 c.code.concurrency. 코드가 아니라 설비 수량·망 용량 계획이 모자라면 c.operation.design.",
+   "examples": [
+    "DF-CORE-2026-02773",
+    "DF-PLATFORM-2015-01750",
+    "DF-CORE-2022-01580"
+   ],
+   "std_mapping": "X.733 probableCause Storage Capacity Problem·Out Of CPU Cycles(근사); NORS Traffic/System Overload(근사)",
+   "status": "merged",
+   "v2_ids": [
+    "c.code.resource",
+    "c.code.resource.capacity",
+    "c.code.resource.efficiency"
+   ]
+  },
+  {
+   "id": "c.code.interface",
+   "scheme": "c",
+   "broader": "c.code",
+   "pref_label": {
+    "ko": "구성요소 계약 불일치",
+    "en": "Component contract mismatch"
+   },
+   "alt_labels": [
+    "구성요소·상대 시스템 계약 불일치"
+   ],
+   "definition": "코드가 함께 동작하는 다른 구성요소(내부 module, library, DB 엔진, OS 명령, 상대 시스템·장비)의 계약(받는 인자·형식, 전제조건, 반환값, 동작, 지원 범위)을 잘못 가정했고, 상대는 바뀌지 않았다.",
+   "include": "원인 서술이 상대가 무엇을 받는지·돌려주는지·어떻게 동작하는지를 근거로 든다. 상대가 받지 않는 인자·형식을 넘김, 필요한 context·decorator 없이 호출, 공통부 변경이 plugin에 미반영, import·등록 부작용 가정, 명령 종료 코드·출력 형식 오해, 상대의 변종(내장 module, 다른 배포판, 설정에 따라 달라지는 출력·동작)을 처리하지 못함, 라이브러리 option·flag의 의미 오해, 특정 DB 엔진·실행 모드만 가정, 상대 시스템의 이름 규칙·선택 기능 지원·배치 구조(중계 노드)를 잘못 가정. 계약을 정한 것이 표준 규격인지 상대 구현인지는 요구 출처 facet에 적는다.",
+   "exclude": "원인 서술이 우리 쪽에서 엉뚱한 변수·ID를 넘긴 것만 짚으면 c.code.logic. 상대가 의도적으로 바뀌었으면(새 버전·기본값 변경) c.supply.dependency. 상대 SW 자체의 결함이면 그 메커니즘 노드(원인 소재 facet=공급사·OSS 또는 제3자). 우리가 해야 할 절차 단계·필수 요소를 빠뜨렸으면 c.code.logic. 메시지 인코딩 규칙을 어겼으면 c.code.encoding.",
+   "examples": [
+    "DF-PLATFORM-2014-00916",
+    "DF-CORE-2024-02191",
+    "DF-PLATFORM-2013-00419"
+   ],
+   "std_mapping": "ODC Defect Type Interface/O-O Messages, Relationship(근사); IEEE 1044 Type Interface",
+   "status": "revised",
+   "v2_ids": [
+    "c.code.interface",
+    "c.code.interface.call",
+    "c.code.interface.peer"
+   ]
+  },
+  {
+   "id": "c.code.encoding",
+   "scheme": "c",
+   "broader": "c.code",
+   "pref_label": {
+    "ko": "표현·인코딩 오류",
+    "en": "Encoding or serialization error"
+   },
+   "alt_labels": [
+    "인코딩·직렬화 오류",
+    "규격·형식 미준수"
+   ],
+   "definition": "메시지·IE·필드·데이터를 정해진 표현 규칙(규격, 공개 형식, 상대와 합의한 형식)과 다르게 쓰거나 읽었다.",
+   "include": "deserializer·decoder 오류, 감싸야 할 구분자 누락(IPv6 대괄호, {}), padding·presence bit 배치 계산, 필드 type 폭이 규격 범위보다 좁음, 잘못된 PDU type 설정, optional IE·확장 값 encode·decode 미지원, 필드·배열 이름 표기 오류.",
+   "exclude": "형식은 맞는데 절차·필수 요소·값이 요구와 다르면 c.code.logic(요구 출처 facet=표준). 내부 구조체·enum 사이 값 대응이면 c.code.logic. decode 함수에 엉뚱한 인자를 넘겼으면 c.code.logic.",
+   "examples": [
+    "DF-PLATFORM-2020-03005",
+    "DF-CORE-2020-00481",
+    "DF-RAN-CU-2018-00046"
+   ],
+   "std_mapping": "IEEE 1044 Type Data(일부)",
+   "status": "revised",
+   "v2_ids": [
+    "c.code.conformance.format",
+    "c.code.conformance"
+   ]
+  },
+  {
+   "id": "c.hw",
+   "scheme": "c",
+   "broader": "c",
+   "pref_label": {
+    "ko": "하드웨어 결함",
+    "en": "Hardware defect"
+   },
+   "alt_labels": [],
+   "definition": "장비·보드·부품·모듈 같은 HW 요소의 설계나 물리 상태가 원인이다. 자사 제품이든 공급사 부품이든 같다.",
+   "include": "c.hw.design, c.hw.failure의 판정 기준을 따른다.",
+   "exclude": "FW·driver 코드 결함은 c.code. 전원·냉방·외부 사건이 HW를 망가뜨렸으면 주 라벨은 c.env이고 이 노드는 보조. HW 사양에 비해 부하·배치가 무리였으면 c.operation.design. 필요한 장비를 쓰지 않은 구성(예: 외부 clock 없는 RF 장비)은 c.operation.design.",
+   "examples": [],
+   "std_mapping": "Avizienis development fault(hardware)·physical fault; NORS Design-Hardware, Hardware Failure",
+   "status": "new",
+   "v2_ids": []
+  },
+  {
+   "id": "c.hw.design",
+   "scheme": "c",
+   "broader": "c.hw",
+   "pref_label": {
+    "ko": "HW 설계 결함",
+    "en": "Hardware design defect"
+   },
+   "alt_labels": [],
+   "definition": "회로, 부품 선정, 열 설계, FPGA 논리·timing 같은 HW 설계가 요구와 달라서 같은 설계의 모든 개체에 나타난다.",
+   "include": "회로 오류, 부품 정격 부족, 열 설계 부족, FPGA bitstream timing 위반, 신호 무결성 문제, 설계 단계의 부품 호환성 문제.",
+   "exclude": "특정 개체·lot에만 나타나는 고장·제조 불량은 c.hw.failure. FW 코드면 c.code.",
+   "examples": [],
+   "std_mapping": "NORS Design-Hardware",
+   "status": "new",
+   "v2_ids": []
+  },
+  {
+   "id": "c.hw.failure",
+   "scheme": "c",
+   "broader": "c.hw",
+   "pref_label": {
+    "ko": "HW 고장·제조 불량",
+    "en": "Hardware failure or manufacturing defect"
+   },
+   "alt_labels": [],
+   "definition": "개별 부품·장비가 고장 났거나 열화·마모됐거나 제조 불량이라서 특정 개체·lot에 나타난다.",
+   "include": "fan 베어링 마모, DRAM·부품 제조 불량, 광 모듈 고장, port·connector 불량, cable 불량, 경년 열화, 보드 고장.",
+   "exclude": "같은 설계의 모든 개체에 나타나면 c.hw.design. 외부 사건(정전, 낙뢰, 침수, 절단)이 HW를 망가뜨렸으면 c.env가 주. lot 단위인지는 반영 범위 facet.",
+   "examples": [],
+   "std_mapping": "NORS Hardware Failure; Avizienis physical fault(internal)",
+   "status": "new",
+   "v2_ids": []
+  },
+  {
+   "id": "c.content",
+   "scheme": "c",
+   "broader": "c",
+   "pref_label": {
+    "ko": "설정·데이터·문서 내용 결함",
+    "en": "Configuration, data or documentation content defect"
+   },
+   "alt_labels": [
+    "제공 설정·문서 결함"
+   ],
+   "definition": "코드는 맞고, 동작을 정하는 값이나 사람에게 주는 정보의 내용(설정 값, 기본값, 정책·운영 파일, 가입자·망 데이터, 문서·절차서)이 틀렸거나 빠졌다. 제품이 제공한 값이든 운용자·사용자가 넣은 값이든 같다.",
+   "include": "c.content.config, c.content.doc의 판정 기준을 따른다. 누가 넣은 값인지는 원인 소재 facet(자사 개발 / 운용자·사용자 / 제3자)에 적는다.",
+   "exclude": "코드가 값을 읽지 않거나 잘못 해석했으면 c.code. 코드에 박힌 상수는 c.code.logic. 값은 맞는데 작업 순서·절차를 잘못 밟았으면 c.operation.procedure. 설치된 구성요소의 버전·존재가 맞지 않으면 c.supply.dependency.",
+   "examples": [
+    "DF-PLATFORM-2013-00512",
+    "DF-PLATFORM-2016-02275",
+    "DF-PLATFORM-2013-00404"
+   ],
+   "std_mapping": "NORS Design-Software Faulty Software Translations(구 Office Data); NORS Procedural(운용자 설정 입력일 때); IEEE 1044 Insertion activity=Configuration(2차 출처)",
+   "status": "revised",
+   "v2_ids": [
+    "c.content",
+    "c.operation"
+   ]
+  },
+  {
+   "id": "c.content.config",
+   "scheme": "c",
+   "broader": "c.content",
+   "pref_label": {
+    "ko": "설정·데이터 값 오류",
+    "en": "Configuration or data value error"
+   },
+   "alt_labels": [
+    "기본값·제공 설정·정책 오류",
+    "운용 설정·절차 오류"
+   ],
+   "definition": "제품 기본값·예제 설정·정책 파일·운영 파일, 또는 운용자·사용자가 넣은 설정 값·가입자 데이터·상대 장비 설정이 틀렸거나 빠졌거나 서로 맞지 않는다.",
+   "include": "잘못된 기본 port·URL, 자원·HW와 맞지 않는 기본값, policy 규칙 누락·과잉 제한, 같은 항목 중복 정의, logrotate 같은 운영 파일 누락, 주소 중복, 필수 설정 키 누락, 설정 파일 형식 오류, 남아 있던 이전 설정, 환경 변수가 설정을 덮어씀, 옵션 의미 오해로 넣은 값, host 방화벽·OS 설정이 traffic·기능을 막음, interface를 올리지 않음, 가입자 key·SIM 값 오류, 단말의 기능 설정, 상대 장비와 맞지 않는 설정(slice·TAI·주소).",
+   "exclude": "문서의 설명·예시가 틀렸으면 c.content.doc. 권한 검사 코드가 틀렸으면 c.code.guard.access. 설정 값이 아니라 구성·용량 설계가 부하·이중화에 맞지 않으면 c.operation.design.",
+   "examples": [
+    "DF-PLATFORM-2013-00512",
+    "DF-CORE-2021-00861",
+    "DF-CORE-2021-00694"
+   ],
+   "std_mapping": "NORS Faulty Software Translations; NORS Procedural(설정 입력); X.733 configuration 계열 probableCause(미확인)",
+   "status": "revised",
+   "v2_ids": [
+    "c.content.config",
+    "c.operation",
+    "c.env"
+   ]
+  },
+  {
+   "id": "c.content.doc",
+   "scheme": "c",
+   "broader": "c.content",
+   "pref_label": {
+    "ko": "문서·안내 오류",
+    "en": "Documentation error"
+   },
+   "alt_labels": [],
+   "definition": "매뉴얼, API reference, README, 튜토리얼, 작업 절차서(MOP)가 실제 동작과 다르거나 틀렸거나 빠졌다.",
+   "include": "parameter 누락·위치 오표기, 틀린 예시 값·ID·명령, 낡은 link, 배포마다 다른 값을 고정값처럼 안내, 코드 변경 뒤 남은 옛 옵션. 작업 절차서의 단계 누락·오기.",
+   "exclude": "문서는 맞는데 코드가 문서와 다르게 동작하면 c.code. 제공 설정 파일의 값이 틀렸으면 c.content.config.",
+   "examples": [
+    "DF-PLATFORM-2016-02275",
+    "DF-PLATFORM-2019-02867",
+    "DF-PLATFORM-2017-02562"
+   ],
+   "std_mapping": "ODC Target=Information Development; IEEE 1044 Type Description(2차 출처); NORS Procedural Documentation/Procedures Out of Date(근사)",
+   "status": "revised",
+   "v2_ids": [
+    "c.content.doc"
+   ]
+  },
+  {
+   "id": "c.supply",
+   "scheme": "c",
+   "broader": "c",
+   "pref_label": {
+    "ko": "빌드·의존 구성 결함",
+    "en": "Build or dependency composition defect"
+   },
+   "alt_labels": [
+    "빌드·의존성 결함"
+   ],
+   "definition": "기능 코드가 아니라, 산출물을 빌드·패키징하는 정의나 함께 쓰는 외부 구성요소의 버전·존재·호환 조합에 원인이 있다.",
+   "include": "c.supply.build, c.supply.dependency의 판정 기준을 따른다.",
+   "exclude": "외부 구성요소는 그대로인데 우리가 계약을 잘못 가정했으면 c.code.interface. 외부 구성요소 자체의 bug면 c.code(원인 소재 facet=공급사·OSS). 시험이 돌 환경 구성은 c.test.",
+   "examples": [
+    "DF-PLATFORM-2020-03119",
+    "DF-CORE-2021-00661",
+    "DF-PLATFORM-2015-01686"
+   ],
+   "std_mapping": "ODC Target=Build/Package; IEEE 1044 Type Syntax(컴파일 오류, 2차 출처)",
+   "status": "revised",
+   "v2_ids": [
+    "c.supply"
+   ]
+  },
+  {
+   "id": "c.supply.build",
+   "scheme": "c",
+   "broader": "c.supply",
+   "pref_label": {
+    "ko": "빌드·패키징·CI 정의 오류",
+    "en": "Build, packaging or CI definition error"
+   },
+   "alt_labels": [],
+   "definition": "우리 레포 안의 빌드 스크립트, 컴파일되지 않는 소스, 패키지 manifest, CI pipeline·job 정의, 산출물 저장소 운용이 틀렸다.",
+   "include": "중복 const 같은 compile 오류, 폐기된 명령을 쓰는 script, package에서 빠진 파일, submodule 미반영, job의 branch·filter 누락, 지워진 cache 대상 지정, 버전 간 artifact 저장소 충돌, 경고를 오류로 다루는 설정, 빌드 옵션별 조건부 compile 경로 오류.",
+   "exclude": "레포 밖 구성요소의 버전·API가 바뀌어 깨졌으면 c.supply.dependency. 특정 시험이 통과하는 데 필요한 구성(extension 활성화, 시험 환경 버전)이면 c.test.",
+   "examples": [
+    "DF-CORE-2021-00661",
+    "DF-PLATFORM-2015-01649",
+    "DF-PLATFORM-2023-04100"
+   ],
+   "std_mapping": "ODC Target=Build/Package",
+   "status": "measured",
+   "v2_ids": [
+    "c.supply.build"
+   ]
+  },
+  {
+   "id": "c.supply.dependency",
+   "scheme": "c",
+   "broader": "c.supply",
+   "pref_label": {
+    "ko": "의존 구성요소 변경·버전 부적합",
+    "en": "Dependency change or version mismatch"
+   },
+   "alt_labels": [
+    "외부 의존 요소 변경·결함"
+   ],
+   "definition": "함께 쓰는 외부 구성요소(library, kernel module, toolchain, 생성기, 연동하는 외부 시스템)가 의도적으로 바뀌었거나(API·기본값·동작 변경), 선언·설치된 버전이 맞지 않거나 빠져서 동작이 달라졌다. 버전을 정한 쪽이 제품 선언이든 운용자 설치든 같다.",
+   "include": "새 버전의 반환값·예외·module 경로·기본값 변경, API 폐기, 선언한 최소 버전이 낮음, 번들 library 버전 충돌, 배포판 package가 오래됨, 새 compiler가 번들 코드를 깸, 외부 도구 CLI 변화, 연동하는 외부 시스템의 새 release가 동작을 바꿈, 운용 환경에 필요한 kernel module·package가 없거나 버전이 맞지 않음, 지원 범위보다 낡은 compiler·OS package. 고친 곳이 제품 코드든 시험 코드든 여기다.",
+   "exclude": "외부 구성요소 자체의 의도하지 않은 결함(upstream bug, kernel 회귀)은 c.code(원인 소재 facet=공급사·OSS). 외부 구성요소 동작은 그대로인데 우리가 잘못 썼으면 c.code.interface. 외부 저장소·mirror·서비스가 응답하지 않으면 c.env.service.",
+   "examples": [
+    "DF-PLATFORM-2020-03119",
+    "DF-PLATFORM-2015-01686",
+    "DF-CORE-2020-00424"
+   ],
+   "std_mapping": "ODC Source=Reused From Library(근사); X.733 probableCause Software Environment Problem(근사)",
+   "status": "revised",
+   "v2_ids": [
+    "c.supply.dependency",
+    "c.env"
+   ]
+  },
+  {
+   "id": "c.test",
+   "scheme": "c",
+   "broader": "c",
+   "pref_label": {
+    "ko": "시험 자산 결함",
+    "en": "Test asset defect"
+   },
+   "alt_labels": [
+    "시험 코드·판정 기준 오류",
+    "시험 구성·격리 오류"
+   ],
+   "definition": "제품은 정상인데 시험 코드·시험 데이터·판정 기준·시험 구성이 틀려 시험이 실패하거나 불안정하거나 아무것도 검사하지 못했다.",
+   "include": "수정 대상이 시험 자산(test case, fixture, 시험 데이터, 허용 목록, 시험 job 구성)이다. 시험 자산 안의 결함이면 메커니즘(race, 누수, lint)이 무엇이든 여기다. 예: no-op·도달하지 않는 assertion, 원래 오류를 가리는 정리 코드, 너무 짧은 timeout, 빠진 warning 허용 항목, 시험 코드 lint 위반, 필요한 extension을 켜지 않은 job, 시험 환경의 낡은 구성요소 버전, 병렬 시험 간 IP·이름 충돌, 시험 사이 공유 상태 미초기화.",
+   "exclude": "시험이 진짜 제품 결함을 잡았으면 그 제품 원인 노드. 외부 구성요소의 새 버전이 시험의 가정을 깼으면 c.supply.dependency. CI pipeline의 stage·trigger·cache 정의 오류면 c.supply.build. CI node·호스트·외부 저장소 장애면 c.env.service.",
+   "examples": [
+    "DF-PLATFORM-2013-00386",
+    "DF-PLATFORM-2020-03076",
+    "DF-PLATFORM-2017-02560"
+   ],
+   "std_mapping": "ODC v5.2 Target에 해당 값 없음(Code에 가장 가깝다); 기존 cause_class 테스트",
+   "status": "merged",
+   "v2_ids": [
+    "c.test",
+    "c.test.logic",
+    "c.test.env"
+   ]
+  },
+  {
+   "id": "c.operation",
+   "scheme": "c",
+   "broader": "c",
+   "pref_label": {
+    "ko": "운용·구축 결함",
+    "en": "Operation or deployment defect"
+   },
+   "alt_labels": [
+    "운용 설정·절차 오류"
+   ],
+   "definition": "설정 값이나 구성요소 버전이 아니라, 사람이 수행한 작업 절차나 망·시스템의 구성·용량 설계에 원인이 있다. 운용자·구축 업체·사용자 누구든 같다.",
+   "include": "c.operation.procedure, c.operation.design의 판정 기준을 따른다.",
+   "exclude": "틀린 것이 설정 값·데이터면 c.content.config. 설치된 구성요소의 버전·존재면 c.supply.dependency. 제품 기본값·문서가 실수를 유도했으면 c.content가 주이고 이 노드는 보조.",
+   "examples": [
+    "DF-CORE-2022-01698",
+    "DF-CORE-2021-01134"
+   ],
+   "std_mapping": "NORS Procedural(Service Provider / System Vendor / Other Vendor); Avizienis interaction fault(human-made, operational)",
+   "status": "revised",
+   "v2_ids": [
+    "c.operation",
+    "c.env"
+   ]
+  },
+  {
+   "id": "c.operation.procedure",
+   "scheme": "c",
+   "broader": "c.operation",
+   "pref_label": {
+    "ko": "작업 절차 오류",
+    "en": "Procedure execution error"
+   },
+   "alt_labels": [],
+   "definition": "작업 단계를 빠뜨리거나 순서를 바꾸거나, 잘못된 대상·명령으로 수행했거나, 정한 절차(MOP)·승인을 지키지 않았다.",
+   "include": "업그레이드 뒤 이전 데이터 미정리, 필요한 파일 삭제, remove와 purge 혼동, 필요한 빌드 옵션 미사용, 오염된 빌드 환경, 필요한 구성요소를 배포·실행하지 않음, 잘못된 버전의 도구·링크를 씀, MOP 미준수 작업, 작업 대상 장비 착오, 승인 없는 작업.",
+   "exclude": "남은 결과가 틀린 설정 값이면 c.content.config. 절차서 자체가 틀렸으면 c.content.doc이 주이고 이 노드는 보조.",
+   "examples": [
+    "DF-CORE-2021-01134",
+    "DF-CORE-2025-02271"
+   ],
+   "std_mapping": "NORS Procedural(Service Provider / System Vendor / Other Vendor)",
+   "status": "new",
+   "v2_ids": [
+    "c.operation"
+   ]
+  },
+  {
+   "id": "c.operation.design",
+   "scheme": "c",
+   "broader": "c.operation",
+   "pref_label": {
+    "ko": "구성·용량 설계 오류",
+    "en": "Configuration design or capacity planning error"
+   },
+   "alt_labels": [],
+   "definition": "망·시스템의 구성·배치·용량 산정이 부하·이중화·지원 조건에 맞지 않았다.",
+   "include": "용량 산정 누락(초당 호수 등), 이중화·경로 분산 설계 오류, 단일 장애점 배치, 모든 VM을 한 장애 영역에 배치, 지원하지 않는 배치(같은 host에 함께 띄움), timing에 민감한 작업을 VM에서 실행, 사양을 넘는 host·bus 부하, 필요한 장비(외부 clock 등) 없이 구성, 부하에 맞춰 정해야 할 용량 parameter를 기본값으로 둠.",
+   "exclude": "코드 안의 한도·자원 사용이 틀렸으면 c.code.resource. 정한 설계 값을 잘못 입력했으면 c.content.config.",
+   "examples": [
+    "DF-CORE-2022-01698",
+    "DF-RAN-DU-2024-00525"
+   ],
+   "std_mapping": "NORS Diversity Failure, Simplex Condition, Traffic/System Overload",
+   "status": "new",
+   "v2_ids": [
+    "c.operation",
+    "c.env"
+   ]
+  },
+  {
+   "id": "c.env",
+   "scheme": "c",
+   "broader": "c",
+   "pref_label": {
+    "ko": "외부 조건·사건",
+    "en": "External condition or event"
+   },
+   "alt_labels": [
+    "실행 환경·외부 조건"
+   ],
+   "definition": "결함이 있는 요소가 아니라, 제품과 운용 조직이 통제하지 않는 외부의 물리 조건·사건·공격·서비스 장애가 원인이다.",
+   "include": "c.env.power, c.env.physical, c.env.attack, c.env.service의 판정 기준을 따른다. 넷 중 어디인지 가를 근거가 없으면 이 노드에 바로 단다.",
+   "exclude": "외부 SW·장비의 코드 결함은 c.code(원인 소재 facet=제3자). 외부 시스템·단말·host의 설정 문제는 c.content.config. 외부 구성요소의 버전 부적합은 c.supply.dependency. HW 부품 자체의 고장·제조 불량은 c.hw.failure. 외부 사건이 HW를 망가뜨렸으면 주 라벨은 여기, c.hw는 보조.",
+   "examples": [],
+   "std_mapping": "Avizienis physical fault(external) + external interaction fault; NORS Environment-External·Environment-Internal, Power Failure, Cable Damage",
+   "status": "revised",
+   "v2_ids": [
+    "c.env"
+   ]
+  },
+  {
+   "id": "c.env.power",
+   "scheme": "c",
+   "broader": "c.env",
+   "pref_label": {
+    "ko": "전원·설비 이상",
+    "en": "Power or facility failure"
+   },
+   "alt_labels": [],
+   "definition": "상용 전원, 전원 설비, 냉방·축전지 같은 시설 조건이 정상 범위를 벗어났다.",
+   "include": "정전, 전원 공급 중단·불안정, 축전지 방전, 냉방 정지, 실내 온도·습도 초과.",
+   "exclude": "장비 안의 전원 모듈 고장은 c.hw.failure. 화재·침수 같은 사건이 전원을 끊었으면 c.env.physical.",
+   "examples": [],
+   "std_mapping": "NORS Power Failure, Environment-Internal",
+   "status": "new",
+   "v2_ids": []
+  },
+  {
+   "id": "c.env.physical",
+   "scheme": "c",
+   "broader": "c.env",
+   "pref_label": {
+    "ko": "외부 물리 사건·전파 조건",
+    "en": "External physical event or radio condition"
+   },
+   "alt_labels": [],
+   "definition": "자연재해, 화재, 제3자의 공사·손상, 전파 간섭·약한 신호처럼 운용 조직 밖에서 생긴 물리 사건·조건이 원인이다.",
+   "include": "지진·홍수·낙뢰, 화재, 제3자 공사로 cable 절단, 동물·차량·도난, 전파 간섭(불법 중계기 포함), 약한 무선 신호·coverage 부족.",
+   "exclude": "악의적인 공격이면 c.env.attack. 무선 설정 값(gain, MCS, 주파수)이 틀렸으면 c.content.config.",
+   "examples": [
+    "DF-UE-2022-00202"
+   ],
+   "std_mapping": "NORS Environment-External, Cable Damage; Avizienis natural·external physical fault",
+   "status": "new",
+   "v2_ids": [
+    "c.env"
+   ]
+  },
+  {
+   "id": "c.env.attack",
+   "scheme": "c",
+   "broader": "c.env",
+   "pref_label": {
+    "ko": "악의적 공격",
+    "en": "Malicious attack"
+   },
+   "alt_labels": [],
+   "definition": "누군가 의도적으로 서비스를 방해하거나 시스템에 침입했다.",
+   "include": "DDoS, 침입·악성 코드, 의도적인 신호 방해, 계정 탈취로 한 조작.",
+   "exclude": "공격이 통한 이유가 코드의 검사·인가 결함이면 그 c.code 노드가 주이고 이 노드는 보조. 공격 없이 보안 결함만 보고됐으면 c.code.",
+   "examples": [],
+   "std_mapping": "Avizienis malicious fault; X.736 security alarm",
+   "status": "new",
+   "v2_ids": []
+  },
+  {
+   "id": "c.env.service",
+   "scheme": "c",
+   "broader": "c.env",
+   "pref_label": {
+    "ko": "외부 서비스·기반 장애",
+    "en": "External service or infrastructure outage"
+   },
+   "alt_labels": [],
+   "definition": "제품이나 작업이 기대는 외부 서비스·기반(상위 사업자 망, cloud 플랫폼, 외부 package 저장소·mirror, CI 기반)이 장애를 내거나 응답하지 않았다.",
+   "include": "상위 사업자·연동망 장애, cloud 플랫폼의 유지보수 event, 외부 저장소·mirror 접속 불가, 외부 서비스 rate limit, CI node 공급 부족, message bus cluster의 일시 split brain.",
+   "exclude": "외부 서비스의 새 버전이 동작을 바꿨으면 c.supply.dependency. 외부 시스템의 설정이 틀렸으면 c.content.config.",
+   "examples": [
+    "DF-PLATFORM-2016-02095",
+    "DF-PLATFORM-2022-03734",
+    "DF-PLATFORM-2020-03162"
+   ],
+   "std_mapping": "대응 표준 없음(복수 문서 종류: CI 기록의 외부 저장소 장애, 장애 보고서의 상위 사업자·cloud 장애)",
+   "status": "new",
+   "v2_ids": [
+    "c.env"
+   ]
+  }
+ ],
+ "special_codes": [
+  {
+   "id": "_none",
+   "pref_label": {
+    "ko": "정보 없음",
+    "en": "No information"
+   },
+   "definition": "원인을 판정할 내용이 원문에 없다.",
+   "include": "cause가 비었거나 증상을 되풀이하거나 가설·추측뿐이고, 해결 서술도 '고쳤다', 'PR #N'처럼 무엇을 바꿨는지 적지 않았다.",
+   "exclude": "원인 서술이 비어도 해결 서술이 바꾼 동작을 구체적으로 적어 노드 하나를 가리키면 그 노드. 원인을 물을 수 없는 요청·질문이면 _na.",
+   "examples": [
+    "DF-CORE-2023-01795",
+    "DF-UE-2023-00252"
+   ],
+   "std_mapping": "ODC v5.2 §5.1 Unknown(나중에 알게 되면 채우는 임시값)에 가깝다; NORS Insufficient Data"
+  },
+  {
+   "id": "_na",
+   "pref_label": {
+    "ko": "해당 없음",
+    "en": "Not applicable"
+   },
+   "definition": "고칠 결함(fault)이 없어 원인을 물을 수 없는 기록이다.",
+   "include": "레코드 유형이 기능 요청이면 내용과 관계없이 _na다. 결함으로 올라왔지만 설계대로·미지원·분석 도구 오탐·보고자의 규격·코드 오독으로 판정된 건도 _na다. 유형 표시가 없는 문서 종류에서는 새 기능·개선·정리 요청과 사용법 문의가 _na다.",
+   "exclude": "결함·CI 기록인데 원인이 안 적혔으면 _none. 보고자의 설정 실수·잘못된 사용으로 실제 실패가 났으면 그 원인 노드(c.content.config, c.operation.procedure). '결함 아님'이라는 처분은 resolution 축 r.verdict.not_defect가 담는다.",
+   "examples": [
+    "DF-PLATFORM-2016-02158",
+    "DF-CORE-2022-01660",
+    "DF-RAN-CU-2026-00254"
+   ],
+   "std_mapping": "표준 대응 없음"
+  },
+  {
+   "id": "_other",
+   "pref_label": {
+    "ko": "기타",
+    "en": "Other"
+   },
+   "definition": "원인은 적혀 있지만 트리의 어느 노드에도 맞지 않는다.",
+   "include": "트리 개정 후보로 모은다. 같은 모양이 2% 넘게 쌓이면 노드를 연다.",
+   "exclude": "가까운 노드의 include에 비슷한 예가 있으면 그 노드.",
+   "examples": [
+    "DF-CORE-2020-00311"
+   ],
+   "std_mapping": "NORS Other/Unknown"
+  }
+ ],
+ "facets": [
+  {
+   "id": "location",
+   "label": "어디서",
+   "values": "장비군·NF·프로토콜·제품·버전·모듈",
+   "note": "세 축 공통. 'AMF crash'는 problem=p.halt + location NF=AMF다."
+  },
+  {
+   "id": "origin",
+   "label": "원인 소재",
+   "values": "자사 개발 / 공급사·OSS / 운용자·사용자 / 제3자 / 자연 / 미상",
+   "note": "결함이 있던 요소가 누구 것인지. NORS Procedural의 Service Provider·System Vendor·Other Vendor 구분과 같은 자리다."
+  },
+  {
+   "id": "requirement_source",
+   "label": "요구 출처",
+   "values": "표준 규격 / 상대 구성요소 계약 / 내부 요구 / 미상",
+   "note": "v2의 c.code.conformance가 담던 정보다. '규격과 다르다'만 아는 시험 리포트는 c.code + 표준으로 단다."
+  },
+  {
+   "id": "qualifier",
+   "label": "누락·오류",
+   "values": "누락 / 오류 / 불필요",
+   "note": "ODC Qualifier(Missing/Incorrect/Extraneous)."
+  },
+  {
+   "id": "cause_role",
+   "label": "원인 역할",
+   "values": "근본 / 함께 보인 메커니즘 / 확대·장기화 기여",
+   "note": "주 라벨은 늘 근본. 보조 라벨이 어느 역할인지 적는다. NORS Direct Cause·Root Cause·Contributing Factors."
+  },
+  {
+   "id": "introduced_by_change",
+   "label": "계기 변경",
+   "values": "변경 식별자(commit, release) 또는 미상",
+   "note": ""
+  },
+  {
+   "id": "cause_basis",
+   "label": "원인 근거",
+   "values": "기존 데이터셋 필드(docs/schema.md)",
+   "note": ""
+  },
+  {
+   "id": "peer_kind",
+   "label": "상대 종류",
+   "values": "호출 구성요소 / 독립 운용 시스템",
+   "note": "c.code.interface에서 쓴다."
+  }
+ ],
+ "open_conditions": [
+  "c.code.logic: 조건·분기와 값·계산으로 L3를 나눌 후보다. 깊이 조건(자식마다 2%, held-out L3 일치 0.9)을 다시 잰 뒤 연다.",
+  "c.code.resource: 누수·고갈과 효율로 나눌 후보다. 장애 보고서의 용량·성능 원인이 들어와 깊이 조건을 넘으면 연다.",
+  "c.test: 시험 논리와 시험 구성·격리로 나눌 후보다(v2의 c.test.logic·c.test.env).",
+  "c.content.config: 제공 값과 운용 입력 값을 원인 소재 facet으로 가르고, 둘 다 커지면 L3를 검토한다.",
+  "c.env·c.hw: L2는 NORS에서 열었고 지금 데이터에는 거의 없다. 알람·장애 보고서가 들어오면 실측한다."
+ ],
+ "changes_from_v2": [
+  "L1 기준을 '무엇을 고쳐야 사라지나'에서 '결함이 어떤 종류의 요소에 있었나'로 바꿨다. '제품을 고쳤는지'라는 조건을 c.env 등에서 지웠다. 고쳤는지는 resolution 축이 담는다.",
+  "누구 것인지(자사·공급사·운용자·제3자)를 트리에서 빼 원인 소재 facet으로 옮겼다. upstream bug와 kernel 회귀는 c.code, 운용자가 넣은 틀린 설정은 c.content.config로 간다.",
+  "새 L1 c.hw(design, failure). 자사 HW 결함이 c.env(제품 밖)로 흐르던 자리를 막는다.",
+  "c.env를 L2 power·physical·attack·service로 열었다(NORS 범주). 라벨을 '외부 조건·사건'으로 바꿨다.",
+  "c.operation을 '운용·구축 결함'으로 넓히고 L2 procedure·design을 열었다. 설정 입력 실수는 c.content.config로 옮겼다.",
+  "없앰: c.expect. 고칠 결함이 없는 판정(미지원, 설계대로, 오탐, 오독)은 _na로, 처분은 resolution 축이 맡는다.",
+  "합침: c.code.logic.case·decision·compute → c.code.logic 잎. 누락/오류 구분은 qualifier facet이다. held-out 엇갈림 1위(case↔decision 8건)였다.",
+  "없앰: c.code.conformance. procedure는 요구 출처 facet + 메커니즘 노드로, format은 L2 c.code.encoding으로 옮겼다.",
+  "합침: c.code.resource.capacity·efficiency → c.code.resource 잎. 갈래 전체가 판정 가능 표의 1.7~2.0%다.",
+  "합침: c.test.logic·env → c.test 잎. test.env는 판정 가능 표 2% 미만이고 표준 근거가 없다.",
+  "c.code.guard.access는 2% 미만이지만 CWE 접근 제어 항목과 1:1로 대응해 남겼다.",
+  "c.test·_none·_na의 std_mapping을 고쳤다(ODC v5.2 Target에 test 값 없음, Unknown은 임시값, not applicable은 대응 없음)."
+ ],
+ "status_values": {
+  "measured": "v2와 같은 정의, v2 실측 있음",
+  "revised": "정의를 고침, 재측정 안 함",
+  "merged": "v2 노드를 합침, 재측정 안 함",
+  "new": "v2에 없음, 실측 0"
+ }
+}
