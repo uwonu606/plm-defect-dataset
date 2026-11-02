@@ -14,6 +14,8 @@
 
 v3는 v2를 Haiku로 두 번 단 실측과 반박 세 건이 낸 근거로 고쳤다. 그 뒤 v2와 같은 held-out 450건으로 다시 쟀다. L1 kappa는 problem 0.906→0.936, resolution 0.943→0.951로 올랐고, cause는 0.938→0.915로 내렸다(#v3 held-out 실측). v3에서 새로 연 노드는 이 데이터에서 거의 쓰이지 않았다. 알람·설비·장애 보고서 같은 다른 문서 종류를 위한 자리라서다.
 
+원인 축은 그 뒤 판정 기준을 고쳐 v4로 올렸다. 트리 모양은 그대로이고 정의만 바꿨다. held-out L1 kappa가 0.915→0.955로 올랐다(#원인 축 v4 경계 정리).
+
 ## 용어
 
 | 용어 | 뜻 |
@@ -200,7 +202,9 @@ v2 라벨 1,800표(개정 표본·held-out, A·B)를 v3 id로 기계적으로 �
 
 ### v3 held-out 실측
 
-v2와 같은 held-out 450건(`taxonomy/heldout_case_codes.txt`)을 v3로 두 번 달았다. 실행은 `python3 -I taxonomy/label.py --case-codes taxonomy/heldout_case_codes.txt --version v3 --seed 20261104`이고, 호출 91회, 오류 0, $0.44였다. 라벨은 `taxonomy/labels_sample.jsonl`에 `taxonomy: v3`로 더했다.
+v2와 같은 held-out 450건(`taxonomy/heldout_case_codes.txt`)을 v3로 두 번 달았다. 실행은 `python3 -I taxonomy/label.py --case-codes taxonomy/heldout_case_codes.txt --version v3 --seed 20261104`이고, 호출 91회, 오류 0, $0.44였다.
+
+라벨은 `taxonomy/labels_sample.jsonl`에 `taxonomy: v3`로 더했다.
 
 | 축 | L1 일치 | 잎 일치 | kappa(L1) | kappa(잎) | `_none` | `_na` |
 |---|---|---|---|---|---|---|
@@ -214,6 +218,51 @@ v2와 같은 held-out 450건(`taxonomy/heldout_case_codes.txt`)을 v3로 두 번
 - **cause L1 −1.5%p:** 엇갈림 상위는 `_none`↔`c.code` 5건, `c.code`↔`c.supply` 3건이다. 원인이 얇게 적힌 레코드에서 정보 없음과 소프트웨어 결함 사이가 흔들린다. 공급사 결함을 `c.code` + 원인 소재 facet으로 보내는 v3 규칙이 `c.supply`와의 경계를 새로 그은 탓으로 보인다[추정](사례: `c.code`↔`c.supply` 엇갈림 3건, 개별 레코드는 읽지 않음).
 - **새 노드:** 판정 가능 표에서 `p.state`, `c.hw`, `r.process`는 0%, `c.env`는 0.4%, `c.operation`은 1.1%, `r.field.recover`는 0.4%였다. 이 데이터로는 이 노드들을 검증할 수 없다. 알람·장애 보고서 표본이 들어오면 잰다.
 - **큰 잎:** `c.code.logic`이 판정 가능 표의 26.6%, `r.change`가 72.6%다. `c.code.logic`은 25%를 넘어 나눌 후보다. 다만 혼동 상위가 `logic`↔`interface`·`guard`·`state`라, 나누기보다 경계 정의가 먼저다.
+
+## 원인 축 v4 경계 정리
+
+v3 cause 축의 엇갈림을 줄이려고 판정 기준을 고쳤다. 트리 모양(노드·깊이)은 그대로다. 바꾼 내용은 `taxonomy/cause.json`의 `changes_from_v3`에 있다.
+
+### 무엇을 읽었나
+
+held-out에 맞춰 고치지 않으려고, 개정 표본 450건을 v3로 새로 달아 엇갈림 48건(10.7%)을 모두 읽었다.
+
+| 엇갈림 묶음 | 건수 | 읽고 본 원인 |
+|---|---|---|
+| `c.code` L2끼리(logic↔interface·guard·state·encoding) | 약 24 | L2가 서로 다른 질문(값의 출처, 객체 수명, 상대 계약, 표현 규칙)으로 나뉘어 한 레코드가 둘 이상에 맞는다 |
+| `_none`↔노드 | 약 10 | "가설뿐이면 `_none`" 규칙이 데이터의 `추론` 등급과 충돌했다. 확신 정도가 원인 종류와 한 축에 섞였다 |
+| `c.test`↔`c.supply.dependency` | 약 5 | 두 정의가 서로를 가리켰다. 의존 구성은 "시험 코드를 고쳐도 여기", 시험 자산은 "시험 코드면 메커니즘과 관계없이 여기"였다 |
+| 기능 요청인데 노드를 받음 | 3 | 규칙은 있었는데 라벨러가 놓쳤다 |
+
+### 바꾼 기준
+
+경계 문장을 늘리지 않고 판정 기준을 세 곳에서 고쳤다. 레코드별 예외 규칙은 넣지 않았다.
+
+| 기준 | v4 |
+|---|---|
+| `c.code` L2를 고르는 기준 | 고친 내용(코드 변경이 무엇을 바꿨나)으로 고른다. IBM ODC Defect Type이 수정 내용으로 유형을 정하는 방식이다. 둘 이상 맞으면 concurrency → resource → state → guard → encoding → interface → logic 순서에서 먼저 걸리는 것이다. logic은 남는 것을 받는다 |
+| 확신 정도 | `cause_basis` facet(명시·추론)으로 옮겼다. `_none`은 원인·해결 서술 어디에도 메커니즘이 없을 때만 쓴다. 제목·현상은 원인 근거가 아니다 |
+| L1이 둘 이상 맞을 때 | `_na` → `c.supply.dependency` → `c.test` → 나머지 순서를 루트에 적어 모순을 풀었다 |
+
+세분 기준도 둘 정했다. `c.code.state`의 L3는 "만들거나 지움(lifecycle) / 값을 설정·갱신·복원(transition)"으로 가른다. `c.code.interface`는 "우리 코드가 상대를 호출·해석하는 방식을 고침"으로 좁혔고, 우리 쪽 정의·옵션·등록 누락은 logic으로 보낸다.
+
+### 결과
+
+v3와 v4를 같은 표본에서 각각 Haiku 두 pass로 달았다. v4 두 표본에 호출 181회(오류 0, $0.92), 엇갈림을 읽으려고 개정 표본을 v3로 단 데 90회($0.42)가 들었다. 아래 차이 구간은 같은 레코드로 짝지은 paired bootstrap 95% 구간이다.
+
+| 표본 | L1 일치 | 잎 일치 | kappa(L1) | kappa(잎) |
+|---|---|---|---|---|
+| held-out | 0.938→0.967, +2.9%p [+0.2, +5.6] | 0.882→0.909, +2.7%p [−0.9, +6.2] | 0.915→0.955 | 0.867→0.897 |
+| 개정 표본(엇갈림을 읽은 표본) | 0.951→0.956, +0.4%p [−2.2, +3.1] | 0.893→0.887, −0.7%p [−4.4, +2.9] | 0.931→0.937 | 0.879→0.871 |
+
+이 표에서 두 가지를 읽는다.
+
+- **held-out 상승은 읽은 사례 맞춤이 아니다.** 엇갈림을 읽은 개정 표본에서는 오르지 않았는데 held-out L1만 구간이 0 위로 올랐다. 기준을 일반 원칙으로 고쳐서 특정 레코드에 맞추지 않았다는 것과 맞는다. 다만 개정 표본에서 오르지 않은 이유는 따로 확인하지 않았다.
+- **`_none`↔노드 엇갈림이 사라졌다.** held-out에서 v3의 8건이 v4에서 0건이 됐다. `_none` 비율은 15.7%→16.4%로 거의 같다.
+
+남은 엇갈림(held-out 41건)의 상위는 `c.code.interface`↔`c.code.logic` 5건, `c.code.logic`↔`c.code.state.transition` 4건, `c.code.logic`↔`c.supply.dependency` 3건이다. interface↔logic은 v3와 같은 5건이라 이번 기준으로 풀리지 않았다.
+
+`c.code.logic`은 판정 가능 표의 25.5%로 여전히 크다. 나누는 것보다 interface와의 경계를 먼저 다시 보는 쪽이 맞다고 본다. problem·resolution 축은 프롬프트 안의 cause 정의만 바뀌었는데도 kappa가 ±1%p 안에서 움직였다. 이 정도는 실행마다 생기는 흔들림이다.
 
 ## 새 문서 종류 적합성
 
@@ -267,7 +316,8 @@ rebut-newdoc과 rebut-overlap이 가상 레코드와 일본 총무성 통신 사
 
 ## 한계
 
-- v3는 held-out으로 한 번만 쟀다. problem·resolution은 올랐고 cause L1은 내렸지만, 차이가 표준오차 안팎이라 반복 실행 없이는 확정하지 못한다.
+- 판마다 한 번씩만 쟀다. cause v4의 L1 상승만 paired bootstrap 구간이 0 위에 있고, 나머지 오르내림은 표준오차 안팎이다.
+- cause v4에도 `c.code.interface`↔`c.code.logic` 엇갈림 5건이 그대로 남았다. `c.code.logic`은 판정 가능 표의 25.5%로 여전히 크다.
 - 두 pass는 같은 모델·같은 프롬프트라서 일치도는 모델이 같은 답을 내는 정도의 상한이다. 사람 두 명의 일치도는 재지 않았다.
 - `p.state`, `c.hw`, `c.env` L2, `c.operation` L2, `r.process`, `r.field.recover`는 실제 레코드 예시가 거의 없다. 근거는 표준 범주, 가상 레코드, 사례집 20건이다.
 - 원인 소재 facet을 달기 전에는 '우리 탓인가'를 트리만으로 답하지 못한다. upstream bug와 자사 bug가 같은 `c.code`에 있다.
@@ -294,7 +344,7 @@ rebut-newdoc과 rebut-overlap이 가상 레코드와 일본 총무성 통신 사
 |---|---|
 | `taxonomy/problem.json`, `cause.json`, `resolution.json` | v3 분류 체계. 축 정의, 라벨 규칙, 깊이 정책, 노드, 특수 코드, facet, 열 조건, v2에서 바뀐 것 |
 | `taxonomy/label.py` | Haiku 두 pass 라벨링과 일치도·분포 집계 |
-| `taxonomy/labels_sample.jsonl` | v2 라벨 1,800행(개정 표본·held-out × pass A·B), v3 라벨 900행(held-out × pass A·B) |
+| `taxonomy/labels_sample.jsonl` | v2·v3·v4 라벨 각 1,800행(개정 표본·held-out × pass A·B). v4는 cause.json만 바뀐 판이다 |
 | `taxonomy/heldout_case_codes.txt` | held-out 450건 목록 |
 | `taxonomy/README.md` | 사용법 |
 

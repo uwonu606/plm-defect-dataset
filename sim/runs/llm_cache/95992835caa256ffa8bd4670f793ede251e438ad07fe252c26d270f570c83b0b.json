@@ -1,0 +1,1 @@
+{"text": "[{\"case_code\": \"DF-CORE-2020-00356\", \"problem\": {\"primary\": \"p.gap.capability\", \"secondary\": null}, \"cause\": {\"primary\": \"_na\", \"secondary\": null}, \"resolution\": {\"primary\": \"r.change\", \"secondary\": null}}]", "seconds": 4.25, "input_tokens": 31993, "output_tokens": 323, "cost_usd": 0.00063057}

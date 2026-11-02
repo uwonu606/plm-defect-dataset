@@ -6,9 +6,9 @@
 
 | 파일 | 내용 |
 |---|---|
-| `problem.json`, `cause.json`, `resolution.json` | v3 분류 체계. 축마다 한 파일 |
+| `problem.json`, `cause.json`, `resolution.json` | 분류 체계. 축마다 한 파일. problem·resolution은 v3, cause는 경계 판정 기준을 고친 v4다 |
 | `label.py` | 정본 표본을 Haiku로 두 번(pass A·B) 라벨링하고 일치도·분포를 낸다 |
-| `labels_sample.jsonl` | 라벨 2,700행. v2 1,800행(개정 표본·held-out)과 v3 900행(held-out) |
+| `labels_sample.jsonl` | 라벨 5,400행. v2·v3·v4 각각 개정 표본·held-out × pass A·B(v2 1,800, v3 1,800, v4 1,800) |
 | `heldout_case_codes.txt` | held-out 450건. 분류 체계를 고칠 때 보지 않았고 examples에도 없다. 다음 판도 이 목록으로 잰다 |
 
 ## JSON 모양
@@ -55,7 +55,7 @@ Haiku 호출은 `sim/llm.py`의 `ask`(Claude Code CLI)를 쓰고 `sim/runs/llm_c
 | `case_code` | 정본 레코드 id |
 | `sample` | `revision`(v2를 고칠 때 읽은 450건) 또는 `heldout`(고칠 때 보지 않은 450건) |
 | `pass` | `A` 또는 `B` |
-| `taxonomy` | `v2` 또는 `v3`. v3 행은 held-out만 있다 |
+| `taxonomy` | `v2`, `v3`, `v4`. v4는 cause.json만 바뀐 판이다 |
 | `problem`, `cause`, `resolution` | `{"primary": id, "secondary": id 또는 null}` |
 
 held-out 레코드는 분류 체계의 examples에 쓰지 않는다. 다음 판을 잴 때도 이 450건을 그대로 쓸 수 있다.
