@@ -1,6 +1,6 @@
 {
  "axis": "cause",
- "version": "v3",
+ "version": "v4",
  "axis_definition": {
   "label_ko": "원인",
   "criterion": "근본 원인. 결함이 어떤 종류의 요소에 있었나.",
@@ -29,7 +29,7 @@
    "en": "Cause"
   },
   "definition": "보고된 증상을 만든 결함(fault)의 종류다. 결함이 누구 것인지(원인 소재), 어디서 났는지(위치), 결함인지에 대한 처분은 트리 밖이다.",
-  "include": "L1은 '결함이 어떤 종류의 요소에 있었나' 하나로 고른다: SW 코드(c.code), HW(c.hw), 설정·데이터·문서 내용(c.content), 빌드·의존 구성(c.supply), 시험 자산(c.test), 운용·구축 행위(c.operation), 외부 조건·사건(c.env). 그 요소가 누구 것인지(자사·공급사·운용자·제3자)는 보지 않고 원인 소재 facet에 적는다. 제품을 고쳤는지도 보지 않는다(resolution 축). 원인 서술이 비었거나 가설뿐이어도, 해결 서술이 바꾼 요소를 구체적으로 적어 노드 하나를 가리키면 그 노드로 단다. 주 라벨은 근본 원인 1개, 보조 라벨은 함께 보인 다른 메커니즘이나 확대·장기화 요인 1개다(원인 역할 facet). L2·L3를 가를 근거가 없으면 그 위 노드에 바로 단다.",
+  "include": "L1은 '결함이 어떤 종류의 요소에 있었나' 하나로 고른다: SW 코드(c.code), HW(c.hw), 설정·데이터·문서 내용(c.content), 빌드·의존 구성(c.supply), 시험 자산(c.test), 운용·구축 행위(c.operation), 외부 조건·사건(c.env). 그 요소가 누구 것인지(자사·공급사·운용자·제3자)는 보지 않고 원인 소재 facet에 적는다. 제품을 고쳤는지도 보지 않는다(resolution 축). 근거는 원인 서술과 해결 서술에서만 찾는다. 제목·현상(증상)만으로 원인을 짐작하지 않는다. 원인 서술이 가설·추정이어도 무엇이 어떻게 틀렸는지(메커니즘)를 짚으면 그 노드로 단다. 확신 정도는 트리가 아니라 cause_basis facet(명시·추론)에 적는다. 원인 서술이 비어도 해결 서술이 바꾼 동작을 구체적으로 적으면 그 노드로 단다. L1이 둘 이상 맞으면 이 순서에서 먼저 걸리는 것을 고른다: ① 기능 요청이거나 결함 아님으로 판정된 기록은 _na ② 외부 구성요소가 의도적으로 바뀌었거나 선언·설치된 버전이 맞지 않으면 c.supply.dependency(고친 곳이 시험 코드여도) ③ 결함이 시험 자산 안에 있으면 c.test ④ 그 밖의 L1. 주 라벨은 근본 원인 1개, 보조 라벨은 함께 보인 다른 메커니즘이나 확대·장기화 요인 1개다(원인 역할 facet). L2·L3를 가를 근거가 없으면 그 위 노드에 바로 단다.",
   "exclude": "증상(crash, panic, 500 응답, 접속 실패)만 있고 원인 서술도 구체적인 해결 서술도 없으면 _none. 고칠 결함이 없는 기록(기능 요청, 결함 아님 판정, 사용법 문의)은 _na. 어느 L1에도 맞지 않으면 _other(모두 트리 밖).",
   "std_mapping": "Avizienis 2004 fault class(development / physical / interaction, software / hardware); NORS Root Cause(\"why\")"
  },
@@ -46,7 +46,7 @@
     "제품 코드 결함"
    ],
    "definition": "SW·FW의 소스 코드가 의도·요구·계약과 다르게 작성되어 증상을 냈다. 제품 코드든 가져다 쓴 library·kernel·상대 장비의 SW든 같다.",
-   "include": "원인 서술이 코드의 특정 동작을 짚거나, 해결 서술이 코드 변경을 가리킨다. 우리가 고치는 운영 스크립트·도구 코드도 든다. 외부 library·kernel·상대 장비의 bug라고만 적혀 메커니즘을 모르면 이 노드에 바로 단다(원인 소재 facet=공급사·OSS 또는 제3자).",
+   "include": "원인 서술이 코드의 특정 동작을 짚거나, 해결 서술이 코드 변경을 가리킨다. 우리가 고치는 운영 스크립트·도구 코드도 든다. 외부 library·kernel·상대 장비의 bug라고만 적혀 메커니즘을 모르면 이 노드에 바로 단다(원인 소재 facet=공급사·OSS 또는 제3자). L2는 고친 내용(코드 변경이 무엇을 바꿨나)으로 고른다. 해결 서술이 없으면 원인 서술이 짚은 잘못으로 고른다. 둘 이상 맞으면 이 순서에서 먼저 걸리는 것을 고른다: c.code.concurrency(실행 순서·동기화를 통제하게 고침) → c.code.resource(자원 수량·한도·해제·효율을 고침) → c.code.state(객체를 만들거나 지우게, 또는 상태 값을 설정·갱신·복원하게 고침) → c.code.guard(바깥에서 온 값·요청을 검사하거나 실패 결과를 처리하게 고침. 검사를 완화하거나 다른 계층으로 옮긴 것도 든다) → c.code.encoding(encode·decode·직렬화 코드나 메시지 형식 정의를 고침) → c.code.interface(우리 코드가 다른 구성요소를 호출하는 방식·인자·결과 해석을 고침) → c.code.logic(그 밖의 조건·분기·계산·값·빠진 처리).",
    "exclude": "코드는 맞고 설정 값·기본값·정책·데이터·문서 내용이 틀렸으면 c.content. 외부 구성요소가 의도적으로 바뀌었거나(새 버전의 API·기본값 변경) 설치·선언된 버전이 맞지 않으면 c.supply.dependency. 컴파일·빌드 정의 오류는 c.supply.build. 시험 코드·fixture 안의 결함은 메커니즘과 관계없이 c.test. 회로·부품·FPGA 논리 같은 HW 설계는 c.hw.design.",
    "examples": [
     "DF-PLATFORM-2018-02633",
@@ -74,15 +74,15 @@
     "규격 절차·필수 요소 미준수"
    ],
    "definition": "입력·상태·상대가 정상인데 코드의 조건·분기·참조 대상·계산이 틀렸거나, 정상 범위의 경우나 약속한 기능을 다루지 않아 결과가 틀렸다.",
-   "include": "반대·누락된 조건, 다른 필드와의 비교, 오타 변수·이름, 엉뚱한 변수·ID 선택, 유일하지 않은 식별 key, 너무 넓은 query 조건, 특정 설정 조합·optional 요소·추가 인스턴스에 대한 분기 없음, 조건을 보지 않고 늘 같은 값·동작을 씀(하드코딩), 노출한 method 미구현, 규격이 요구한 절차 단계·필수 요소·필드 값·응답 코드 누락(요구 출처 facet=표준), 잘못된 상수·literal, off-by-one, 산술·비트·단위 환산·자료형 변환 오류, 내부의 두 표현(enum, 구조체) 사이 값 대응 오류, buffer offset 계산 오류. 빠진 것인지 틀린 것인지는 qualifier facet(누락/오류/불필요)에 적는다.",
-   "exclude": "바깥에서 온 값을 거르지 않았거나 실패 결과를 처리하지 않았으면 c.code.guard. 객체의 상태 값이나 생성·정리 시점이 틀렸으면 c.code.state. 원인 서술이 상대 구성요소가 무엇을 받는지·돌려주는지·어떻게 동작하는지를 근거로 들면 c.code.interface. 바깥으로 내보내거나 받는 메시지·데이터의 표현 규칙(인코딩·직렬화)이 틀렸으면 c.code.encoding.",
+   "include": "반대·누락된 조건, 다른 필드와의 비교, 오타 변수·이름, 엉뚱한 변수·ID 선택, 유일하지 않은 식별 key, 너무 넓은 query 조건, 특정 설정 조합·optional 요소·추가 인스턴스에 대한 분기 없음, 조건을 보지 않고 늘 같은 값·동작을 씀(하드코딩), 노출한 method 미구현, 규격이 요구한 절차 단계·필수 요소·필드 값·응답 코드 누락(요구 출처 facet=표준), 잘못된 상수·literal, off-by-one, 산술·비트·단위 환산·자료형 변환 오류, 내부의 두 표현(enum, 구조체) 사이 값 대응 오류, buffer offset 계산 오류. 빠진 것인지 틀린 것인지는 qualifier facet(누락/오류/불필요)에 적는다. 우리 코드 안에 빠진 정의·옵션·등록·처리를 더한 것도 여기다(다른 구성요소가 그것을 찾다 실패했어도).",
+   "exclude": "c.code의 L2 판정 순서에서 앞 노드가 맞으면 그 노드다. 이 노드는 남는 것을 받는다. 바깥에서 온 값을 거르지 않았거나 실패 결과를 처리하지 않았으면 c.code.guard. 객체의 상태 값이나 생성·정리 시점이 틀렸으면 c.code.state. 원인 서술이 상대 구성요소가 무엇을 받는지·돌려주는지·어떻게 동작하는지를 근거로 들면 c.code.interface. 바깥으로 내보내거나 받는 메시지·데이터의 표현 규칙(인코딩·직렬화)이 틀렸으면 c.code.encoding.",
    "examples": [
     "DF-PLATFORM-2018-02633",
     "DF-PLATFORM-2016-01894",
     "DF-PLATFORM-2019-02843"
    ],
    "std_mapping": "ODC Defect Type Algorithm/Method, Assignment/Initialization, Function/Class/Object, Checking(조건); ODC Qualifier(Missing/Incorrect/Extraneous)는 qualifier facet; IEEE 1044 Type Logic·Data",
-   "status": "merged",
+   "status": "revised",
    "v2_ids": [
     "c.code.logic",
     "c.code.logic.decision",
@@ -124,7 +124,7 @@
    },
    "alt_labels": [],
    "definition": "신뢰 경계 밖(사용자, 상대 메시지, 파일, 설정 값, 외부 응답)에서 온 값의 형식·범위·길이·중복·필수 요소를 검사·거부하지 않았거나 검사 기준이 틀렸다.",
-   "include": "길이·index·범위·개수 상한 검사 누락, 바깥 메시지에 필수 요소가 없는데 있다고 가정하고 역참조(nil·NULL 역참조 포함), 허용 밖 enum·형식 통과, 중복 요청 미거부, 외부 입력을 assert로 단정, 검사가 너무 엄격해 유효한 값을 막음, 설정 값 validation 누락.",
+   "include": "길이·index·범위·개수 상한 검사 누락, 바깥 메시지에 필수 요소가 없는데 있다고 가정하고 역참조(nil·NULL 역참조 포함), 허용 밖 enum·형식 통과, 중복 요청 미거부, 외부 입력을 assert로 단정, 검사가 너무 엄격해 유효한 값을 막음, 설정 값 validation 누락. 검사 기준을 고쳐 유효한 값을 막지 않게 하거나 검사를 다른 계층으로 옮긴 것도 여기다.",
    "exclude": "nil·NULL이 우리 쪽 조회·호출의 실패 결과에서 왔으면 c.code.guard.error. 바깥 값을 거르지 않은 데다 그 실패를 assert·abort로 끝냈으면 이 노드가 주 라벨, c.code.guard.error가 보조 라벨이다. 요청자의 권한·출처·노출 범위를 검사하지 않았으면 c.code.guard.access. 값이 내부에서 만들어졌으면 c.code.logic.",
    "examples": [
     "DF-CORE-2026-02615",
@@ -132,7 +132,7 @@
     "DF-RAN-DU-2023-00438"
    ],
    "std_mapping": "ODC Checking; NORS Inadequate Defensive Checks; CWE-20 Improper Input Validation(CWE 원문 미대조)",
-   "status": "measured",
+   "status": "revised",
    "v2_ids": [
     "c.code.guard.input"
    ]
@@ -193,7 +193,7 @@
    },
    "alt_labels": [],
    "definition": "세션·컨텍스트·객체의 생성·정리 시점이나 상태 값의 초기화·전이·복원이 틀려, 처리 시점의 상태가 코드의 가정과 달랐다.",
-   "include": "정리 누락·과잉·순서 오류, 이미 지워졌거나 해제됐거나 아직 없는 대상 참조(use-after-free, double free 포함), 초기화 누락·중복, 상태 변화 미반영, 실패·재시작 뒤 복원 실패.",
+   "include": "정리 누락·과잉·순서 오류, 이미 지워졌거나 해제됐거나 아직 없는 대상 참조(use-after-free, double free 포함), 초기화 누락·중복, 상태 변화 미반영, 실패·재시작 뒤 복원 실패. L3: 고친 것이 객체·항목·컨텍스트를 만들거나 지우는 일(또는 지워진 대상의 참조를 막는 일)이면 c.code.state.lifecycle, 이미 있는 대상의 값을 설정·갱신·복원하는 일이면 c.code.state.transition. cache 항목을 지우는 것은 lifecycle이다.",
    "exclude": "둘 이상의 실행 흐름이 겹쳐야 재현되면 c.code.concurrency. 메모리·핸들·pool 같은 시스템 자원의 수량 문제면 c.code.resource. 규격이 정한 상태 전이를 어겼어도 여기다(요구 출처 facet=표준).",
    "examples": [
     "DF-PLATFORM-2015-01257",
@@ -315,8 +315,8 @@
     "구성요소·상대 시스템 계약 불일치"
    ],
    "definition": "코드가 함께 동작하는 다른 구성요소(내부 module, library, DB 엔진, OS 명령, 상대 시스템·장비)의 계약(받는 인자·형식, 전제조건, 반환값, 동작, 지원 범위)을 잘못 가정했고, 상대는 바뀌지 않았다.",
-   "include": "원인 서술이 상대가 무엇을 받는지·돌려주는지·어떻게 동작하는지를 근거로 든다. 상대가 받지 않는 인자·형식을 넘김, 필요한 context·decorator 없이 호출, 공통부 변경이 plugin에 미반영, import·등록 부작용 가정, 명령 종료 코드·출력 형식 오해, 상대의 변종(내장 module, 다른 배포판, 설정에 따라 달라지는 출력·동작)을 처리하지 못함, 라이브러리 option·flag의 의미 오해, 특정 DB 엔진·실행 모드만 가정, 상대 시스템의 이름 규칙·선택 기능 지원·배치 구조(중계 노드)를 잘못 가정. 계약을 정한 것이 표준 규격인지 상대 구현인지는 요구 출처 facet에 적는다.",
-   "exclude": "원인 서술이 우리 쪽에서 엉뚱한 변수·ID를 넘긴 것만 짚으면 c.code.logic. 상대가 의도적으로 바뀌었으면(새 버전·기본값 변경) c.supply.dependency. 상대 SW 자체의 결함이면 그 메커니즘 노드(원인 소재 facet=공급사·OSS 또는 제3자). 우리가 해야 할 절차 단계·필수 요소를 빠뜨렸으면 c.code.logic. 메시지 인코딩 규칙을 어겼으면 c.code.encoding.",
+   "include": "고친 내용이 우리 코드가 다른 구성요소를 호출·사용·해석하는 방식(인자, 호출 순서·조건, 반환값·출력 해석, 상대 변종 처리)을 바꿨다. 원인 서술이 상대가 무엇을 받는지·돌려주는지·어떻게 동작하는지를 근거로 든다. 상대가 받지 않는 인자·형식을 넘김, 필요한 context·decorator 없이 호출, 공통부 변경이 plugin에 미반영, import·등록 부작용 가정, 명령 종료 코드·출력 형식 오해, 상대의 변종(내장 module, 다른 배포판, 설정에 따라 달라지는 출력·동작)을 처리하지 못함, 라이브러리 option·flag의 의미 오해, 특정 DB 엔진·실행 모드만 가정, 상대 시스템의 이름 규칙·선택 기능 지원·배치 구조(중계 노드)를 잘못 가정. 계약을 정한 것이 표준 규격인지 상대 구현인지는 요구 출처 facet에 적는다.",
+   "exclude": "원인 서술이 우리 쪽에서 엉뚱한 변수·ID를 넘긴 것만 짚으면 c.code.logic. 상대가 의도적으로 바뀌었으면(새 버전·기본값 변경) c.supply.dependency. 상대 SW 자체의 결함이면 그 메커니즘 노드(원인 소재 facet=공급사·OSS 또는 제3자). 우리가 해야 할 절차 단계·필수 요소를 빠뜨렸으면 c.code.logic. 메시지 인코딩 규칙을 어겼으면 c.code.encoding. 우리 코드 안에 빠진 정의·옵션·등록을 더했으면 c.code.logic.",
    "examples": [
     "DF-PLATFORM-2014-00916",
     "DF-CORE-2024-02191",
@@ -343,8 +343,8 @@
     "규격·형식 미준수"
    ],
    "definition": "메시지·IE·필드·데이터를 정해진 표현 규칙(규격, 공개 형식, 상대와 합의한 형식)과 다르게 쓰거나 읽었다.",
-   "include": "deserializer·decoder 오류, 감싸야 할 구분자 누락(IPv6 대괄호, {}), padding·presence bit 배치 계산, 필드 type 폭이 규격 범위보다 좁음, 잘못된 PDU type 설정, optional IE·확장 값 encode·decode 미지원, 필드·배열 이름 표기 오류.",
-   "exclude": "형식은 맞는데 절차·필수 요소·값이 요구와 다르면 c.code.logic(요구 출처 facet=표준). 내부 구조체·enum 사이 값 대응이면 c.code.logic. decode 함수에 엉뚱한 인자를 넘겼으면 c.code.logic.",
+   "include": "고친 것이 encode·decode·직렬화 코드나 메시지·데이터 형식 정의다. deserializer·decoder 오류, 감싸야 할 구분자 누락(IPv6 대괄호, {}), padding·presence bit 배치 계산, 필드 type 폭이 규격 범위보다 좁음, 잘못된 PDU type 설정, optional IE·확장 값 encode·decode 미지원, 필드·배열 이름 표기 오류.",
+   "exclude": "형식은 맞는데 절차·필수 요소·값이 요구와 다르면 c.code.logic(요구 출처 facet=표준). 내부 구조체·enum 사이 값 대응이면 c.code.logic. decode 함수에 엉뚱한 인자를 넘겼으면 c.code.logic. 메시지에 넣는 값 자체(엉뚱한 변수, 타입 변환 누락)를 고쳤으면 c.code.logic.",
    "examples": [
     "DF-PLATFORM-2020-03005",
     "DF-CORE-2020-00481",
@@ -473,7 +473,7 @@
    "alt_labels": [],
    "definition": "매뉴얼, API reference, README, 튜토리얼, 작업 절차서(MOP)가 실제 동작과 다르거나 틀렸거나 빠졌다.",
    "include": "parameter 누락·위치 오표기, 틀린 예시 값·ID·명령, 낡은 link, 배포마다 다른 값을 고정값처럼 안내, 코드 변경 뒤 남은 옛 옵션. 작업 절차서의 단계 누락·오기.",
-   "exclude": "문서는 맞는데 코드가 문서와 다르게 동작하면 c.code. 제공 설정 파일의 값이 틀렸으면 c.content.config.",
+   "exclude": "문서는 맞는데 코드가 문서와 다르게 동작하면 c.code. 제공 설정 파일의 값이 틀렸으면 c.content.config. 문서 추가·개선 요청(기능 요청)은 _na.",
    "examples": [
     "DF-PLATFORM-2016-02275",
     "DF-PLATFORM-2019-02867",
@@ -546,7 +546,7 @@
    ],
    "definition": "함께 쓰는 외부 구성요소(library, kernel module, toolchain, 생성기, 연동하는 외부 시스템)가 의도적으로 바뀌었거나(API·기본값·동작 변경), 선언·설치된 버전이 맞지 않거나 빠져서 동작이 달라졌다. 버전을 정한 쪽이 제품 선언이든 운용자 설치든 같다.",
    "include": "새 버전의 반환값·예외·module 경로·기본값 변경, API 폐기, 선언한 최소 버전이 낮음, 번들 library 버전 충돌, 배포판 package가 오래됨, 새 compiler가 번들 코드를 깸, 외부 도구 CLI 변화, 연동하는 외부 시스템의 새 release가 동작을 바꿈, 운용 환경에 필요한 kernel module·package가 없거나 버전이 맞지 않음, 지원 범위보다 낡은 compiler·OS package. 고친 곳이 제품 코드든 시험 코드든 여기다.",
-   "exclude": "외부 구성요소 자체의 의도하지 않은 결함(upstream bug, kernel 회귀)은 c.code(원인 소재 facet=공급사·OSS). 외부 구성요소 동작은 그대로인데 우리가 잘못 썼으면 c.code.interface. 외부 저장소·mirror·서비스가 응답하지 않으면 c.env.service.",
+   "exclude": "외부 구성요소 자체의 의도하지 않은 결함(upstream bug, kernel 회귀)은 c.code(원인 소재 facet=공급사·OSS). 외부 구성요소 동작은 그대로인데 우리가 잘못 썼으면 c.code.interface. 외부 저장소·mirror·서비스가 응답하지 않으면 c.env.service. 고친 방법이 버전 올림이어도 원인이 그 버전 구성요소 자체의 bug면 c.code(원인 소재 facet=공급사·OSS).",
    "examples": [
     "DF-PLATFORM-2020-03119",
     "DF-PLATFORM-2015-01686",
@@ -572,15 +572,15 @@
     "시험 구성·격리 오류"
    ],
    "definition": "제품은 정상인데 시험 코드·시험 데이터·판정 기준·시험 구성이 틀려 시험이 실패하거나 불안정하거나 아무것도 검사하지 못했다.",
-   "include": "수정 대상이 시험 자산(test case, fixture, 시험 데이터, 허용 목록, 시험 job 구성)이다. 시험 자산 안의 결함이면 메커니즘(race, 누수, lint)이 무엇이든 여기다. 예: no-op·도달하지 않는 assertion, 원래 오류를 가리는 정리 코드, 너무 짧은 timeout, 빠진 warning 허용 항목, 시험 코드 lint 위반, 필요한 extension을 켜지 않은 job, 시험 환경의 낡은 구성요소 버전, 병렬 시험 간 IP·이름 충돌, 시험 사이 공유 상태 미초기화.",
-   "exclude": "시험이 진짜 제품 결함을 잡았으면 그 제품 원인 노드. 외부 구성요소의 새 버전이 시험의 가정을 깼으면 c.supply.dependency. CI pipeline의 stage·trigger·cache 정의 오류면 c.supply.build. CI node·호스트·외부 저장소 장애면 c.env.service.",
+   "include": "수정 대상이 시험 자산(test case, fixture, 시험 데이터, 허용 목록, 시험 job 구성)이다. 시험 자산 안의 결함이면 메커니즘(race, 누수, lint)이 무엇이든 여기다. 예: no-op·도달하지 않는 assertion, 원래 오류를 가리는 정리 코드, 너무 짧은 timeout, 빠진 warning 허용 항목, 시험 코드 lint 위반, 필요한 extension을 켜지 않은 job, 병렬 시험 간 IP·이름 충돌, 시험 사이 공유 상태 미초기화.",
+   "exclude": "시험이 진짜 제품 결함을 잡았으면 그 제품 원인 노드. 외부 구성요소의 새 버전이 시험의 가정을 깼으면 c.supply.dependency. CI pipeline의 stage·trigger·cache 정의 오류면 c.supply.build. CI node·호스트·외부 저장소 장애면 c.env.service. 시험 환경·시험 도구(시뮬레이터 포함)의 구성요소 버전이 맞지 않으면 c.supply.dependency.",
    "examples": [
     "DF-PLATFORM-2013-00386",
     "DF-PLATFORM-2020-03076",
     "DF-PLATFORM-2017-02560"
    ],
    "std_mapping": "ODC v5.2 Target에 해당 값 없음(Code에 가장 가깝다); 기존 cause_class 테스트",
-   "status": "merged",
+   "status": "revised",
    "v2_ids": [
     "c.test",
     "c.test.logic",
@@ -765,8 +765,8 @@
     "en": "No information"
    },
    "definition": "원인을 판정할 내용이 원문에 없다.",
-   "include": "cause가 비었거나 증상을 되풀이하거나 가설·추측뿐이고, 해결 서술도 '고쳤다', 'PR #N'처럼 무엇을 바꿨는지 적지 않았다.",
-   "exclude": "원인 서술이 비어도 해결 서술이 바꾼 동작을 구체적으로 적어 노드 하나를 가리키면 그 노드. 원인을 물을 수 없는 요청·질문이면 _na.",
+   "include": "원인 서술과 해결 서술 어디에도 메커니즘이 없다. cause가 비었거나 증상을 되풀이하고, 해결 서술도 '고쳤다', 'PR #N', '최신 버전에서 해결', '시험을 끔·건너뜀'처럼 무엇이 틀렸는지 말하지 않는다.",
+   "exclude": "가설·추정이어도 메커니즘을 짚으면 그 노드(cause_basis=추론). 제목·현상은 근거로 쓰지 않는다. 원인을 물을 수 없는 요청·질문이면 _na.",
    "examples": [
     "DF-CORE-2023-01795",
     "DF-UE-2023-00252"
@@ -880,5 +880,12 @@
   "revised": "정의를 고침, 재측정 안 함",
   "merged": "v2 노드를 합침, 재측정 안 함",
   "new": "v2에 없음, 실측 0"
- }
+ },
+ "changes_from_v3": [
+  "c.code L2를 고친 내용으로 고르고, 둘 이상 맞을 때의 순서를 정했다(IBM ODC Defect Type이 수정 내용으로 유형을 정하는 방식). v3 개정 표본 엇갈림 48건 중 약 24건이 c.code L2끼리였다.",
+  "확신 정도를 _none에서 떼어 cause_basis facet으로 보냈다. _none은 메커니즘 서술이 아예 없을 때만 쓴다. 제목·현상은 원인 근거가 아니다.",
+  "L1 우선순위를 루트에 적었다: _na → c.supply.dependency → c.test → 나머지. c.test와 c.supply.dependency 정의가 서로를 가리키던 모순을 풀었다.",
+  "c.code.state의 L3를 '만들거나 지움 / 값을 설정·갱신·복원'으로 가렀다.",
+  "c.code.interface를 '우리 코드가 상대를 호출·해석하는 방식을 고침'으로 좁혔다. 우리 쪽 정의·옵션·등록 누락은 c.code.logic이다."
+ ]
 }
