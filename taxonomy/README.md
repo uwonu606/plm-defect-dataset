@@ -8,7 +8,8 @@
 |---|---|
 | `problem.json`, `cause.json`, `resolution.json` | v3 분류 체계. 축마다 한 파일 |
 | `label.py` | 정본 표본을 Haiku로 두 번(pass A·B) 라벨링하고 일치도·분포를 낸다 |
-| `labels_sample.jsonl` | v2 라벨 1,800행. v3 id가 아니다 |
+| `labels_sample.jsonl` | 라벨 2,700행. v2 1,800행(개정 표본·held-out)과 v3 900행(held-out) |
+| `heldout_case_codes.txt` | held-out 450건. 분류 체계를 고칠 때 보지 않았고 examples에도 없다. 다음 판도 이 목록으로 잰다 |
 
 ## JSON 모양
 
@@ -30,6 +31,7 @@ SKOS 모양 통제 어휘다. 축 루트가 `scheme`, 노드가 `concepts`다.
 ```sh
 python3 -I taxonomy/label.py --dry-run                       # 표본과 system prompt만 만든다
 python3 -I taxonomy/label.py --sample-size 450 --version v3  # Haiku 두 pass, 약 90회 호출
+python3 -I taxonomy/label.py --case-codes taxonomy/heldout_case_codes.txt --version v4 --seed 20261104  # held-out으로 새 판을 잰다
 ```
 
 | 인자 | 기본값 | 뜻 |
@@ -40,6 +42,7 @@ python3 -I taxonomy/label.py --sample-size 450 --version v3  # Haiku 두 pass, �
 | `--taxonomy-dir` | `taxonomy/` | 세 JSON이 있는 폴더 |
 | `--out` | 임시 폴더 `plm-taxonomy-<version>` | `labels.jsonl`, `stats.json`, `sample.json`, `system_prompt.txt` |
 | `--workers` | 6 | 동시 호출 수. 6을 넘기지 않는다 |
+| `--case-codes` | 없음 | 층화 표본 대신 이 파일의 case_code를 라벨링한다 |
 
 Haiku 호출은 `sim/llm.py`의 `ask`(Claude Code CLI)를 쓰고 `sim/runs/llm_cache`에 캐시된다.
 
@@ -52,7 +55,7 @@ Haiku 호출은 `sim/llm.py`의 `ask`(Claude Code CLI)를 쓰고 `sim/runs/llm_c
 | `case_code` | 정본 레코드 id |
 | `sample` | `revision`(v2를 고칠 때 읽은 450건) 또는 `heldout`(고칠 때 보지 않은 450건) |
 | `pass` | `A` 또는 `B` |
-| `taxonomy` | `v2` |
+| `taxonomy` | `v2` 또는 `v3`. v3 행은 held-out만 있다 |
 | `problem`, `cause`, `resolution` | `{"primary": id, "secondary": id 또는 null}` |
 
 held-out 레코드는 분류 체계의 examples에 쓰지 않는다. 다음 판을 잴 때도 이 450건을 그대로 쓸 수 있다.

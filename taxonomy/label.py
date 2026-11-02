@@ -279,13 +279,22 @@ def main():
     ap.add_argument("--workers", type=int, default=MAX_WORKERS)
     ap.add_argument("--out", default=None, help="출력 폴더(기본: 임시 폴더 아래 plm-taxonomy-<version>)")
     ap.add_argument("--dry-run", action="store_true", help="표본과 system prompt만 만들고 Haiku를 부르지 않는다")
+    ap.add_argument("--case-codes", default=None,
+                    help="표본 대신 이 파일의 case_code(한 줄에 하나)를 라벨링한다. 예: taxonomy/heldout_case_codes.txt")
     args = ap.parse_args()
     workers = max(1, min(args.workers, MAX_WORKERS))
     out_dir = Path(args.out or Path(tempfile.gettempdir()) / f"plm-taxonomy-{args.version}")
     out_dir.mkdir(parents=True, exist_ok=True)
 
     taxonomies = {ax: Taxonomy(ax, Path(args.taxonomy_dir) / f"{ax}.json") for ax in AXES}
-    sample, quota = stratified_sample(load_records(), args.sample_size, args.seed)
+    records = load_records()
+    if args.case_codes:
+        wanted = [line.strip() for line in Path(args.case_codes).read_text().splitlines() if line.strip()]
+        by_code = {r["case_code"]: r for r in records}
+        sample = [by_code[c] for c in wanted]
+        quota = {"fixed_list": args.case_codes}
+    else:
+        sample, quota = stratified_sample(records, args.sample_size, args.seed)
     system = system_prompt(taxonomies)
     (out_dir / "sample.json").write_text(json.dumps({"seed": args.seed, "quota": quota, "case_codes": [r["case_code"] for r in sample]},
                                                     ensure_ascii=False, indent=1))
