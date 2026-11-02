@@ -1,0 +1,1 @@
+{"text": "[{\"case_code\": \"DF-CORE-2026-02854\", \"problem\": {\"primary\": \"p.halt\", \"secondary\": null}, \"cause\": {\"primary\": \"c.code.guard.input\", \"secondary\": \"c.code.guard.error\"}, \"resolution\": {\"primary\": \"r.change\", \"secondary\": null}}]", "seconds": 6.5, "input_tokens": 30876, "output_tokens": 851, "cost_usd": 0.0009284299999999999}
