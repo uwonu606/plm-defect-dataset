@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-CORE-2022-01694\", \"label\": \"c.operation.procedure\", \"evidence\": \"AGW container를 `docker-compose.yaml`만으로 배포하고 `docker-compose.dev.yaml`을 함께 적용하지 않았다.\"}]}\n```", "seconds": 4.35, "input_tokens": 2658, "output_tokens": 341, "cost_usd": 0.0007019}

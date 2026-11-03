@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-CORE-2019-00169\", \"label\": \"r.field.adjust\", \"evidence\": \"메인테이너가 `magma/feg/gateway/docker/.env`와 `.prod_env`를 예로 보라고 안내했다\"}]}\n```", "seconds": 6.73, "input_tokens": 3700, "output_tokens": 680, "cost_usd": 0.00051132}

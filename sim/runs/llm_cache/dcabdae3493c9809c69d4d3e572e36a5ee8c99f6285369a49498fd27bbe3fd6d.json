@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-RAN-CU-2015-00001\", \"stop\": 0, \"label\": \"_none\", \"evidence\": \"원문에 patch 반영 기록과 닫힌 사유가 없다.\"}, {\"id\": \"DF-CORE-2025-02226\", \"stop\": 0, \"label\": \"_none\", \"evidence\": \"원문에 답변, 조치, 닫힌 사유 기록이 없다.\"}]}\n```", "seconds": 5.32, "input_tokens": 3028, "output_tokens": 799, "cost_usd": 0.00056125}

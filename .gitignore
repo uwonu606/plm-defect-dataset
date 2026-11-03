@@ -5,3 +5,4 @@ __pycache__/
 *.pyc
 /sim/.venv/
 /sim/runs/emb/
+/openllm-kit/runs/

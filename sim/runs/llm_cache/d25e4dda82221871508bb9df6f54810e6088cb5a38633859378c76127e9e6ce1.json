@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-CORE-2025-02245\", \"stop\": 5, \"label\": \"r.unresolved\", \"evidence\": \"'Housekeeping:ToClose' label이 붙었다.\"}, {\"id\": \"DF-UE-2014-00005\", \"stop\": 0, \"label\": \"_none\", \"evidence\": \"원문에 답변이나 조치 기록이 없다.\"}]}\n```", "seconds": 7.86, "input_tokens": 3035, "output_tokens": 1375, "cost_usd": 0.00085065}

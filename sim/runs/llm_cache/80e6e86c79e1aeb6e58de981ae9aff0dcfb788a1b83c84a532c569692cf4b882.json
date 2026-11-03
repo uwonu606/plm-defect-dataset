@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-RAN-DU-2026-00771\", \"stop\": 10, \"label\": \"p.gap\", \"evidence\": \"8 port용 precoding codebook을 구현해야 한다.\"}, {\"id\": \"DF-CORE-2021-00784\", \"stop\": 9, \"label\": \"p.stage\", \"evidence\": \"2021-04-08 master 기준 15건이 나온다.\"}]}\n```", "seconds": 9.04, "input_tokens": 3998, "output_tokens": 1458, "cost_usd": 0.00093446}

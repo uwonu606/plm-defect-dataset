@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-UE-2023-00244\", \"label\": \"r.field.adjust\", \"evidence\": \"gNB 설정 파일의 local IP가 틀렸던 것이 원인이었다고 밝히고 닫자고 했다.\"}]}\n```", "seconds": 6.13, "input_tokens": 3693, "output_tokens": 729, "cost_usd": 0.0005344200000000001}

@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-CORE-2023-01801\", \"label\": \"r.verdict.redirect\", \"evidence\": \"메인테이너는 Kubernetes 배포 방식을 지금 관리하지 않는다고 답했다.\"}]}\n```", "seconds": 4.92, "input_tokens": 3436, "output_tokens": 666, "cost_usd": 0.00049693}

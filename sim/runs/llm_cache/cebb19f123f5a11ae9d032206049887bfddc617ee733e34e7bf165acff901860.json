@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-RAN-DU-2026-00811\", \"label\": \"p.stage.build\", \"evidence\": \"`cmake`·`ninja`나 `build_oai`로 빌드하면 함수의 VLA 인자와 관련된 비슷한 오류로 실패한다.\"}]}\n```", "seconds": 4.7, "input_tokens": 3469, "output_tokens": 458, "cost_usd": 0.00040922000000000007}

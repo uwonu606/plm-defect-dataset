@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-CORE-2021-00940\", \"label\": \"c.content.config\", \"evidence\": \"가입자 정보가 틀렸다.\"}, {\"id\": \"DF-PLATFORM-2012-00164\", \"label\": \"c.content.doc\", \"evidence\": \"unit test를 옮길 때 README를 고치지 않았다.\"}]}\n```", "seconds": 4.2, "input_tokens": 2753, "output_tokens": 493, "cost_usd": 0.00042792000000000004}

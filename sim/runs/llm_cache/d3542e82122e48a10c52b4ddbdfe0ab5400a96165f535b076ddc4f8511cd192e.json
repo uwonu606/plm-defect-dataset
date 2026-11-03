@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-PLATFORM-2013-00693\", \"label\": \"c.code.logic\", \"evidence\": \"오류 메시지 format string은 5개를 치환하는데 변수는 4개만 넘겼다.\"}]}\n```", "seconds": 5.48, "input_tokens": 8570, "output_tokens": 501, "cost_usd": 0.0019643}

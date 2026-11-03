@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-CORE-2023-01921\", \"label\": \"r.unresolved.pending\", \"evidence\": \"SMF PR 76을 아직 리뷰 중이라고 덧붙였다\"}, {\"id\": \"DF-CORE-2021-01066\", \"label\": \"r.unresolved.abandoned\", \"evidence\": \"45일 동안 활동이 없어 stale bot이 닫았다\"}]}\n```", "seconds": 4.45, "input_tokens": 2940, "output_tokens": 449, "cost_usd": 0.0008123000000000001}

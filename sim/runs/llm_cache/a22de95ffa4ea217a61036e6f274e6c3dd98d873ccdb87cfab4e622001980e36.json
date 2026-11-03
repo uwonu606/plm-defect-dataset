@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-PLATFORM-2019-02949\", \"label\": \"p.conn.setup\", \"evidence\": \"version negotiation failed (we support version 0x05, peer supports version 0x01)\"}]}\n```", "seconds": 5.01, "input_tokens": 3078, "output_tokens": 613, "cost_usd": 0.00051169}

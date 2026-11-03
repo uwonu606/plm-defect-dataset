@@ -1,0 +1,1 @@
+{"text": "{\"results\": [{\"id\": \"DF-CORE-2021-00624\", \"stop\": 5, \"label\": \"r.unresolved\", \"evidence\": \"활동이 없어 stale bot이 닫았다(`wontfix` 라벨).\"}, {\"id\": \"DF-RAN-DU-2022-00312\", \"stop\": 1, \"label\": \"r.change\", \"evidence\": \"동적 할당 memory를 static으로 바꿨다\"}]}", "seconds": 6.2, "input_tokens": 3107, "output_tokens": 864, "cost_usd": 0.0006095499999999999}

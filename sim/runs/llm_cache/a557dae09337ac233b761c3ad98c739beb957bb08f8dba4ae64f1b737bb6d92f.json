@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-PLATFORM-2012-00164\", \"label\": \"p.info.doc\", \"evidence\": \"`plugin/ryu` 아래 README의 unit test 실행 방법은 바뀌지 않았다.\"}]}\n```", "seconds": 3.96, "input_tokens": 2496, "output_tokens": 262, "cost_usd": 0.0006300000000000001}

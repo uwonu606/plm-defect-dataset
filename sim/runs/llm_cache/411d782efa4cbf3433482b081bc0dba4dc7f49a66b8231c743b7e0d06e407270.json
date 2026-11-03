@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-PLATFORM-2017-02487\", \"label\": \"c.supply.dependency\", \"evidence\": \"Keepalived 1.2.20에 들어간 commit 37488e57부터 VRRP 초기화가 VRRP packet용 source IP를 HA interface나 keepalived 설정의 `unicast_src_ip`에서 읽고, 찾지 못하면 실패한다.\"}]}\n```", "seconds": 6.38, "input_tokens": 2952, "output_tokens": 755, "cost_usd": 0.0009677}

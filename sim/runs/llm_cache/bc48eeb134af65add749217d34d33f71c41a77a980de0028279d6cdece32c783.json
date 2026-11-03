@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-CORE-2021-01002\", \"label\": \"r.verdict.decline\", \"evidence\": \"5G branch가 곧 deprecated된다며 닫았다.\"}, {\"id\": \"DF-PLATFORM-2022-03628\", \"label\": \"r.verdict.redirect\", \"evidence\": \"tempest에서 고쳐졌다는 이유로 닫혔다.\"}]}\n```", "seconds": 8.2, "input_tokens": 3521, "output_tokens": 1299, "cost_usd": 0.0013535}

@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-RAN-DU-2023-00382\", \"label\": \"p.conn.delivery\", \"evidence\": \"data session이 10~20초 이상 유지되지 않는다\"}, {\"id\": \"DF-PLATFORM-2014-01196\", \"label\": \"p.conn.delivery\", \"evidence\": \"RA가 instance의 qbr까지는 오지만 tap device에는 닿지 않아\"}]}\n```", "seconds": 5.4, "input_tokens": 3156, "output_tokens": 794, "cost_usd": 0.00061779}

@@ -1,0 +1,1 @@
+{"text": "```json\n{\"results\": [{\"id\": \"DF-CORE-2025-02389\", \"label\": \"r.verdict.not_defect\", \"evidence\": \"메인테이너가 EPC에서는 Framed Routing을 지원하지 않는다고 확인했다\"}]}\n```", "seconds": 4.22, "input_tokens": 3399, "output_tokens": 473, "cost_usd": 0.00039303000000000005}
