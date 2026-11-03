@@ -1,0 +1,311 @@
+{
+ "source": "taxonomy/*.json",
+ "versions": {
+  "problem": "v3",
+  "cause": "v4",
+  "resolution": "v3"
+ },
+ "axes": {
+  "problem": {
+   "evidence_fields": [
+    "record_type",
+    "title",
+    "problem"
+   ],
+   "l1_doc": "1-l1.md",
+   "l1_labels": [
+    "_na",
+    "_none",
+    "_other",
+    "p.conn",
+    "p.func",
+    "p.gap",
+    "p.halt",
+    "p.info",
+    "p.perf",
+    "p.sec",
+    "p.stage.build",
+    "p.stage.install",
+    "p.stage.startup",
+    "p.stage.test",
+    "p.state"
+   ],
+   "questions": [
+    {
+     "q": 1,
+     "label": "p.halt"
+    },
+    {
+     "q": 2,
+     "label": "p.stage.install|p.stage.startup"
+    },
+    {
+     "q": 3,
+     "label": "p.conn"
+    },
+    {
+     "q": 4,
+     "label": "p.sec"
+    },
+    {
+     "q": 5,
+     "label": "p.func"
+    },
+    {
+     "q": 6,
+     "label": "p.perf"
+    },
+    {
+     "q": 7,
+     "label": "p.state"
+    },
+    {
+     "q": 8,
+     "label": "p.info"
+    },
+    {
+     "q": 9,
+     "label": "p.stage.build|p.stage.test"
+    },
+    {
+     "q": 10,
+     "label": "p.gap"
+    }
+   ],
+   "stage2": {
+    "p.conn": {
+     "doc": "2-p.conn.md",
+     "labels": [
+      "p.conn",
+      "p.conn.setup",
+      "p.conn.delivery"
+     ]
+    },
+    "p.func": {
+     "doc": "2-p.func.md",
+     "labels": [
+      "p.func",
+      "p.func.fail",
+      "p.func.wrong"
+     ]
+    },
+    "p.info": {
+     "doc": "2-p.info.md",
+     "labels": [
+      "p.info",
+      "p.info.doc",
+      "p.info.log"
+     ]
+    },
+    "p.state": {
+     "doc": "2-p.state.md",
+     "labels": [
+      "p.state",
+      "p.state.equipment",
+      "p.state.environment"
+     ]
+    },
+    "p.gap": {
+     "doc": "2-p.gap.md",
+     "labels": [
+      "p.gap",
+      "p.gap.capability",
+      "p.gap.maint"
+     ]
+    }
+   }
+  },
+  "cause": {
+   "evidence_fields": [
+    "record_type",
+    "cause",
+    "resolution"
+   ],
+   "l1_doc": "1-l1.md",
+   "l1_labels": [
+    "_na",
+    "_none",
+    "_other",
+    "c.code",
+    "c.content",
+    "c.env",
+    "c.hw",
+    "c.operation",
+    "c.supply",
+    "c.test"
+   ],
+   "questions": [
+    {
+     "q": 1,
+     "label": "_na"
+    },
+    {
+     "q": 2,
+     "label": "_none"
+    },
+    {
+     "q": 3,
+     "label": "c.supply"
+    },
+    {
+     "q": 4,
+     "label": "c.test"
+    },
+    {
+     "q": 5,
+     "label": "c.env"
+    },
+    {
+     "q": 6,
+     "label": "c.hw"
+    },
+    {
+     "q": 7,
+     "label": "c.operation"
+    },
+    {
+     "q": 8,
+     "label": "c.content"
+    },
+    {
+     "q": 9,
+     "label": "c.supply"
+    },
+    {
+     "q": 10,
+     "label": "c.code"
+    }
+   ],
+   "stage2": {
+    "c.code": {
+     "doc": "2-c.code.md",
+     "labels": [
+      "c.code",
+      "c.code.logic",
+      "c.code.guard",
+      "c.code.guard.input",
+      "c.code.guard.access",
+      "c.code.guard.error",
+      "c.code.state",
+      "c.code.state.lifecycle",
+      "c.code.state.transition",
+      "c.code.concurrency",
+      "c.code.resource",
+      "c.code.interface",
+      "c.code.encoding"
+     ]
+    },
+    "c.hw": {
+     "doc": "2-c.hw.md",
+     "labels": [
+      "c.hw",
+      "c.hw.design",
+      "c.hw.failure"
+     ]
+    },
+    "c.content": {
+     "doc": "2-c.content.md",
+     "labels": [
+      "c.content",
+      "c.content.config",
+      "c.content.doc"
+     ]
+    },
+    "c.supply": {
+     "doc": "2-c.supply.md",
+     "labels": [
+      "c.supply",
+      "c.supply.build",
+      "c.supply.dependency"
+     ]
+    },
+    "c.operation": {
+     "doc": "2-c.operation.md",
+     "labels": [
+      "c.operation",
+      "c.operation.procedure",
+      "c.operation.design"
+     ]
+    },
+    "c.env": {
+     "doc": "2-c.env.md",
+     "labels": [
+      "c.env",
+      "c.env.power",
+      "c.env.physical",
+      "c.env.attack",
+      "c.env.service"
+     ]
+    }
+   }
+  },
+  "resolution": {
+   "evidence_fields": [
+    "record_type",
+    "resolution"
+   ],
+   "l1_doc": "1-l1.md",
+   "l1_labels": [
+    "_na",
+    "_none",
+    "_other",
+    "r.change",
+    "r.field",
+    "r.process",
+    "r.unresolved",
+    "r.verdict"
+   ],
+   "questions": [
+    {
+     "q": 1,
+     "label": "r.change"
+    },
+    {
+     "q": 2,
+     "label": "r.field"
+    },
+    {
+     "q": 3,
+     "label": "r.process"
+    },
+    {
+     "q": 4,
+     "label": "r.verdict"
+    },
+    {
+     "q": 5,
+     "label": "r.unresolved"
+    }
+   ],
+   "stage2": {
+    "r.field": {
+     "doc": "2-r.field.md",
+     "labels": [
+      "r.field",
+      "r.field.adjust",
+      "r.field.upgrade",
+      "r.field.env",
+      "r.field.recover"
+     ]
+    },
+    "r.verdict": {
+     "doc": "2-r.verdict.md",
+     "labels": [
+      "r.verdict",
+      "r.verdict.not_defect",
+      "r.verdict.redirect",
+      "r.verdict.decline"
+     ]
+    },
+    "r.unresolved": {
+     "doc": "2-r.unresolved.md",
+     "labels": [
+      "r.unresolved",
+      "r.unresolved.pending",
+      "r.unresolved.abandoned"
+     ]
+    }
+   }
+  }
+ }
+}

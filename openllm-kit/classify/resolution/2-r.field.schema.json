@@ -1,0 +1,37 @@
+{
+ "type": "object",
+ "properties": {
+  "results": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "label": {
+      "type": "string",
+      "enum": [
+       "r.field",
+       "r.field.adjust",
+       "r.field.upgrade",
+       "r.field.env",
+       "r.field.recover"
+      ]
+     },
+     "evidence": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "label",
+     "evidence"
+    ]
+   }
+  }
+ },
+ "required": [
+  "results"
+ ]
+}

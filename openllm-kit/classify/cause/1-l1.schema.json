@@ -1,0 +1,47 @@
+{
+ "type": "object",
+ "properties": {
+  "results": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "label": {
+      "type": "string",
+      "enum": [
+       "_na",
+       "_none",
+       "_other",
+       "c.code",
+       "c.content",
+       "c.env",
+       "c.hw",
+       "c.operation",
+       "c.supply",
+       "c.test"
+      ]
+     },
+     "evidence": {
+      "type": "string"
+     },
+     "stop": {
+      "type": "integer",
+      "minimum": 0
+     }
+    },
+    "required": [
+     "id",
+     "label",
+     "evidence",
+     "stop"
+    ]
+   }
+  }
+ },
+ "required": [
+  "results"
+ ]
+}

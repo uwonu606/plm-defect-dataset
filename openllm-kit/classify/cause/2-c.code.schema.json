@@ -1,0 +1,45 @@
+{
+ "type": "object",
+ "properties": {
+  "results": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "label": {
+      "type": "string",
+      "enum": [
+       "c.code",
+       "c.code.logic",
+       "c.code.guard",
+       "c.code.guard.input",
+       "c.code.guard.access",
+       "c.code.guard.error",
+       "c.code.state",
+       "c.code.state.lifecycle",
+       "c.code.state.transition",
+       "c.code.concurrency",
+       "c.code.resource",
+       "c.code.interface",
+       "c.code.encoding"
+      ]
+     },
+     "evidence": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "label",
+     "evidence"
+    ]
+   }
+  }
+ },
+ "required": [
+  "results"
+ ]
+}

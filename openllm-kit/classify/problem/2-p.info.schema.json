@@ -1,0 +1,35 @@
+{
+ "type": "object",
+ "properties": {
+  "results": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "label": {
+      "type": "string",
+      "enum": [
+       "p.info",
+       "p.info.doc",
+       "p.info.log"
+      ]
+     },
+     "evidence": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "label",
+     "evidence"
+    ]
+   }
+  }
+ },
+ "required": [
+  "results"
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "type": "object",
+ "properties": {
+  "results": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "label": {
+      "type": "string",
+      "enum": [
+       "r.verdict",
+       "r.verdict.not_defect",
+       "r.verdict.redirect",
+       "r.verdict.decline"
+      ]
+     },
+     "evidence": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "label",
+     "evidence"
+    ]
+   }
+  }
+ },
+ "required": [
+  "results"
+ ]
+}
